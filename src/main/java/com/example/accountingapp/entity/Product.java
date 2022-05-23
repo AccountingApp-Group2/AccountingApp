@@ -15,7 +15,7 @@ import java.math.BigInteger;
 public class Product extends BaseEntity {
 
     private String name;
-    private String description;//test
+    private String description;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Category category;
