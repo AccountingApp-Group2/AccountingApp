@@ -19,8 +19,8 @@ public class Product extends BaseEntity {
 
     //TODO  @Abbos
     /*
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Category category;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    private Category category;
     */
 
     private BigInteger qty;
@@ -30,11 +30,11 @@ public class Product extends BaseEntity {
 
     //TODO @Gulmira
     /*
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Company company;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    private Company company;
     */
 
-    private boolean enabled;
+    private Boolean enabled;
 
     @Enumerated(EnumType.STRING)
     private ProductStatus productStatus;
