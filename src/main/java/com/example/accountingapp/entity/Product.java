@@ -3,7 +3,6 @@ package com.example.accountingapp.entity;
 import com.example.accountingapp.enums.ProductStatus;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
@@ -19,12 +18,9 @@ public class Product extends BaseEntity {
     private String name;
     private String description;
 
-    //TODO  @Abbos
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
    private Category category;
-
 
     private BigInteger qty;
     private String unit;
@@ -34,7 +30,6 @@ public class Product extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "company_id")
     private Company company;
-
 
     private Boolean enabled;
 
