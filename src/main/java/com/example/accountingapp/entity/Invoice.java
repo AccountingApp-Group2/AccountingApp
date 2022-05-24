@@ -34,7 +34,7 @@ public class Invoice extends BaseEntity {
     //@JoinColumn(name="sptable_id")
     //private ClientVendor clientVendor;
 
-    //TODO Gulmira
+    //TODO @Gulmira
     //@ManyToOne(fetch = FetchType.LAZY)
     //@JoinColumn(name="company_id")
     //private Company company;
