@@ -133,3 +133,6 @@ Desktop.ini
 
 ### my ignores ######
 /src/main/resources/application.properties
+
+
+.gitignore
