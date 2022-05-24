@@ -12,3 +12,8 @@ VALUES (1, '2022-01-05 00:00:00', FALSE, 1, '2022-01-05 00:00:00', 'name1', 100,
        (2, '2022-01-05 00:00:00', FALSE, 1, '2022-01-05 00:00:00', 'name2', 200, 15, 2, 8, 2),
        (3, '2022-01-05 00:00:00', FALSE, 1, '2022-01-05 00:00:00', 'name3', 300, 20, 3, 10, 3);
 
+--TODO @Abbos - category
+INSERT INTO invoice_product (created_by, created_time, is_deleted, updated_by, updated_time, description, enabled)
+VALUES (1, '2022-01-05 00:00:00', FALSE, 1, '2022-01-05 00:00:00', 'computer', true),
+       (2, '2022-01-05 00:00:00', FALSE, 1, '2022-01-05 00:00:00', 'TV', true ),
+       (3, '2022-01-05 00:00:00', FALSE, 1, '2022-01-05 00:00:00', 'sports', true);
