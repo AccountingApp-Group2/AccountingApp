@@ -34,7 +34,7 @@ public class Product extends BaseEntity {
 //    private Company company;
     */
 
-    private boolean enabled;
+    private Boolean enabled;
 
     @Enumerated(EnumType.STRING)
     private ProductStatus productStatus;
