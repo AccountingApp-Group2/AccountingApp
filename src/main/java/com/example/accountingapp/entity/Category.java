@@ -23,7 +23,6 @@ public class Category extends BaseEntity{
     @ManyToOne(fetch = FetchType.LAZY)
     private Company company;
     private boolean enabled;
-    private BigInteger created_by;
-    private BigInteger updated_by;
+
 
 }
