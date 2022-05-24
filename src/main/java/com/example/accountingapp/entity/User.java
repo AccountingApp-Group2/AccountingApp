@@ -21,11 +21,8 @@ public class User extends BaseEntity {
     private String password;
     private String phone;
     private boolean enabled;
-
-    // ToDo Gulmira
     @ManyToOne(fetch = FetchType.LAZY)
     private Company company;
-    // ToDo Muhabbat
     @ManyToOne(fetch = FetchType.LAZY)
     private Role role;
 
