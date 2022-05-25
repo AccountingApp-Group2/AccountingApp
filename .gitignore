@@ -132,4 +132,4 @@ Desktop.ini
 .eslintcache
 
 ### my ignores ######
-#/src/main/resources/application.properties
+/src/main/resources/application.properties

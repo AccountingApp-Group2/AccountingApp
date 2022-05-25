@@ -17,18 +17,24 @@ public class Product extends BaseEntity {
     private String name;
     private String description;
 
-  /*  @ManyToOne(fetch = FetchType.LAZY)
-    private Category category;*/
+    //TODO  @Abbos
+    /*
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    private Category category;
+    */
 
     private BigInteger qty;
     private String unit;
     private BigInteger lowLimitAlert;
     private BigInteger tax;
 
-    /*@ManyToOne(fetch = FetchType.LAZY)
-    private Company company;*/
+    //TODO @Gulmira
+    /*
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    private Company company;
+    */
 
-    private boolean enabled;
+    private Boolean enabled;
 
     @Enumerated(EnumType.STRING)
     private ProductStatus productStatus;
