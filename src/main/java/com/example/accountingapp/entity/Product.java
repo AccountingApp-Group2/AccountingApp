@@ -1,8 +1,9 @@
 package com.example.accountingapp.entity;
 
 import com.example.accountingapp.enums.ProductStatus;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
@@ -10,7 +11,8 @@ import java.math.BigInteger;
 
 @Entity
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 @Where(clause = "is_deleted=false")
 public class Product extends BaseEntity {
 
@@ -28,11 +30,10 @@ public class Product extends BaseEntity {
     private BigInteger lowLimitAlert;
     private BigInteger tax;
 
-    //TODO @Gulmira
-    /*
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    private Company company;
-    */
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "company_id")
+    private Company company;
+
 
     private Boolean enabled;
 

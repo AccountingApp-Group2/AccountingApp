@@ -3,6 +3,7 @@ package com.example.accountingapp.entity;
 
 import com.example.accountingapp.enums.InvoiceStatus;
 import com.example.accountingapp.enums.InvoiceType;
+import com.sun.xml.bind.v2.TODO;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -34,10 +35,10 @@ public class Invoice extends BaseEntity {
     //@JoinColumn(name="sptable_id")
     //private ClientVendor clientVendor;
 
-    //TODO @Gulmira
-    //@ManyToOne(fetch = FetchType.LAZY)
-    //@JoinColumn(name="company_id")
-    //private Company company;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="company_id")
+    private Company company;
 
     private boolean enabled;
 
