@@ -17,10 +17,10 @@ public class User extends BaseEntity {
     private String firstName;
     private String LastName;
     @Column(unique = true, nullable = false)
-    private String userName;
+    private String email;
     private String password;
     private String phone;
-    private String status;
+    private boolean enabled;
 
     // ToDo Gulmira
    /* @ManyToOne(fetch = FetchType.LAZY)
