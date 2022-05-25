@@ -62,19 +62,19 @@ public enum State {
     WYOMING("Wyoming", "WY");
 
 
-    private String stateName;
-    private String stateCode;
+    private String state_name;
+    private String state_code;
 
-    State(String stateName, String stateCode) {
-        this.stateName = stateName;
-        this.stateCode = stateCode;
+    State(String state_name, String state_code) {
+        this.state_name = state_name;
+        this.state_code = state_code;
     }
 
     public String getStateName() {
-        return stateName;
+        return state_name;
     }
 
     public String getStateCode() {
-        return stateCode;
+        return state_code;
     }
 }
