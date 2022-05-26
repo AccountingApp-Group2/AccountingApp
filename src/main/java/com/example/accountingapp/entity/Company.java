@@ -1,7 +1,6 @@
 package com.example.accountingapp.entity;
 
-import com.sun.xml.bind.v2.TODO;
-import lombok.Data;
+import lombok.Getter;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,7 +8,7 @@ import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Date;
+
 
 @Entity
 @NoArgsConstructor
