@@ -1,21 +1,23 @@
 package com.example.accountingapp.enums;
 
-import lombok.Getter;
 
-@Getter
+
+
 public enum Unit {
-    LBS("Libre"),
-    GALLON("Gallon"),
+    LBS("Pounds"),
+    GL("Gallon"),
     PCS("Pieces"),
     KG("Kilogram"),
-    METER("Meter"),
-    INCH("inch"),
-    FEET("Feet");
+    M("Meter"),
+    IN("Inch"),
+    FT("Feet");
 
     private final String value;
 
     Unit(String value) {
         this.value = value;
     }
-
+    public String getValue() {
+        return value;
+    }
 }

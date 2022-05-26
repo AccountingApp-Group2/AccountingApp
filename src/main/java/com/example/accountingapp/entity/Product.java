@@ -20,10 +20,11 @@ public class Product extends BaseEntity {
     private String description;
 
     //TODO  @Abbos
-    /*
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    private Category category;
-    */
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id")
+   private Category category;
+
 
     private BigInteger qty;
     private String unit;
