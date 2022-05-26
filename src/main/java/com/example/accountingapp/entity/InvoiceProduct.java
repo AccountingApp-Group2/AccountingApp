@@ -9,7 +9,6 @@ import org.hibernate.annotations.Where;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 import java.math.BigDecimal;
 
 @Entity
@@ -25,9 +24,9 @@ public class InvoiceProduct extends BaseEntity {
     private BigDecimal tax;
     private BigDecimal profit;
 
-    @ManyToOne (fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     Product product;
 
-    @ManyToOne (fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     Invoice invoice;
 }
