@@ -2,21 +2,23 @@ package com.example.accountingapp.entity;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
 @NoArgsConstructor
-@Where(clause = "is_deleted=false")
-public class StockDetails extends BaseEntity {
+public class StockDetails {
 
-    @Column(columnDefinition = "DATE")
-    private LocalDate iDate;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(columnDefinition = "TIMESTAMP")
+    private LocalDateTime iDate;
 
     private BigInteger quantity;
     private BigDecimal price;
