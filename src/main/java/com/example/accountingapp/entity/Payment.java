@@ -1,5 +1,6 @@
 package com.example.accountingapp.entity;
 
+import com.sun.xml.bind.v2.TODO;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Where;
@@ -21,8 +22,8 @@ public class Payment extends BaseEntity {
     private String institutionId;
     @Enumerated(EnumType.STRING)
     private Month month;
-//     TODO @Gulmira
-//  @ManyToOne(fetch = FetchType.LAZY)
-//  @JoinColumn(name = "company_id")
-//  private Company company;
+
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "company_id")
+  private Company company;
 }

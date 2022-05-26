@@ -1,3 +1,9 @@
+INSERT INTO company (created_by,created_time, is_deleted, updated_by, updated_time, address1, address2,email,enabled,establishment_date,phone,representative,title,zip)
+VALUES
+    (2,'2022-01-05 00:00:00',FALSE,3,'2022-03-05 00:00:00','21 State Street','Boston','anyone@mail.com',TRUE ,'2022-04-05 00:00:00','2223334444','Robert Muller','Apple','02020'),
+    (3,'2022-05-06 00:00:00',FALSE,4,'2022-07-05 00:00:00','221 Union Street','Chickago','someone@mail.com',TRUE,'2022-04-08 00:00:00','4854564355','Tom Hanks','Walmart','02022'),
+    (3,'2022-05-06 00:00:00',FALSE,4,'2022-07-05 00:00:00','221 Summer Street','Boston','any@mail.com',TRUE,'2022-04-08 00:00:00','4854564355','Mary Poppins','Shell','02021');
+
 INSERT INTO invoice (created_by, created_time, is_deleted, updated_by, updated_time, enabled, invoice_date, invoice_number, invoice_status)
 VALUES (1, '2022-01-05 00:00:00', FALSE, 1, '2022-01-05 00:00:00', TRUE, '04/15/2022', 'P-INV011', 'PAID'),
        (1, '2022-01-05 00:00:00', FALSE, 1, '2022-01-05 00:00:00', TRUE, '04/15/2022', 'P-INV012', 'PENDING'),
@@ -13,16 +19,11 @@ VALUES (1, '2022-01-05 00:00:00', FALSE, 1, '2022-01-05 00:00:00', 'name1', 100,
        (2, '2022-01-05 00:00:00', FALSE, 1, '2022-01-05 00:00:00', 'name2', 200, 15, 2, 8, 2,2),
        (3, '2022-01-05 00:00:00', FALSE, 1, '2022-01-05 00:00:00', 'name3', 300, 20, 3, 10, 3,3);
 
---TODO @Gulmira - company_id
-INSERT INTO payment (created_by, created_time, is_deleted, updated_by, updated_time, amount, institution_id, is_paid, month, year)
-VALUES (1, '2022-01-05 00:00:00', FALSE, 1, '2022-01-05 00:00:00', 100.00, '1', true, 'January','01/15/2022'),
-       (2, '2022-01-05 00:00:00', FALSE, 1, '2022-01-05 00:00:00', 95.09, '2', false, 'May', '05/12/2022'),
-       (3, '2022-01-05 00:00:00', FALSE, 1, '2022-01-05 00:00:00', 45.87, '3', true, 'June', '06/1/2022');
+INSERT INTO payment (created_by, created_time, is_deleted, updated_by, updated_time, amount, institution_id, is_paid, month, year, company_id)
+VALUES (1, '2022-01-05 00:00:00', FALSE, 1, '2022-01-05 00:00:00', 100.00, '1', true, 'January','01/15/2022',2),
+       (2, '2022-01-05 00:00:00', FALSE, 1, '2022-01-05 00:00:00', 95.09, '2', false, 'May', '05/12/2022',1),
+       (3, '2022-01-05 00:00:00', FALSE, 1, '2022-01-05 00:00:00', 45.87, '3', true, 'June', '06/1/2022',3);
 
-INSERT INTO company (created_by,created_time, is_deleted, updated_by, updated_time, address1, address2,email,enabled,establishment_date,phone,representative,title,zip)
-VALUES
-       (2,'2022-01-05 00:00:00',FALSE,3,'2022-03-05 00:00:00','21 State Street','Boston','anyone@mail.com',TRUE ,'2022-04-05 00:00:00','2223334444','Robert Muller','Apple','02020'),
-       (3,'2022-05-06 00:00:00',FALSE,4,'2022-07-05 00:00:00','221 Summer Street','Boston','any@mail.com',TRUE,'2022-04-08 00:00:00','4854564355','Mary Poppins','Shell','02021');
 
 
 --TODO @Abbos - category
