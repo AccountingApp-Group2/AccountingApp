@@ -1,7 +1,6 @@
 package com.example.accountingapp.entity;
 
 import lombok.Getter;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.Where;
@@ -27,12 +26,7 @@ public class Company extends BaseEntity {
     private boolean enabled;
     private String phone;
     // TODO: 5/24/22 Rumia
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "state_id")
+//    @Enumerated(EnumType.STRING)
 //    private State state;
-
-
-
-
 
 }
