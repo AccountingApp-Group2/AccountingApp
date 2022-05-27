@@ -30,10 +30,10 @@ public class Invoice extends BaseEntity {
     @Column(columnDefinition = "DATE")
     private LocalDate invoiceDate;
 
-    //TODO @Darien
-    //@ManyToOne(fetch = FetchType.LAZY)
-    //@JoinColumn(name="sptable_id")
-    //private ClientVendor clientVendor;
+//    TODO @Darien
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name="sptable_id")
+//    private ClientVendor clientVendor;
 
 
     @ManyToOne(fetch = FetchType.LAZY)

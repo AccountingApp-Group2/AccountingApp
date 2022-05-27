@@ -24,6 +24,10 @@ VALUES (1, '2022-01-05 00:00:00', FALSE, 1, '2022-01-05 00:00:00', 100.00, '1', 
        (2, '2022-01-05 00:00:00', FALSE, 1, '2022-01-05 00:00:00', 95.09, '2', false, 'May', '05/12/2022',1),
        (3, '2022-01-05 00:00:00', FALSE, 1, '2022-01-05 00:00:00', 45.87, '3', true, 'June', '06/1/2022',3);
 
+INSERT INTO vendors (created_by, created_time, is_deleted, updated_by, updated_time, name, phone, email, address, state, zip_code, company_type)
+VALUES (1, '2022-01-05 00:00:00', FALSE, 1, '2022-01-05 00:00:00', 'Dalmark', '1234567890', 'dalmark@dalmark.com', '123 Abc St.','VA', '22191', 'CLIENT'),
+       (2, '2022-01-05 00:00:00', FALSE, 1, '2022-01-05 00:00:00', 'S2member', '0987654321', 's2@s2.com', '456 Def St.', 'TX', '78717', 'VENDOR'),
+       (3, '2022-01-05 00:00:00', FALSE, 1, '2022-01-05 00:00:00', 'Tableau', '7894561230', 'tab@tab.com', '789 Ghi St.', 'DC', '22058', 'CLIENT');
 
 
 --TODO @Abbos - category
