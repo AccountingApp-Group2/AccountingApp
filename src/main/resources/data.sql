@@ -31,3 +31,8 @@ INSERT INTO category (created_by, created_time, is_deleted, updated_by, updated_
 VALUES (1, '2022-01-05 00:00:00', FALSE, 1, '2022-01-05 00:00:00', 'computer', true),
        (2, '2022-01-05 00:00:00', FALSE, 1, '2022-01-05 00:00:00', 'TV', true ),
        (3, '2022-01-05 00:00:00', FALSE, 1, '2022-01-05 00:00:00', 'sports', true);
+
+INSERT INTO role (name , enabled)
+VALUES ('somename',true),
+       ('someone',true),
+       ('person',false);
