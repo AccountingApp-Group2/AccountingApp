@@ -20,7 +20,6 @@ public class ClientVendor extends BaseEntity {
     private String email;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "company_id")
     private Company company;
 
     @Enumerated(EnumType.STRING)
@@ -31,7 +30,7 @@ public class ClientVendor extends BaseEntity {
 
 //    TODO Rumiya
 //    @Enumerated(EnumType.STRING)
-//    private State stateId;
+//    private State state;
 
     private boolean enabled;
 
