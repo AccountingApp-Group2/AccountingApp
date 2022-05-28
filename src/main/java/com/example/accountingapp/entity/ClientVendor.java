@@ -12,22 +12,27 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Setter
-@Table(name = "vendors")
 @Where(clause = "is_deleted=false")
-public class ClientVendor extends BaseEntity{
+public class ClientVendor extends BaseEntity {
 
-    private String name;
+    private String companyName;
     private String phone;
     private String email;
-    private String address;
-    private String state;
-    private String zipCode;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "company_id")
+    private Company company;
+
     @Enumerated(EnumType.STRING)
-    private CompanyType companyType;
+    private CompanyType type;
+
+    private String zipCode;
+    private String address;
 
 //    TODO Rumiya
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "user_id")
-//    private User user;
+//    @Enumerated(EnumType.STRING)
+//    private State stateId;
+
+    private boolean enabled;
 
 }
