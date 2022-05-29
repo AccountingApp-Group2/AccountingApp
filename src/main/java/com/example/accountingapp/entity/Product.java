@@ -3,6 +3,7 @@ package com.example.accountingapp.entity;
 import com.example.accountingapp.enums.ProductStatus;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
