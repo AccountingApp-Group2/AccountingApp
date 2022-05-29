@@ -1,0 +1,48 @@
+// Custom Components
+
+// Core variables and mixins
+@import "bootstrap/functions";
+@import "bootstrap/mixins";
+
+// Core variables and mixins overrides
+@import "core/variables/variables";
+@import "bootstrap/variables";
+
+// Mixins
+@import "core/mixins/buttons";
+@import "core/mixins/shadows";
+@import "core/mixins/utilities";
+@import "core/mixins/timeline";
+
+// Overrides user variable
+@import "core/variables/app-variables";
+// Layouts
+@import "core/layouts/content";
+
+// @import "core/layouts/fixed-navbar"; // Uncomment this for fixed navbar
+
+// Components
+@import "components/utilities";
+@import "components/helper";
+@import "components/customizer";
+@import "components/components";
+@import "components/misc";
+@import "components/bootstrap-social";
+@import "components/responsive";
+@import "components/demo";
+@import "components/ex-component-avatar";
+
+// Plugins
+
+@import "plugins/breakpoints";
+@import "plugins/select2";
+@import "plugins/datetimepicker";
+@import "plugins/datatables";
+
+//------------------- below are the files where _palette-variables.scss is included and map-get() is used -------------------
+// Layouts
+@import "core/layouts/sidebar-content";
+@import "components/notification-sidebar";
+// Pages
+@import "components/timeline-horizontal";
+@import "components/timeline-vertical";
