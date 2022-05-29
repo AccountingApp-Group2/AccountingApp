@@ -29,8 +29,6 @@ VALUES (1, '2022-01-05 00:00:00', FALSE, 1, '2022-01-05 00:00:00', 100.00, '1', 
        (2, '2022-01-05 00:00:00', FALSE, 1, '2022-01-05 00:00:00', 95.09, '2', false, 'May', '05/12/2022',1),
        (3, '2022-01-05 00:00:00', FALSE, 1, '2022-01-05 00:00:00', 45.87, '3', true, 'June', '06/1/2022',3);
 
-
-
 --TODO @Abbos - category
 INSERT INTO category (created_by, created_time, is_deleted, updated_by, updated_time, description, enabled)
 VALUES (1, '2022-01-05 00:00:00', FALSE, 1, '2022-01-05 00:00:00', 'computer', true),
