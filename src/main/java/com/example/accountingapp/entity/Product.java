@@ -19,7 +19,7 @@ public class Product extends BaseEntity {
     private String name;
     private String description;
 
-    //TODO  @Abbos
+
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
