@@ -1,22 +1,15 @@
 package com.example.accountingapp.enums;
 
+public enum UserStatus {
 
-
-
-public enum Unit {
-    LBS("Pounds"),
-    GL("Gallon"),
-    PCS("Pieces"),
-    KG("Kilogram"),
-    M("Meter"),
-    IN("Inch"),
-    FT("Feet");
+    ACTIVE("Active"), INACTIVE("Inactive");
 
     private final String value;
 
-    Unit(String value) {
+    UserStatus(String value) {
         this.value = value;
     }
+
     public String getValue() {
         return value;
     }

@@ -18,13 +18,11 @@ import java.time.LocalDate;
 public class Category extends BaseEntity{
 
     private String description;
-    @Enumerated(EnumType.STRING)
-    private Unit unit;
 
+    //TODO @Gulmira
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "company_id")
     private Company company;
-
     private boolean enabled;
 
 

@@ -38,3 +38,8 @@ VALUES (1, '2022-01-05 00:00:00', FALSE, 1, '2022-01-05 00:00:00', 'computer', t
        (3, '2022-01-05 00:00:00', FALSE, 1, '2022-01-05 00:00:00', 'sports', true);
 
 
+INSERT INTO role (name , enabled)
+VALUES ('somename',true),
+       ('someone',true),
+       ('person',false);
+
