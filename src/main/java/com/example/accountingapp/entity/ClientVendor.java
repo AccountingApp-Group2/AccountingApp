@@ -30,7 +30,7 @@ public class ClientVendor extends BaseEntity {
 
 //    TODO Rumiya
 //    @Enumerated(EnumType.STRING)
-//    private State state;
+//    private State state_id;
 
     private boolean enabled;
 
