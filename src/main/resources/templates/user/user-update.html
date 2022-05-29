@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html class="loading" lang="en" xmlns:th="http://www.thymeleaf.org">
+<!-- BEGIN : Head-->
+
+<head>
+    <head th:replace="fragments :: page_head"/>
+    <title>Add User</title>
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/img/ico/favicon.ico}">
+</head>
+<!-- END : Head-->
+
+<!-- BEGIN : Body-->
+
+<body class="horizontal-layout horizontal-menu horizontal-menu-padding 2-columns  navbar-sticky" data-open="hover"
+      data-menu="horizontal-menu" data-col="2-columns">
+<div th:replace="fragments :: page_header"/>
+<!-- Navbar (Header) Ends-->
+
+<!-- ////////////////////////////////////////////////////////////////////////////-->
+<div class="wrapper">
+    <div th:replace="fragments :: page_menu"/>
+
+
+    <div class="main-panel">
+        <!-- BEGIN : Main Content-->
+        <div class="main-content">
+            <div class="content-overlay"></div>
+            <div class="content-wrapper">
+                <section class="users-list-wrapper">
+                    <!-- Filter starts -->
+                    <div class="users-list-filter px-2">
+
+
+                        <div class="col-12 col-sm-6 col-lg-3 d-flex align-items-right">
+                            <a class="btn btn-primary bg-light-primary mb-1" ><i
+                                    class="fa fa-list mr-1"></i>User List</a>
+                        </div>
+                    </div>
+
+                    <!-- Filter ends -->
+
+                    <!-- Table starts -->
+
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-content">
+                                    <div class="card-body">
+
+                                        <div class="tab-content">
+                                            <!-- Account content starts -->
+                                            <div class="tab-pane fade mt-2 show active" id="account" role="tabpanel"
+                                                 aria-labelledby="account-tab">
+
+                                                <!-- Account form starts -->
+                                                <form novalidate
+                                                      method="post" >
+                                                    <div class="row">
+                                                        <div class="col-12 col-md-6">
+                                                            <div class="form-group">
+                                                                <div class="controls">
+                                                                    <label for="users-edit-username">Firstname</label>
+                                                                    <input type="text" id="users-edit-username"
+                                                                           class="form-control" placeholder="Username"
+                                                                            required
+                                                                           aria-invalid="false">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="controls">
+                                                                    <label for="users-edit-password">Password</label>
+                                                                    <input type="password" id="users-edit-password"
+                                                                           class="form-control" placeholder="Password"
+
+                                                                           aria-invalid="false" readonly>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="controls">
+                                                                    <label for="users-edit-email2">E-mail</label>
+                                                                    <input type="email" id="users-edit-email2"
+                                                                           class="form-control" placeholder="Email"
+                                                                            required
+                                                                           aria-invalid="false">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="controls">
+                                                                    <label for="users-edit-status3">Company</label>
+                                                                    <select id="users-edit-status3" class="form-control"
+                                                                            name="company"
+                                                                            required>
+                                                                        <!--                                                                        <option value="">Select Company</option>-->
+                                                                        <option ></option>
+
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+
+                                                        <div class="col-12 col-md-6">
+                                                            <div class="form-group">
+                                                                <div class="controls">
+                                                                    <label for="users-edit-company1">Lastname</label>
+                                                                    <input type="text" id="users-edit-company1"
+                                                                           class="form-control" placeholder="Lastname"
+                                                                            required>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="controls">
+                                                                    <label for="users-edit-company">Phone</label>
+                                                                    <input type="text" id="users-edit-company"
+                                                                           class="form-control"
+                                                                           placeholder="9734157843"
+                                                                            required>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="controls">
+                                                                    <label for="users-edit-role">Role</label>
+                                                                    <select id="users-edit-role" class="form-control"
+                                                                            name="role"
+                                                                            required>
+                                                                        <!--                                                                        <option value="">Select Role</option>-->
+                                                                        <option ></option>
+
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="controls">
+                                                                    <label for="users-edit-status">Status</label>
+                                                                    <select id="users-edit-status" class="form-control"
+                                                                            name="status"
+                                                                            >
+                                                                        <!--                                                                        <option value="">Select Role</option>-->
+                                                                        <option ></option>
+
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+
+                                                        </div>
+
+
+                                                        <div class="col-12 d-flex flex-sm-row flex-column justify-content-end mt-3 mt-sm-2">
+                                                            <button type="submit"
+                                                                    class="btn btn-primary mb-2 mb-sm-0 mr-sm-2">
+                                                                Save Changes
+                                                            </button>
+                                                            <a   class="btn btn-danger mb-2 mb-sm-0 mr-sm-2"
+                                                               >
+                                                                Delete User
+                                                            </a>
+                                                            <button type="reset" class="btn btn-secondary">Cancel
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                                <!-- Account form ends -->
+                                            </div>
+                                            <!-- Account content ends -->
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Table ends -->
+                </section>
+
+            </div>
+        </div>
+        <!-- END : End Main Content-->
+
+
+        <!-- Scroll to top button -->
+        <button class="btn btn-primary scroll-top" type="button"><i class="ft-arrow-up"></i></button>
+
+    </div>
+</div>
+<!-- ////////////////////////////////////////////////////////////////////////////-->
+
+<footer th:replace="fragments :: page_footer"></footer>
+<div class="sidenav-overlay"></div>
+<!-- BEGIN PAGE LEVEL JS-->
+<script th:src="@{/js/dashboard2.js}"></script>
+<!-- END PAGE LEVEL JS-->
+<!-- BEGIN: Custom CSS-->
+<script th:src="@{/assets/js/scripts.js}"></script>
+<!-- END: Custom CSS-->
+</body>
+<!-- END : Body-->
+
+</html>

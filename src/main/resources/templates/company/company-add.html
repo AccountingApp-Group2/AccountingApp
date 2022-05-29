@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html class="loading" lang="en" xmlns:th="http://www.thymeleaf.org">
+<!-- BEGIN : Head-->
+
+<head>
+    <head th:replace="fragments :: page_head"/>
+    <title>Add Company</title>
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/img/logos/logo-color-big.png}">
+</head>
+<!-- END : Head-->
+
+<!-- BEGIN : Body-->
+
+<body class="horizontal-layout horizontal-menu horizontal-menu-padding 2-columns  navbar-sticky" data-open="hover"
+      data-menu="horizontal-menu" data-col="2-columns">
+<div th:replace="fragments :: page_header"/>
+
+
+<!-- Navbar (Header) Ends-->
+
+<!-- ////////////////////////////////////////////////////////////////////////////-->
+<div class="wrapper">
+
+    <div th:replace="fragments :: page_menu"/>
+
+
+    <div class="main-panel">
+        <!-- BEGIN : Main Content-->
+        <div class="main-content">
+            <div class="content-overlay"></div>
+            <div class="content-wrapper">
+                <section class="users-list-wrapper">
+                    <!-- Filter starts -->
+                    <div class="users-list-filter px-2">
+
+
+                        <div class="col-12 col-sm-6 col-lg-3 d-flex align-items-right">
+                            <a class="btn btn-primary bg-light-primary mb-1" ><i
+                                    class="fa fa-list mr-1"></i>Company List</a>
+                        </div>
+                    </div>
+                    <!-- Filter ends -->
+
+                    <!-- Table starts -->
+
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-content">
+                                    <div class="card-body">
+
+                                        <div class="tab-content">
+                                            <!-- Account content starts -->
+                                            <div class="tab-pane fade mt-2 show active" id="account" role="tabpanel"
+                                                 aria-labelledby="account-tab">
+
+                                                <!-- Account form starts -->
+                                                <form class="needs-validation" novalidate>
+                                                    <div class="row">
+                                                        <div class="col-12 col-md-6">
+                                                            <div class="form-group">
+                                                                <div class="controls">
+                                                                    <label for="users-edit-username">Title</label>
+                                                                    <input type="text" id="users-edit-username"
+                                                                           class="form-control" placeholder="title"
+                                                                           required
+                                                                           aria-invalid="false" >
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="controls">
+                                                                    <label for="zip">Zip</label>
+                                                                    <input type="text" id="zip" class="form-control"
+                                                                           placeholder="zipcode" required
+                                                                           aria-invalid="false" >
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="controls">
+                                                                    <label for="address">Address</label>
+                                                                    <input type="text" id="address"
+                                                                           class="form-control"
+                                                                           placeholder="address"
+                                                                           required
+                                                                           aria-invalid="false" >
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="controls">
+                                                                    <label for="email">E-mail</label>
+                                                                    <input type="email" id="email"
+                                                                           class="form-control" placeholder="email"
+                                                                           required
+                                                                           aria-invalid="false" >
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-12 col-md-6">
+                                                            <div class="form-group">
+                                                                <div class="controls">
+                                                                    <label for="state">State</label>
+                                                                    <select id="state" class="form-control"
+                                                                            required >
+                                                                        <option selected></option>
+                                                                        <option ></option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="controls">
+                                                                    <label for="establishmentdate">Establishment
+                                                                        Date</label>
+                                                                    <input type="date" id="establishmentdate"
+                                                                           class="form-control"
+                                                                           placeholder="establishment date"
+                                                                           required
+                                                                           aria-invalid="false">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="controls">
+                                                                    <label for="representative">Representative</label>
+                                                                    <input type="text" id="representative"
+                                                                           class="form-control"
+                                                                           placeholder="representative"
+                                                                           aria-invalid="false">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="controls">
+                                                                    <label for="phone">Phone</label>
+                                                                    <input type="text" id="phone"
+                                                                           class="form-control"
+                                                                           placeholder="phone" aria-invalid="false">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="col-12 d-flex flex-sm-row flex-column justify-content-end mt-3 mt-sm-2">
+                                                            <button type="submit"
+                                                                    class="btn btn-primary mb-2 mb-sm-0 mr-sm-2">
+                                                                Save Changes
+                                                            </button>
+                                                            <button type="reset" class="btn btn-secondary">Cancel
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                                <!-- Account form ends -->
+                                            </div>
+                                            <!-- Account content ends -->
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <!-- Table ends -->
+        <!-- Scroll to top button -->
+    </div>
+</div>
+<!-- END : End Main Content-->
+
+
+<!-- Scroll to top button -->
+
+<!-- ////////////////////////////////////////////////////////////////////////////-->
+
+
+<footer th:replace="fragments :: page_footer"></footer>
+<div class="sidenav-overlay"></div>
+<!-- BEGIN PAGE LEVEL JS-->
+<script th:src="@{/js/dashboard2.js}"></script>
+<!-- END PAGE LEVEL JS-->
+<!-- BEGIN: Custom CSS-->
+<script th:src="@{/assets/js/scripts.js}"></script>
+<!-- END: Custom CSS-->
+</body>
+<!-- END : Body-->
+
+</html>

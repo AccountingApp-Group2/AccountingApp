@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html class="loading" lang="en" xmlns:th="http://www.thymeleaf.org">
+<!-- BEGIN : Head-->
+
+<head>
+    <head th:replace="fragments :: page_head"/>
+    <title>Vendor | Client | List</title>
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/img/ico/favicon.ico}">
+    <!-- END Page Level CSS-->
+</head>
+<!-- END : Head-->
+
+<!-- BEGIN : Body-->
+
+<body class="horizontal-layout horizontal-menu horizontal-menu-padding 2-columns  navbar-sticky" data-open="hover"
+      data-menu="horizontal-menu" data-col="2-columns">
+
+<div th:replace="fragments :: page_header"/>
+<!-- Navbar (Header) Ends-->
+
+<!-- ////////////////////////////////////////////////////////////////////////////-->
+<div class="wrapper">
+    <div th:replace="fragments :: page_menu"/>
+
+    <div class="main-panel">
+        <!-- BEGIN : Main Content-->
+        <div class="main-content">
+            <div class="content-overlay"></div>
+            <div class="content-wrapper">
+                <section class="users-list-wrapper">
+                    <!-- Filter starts -->
+                    <div class="users-list-filter px-2">
+                        <div class="col-12 col-sm-6 col-lg-3 d-flex align-items-right">
+                            <a class="btn btn-success bg-light-success mb-1" ><i
+                                    class="fa fa-plus mr-1"></i>Add Client/Vendor</a>
+                        </div>
+                    </div>
+
+                    <!-- Filter ends -->
+
+                    <!-- Table starts -->
+                    <div class="users-list-table">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-content fw-container">
+                                        <div class="card-body fw-body">
+                                            <!-- Datatable starts -->
+                                            <div class="table-responsive content demo-html">
+                                                <table id="example" class="table table-striped table-bordered file-export" style="width:100%">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>ID</th>
+                                                        <th>Company Name</th>
+                                                        <th>Phone</th>
+                                                        <th>Email</th>
+                                                        <th>State</th>
+                                                        <th>Type</th>
+                                                        <th>Edit</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr >
+                                                        <td ></td>
+                                                        <td  class="text-truncate"></td>
+                                                        <td  ></td>
+                                                        <td  ></td>
+                                                        <td  ></td>
+                                                        <td  >
+
+                                                            <span class="badge bg-light-success"
+
+                                                            ></span>
+                                                        </td>
+<!--                                                        <td><span class="badge bg-light-success">Active</span></td>-->
+                                                        <td>
+                                                            <a >
+                                                                <i class="ft-edit" type="submit" ></i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+
+
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <!-- Datatable ends -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Table ends -->
+                </section>
+
+            </div>
+        </div>
+        <!-- END : End Main Content-->
+    </div>
+</div>
+<!-- ////////////////////////////////////////////////////////////////////////////-->
+<footer th:replace="fragments :: page_footer"></footer>
+<div class="sidenav-overlay"></div>
+<!-- BEGIN PAGE LEVEL JS-->
+<script th:src="@{/js/dashboard2.js}"></script>
+<!-- END PAGE LEVEL JS-->
+<!-- BEGIN: Custom CSS-->
+<script th:src="@{/assets/js/scripts.js}"></script>
+<!-- END: Custom CSS-->
+</body>
+<!-- END : Body-->
+
+</html>

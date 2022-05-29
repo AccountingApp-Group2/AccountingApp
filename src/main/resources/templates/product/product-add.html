@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html class="loading" lang="en" xmlns:th="http://www.thymeleaf.org">
+<!-- BEGIN : Head-->
+
+<head>
+    <head th:replace="fragments :: page_head"/>
+    <title>Add Product</title>
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/img/logos/logo-color-big.png}">
+    <!-- END Page Level CSS-->
+</head>
+<!-- END : Head-->
+
+<!-- BEGIN : Body-->
+
+<body class="horizontal-layout horizontal-menu horizontal-menu-padding 2-columns  navbar-sticky" data-open="hover"
+      data-menu="horizontal-menu" data-col="2-columns">
+<div th:replace="fragments :: page_header"/>
+
+<!-- ////////////////////////////////////////////////////////////////////////////-->
+<div class="wrapper">
+    <div th:replace="fragments :: page_menu"/>
+
+    <div class="main-panel">
+        <!-- BEGIN : Main Content-->
+        <div class="main-content">
+            <div class="content-overlay"></div>
+            <div class="content-wrapper">
+                <section class="users-list-wrapper">
+                    <!-- Filter starts -->
+                    <div class="users-list-filter px-2">
+                        <div class="col-12 col-sm-6 col-lg-3 d-flex align-items-right">
+                            <a class="btn btn-primary bg-light-primary mb-1" ><i
+                                    class="fa fa-list mr-1"></i>Product List</a>
+                        </div>
+                    </div>
+
+                    <!-- Filter ends -->
+
+                    <!-- Table starts -->
+
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-content">
+                                    <div class="card-body">
+
+                                        <div class="tab-content">
+                                            <!-- Account content starts -->
+                                            <div class="tab-pane fade mt-2 show active" id="account" role="tabpanel"
+                                                 aria-labelledby="account-tab">
+
+                                                <!-- Account form starts -->
+                                                <form novalidate
+                                                       method="post">
+                                                    <div class="row">
+                                                        <div class="col-12 col-md-6">
+                                                            <div class="form-group">
+                                                                <div class="controls">
+                                                                    <label for="company-name">Company Name</label>
+                                                                    <select disabled id="company-name"
+                                                                            class="form-control">
+
+                                                                        <option
+                                                                                selected="selected"
+                                                                        ></option>
+
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <div class="controls">
+                                                                    <label for="users-edit-username">Name</label>
+                                                                    <input type="text" id="users-edit-username"
+                                                                           class="form-control"
+                                                                           placeholder="Product Name"
+                                                                           value="" required
+                                                                           aria-invalid="false"
+                                                                           >
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="controls">
+                                                                    <label for="quantity">Quantity</label>
+                                                                    <input type="number" id="quantity"
+                                                                           class="form-control"
+                                                                           placeholder="Quantity"
+                                                                           value="" required aria-invalid="false"
+                                                                           >
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <div class="controls">
+                                                                    <label for="users-edit-status">Status</label>
+                                                                    <select id="users-edit-status"
+                                                                            class="form-control"
+                                                                            required  aria-invalid="false"
+                                                                            >
+                                                                        <option value="">Select Status</option>
+                                                                        <option
+
+                                                                        ></option>
+
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+
+                                                        <div class="col-12 col-md-6">
+                                                            <div class="form-group">
+                                                                <div class="controls">
+                                                                    <label for="users-edit-status">Category</label>
+                                                                    <select
+                                                                            id="users-edit-status1"
+                                                                            class="form-control"
+                                                                            required>
+                                                                        <option value="">Select Category</option>
+                                                                        <option ></option>
+
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="controls">
+                                                                    <label for="users-edit-company">Description</label>
+                                                                    <input type="text" id="users-edit-company"
+                                                                           class="form-control"
+                                                                           placeholder="Ex: Home product, Kitchen Tools "
+                                                                           required
+                                                                           >
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <div class="controls">
+                                                                    <label for="users-edit-role">Unit</label>
+                                                                    <select  id="users-edit-role"
+                                                                            class="form-control"
+                                                                            required>
+                                                                        <option value="">Select Unit</option>
+                                                                        <option >
+                                                                        </option>
+
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="controls">
+                                                                    <label for="product-low-limit">Low limit
+                                                                        Alert</label>
+                                                                    <input type="number" id="product-low-limit"
+                                                                           class="form-control"
+                                                                           placeholder="Quantity for low limit Alert"
+                                                                           required
+                                                                    >
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-12 d-flex flex-sm-row flex-column justify-content-end mt-6 mt-sm-4">
+                                                                <button type="submit"
+                                                                        class="btn btn-success mb-2 mb-sm-0 mr-sm-2">
+                                                                    Create
+                                                                </button>
+                                                                <button type="reset" class="btn btn-secondary">Cancel
+                                                                </button>
+                                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+                                                </form>
+                                                <!-- Account form ends -->
+                                            </div>
+                                            <!-- Account content ends -->
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Table ends -->
+                </section>
+            </div>
+        </div>
+        <!-- END : End Main Content-->
+
+    </div>
+</div>
+<!-- ////////////////////////////////////////////////////////////////////////////-->
+
+
+<footer th:replace="fragments :: page_footer"></footer>
+<div class="sidenav-overlay"></div>
+<!-- BEGIN PAGE LEVEL JS-->
+<script th:src="@{/js/dashboard2.js}"></script>
+<!-- END PAGE LEVEL JS-->
+<!-- BEGIN: Custom CSS-->
+<script th:src="@{/assets/js/scripts.js}"></script>
+</body>
+<!-- END : Body-->
+
+</html>

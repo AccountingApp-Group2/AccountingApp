@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html class="loading" lang="en" xmlns:th="http://www.thymeleaf.org">
+<!-- BEGIN : Head-->
+
+<head>
+    <head th:replace="fragments :: page_head"/>
+    <title>Vendor | Client | Add</title>
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/img/ico/favicon.ico}">
+    <!-- END Page Level CSS-->
+</head>
+<!-- END : Head-->
+
+<!-- BEGIN : Body-->
+
+<body class="horizontal-layout horizontal-menu horizontal-menu-padding 2-columns  navbar-sticky" data-open="hover"
+      data-menu="horizontal-menu" data-col="2-columns">
+
+<div th:replace="fragments :: page_header"/>
+<!-- Navbar (Header) Ends-->
+
+<!-- ////////////////////////////////////////////////////////////////////////////-->
+<div class="wrapper">
+    <div th:replace="fragments :: page_menu"/>
+
+    <div class="main-panel">
+        <!-- BEGIN : Main Content-->
+        <div class="main-content">
+            <div class="content-overlay"></div>
+            <div class="content-wrapper">
+                <section class="users-list-wrapper">
+                    <!-- Filter starts -->
+                    <div class="users-list-filter px-2">
+
+
+                        <div class="col-12 col-sm-6 col-lg-3 d-flex align-items-right">
+                            <a class="btn btn-primary bg-light-primary mb-1" ><i
+                                    class="fa fa-list mr-1"></i>Client/Vendor List</a>
+                        </div>
+                    </div>
+
+                    <!-- Filter ends -->
+
+                    <!-- Table starts -->
+
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-content">
+                                    <div class="card-body">
+
+                                        <div class="tab-content">
+                                            <!-- Account content starts -->
+                                            <div class="tab-pane fade mt-2 show active" id="account" role="tabpanel"
+                                                 aria-labelledby="account-tab">
+
+                                                <!-- Account form starts -->
+                                                <form novalidate method="post" >
+                                                    <div class="row">
+                                                        <div class="col-12 col-md-6">
+                                                            <div class="form-group">
+                                                                <div class="controls">
+                                                                    <label for="users-edit-username">Name</label>
+                                                                    <input type="text" id="users-edit-username"
+                                                                           class="form-control" placeholder="Company Name" required aria-invalid="false">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="controls">
+                                                                    <label for="users-edit-email">E-mail</label>
+                                                                    <input type="email" id="users-edit-email"
+                                                                           class="form-control" placeholder="Email"
+                                                                           value="email@email.com" required
+                                                                           aria-invalid="false">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="controls">
+                                                                    <label for="users-edit-state">State</label>
+                                                                    <input type="text" id="users-edit-state"
+                                                                           class="form-control" placeholder="State"
+                                                                           value="Newyork" required
+                                                                           aria-invalid="false">
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+
+                                                        <div class="col-12 col-md-6">
+
+                                                            <div class="form-group">
+                                                                <div class="controls">
+                                                                    <label for="users-edit-phonenumber">Phone</label>
+                                                                    <input type="text" id="users-edit-phonenumber"
+                                                                           class="form-control"
+                                                                           placeholder="97341578663"
+                                                                           required>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="controls">
+                                                                    <label for="users-edit-Address">Address</label>
+                                                                    <input type="text" id="users-edit-Address"
+                                                                           class="form-control"
+                                                                           placeholder="address"
+                                                                           required>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="controls">
+                                                                    <label for="users-edit-zipcode">Zipcode</label>
+                                                                    <input type="text" id="users-edit-zipcode"
+                                                                           class="form-control"
+                                                                           placeholder="zipcode" required>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group"
+                                                            >
+                                                                <div class="controls"
+
+                                                                >
+                                                                    <label>Type</label>
+
+
+                                                                    <ul class="list-unstyled mb-0">
+
+                                                                        <li class="d-inline-block mr-2">
+                                                                            <div class="radio radio-primary">
+                                                                                <input type="radio" name="color-radio" required aria-invalid="false"
+                                                                                       id="color-radio-1" checked>
+                                                                                <label for="color-radio-1">VENDOR</label>
+                                                                            </div>
+                                                                        </li>
+                                                                        <li class="d-inline-block mr-2" required>
+                                                                            <div class="radio radio-secondary">
+                                                                                <input type="radio" name="color-radio" required aria-invalid="false"
+                                                                                       id="color-radio-2">
+                                                                                <label for="color-radio-2">CLIENT</label>
+                                                                            </div>
+                                                                        </li>
+
+                                                                    </ul>
+
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="col-12 d-flex flex-sm-row flex-column justify-content-end mt-3 mt-sm-2">
+                                                            <button type="submit"
+                                                                    class="btn btn-primary mb-2 mb-sm-0 mr-sm-2">
+                                                                Create
+                                                            </button>
+                                                            <button type="reset" class="btn btn-secondary">Cancel
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                                <!-- Account form ends -->
+                                            </div>
+                                            <!-- Account content ends -->
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Table ends -->
+                </section>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- ////////////////////////////////////////////////////////////////////////////-->
+<footer th:replace="fragments :: page_footer"></footer>
+<div class="sidenav-overlay"></div>
+<!-- BEGIN PAGE LEVEL JS-->
+<script th:src="@{/js/dashboard2.js}"></script>
+<!-- END PAGE LEVEL JS-->
+<!-- BEGIN: Custom CSS-->
+<script th:src="@{/assets/js/scripts.js}"></script>
+<!-- END: Custom CSS-->
+</body>
+<!-- END : Body-->
+
+</html>

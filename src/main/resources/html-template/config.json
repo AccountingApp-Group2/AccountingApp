@@ -1,0 +1,28 @@
+{
+  "html": "html",
+  "starter_kit": "starter-kit",
+  "documentation": "documentation",
+  "assets": "assets",
+  "app_assets": "app-assets",
+  "assets_path": "../../../assets",
+  "app_assets_path": "../../../app-assets",
+  "destination": {
+    "js": "app-assets/js",
+    "css": "app-assets/css",
+    "css_rtl": "app-assets/css-rtl"
+  },
+  "source": {
+    "path": "src",
+    "js": "src/js",
+    "sass": "src/sass",
+    "template": "src/template-builder",
+    "documentation": "src/documentation"
+  },
+  "vertical_menu_template": {
+    "dashboardRename": "dashboard1.html",
+    "pugSrc": [
+      "*.pug",
+      "!**/template.pug"
+    ]
+  }
+}

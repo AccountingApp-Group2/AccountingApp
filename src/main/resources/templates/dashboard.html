@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html class="loading" lang="en" xmlns:th="http://www.thymeleaf.org">
+<!-- BEGIN : Head-->
+<head>
+    <head th:replace="fragments :: page_head"/>
+    <title>Dashboard</title>
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/img/logos/logo-color-big.png}">
+    <style>
+
+        .flags {
+            height: 18px;
+            padding-right: 20px;
+        }
+
+        .flags-europe{
+            padding-left: 20px;
+        }
+
+        .clock{
+            padding-left: 120px;
+            padding-right: 10px;
+            height: 18px;
+        }
+
+    </style>
+</head>
+<!-- END : Head-->
+<!-- BEGIN : Body-->
+<body class="horizontal-layout horizontal-menu horizontal-menu-padding 2-columns  navbar-sticky" data-open="hover"
+      data-menu="horizontal-menu" data-col="2-columns">
+<div th:replace="fragments :: page_header"></div>
+<!-- Navbar (Header) Ends-->
+<!-- ////////////////////////////////////////////////////////////////////////////-->
+<div class="wrapper">
+    <div th:replace="fragments :: page_menu"/>
+    <div class="main-panel">
+        <!-- BEGIN : Main Content-->
+        <div class="main-content">
+            <div class="content-overlay"></div>
+            <div class="content-wrapper">
+                <form  class="row">
+                    <div class="col-xl-3 col-lg-6 col-md-6 col-12">
+                        <div class="card bg-info bg-lighten-3">
+                            <div class="card-content">
+                                <div class="card-body py-0">
+                                    <div class="media">
+                                        <div class="media-body info text-left">
+                                            <h3 class="font-large-1 info mb-0" ></h3>
+                                            <span>Total Cost</span>
+                                        </div>
+                                        <div class="media-right info text-right">
+                                            <i class="ft-percent font-large-1"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="Widget-line-chart"
+                                     class="height-75 WidgetlineChart WidgetlineChartShadow WidgetChart1 mb-3"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-6 col-md-6 col-12">
+                        <div class="card bg-warning bg-lighten-3">
+                            <div class="card-content">
+                                <div class="card-body py-0">
+                                    <div class="media">
+                                        <div class="media-body warning text-left">
+                                            <h3 class="font-large-1 warning mb-0" ></h3>
+                                            <span>Total Tax</span>
+                                        </div>
+                                        <div class="media-right warning text-right">
+                                            <i class="ft-activity font-large-1"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="Widget-line-chart2"
+                                     class="height-75 WidgetlineChart WidgetlineChartShadow WidgetChart2 mb-3"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-6 col-md-6 col-12">
+                        <div class="card bg-primary bg-lighten-3">
+                            <div class="card-content">
+                                <div class="card-body py-0">
+                                    <div class="media">
+                                        <div class="media-body primary text-left">
+                                            <h3 class="font-large-1 primary mb-0" ></h3>
+                                            <span>Total Sales</span>
+                                        </div>
+                                        <div class="media-right primary text-right">
+                                            <i class="ft-trending-up font-large-1"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="Widget-line-chart3"
+                                     class="height-75 WidgetlineChart WidgetlineChartShadow WidgetChart3 mb-3"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-6 col-md-6 col-12">
+                        <div class="card bg-success bg-lighten-3">
+                            <div class="card-content">
+                                <div class="card-body py-0">
+                                    <div class="media">
+                                        <div class="media-body success text-left">
+                                            <h3 class="font-large-1 success mb-0" ></h3>
+                                            <span>Total Earning</span>
+                                        </div>
+                                        <div class="media-right success text-right">
+                                            <i class="ft-credit-card font-large-1"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="Widget-line-chart4"
+                                     class="height-75 WidgetlineChart WidgetlineChartShadow WidgetChart4 mb-3"></div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="row match-height">
+                    <div class="col-xl-8 col-lg-12 col-12">
+                        <div class="card shopping-cart">
+                            <div class="card-header pb-2">
+                                <h4 class="card-title mb-1">Invoices Cart</h4>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body p-0">
+                                    <div class="table-responsive">
+                                        <table class="table text-center m-0">
+                                            <thead>
+                                            <tr>
+                                                <th>Invoice Code</th>
+                                                <th>Date</th>
+                                                <th>Total Amount</th>
+                                                <th>Type</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr >
+                                                <td ></td>
+                                                <td ></td>
+                                                <td ></td>
+                                                <td>
+                                                    <span
+                                                          class="badge badge-pill bg-light-primary cursor-pointer"
+                                                          ></span>
+                                                    <span
+                                                          class="badge badge-pill bg-light-success cursor-pointer"
+                                                          ></span>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-12">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <h4 class="card-title">
+                                        <span>Currency Exchange List (Based EURO)</span>
+                                        <span class="float-right cursor-pointer">
+                                                <i class="ft-more-vertical-"></i>
+                                            </span>
+                                    </h4>
+                                    <p class="grey"><span><img th:src="@{/img/flags/europe.png}"
+                                                               class="flags flags-europe"></span><b>Paris</b>
+                                        <span> <img th:src="@{img/icons/clock.png}" class="clock"> </span>
+                                        <span ></span>
+                                        <span ></span>
+                                    </p>
+                                    <ul class="list-group mb-3">
+                                        <li class="list-group-item">
+                                            <span><img th:src="@{/img/flags/usa.png}" class="flags"></span>
+                                            <span>American Dollar</span>
+                                            <span class="badge bg-light-primary float-right"
+                                                  ></span>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <span><img th:src="@{/img/flags/unitedkingdom.png}" class="flags"></span>
+                                            <span>British Pound</span>
+                                            <span class="badge bg-light-secondary float-right"
+                                                  ></span>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <span><img th:src="@{/img/flags/russia.png}" class="flags"></span>
+                                            <span>Russian Ruble</span>
+                                            <span class="badge bg-light-warning float-right"
+                                                  ></span>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <span><img th:src="@{/img/flags/japan.png}" class="flags"></span>
+                                            <span>Japan Yen</span>
+
+                                            <span class="badge bg-light-success float-right"
+                                                  ></span>
+                                        </li>
+                                    </ul>
+                                    <button type="button" class="btn btn-primary mr-2">Profile</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END : End Main Content-->
+        <!-- BEGIN : Footer-->
+    </div>
+</div>
+<!-- ////////////////////////////////////////////////////////////////////////////-->
+</div>
+<footer th:replace="fragments :: page_footer"></footer>
+<div class="sidenav-overlay"></div>
+<!-- BEGIN PAGE LEVEL JS-->
+<script th:src="@{/js/dashboard2.js}"></script>
+<!-- END PAGE LEVEL JS-->
+<!-- BEGIN: Custom CSS-->
+<script th:src="@{/assets/js/scripts.js}"></script>
+<!-- END: Custom CSS-->
+</body>
+<!-- END : Body-->
+</html>
