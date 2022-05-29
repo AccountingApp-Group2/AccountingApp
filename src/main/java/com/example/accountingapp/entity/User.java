@@ -15,7 +15,7 @@ import javax.persistence.*;
 public class User extends BaseEntity {
 
     private String firstName;
-    private String LastName;
+    private String lastName;
     @Column(unique = true, nullable = false)
     private String email;
     private String password;
@@ -23,11 +23,11 @@ public class User extends BaseEntity {
     private boolean enabled;
 
     // ToDo Gulmira
-   /* @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Company company;
     // ToDo Muhabbat
     @ManyToOne(fetch = FetchType.LAZY)
-    private Role role;*/
+    private Role role;
 
 
 }
