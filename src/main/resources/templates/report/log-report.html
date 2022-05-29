@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html class="loading" lang="en" xmlns:th="http://www.thymeleaf.org">
+<!-- BEGIN : Head-->
+
+<head>
+    <head th:replace="fragments :: page_head"/>
+    <title>Stock Report</title>
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/img/ico/favicon.ico}">
+    <!-- END Page Level CSS-->
+</head>
+<!-- END : Head-->
+
+<!-- BEGIN : Body-->
+
+<body class="horizontal-layout horizontal-menu horizontal-menu-padding 2-columns navbar-sticky" data-open="hover"
+      data-menu="horizontal-menu" data-col="2-columns">
+
+
+<div th:replace="fragments :: page_header"/>
+<!-- Navbar (Header) Ends-->
+
+<!-- ////////////////////////////////////////////////////////////////////////////-->
+<div class="wrapper">
+    <div th:replace="fragments :: page_menu"/>
+
+
+    <div class="main-panel">
+        <!-- BEGIN : Main Content-->
+        <div class="main-content">
+            <div class="content-overlay"></div>
+            <div class="content-wrapper">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="content-header">Application Detailed Logs Page </div>
+                    </div>
+                </div>
+
+                <!-- File download button -->
+                <div class="users-list-filter px-2">
+
+
+                    <div class="col-12 col-sm-6 col-lg-3 d-flex align-items-right">
+                        <a class="btn btn-primary bg-light-primary mb-1"  downlaod="logs"><i
+                                class="fa fa-chevron-down "></i>Click For Download</a>
+                    </div>
+                </div>
+
+                <div>
+                    <script ></script>
+                </div>
+                <!-- File download button -->
+
+
+                <!-- File export table -->
+
+
+        </div>
+        <!-- END : End Main Content-->
+
+        <!-- Scroll to top button -->
+
+    </div>
+</div>
+<!-- ////////////////////////////////////////////////////////////////////////////-->
+
+
+<footer th:replace="fragments :: page_footer"></footer>
+<div class="sidenav-overlay"></div>
+<!-- BEGIN PAGE LEVEL JS-->
+<script th:src="@{/js/dashboard2.js}"></script>
+<!-- END PAGE LEVEL JS-->
+<!-- BEGIN: Custom CSS-->
+<script th:src="@{/assets/js/scripts.js}"></script>
+<!-- END: Custom CSS-->
+</body>
+<!-- END : Body-->
+
+</html>

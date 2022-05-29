@@ -1,0 +1,51 @@
+@import "../core/variables/variables";
+@import "../core/variables/app-variables";
+
+.bootstraptreeview {
+  // Common list group inside treeview
+  .list-group {
+    // Common list group inside treeview
+    .list-group-item {
+      // node override treeview specific
+      &.node-node-override-treeview {
+        &:last-child,
+        &.node-selected {
+          .badge {
+            background-color: $white;
+            color: $warning;
+          }
+        }
+        .badge {
+          background-color: $warning;
+          color: $white;
+        }
+      }
+      // treeview icon alignment and spacing
+      .icon {
+        vertical-align: middle;
+        margin-right: 0.5rem;
+      }
+    }
+    .node-selected {
+      .badge {
+        background-color: $white;
+        color: $primary;
+      }
+    }
+  }
+  // colorful treeview
+  .colorful-treeview {
+    .list-group-item {
+      .badge {
+        background-color: $white;
+        color: $primary;
+      }
+    }
+  }
+  // node override treeview
+  .override-treeview {
+    .badge {
+      margin-left: 0.8rem;
+    }
+  }
+}
