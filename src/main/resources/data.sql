@@ -36,3 +36,10 @@ INSERT INTO role (name , enabled)
 VALUES ('somename',true),
        ('someone',true),
        ('person',false);
+
+
+INSERT INTO users(created_by, created_time, updated_by, updated_time, first_name, last_name, email, password, phone, enabled, is_deleted)
+    --TODO Gulmira and Muhabbat need to create below entities - company_id, role_id)
+VALUES (10, '2022-01-05 00:12:00', 10, '2022-01-05 00:20:00', 'Marylin', 'Monro', 'monro@gmail.com', 'monro10', '2063334611', TRUE, FALSE),
+       (20, '2022-01-05 00:12:00', 20, '2022-01-05 00:20:00', 'Michael', 'Jackson', 'jackson01@gmail.com', 'jackson10', '2063334612', TRUE, FALSE),
+       (30, '2022-01-05 00:12:00', 30, '2022-01-05 00:20:00', 'Paul', 'Smith', 'smith@gmail.com', 'smith29', '2063334613', TRUE, FALSE);
