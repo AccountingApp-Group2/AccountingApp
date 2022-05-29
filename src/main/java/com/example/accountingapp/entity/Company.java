@@ -26,7 +26,7 @@ public class Company extends BaseEntity {
     private LocalDateTime establishmentDate;
     private boolean enabled;
     private String phone;
-    // TODO: 5/24/22 Rumiya
+
     @Enumerated(EnumType.STRING)
     private State stateId;
 
