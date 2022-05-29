@@ -14,6 +14,11 @@ VALUES (1, '2022-04-15 00:00:00', FALSE, 1, '2022-05-07 00:00:00', 'computer', T
        (2, '2022-03-17 00:00:00', FALSE, 2, '2022-05-20 00:00:00', 'sports', TRUE, 7, 'Shoe', 1, 'ACTIVE', 7, 2, 'Pieces'),
        (3, '2022-02-05 00:00:00', FALSE, 3, '2022-04-12 00:00:00', 'TV', TRUE, 43, 'TV', 1, 'ACTIVE', 43, 5, 'Pieces');
 
+INSERT INTO stock_details (i_date, quantity, price, remaining_quantity, product_id)
+VALUES ('2022-04-15 00:00:00', 2344, 999.99, 34525423, 3),
+       ('2022-01-15 00:00:00', 67, 99.99, 9687, 1),
+       ('2022-02-15 00:00:00', 6785, 9.99, 6978, 2);
+
 INSERT INTO invoice_product (created_by, created_time, is_deleted, updated_by, updated_time, name, price, profit, qty, tax, invoice_id, product_id)
 VALUES (1, '2022-01-05 00:00:00', FALSE, 1, '2022-01-05 00:00:00', 'name1', 100, 10, 1, 5, 1,1),
        (2, '2022-01-05 00:00:00', FALSE, 1, '2022-01-05 00:00:00', 'name2', 200, 15, 2, 8, 2,2),
@@ -31,3 +36,10 @@ INSERT INTO category (created_by, created_time, is_deleted, updated_by, updated_
 VALUES (1, '2022-01-05 00:00:00', FALSE, 1, '2022-01-05 00:00:00', 'computer', true,2),
        (2, '2022-01-05 00:00:00', FALSE, 1, '2022-01-05 00:00:00', 'TV', true ,1),
        (3, '2022-01-05 00:00:00', FALSE, 1, '2022-01-05 00:00:00', 'sports', true,3);
+
+
+
+INSERT INTO role (name , enabled)
+VALUES ('somename',true),
+       ('someone',true),
+       ('person',false);
