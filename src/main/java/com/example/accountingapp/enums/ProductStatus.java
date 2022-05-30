@@ -1,7 +1,7 @@
 package com.example.accountingapp.enums;
 
 public enum ProductStatus {
-    ACTIVE("Active"), PENDING("Pending");
+    ACTIVE("Active"), INACTIVE("Inactive");
 
     private final String value;
 

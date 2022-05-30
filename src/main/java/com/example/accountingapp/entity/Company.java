@@ -1,5 +1,6 @@
 package com.example.accountingapp.entity;
 
+import com.example.accountingapp.enums.State;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -25,8 +26,7 @@ public class Company extends BaseEntity {
     private LocalDateTime establishmentDate;
     private boolean enabled;
     private String phone;
-    // TODO: 5/24/22 Rumia
-//    @Enumerated(EnumType.STRING)
-//    private State state;
+    @Enumerated(EnumType.STRING)
+    private State state;
 
 }
