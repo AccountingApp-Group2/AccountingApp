@@ -29,11 +29,10 @@ VALUES (1, '2022-01-05 00:00:00', FALSE, 1, '2022-01-05 00:00:00', 100.00, '1', 
        (2, '2022-01-05 00:00:00', FALSE, 1, '2022-01-05 00:00:00', 95.09, '2', false, 'May', '05/12/2022',1),
        (3, '2022-01-05 00:00:00', FALSE, 1, '2022-01-05 00:00:00', 45.87, '3', true, 'June', '06/1/2022',3);
 
--- TODO Rumiya state enum
--- INSERT INTO client_vendor (created_by, created_time, is_deleted, updated_by, updated_time, company_name, phone, email, address, zip_code, enabled, type, company_id, state_id)
--- VALUES (1, '2022-01-05 00:00:00', FALSE, 1, '2022-01-05 00:00:00', 'Dalmark', '1234567890', 'dalmark@dalmark.com', '123 Abc St.', '22191', TRUE, 'CLIENT', 1, 'TEXAS'),
---        (2, '2022-01-05 00:00:00', FALSE, 1, '2022-01-05 00:00:00', 'S2member', '0987654321', 's2@s2.com', '456 Def St.', '78717', TRUE, 'VENDOR', 2, 'VIRGINIA'),
---        (3, '2022-01-05 00:00:00', FALSE, 1, '2022-01-05 00:00:00', 'Tableau', '7894561230', 'tab@tab.com', '789 Ghi St.', '22058', TRUE, 'CLIENT', 3, 'FLORIDA');
+INSERT INTO client_vendor (created_by, created_time, is_deleted, updated_by, updated_time, company_name, phone, email, address, zip_code, enabled, type, company_id, state_id)
+VALUES (1, '2022-01-05 00:00:00', FALSE, 1, '2022-01-05 00:00:00', 'Dalmark', '1234567890', 'dalmark@dalmark.com', '123 Abc St.', '22191', TRUE, 'CLIENT', 1, 'TEXAS'),
+       (2, '2022-01-05 00:00:00', FALSE, 1, '2022-01-05 00:00:00', 'S2member', '0987654321', 's2@s2.com', '456 Def St.', '78717', TRUE, 'VENDOR', 2, 'VIRGINIA'),
+       (3, '2022-01-05 00:00:00', FALSE, 1, '2022-01-05 00:00:00', 'Tableau', '7894561230', 'tab@tab.com', '789 Ghi St.', '22058', TRUE, 'CLIENT', 3, 'FLORIDA');
 
 --TODO @Abbos - category
 INSERT INTO category (created_by, created_time, is_deleted, updated_by, updated_time, description, enabled)
@@ -47,3 +46,7 @@ VALUES ('somename',true),
        ('someone',true),
        ('person',false);
 
+INSERT INTO users(created_by, created_time, updated_by, updated_time, company_id, first_name, last_name, role_id,  email, password, phone, enabled, is_deleted)
+VALUES (1, '2022-01-05 00:12:00', 1, '2022-01-05 00:20:00', 2, 'Marylin', 'Monro', 3, 'monro@gmail.com', 'monro10', '2063334611', TRUE, FALSE),
+       (2, '2022-01-05 00:12:00', 1, '2022-01-05 00:20:00', 1, 'Michael', 'Jackson', 2, 'jackson01@gmail.com', 'jackson10', '2063334612', TRUE, FALSE),
+       (3, '2022-01-05 00:12:00', 1, '2022-01-05 00:20:00', 3, 'Paul', 'Florettini', 1, 'florettini@gmail.com',  'smith29', '2063334613', TRUE, FALSE);
