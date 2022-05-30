@@ -1,0 +1,5 @@
+// Import variables and mixins
+@import "bootstrap/mixins/gradients";
+// Color system, always load last
+// ------------------------------
+@import "core/colors/palette";

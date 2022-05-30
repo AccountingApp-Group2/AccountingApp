@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html class="loading" lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <head th:replace="fragments :: page_head"></head>
+    <title>List Purchase</title>
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/img/ico/favicon.ico}">
+</head>
+
+<body class="horizontal-layout horizontal-menu horizontal-menu-padding 2-columns  navbar-sticky"
+      data-open="hover" data-menu="horizontal-menu" data-col="2-columns">
+    <div th:replace="fragments :: page_header"></div>
+    <div class="wrapper">
+    <div th:replace="fragments :: page_menu"></div>
+    <div class="main-panel">
+        <div class="main-content">
+            <div class="content-overlay"></div>
+            <div class="content-wrapper">
+                <section class="users-list-wrapper">
+                    <!-- ADD PURCHASE INVOICE LINK BEGIN -->
+                    <div class="users-list-filter px-2">
+                        <form>
+                            <div class="col-12 col-sm-6 col-lg-3 d-flex align-items-right">
+                                <a class="btn btn-success bg-light-success mb-1"
+                                   ><i
+                                        class="fa fa-plus mr-1"></i>Create Purchase Invoice</a>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- ADD PURCHASE INVOICE LINK END -->
+                    <!-- LIST BEGIN -->
+                    <div class="users-list-table">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-content fw-container">
+                                        <div class="card-body fw-body">
+                                            <div class="table-responsive content demo-html">
+                                                <table id="example" class="table table-striped table-bordered file-export" style="width:100%">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>Invoice No</th>
+                                                        <th>Invoice Date</th>
+                                                        <th>Vendor</th>
+                                                        <th>Cost</th>
+                                                        <th>Tax</th>
+                                                        <th>Total</th>
+                                                        <th>Add Line Item</th>
+                                                        <th></th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr >
+                                                            <td class="text-truncate" ></td>
+                                                            <td class="text-truncate" ></td>
+                                                            <td class="text-truncate" ></td>
+                                                            <td class="text-truncate" ></td>
+                                                            <td class="text-truncate" ></td>
+                                                            <td class="text-truncate" ></td>
+                                                            <td>
+                                                                <a class="ft-list" >
+                                                                </a>
+                                                            </td>
+                                                            <td>
+                                                                <form action="#" data-th-action="@{/invoice/approveDeleteToInvoice/{id}(id=${purchaseInvoice.getInvoiceNo()})}"
+                                                                      method="post">
+                                                                    <button
+                                                                            class="btn btn-success mb-2 mb-sm-0 mr-sm-2"
+                                                                            type="submit" name="action" value="approve">Approve
+                                                                    </button>
+                                                                    <button
+                                                                            class="btn btn-danger mb-2 mb-sm-0 mr-sm-2"
+                                                                            type="submit" name="action" value="delete">Delete
+                                                                    </button>
+                                                                    <button
+                                                                            class="btn btn-info mb-2 mb-sm-0 mr-sm-2"
+                                                                            type="submit" name="action" value="toInvoice">To Invoice
+                                                                    </button>
+                                                                </form>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- LIST END -->
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="fragments :: page_footer"></footer>
+<div class="sidenav-overlay"></div>
+<div class="drag-target"></div>
+<script th:src="@{/js/dashboard2.js}"></script>
+<script th:src="@{/assets/js/scripts.js}"></script>
+</body>
+
+</html>

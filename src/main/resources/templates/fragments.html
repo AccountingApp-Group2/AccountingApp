@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+
+<head th:fragment="page_head">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <meta name="description"
+          content="Apex admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+    <meta name="keywords"
+          content="admin template, Apex admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="PIXINVENT">
+
+
+    <!--<link rel="shortcut icon" type="image/x-icon" th:href="@{/img/ico/favicon.ico}">
+    <link rel="shortcut icon" type="image/png" th:href="@{/img/ico/favicon-32.png}"> -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <link rel="shortcut icon" type="image/png" href="/media/images/favicon.png">
+    <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://www.datatables.net/rss.xml">
+    <link rel="stylesheet" type="text/css" href="/media/css/site-examples.css?_=aadaa7a732793b5fe2d64919b0c6763c1">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css">
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8"/>
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,700,900%7CMontserrat:300,400,500,600,700,800,900"
+          rel="stylesheet">
+    <!-- BEGIN VENDOR CSS-->
+    <!-- font icons-->
+    <link rel="stylesheet" type="text/css" th:href="@{/fonts/feather/style.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/fonts/simple-line-icons/style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/fonts/font-awesome/css/font-awesome.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/vendors/css/perfect-scrollbar.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/vendors/css/prism.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/vendors/css/switchery.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/vendors/css/chartist.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{vendors/css/datatables/dataTables.bootstrap4.min.css}">
+    <!-- END VENDOR CSS-->
+    <!-- BEGIN APEX CSS-->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-extended.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/colors.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/components.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/themes/layout-dark.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/plugins/switchery.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/vendors/css/pickadate/pickadate.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/plugins/form-validation.css}">
+    <!-- END APEX CSS-->
+    <!-- BEGIN Page Level CSS-->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/core/menu/horizontal-menu.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/pages/dashboard2.css}">
+    <link rel="stylesheet" th:href="@{/fonts/weathericons/css/weather-icons.css}">
+    <link rel="stylesheet" th:href="@{/fonts/weathericons/css/weather-icons-wind.css}">
+    <style type="text/css" class="init">
+        .image-ruler {
+            height: 50px;
+            align-items: flex-end;
+            margin-top: -10px;
+            margin-left: -50px;
+            color: black;
+            font-size: 40px;
+            font-weight: bold;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        .person {
+            color: #0e0c28;
+            font-weight: bold;
+        }
+
+        .login-page-title {
+            width: 400px;
+            color: black;
+            font-size: 40px;
+            font-weight: bold;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        .softer{
+            border-radius: 5px;
+        }
+    </style>
+    <!-- END Page Level CSS-->
+
+</head>
+
+<body>
+
+<div class="dashboard-header" th:fragment="page_header">
+
+    <nav class="navbar navbar-expand-lg navbar-light header-navbar navbar-fixed">
+        <div class="container-fluid navbar-wrapper">
+            <div class="navbar-header d-flex">
+                <div class="navbar-toggle menu-toggle d-xl-none d-block float-left align-items-center justify-content-center"
+                     data-toggle="collapse"><i class="ft-menu font-medium-3"></i></div>
+                <ul class="navbar-nav">
+                    <li class="nav-item mr-2 d-none d-lg-block"><a class="nav-link apptogglefullscreen"
+                                                                   id="navbar-fullscreen" href="javascript:;"><i
+                            class="ft-maximize font-medium-3"></i></a></li>
+
+                </ul>
+                <div class="navbar-brand-center">
+                    <div class="navbar-header">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <div class="logo"><a class="logo-text" >
+
+                                    <span ><h3 style="color: #0b2e13">Dashboard</h3></span>
+
+                                    <span ><h3 class="image-ruler login-page-title"></h3></span>
+                                </a></div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="navbar-container main-menu-content center-layout" data-menu="menu-container">
+                <ul class="navigation-main nav navbar-nav" data-menu="menu-navigation">
+                    <li class="dropdown nav-item" data-menu="dropdown"><a
+                            class="dropdown-toggle nav-link d-flex align-items-center" href="javascript:;"
+                            data-toggle="dropdown"><i class="ft-activity" style="color: #00b3ff"></i><span
+                            data-i18n="Apps" class="person" ></span></a>
+                        <ul class="dropdown-menu">
+                            <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="#"
+                                                data-toggle="dropdown"><i class="ft-archive" style="color: #00b3ff"></i><span
+                                    data-i18n="Chat" style="color: #0e0c28">Account</span></a>
+                            </li>
+                            <li data-menu=""><a class="dropdown-item d-flex align-items-center"
+                                                href="#"
+                                                data-toggle="dropdown"><i class="ft-alert-circle"
+                                                                          style="color: #00b3ff"></i><span
+                                    data-i18n="Task Board" style="color: #0e0c28">Settings</span></a>
+                            </li>
+                            <li data-menu=""><a class="dropdown-item d-flex align-items-center"
+                                                data-toggle="dropdown"><i class="ft-arrow-right submenu-icon"
+                                                                          style="color: #00b3ff"></i><span
+                                    data-i18n="Task Board" style="color: #0e0c28">Logout</span></a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+    <!-- Navbar (Header) Ends-->
+
+
+</div>
+<!-- left sidebar -->
+<!-- ============================================================== -->
+
+<div class="header-navbar navbar-expand-sm navbar navbar-horizontal navbar-fixed navbar-light navbar-shadow menu-border navbar-brand-center"
+     role="navigation" data-menu="menu-wrapper" th:fragment="page_menu">
+    <!-- Horizontal menu content-->
+    <div class="navbar-container main-menu-content center-layout" data-menu="menu-container">
+        <ul class="navigation-main nav navbar-nav" id="main-menu-navigation" data-menu="menu-navigation">
+            <li class="dropdown nav-item softer" data-menu="dropdown" style="background: rgba(151,90,255,0.8)"><a
+                    class="dropdown-toggle nav-link d-flex align-items-center" href="javascript:;"
+                    data-toggle="dropdown"><i class="ft-box"></i><span data-i18n="Apps">Management</span></a>
+                <ul class="dropdown-menu">
+                    <li data-menu="" ><a
+                            class="dropdown-item d-flex align-items-center"
+                            data-toggle="dropdown"><i class="ft-arrow-right submenu-icon"></i><span
+                            data-i18n="Email">Company Registration</span></a>
+                    </li>
+                    <li data-menu="" ><a
+                            class="dropdown-item d-flex align-items-center"
+                            data-toggle="dropdown"><i class="ft-arrow-right submenu-icon"></i><span
+                            data-i18n="Chat">User Registration</span></a>
+                    </li>
+                    <li data-menu="" ><a
+                            class="dropdown-item d-flex align-items-center"
+                            data-toggle="dropdown"><i class="ft-arrow-right submenu-icon"></i><span
+                            data-i18n="Task Board">Client/Vendor Registration</span></a>
+                    </li>
+                </ul>
+            </li>
+            <li class="dropdown nav-item softer" data-menu="dropdown" style="background: rgba(10,158,103,0.8)" ><a
+                    class="dropdown-toggle nav-link d-flex align-items-center" href="javascript:;"
+                    data-toggle="dropdown"><i class="ft-aperture"></i><span
+                    data-i18n="UI Kit">Stock Management</span></a>
+                <ul class="dropdown-menu">
+                    <li data-menu=""><a class="dropdown-item d-flex align-items-center"
+                                        data-toggle="dropdown"><i class="ft-arrow-right submenu-icon"></i><span
+                            data-i18n="Grid">Products</span></a>
+                    </li>
+                    <li data-menu=""><a class="dropdown-item d-flex align-items-center"
+                                        data-toggle="dropdown"><i class="ft-arrow-right submenu-icon"></i><span
+                            data-i18n="Typography">Category</span></a>
+                    </li>
+                </ul>
+            </li>
+            <li class="dropdown nav-item softer" data-menu="dropdown" style="background: rgba(191,162,122,0.8)" ><a
+                    class="dropdown-toggle nav-link d-flex align-items-center" href="javascript:;"
+                    data-toggle="dropdown"><i class="ft-briefcase"></i><span data-i18n="Components">Invoices</span></a>
+                <ul class="dropdown-menu">
+
+                    <li data-menu=""><a class="dropdown-item d-flex align-items-center"
+                                        data-toggle="dropdown"><i
+                            class="ft-arrow-right submenu-icon"></i><span data-i18n="Grid">Purchase Invoice</span></a>
+                    </li>
+                    <li data-menu=""><a class="dropdown-item d-flex align-items-center"
+                                        data-toggle="dropdown"><i
+                            class="ft-arrow-right submenu-icon"></i><span
+                            data-i18n="Typography">Sales Invoice</span></a>
+                    </li>
+                </ul>
+            </li>
+            <li class="dropdown nav-item softer" data-menu="dropdown" style="background: rgba(213,142,178,0.8)" ><a
+                    class="dropdown-toggle nav-link d-flex align-items-center" href="javascript:;"
+                    data-toggle="dropdown"><i class="ft-bar-chart"></i><span data-i18n="Components">Reporting</span></a>
+                <ul class="dropdown-menu">
+
+                    <li data-menu=""><a class="dropdown-item d-flex align-items-center"
+                                        data-toggle="dropdown"><i class="ft-arrow-right submenu-icon"></i><span
+                            data-i18n="Grid">Stock Report</span></a>
+                    </li>
+                    <li data-menu=""><a class="dropdown-item d-flex align-items-center"
+                                        data-toggle="dropdown"><i class="ft-arrow-right submenu-icon"></i><span
+                            data-i18n="Typography">Profit / Loss Report</span></a>
+                    </li>
+
+                </ul>
+            </li>
+            <li class="dropdown nav-item softer" data-menu="dropdown" style="background: rgba(213,217,139,0.8)" ><a
+                    class="dropdown-toggle nav-link d-flex align-items-center" href="javascript:;"
+                    data-toggle="dropdown"><i class="ft-archive"></i><span data-i18n="Components">Administration</span></a>
+                <ul class="dropdown-menu">
+
+                    <li data-menu=""><a class="dropdown-item d-flex align-items-center"
+                                        data-toggle="dropdown"><i class="ft-arrow-right submenu-icon"></i><span
+                            data-i18n="Grid">MemberShip Payment</span></a>
+                    </li>
+                    <li data-menu=""><a class="dropdown-item d-flex align-items-center"
+                                        data-toggle="dropdown"><i class="ft-arrow-right submenu-icon"></i><span
+                            data-i18n="Typography">Log Document</span></a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- ============================================================== -->
+<!-- end left sidebar -->
+
+<footer class="footer undefined undefined" th:fragment="page_footer">
+    <p class="clearfix text-muted m-0"><span>Copyright &copy; 2021 &nbsp;</span><a
+            th:target="_blank" id="pixinventLink">CYDEO</a><span
+            class="d-none d-sm-inline-block">, All rights reserved.</span>
+    </p>
+
+
+    <!-- BEGIN VENDOR JS-->
+    <script th:src="@{/vendors/js/vendors.min.js}"></script>
+    <script th:src="@{/vendors/js/switchery.min.js}"></script>
+    <!-- BEGIN VENDOR JS-->
+    <!-- BEGIN PAGE VENDOR JS-->
+    <script th:src="@{/vendors/js/chartist.min.js}"></script>
+    <script th:src="@{/vendors/js/apexcharts.min.js}"></script>
+    <!-- END PAGE VENDOR JS-->
+    <!-- BEGIN APEX JS-->
+    <script th:src="@{/js/core/app-menu.js}"></script>
+    <script th:src="@{/js/core/app.js}"></script>
+    <script th:src="@{/js/notification-sidebar.js}"></script>
+    <script th:src="@{/js/customizer.js}"></script>
+    <script th:src="@{/js/scroll-top.js}"></script>
+    <!-- END APEX JS-->
+
+    <!-- BEGIN PAGE VENDOR JS-->
+    <script th:src="@{/vendors/js/jqBootstrapValidation.js}"></script>
+    <!-- END PAGE VENDOR JS-->
+
+    <!-- BEGIN PAGE LEVEL JS-->
+    <script th:src="@{/js/form-validation.js}"></script>
+    <!-- END PAGE LEVEL JS-->
+    <!-- BEGIN: Custom CSS-->
+    <script th:src="@{/assets/js/scripts.js}"></script>
+    <!-- END: Custom CSS-->
+    <!-- END PAGE LEVEL JS-->
+    <script type="text/javascript" src="/media/js/site.js?_=6093ce51057f043716aadf9628fff069"></script>
+    <script type="text/javascript" src="/media/js/dynamic.php?comments-page=examples%2Fstyling%2Fbootstrap5.html"
+            async></script>
+    <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" language="javascript"
+            src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" language="javascript"
+            src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
+    <script type="text/javascript" language="javascript" src="../resources/demo.js"></script>
+    <script type="text/javascript" class="init">
+
+        $(document).ready(function () {
+            $('#example').DataTable();
+        });
+
+    </script>
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-365466-5']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    <script th:src="@{/vendor/jquery/jquery-3.3.1.min.js}"></script>
+    <!-- bootstap bundle js -->
+    <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.js}"></script>
+    <!-- slimscroll js -->
+    <script th:src="@{/vendor/slimscroll/jquery.slimscroll.js}"></script>
+    <!-- main js -->
+    <script th:src="@{/libs/js/main-js.js}"></script>
+    <!-- chart chartist js -->
+    <script th:src="@{/vendor/charts/chartist-bundle/chartist.min.js}"></script>
+    <!-- sparkline js -->
+    <script th:src="@{/vendor/charts/sparkline/jquery.sparkline.js}"></script>
+    <!-- morris js -->
+    <script th:src="@{/vendor/charts/morris-bundle/raphael.min.js}"></script>
+    <script th:src="@{/vendor/charts/morris-bundle/morris.js}"></script>
+    <!-- chart c3 js -->
+    <script th:src="@{/vendor/charts/c3charts/c3.min.js}"></script>
+    <script th:src="@{/vendor/charts/c3charts/d3-5.4.0.min.js}"></script>
+    <script th:src="@{/vendor/charts/c3charts/C3chartjs.js}"></script>
+    <script th:src="@{/libs/js/dashboard-ecommerce.js}"></script>
+</footer>
+
+
+</body>
+
+</html>
