@@ -1,6 +1,7 @@
 package com.example.accountingapp.entity;
 
 import com.example.accountingapp.enums.CompanyType;
+import com.example.accountingapp.enums.State;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -28,9 +29,8 @@ public class ClientVendor extends BaseEntity {
     private String zipCode;
     private String address;
 
-//    TODO Rumiya
-//    @Enumerated(EnumType.STRING)
-//    private State state_id;
+    @Enumerated(EnumType.STRING)
+    private State state_id;
 
     private boolean enabled;
 
