@@ -27,18 +27,19 @@ VALUES (1, '2022-01-05 00:00:00', FALSE, 1, '2022-01-05 00:00:00', 'name1', 100,
 INSERT INTO payment (created_by, created_time, is_deleted, updated_by, updated_time, amount, institution_id, is_paid, month, year, company_id)
 VALUES (1, '2022-01-05 00:00:00', FALSE, 1, '2022-01-05 00:00:00', 100.00, '1', true, 'January','01/15/2022',2),
        (2, '2022-01-05 00:00:00', FALSE, 1, '2022-01-05 00:00:00', 95.09, '2', false, 'May', '05/12/2022',1),
-       (3, '2022-01-05 00:00:00', FALSE, 1, '2022-01-05 00:00:00', 45.87, '3', true, 'June', '06/1/2022',3);
+       (3, '2022-01-05 00:00:00', FALSE, 1, '2022-01-05 00:00:00', 45.87, '3', true, 'June', '06/1/2022',3,3);
 
 INSERT INTO client_vendor (created_by, created_time, is_deleted, updated_by, updated_time, company_name, phone, email, address, zip_code, enabled, type, company_id, state_id)
 VALUES (1, '2022-01-05 00:00:00', FALSE, 1, '2022-01-05 00:00:00', 'Dalmark', '1234567890', 'dalmark@dalmark.com', '123 Abc St.', '22191', TRUE, 'CLIENT', 1, 'TEXAS'),
        (2, '2022-01-05 00:00:00', FALSE, 1, '2022-01-05 00:00:00', 'S2member', '0987654321', 's2@s2.com', '456 Def St.', '78717', TRUE, 'VENDOR', 2, 'VIRGINIA'),
        (3, '2022-01-05 00:00:00', FALSE, 1, '2022-01-05 00:00:00', 'Tableau', '7894561230', 'tab@tab.com', '789 Ghi St.', '22058', TRUE, 'CLIENT', 3, 'FLORIDA');
 
---TODO @Abbos - category
-INSERT INTO category (created_by, created_time, is_deleted, updated_by, updated_time, description, enabled)
-VALUES (1, '2022-01-05 00:00:00', FALSE, 1, '2022-01-05 00:00:00', 'computer', true),
-       (2, '2022-01-05 00:00:00', FALSE, 1, '2022-01-05 00:00:00', 'TV', true ),
-       (3, '2022-01-05 00:00:00', FALSE, 1, '2022-01-05 00:00:00', 'sports', true);
+
+INSERT INTO category (created_by, created_time, is_deleted, updated_by, updated_time, description, enabled,company_id)
+VALUES (1, '2022-01-05 00:00:00', FALSE, 1, '2022-01-05 00:00:00', 'computer', true,2),
+       (2, '2022-01-05 00:00:00', FALSE, 1, '2022-01-05 00:00:00', 'TV', true ,1),
+       (3, '2022-01-05 00:00:00', FALSE, 1, '2022-01-05 00:00:00', 'sports', true,3);
+
 
 
 INSERT INTO role (name , enabled)
