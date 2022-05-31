@@ -33,7 +33,7 @@
 
 
                         <div class="col-12 col-sm-6 col-lg-3 d-flex align-items-right">
-                            <a class="btn btn-success bg-light-success mb-1" ><i
+                            <a class="btn btn-success bg-light-success mb-1" th:href="@{/user/add}"><i
                                     class="fa fa-plus mr-1"></i>Add User</a>
                         </div>
                     </div>
@@ -52,7 +52,7 @@
                                                 <table id="example" class="table table-striped table-bordered file-export" style="width:100%">
                                                     <thead>
                                                     <tr>
-                                                        <th>#</th>
+                                                        <th>Id</th>
                                                         <th>Firstname</th>
                                                         <th>Lastname</th>
                                                         <th>Email</th>
@@ -64,26 +64,26 @@
                                                     </tr>
                                                     </thead>
                                                     <tbody>
-                                                    <tr >
-                                                        <td ></td>
-                                                        <td class="text-truncate" ></td>
-                                                        <td ></td>
-                                                        <td ></td>
-                                                        <td ></td>
-                                                        <td ></td>
-                                                        <td ></td>
-                                                        <td>
+                                                    <tr th:each="user : ${users}">
+                                                        <td th:text="${user.id}"></td>
+                                                        <td class="text-truncate"  th:text="${user.firstName}"></td>
+                                                        <td th:text="${user.lastName}"></td>
+                                                        <td th:text="${user.email}"></td>
+                                                        <td th:text="${user.phone}"></td>
+                                                        <td th:text="${user.role.name}"></td>
+                                                        <td th:text="${user.company.title}"></td>
+                                                        <td th:text="${user.userStatus}">
                                                             <span
 
                                                                     class="badge bg-light-success"
-                                                                    ></span>
+                                                            ></span>
                                                             <span
 
                                                                     class="badge bg-light-DANGER"
-                                                                    ></span>
+                                                            ></span>
                                                         </td>
                                                         <td>
-                                                            <a >
+                                                            <a th:href="@{/user/update/{id}(id=${user.id})}" >
                                                                 <i class="ft-edit"></i>
                                                             </a>
                                                         </td>
