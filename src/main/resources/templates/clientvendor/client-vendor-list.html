@@ -31,7 +31,7 @@
                     <!-- Filter starts -->
                     <div class="users-list-filter px-2">
                         <div class="col-12 col-sm-6 col-lg-3 d-flex align-items-right">
-                            <a class="btn btn-success bg-light-success mb-1" ><i
+                            <a th:href="@{/client-vendor/add}" class="btn btn-success bg-light-success mb-1" ><i
                                     class="fa fa-plus mr-1"></i>Add Client/Vendor</a>
                         </div>
                     </div>
@@ -49,32 +49,34 @@
                                             <div class="table-responsive content demo-html">
                                                 <table id="example" class="table table-striped table-bordered file-export" style="width:100%">
                                                     <thead>
-                                                    <tr>
-                                                        <th>ID</th>
-                                                        <th>Company Name</th>
-                                                        <th>Phone</th>
-                                                        <th>Email</th>
-                                                        <th>State</th>
-                                                        <th>Type</th>
+                                                    <tr >
+                                                        <th >ID</th>
+                                                        <th >Company Name</th>
+                                                        <th >Phone</th>
+                                                        <th >Email</th>
+                                                        <th >State</th>
+                                                        <th >Type</th>
+                                                        <th >Address</th>
+                                                        <th >Status</th>
                                                         <th>Edit</th>
                                                     </tr>
                                                     </thead>
                                                     <tbody>
-                                                    <tr >
-                                                        <td ></td>
-                                                        <td  class="text-truncate"></td>
-                                                        <td  ></td>
-                                                        <td  ></td>
-                                                        <td  ></td>
-                                                        <td  >
-
-                                                            <span class="badge bg-light-success"
-
-                                                            ></span>
-                                                        </td>
-<!--                                                        <td><span class="badge bg-light-success">Active</span></td>-->
+                                                    <tr th:each="client : ${clients}">
+                                                        <td th:text="${client.id}"></td>
+                                                        <td  th:text="${client.companyName}" class="text-truncate"></td>
+                                                        <td  th:text="${client.phone}"></td>
+                                                        <td  th:text="${client.email}"></td>
+                                                        <td  th:text="${client.state.getStateCode}"></td>
+                                                        <td  th:text="${client.type}">
+                                                        <td  th:text="${client.address + ' ' + client.state.getStateCode +' '+ client.zipCode}"><span class="badge bg-light-success"></span></td>
                                                         <td>
-                                                            <a >
+                                                            <span th:if="${client.enabled == true }" class="badge bg-light-success">Active</span>
+                                                            <span th:if="${client.enabled == false }" class="badge bg-light-warning">Inactive</span>
+                                                        </td>
+                                                        <td>
+
+                                                            <a th:href="@{/client-vendor/edit/{id}(id=${client.id})}">
                                                                 <i class="ft-edit" type="submit" ></i>
                                                             </a>
                                                         </td>
