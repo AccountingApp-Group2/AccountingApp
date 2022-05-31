@@ -2,7 +2,7 @@ package com.example.accountingapp.enums;
 
 public enum InvoiceStatus {
 
-    OPEN("OPEN"), PENDING("Pending"), PAID("Paid");
+     PENDING("Pending"), APPROVED("Approved");
 
     private final String value;
 
