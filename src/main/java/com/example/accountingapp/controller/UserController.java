@@ -80,7 +80,7 @@ public class UserController {
         model.addAttribute("companies", companyService.listAllCompanies());
         model.addAttribute("users", userService.listAllUsers());
         model.addAttribute("UserStatus", UserStatus.values());
-        return "redirect:/user/user-list";
+        return "user/user-list";
 
     }
 
