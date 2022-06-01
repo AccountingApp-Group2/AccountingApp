@@ -128,7 +128,7 @@
                                                                     <label for="users-edit-role">Role</label>
                                                                     <select id="users-edit-role" class="form-control"
                                                                             required >
-                                                                        <option th:value="''" th:text="Select"></option>
+<!--                                                                        <option th:value="''" th:text="Select"></option>-->
                                                                         <option th:each="role : ${roles}"
                                                                                 th:value="${role.id}"
                                                                                 th:text="${role.name}"></option>
