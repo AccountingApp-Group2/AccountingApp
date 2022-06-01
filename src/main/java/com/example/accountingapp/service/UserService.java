@@ -15,4 +15,6 @@ public interface UserService {
     void delete(String username);
 
     UserDTO findById(Long id);
+
+    UserDTO findByEmail(String email);
 }
