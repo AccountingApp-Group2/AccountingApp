@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void save(UserDTO dto) {
 
-
+        dto.setEnabled(true);
         userRepository.save(mapperUtil.convert(dto, new User()));
     }
 
@@ -41,6 +41,7 @@ public class UserServiceImpl implements UserService {
         User convertedUser = mapperUtil.convert(dto,new User());
         //set id to converted object which we found in DB by Email
         convertedUser.setId(user.getId());
+        convertedUser.setRole(user.getRole());
         convertedUser.setEnabled(user.getEnabled());
         convertedUser.setPassword(user.getPassword());
         userRepository.save(convertedUser);

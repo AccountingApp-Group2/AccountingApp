@@ -1,4 +1,4 @@
-package com.example.accountingapp.service.Impl;
+package com.example.accountingapp.service.impl;
 
 import com.example.accountingapp.dto.ClientVendorDTO;
 import com.example.accountingapp.mapper.MapperUtil;
