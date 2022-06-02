@@ -16,8 +16,10 @@ VALUES (2, '2022-05-11 00:00:00', FALSE, 2, '2022-05-11 00:00:00', 'Electronics'
 
 INSERT INTO invoice (created_by, created_time, is_deleted, updated_by, updated_time, enabled, invoice_date, invoice_number, invoice_status,invoice_type,sptable_id,company_id)
 VALUES (1, '2022-05-16 00:00:00', FALSE, 1, '2022-05-16 00:00:00', TRUE, '05/16/2022', 'P-INV011', 'APPROVED', 'PURCHASE',2,2),
-       (1, '2022-05-16 00:00:00', FALSE, 1, '2022-05-16 00:00:00', TRUE, '05/16/2022', 'P-INV012', 'PENDING', 'SALE',2,2),
-       (1, '2022-05-16 00:00:00', FALSE, 1, '2022-05-16 00:00:00', TRUE, '05/16/2022', 'P-INV013', 'PENDING', 'SALE',3,3);
+       (1, '2022-05-16 00:00:00', FALSE, 1, '2022-05-16 00:00:00', TRUE, '05/17/2022', 'P-INV012', 'PENDING', 'SALE',2,2),
+       (1, '2022-05-16 00:00:00', FALSE, 1, '2022-05-16 00:00:00', TRUE, '05/18/2022', 'P-INV013', 'PENDING', 'SALE',2,2),
+       (1, '2022-05-16 00:00:00', FALSE, 1, '2022-05-16 00:00:00', TRUE, '05/19/2022', 'P-INV014', 'APPROVED', 'PURCHASE',2,2),
+       (1, '2022-05-16 00:00:00', FALSE, 1, '2022-05-16 00:00:00', TRUE, '05/20/2022', 'P-INV015', 'PENDING', 'PURCHASE',3,3);
 
 INSERT INTO product (created_by, created_time, is_deleted, updated_by, updated_time, description, enabled, low_limit_alert, name, new_column, product_status, qty, tax, unit,category_id,company_id)
 VALUES (4, '2022-05-15 00:00:00', FALSE, 4, '2022-05-15 00:00:00', 'TV', TRUE, 10, 'TV', 1, 'ACTIVE', 50, 8, 'Pieces',1,2),
