@@ -32,7 +32,7 @@
 
 
                         <div class="col-12 col-sm-6 col-lg-3 d-flex align-items-right">
-                            <a class="btn btn-primary bg-light-primary mb-1" ><i
+                            <a class="btn btn-primary bg-light-primary mb-1" th:href="@{/user/list}"><i
                                     class="fa fa-list mr-1"></i>User List</a>
                         </div>
                     </div>
@@ -55,15 +55,17 @@
 
                                                 <!-- Account form starts -->
                                                 <form novalidate
-                                                      method="post" >
+                                                      th:action="@{/user/update}"  method="post" th:object="${user}" >
+
                                                     <div class="row">
                                                         <div class="col-12 col-md-6">
                                                             <div class="form-group">
                                                                 <div class="controls">
-                                                                    <label for="users-edit-username">Firstname</label>
-                                                                    <input type="text" id="users-edit-username"
-                                                                           class="form-control" placeholder="Username"
-                                                                            required
+                                                                    <label for="firstname">Firstname</label>
+                                                                    <input type="text" id="firstname"
+                                                                           th:field="*{firstName}"
+                                                                           class="form-control" placeholder="firstname"
+                                                                           required
                                                                            aria-invalid="false">
                                                                 </div>
                                                             </div>
@@ -72,7 +74,7 @@
                                                                     <label for="users-edit-password">Password</label>
                                                                     <input type="password" id="users-edit-password"
                                                                            class="form-control" placeholder="Password"
-
+                                                                           th:field="*{passWord}"
                                                                            aria-invalid="false" readonly>
                                                                 </div>
                                                             </div>
@@ -80,19 +82,20 @@
                                                                 <div class="controls">
                                                                     <label for="users-edit-email2">E-mail</label>
                                                                     <input type="email" id="users-edit-email2"
+                                                                           th:field="*{email}"
                                                                            class="form-control" placeholder="Email"
-                                                                            required
+                                                                           required
                                                                            aria-invalid="false">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
                                                                 <div class="controls">
-                                                                    <label for="users-edit-status3">Company</label>
-                                                                    <select id="users-edit-status3" class="form-control"
-                                                                            name="company"
-                                                                            required>
-                                                                        <!--                                                                        <option value="">Select Company</option>-->
-                                                                        <option ></option>
+                                                                    <label >Company</label>
+                                                                    <select  th:field="*{company}" class="custom-select">
+                                                                        <option th:text="Select" th:value="''"></option>
+                                                                        <option th:each="company : ${companies}"
+                                                                                th:text="${company.title}"
+                                                                                th:value="${company.id}"></option>
 
                                                                     </select>
                                                                 </div>
@@ -105,59 +108,68 @@
                                                                 <div class="controls">
                                                                     <label for="users-edit-company1">Lastname</label>
                                                                     <input type="text" id="users-edit-company1"
+                                                                           th:field="*{lastName}"
                                                                            class="form-control" placeholder="Lastname"
-                                                                            required>
+                                                                           required>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
                                                                 <div class="controls">
                                                                     <label for="users-edit-company">Phone</label>
                                                                     <input type="text" id="users-edit-company"
+                                                                           th:field="*{phone}"
                                                                            class="form-control"
                                                                            placeholder="9734157843"
-                                                                            required>
+                                                                           required>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
                                                                 <div class="controls">
                                                                     <label for="users-edit-role">Role</label>
                                                                     <select id="users-edit-role" class="form-control"
-                                                                            name="role"
-                                                                            required>
-                                                                        <!--                                                                        <option value="">Select Role</option>-->
-                                                                        <option ></option>
-
+                                                                            required >
+                                                                        <option th:value="''" th:text="Select"></option>
+                                                                        <option th:each="role : ${roles}"
+                                                                                th:value="${role.id}"
+                                                                                th:text="${role.name}"></option>
                                                                     </select>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
                                                                 <div class="controls">
-                                                                    <label for="users-edit-status">Status</label>
-                                                                    <select id="users-edit-status" class="form-control"
-                                                                            name="status"
-                                                                            >
-                                                                        <!--                                                                        <option value="">Select Role</option>-->
-                                                                        <option ></option>
+                                                                    <label>Choose a Status</label>
+                                                                    <select  th:field="*{userStatus}" class="custom-select">
+                                                                        <option th:value="''" th:text="Select"></option>
+                                                                        <option th:each="status : ${UserStatus}"
+                                                                                th:value="${status}" th:text="${status.value}"></option>
 
                                                                     </select>
+
+
                                                                 </div>
+
+
+
                                                             </div>
-
-
                                                         </div>
-
-
                                                         <div class="col-12 d-flex flex-sm-row flex-column justify-content-end mt-3 mt-sm-2">
                                                             <button type="submit"
                                                                     class="btn btn-primary mb-2 mb-sm-0 mr-sm-2">
                                                                 Save Changes
                                                             </button>
+
+
                                                             <a   class="btn btn-danger mb-2 mb-sm-0 mr-sm-2"
-                                                               >
+                                                                 th:href="@{/user/delete/{id}(id=${user.getEmail()})}">
                                                                 Delete User
                                                             </a>
-                                                            <button type="reset" class="btn btn-secondary">Cancel
-                                                            </button>
+
+                                                        <a   class="btn btn-secondary"
+                                                             th:href="@{/user/list}">
+                                                            Cancel
+                                                        </a>
+
+
                                                         </div>
                                                     </div>
                                                 </form>
