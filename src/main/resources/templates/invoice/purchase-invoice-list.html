@@ -20,7 +20,7 @@
                     <div class="users-list-filter px-2">
                         <form>
                             <div class="col-12 col-sm-6 col-lg-3 d-flex align-items-right">
-                                <a class="btn btn-success bg-light-success mb-1"
+                                <a class="btn btn-success bg-light-success mb-1" th:href="@{/invoice/purchaseInvoiceCreate}"
                                    ><i
                                         class="fa fa-plus mr-1"></i>Create Purchase Invoice</a>
                             </div>
@@ -49,7 +49,7 @@
                                                     </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr >
+                                                        <tr th:each = "purchaseInvoice : ${purchaseInvoices}" >
                                                             <td class="text-truncate" ></td>
                                                             <td class="text-truncate" ></td>
                                                             <td class="text-truncate" ></td>
@@ -61,8 +61,8 @@
                                                                 </a>
                                                             </td>
                                                             <td>
-                                                                <form action="#" data-th-action="@{/invoice/approveDeleteToInvoice/{id}(id=${purchaseInvoice.getInvoiceNo()})}"
-                                                                      method="post">
+<!--                                                        todo: Vitaly Bahrom        <form action="#" data-th-action="@{/invoice/approveDeleteToInvoice/{id}(id=${purchaseInvoice.getInvoiceNo()})}"-->
+                                                                <form>
                                                                     <button
                                                                             class="btn btn-success mb-2 mb-sm-0 mr-sm-2"
                                                                             type="submit" name="action" value="approve">Approve

@@ -18,8 +18,10 @@
                 <section class="users-list-wrapper">
                     <!-- PURCHASE INVOICE LIST LINK -->
                     <div class="users-list-filter px-2">
-                        <form action="#" data-th-action="@{/invoice/invoiceListLink/{id}(id=${invoice.getInvoiceNo()})}"
-                              method="post">
+<!--                        todo Bahrom Vitaly
+                        <form action="#" data-th-action="@{/invoice/invoiceListLink/{id}(id=${invoice.getInvoiceNo()})}"-->
+<!--                            method="post">-->
+                        <form>
                             <div class="col-12 col-sm-6 col-lg-3 d-flex align-items-right">
                                 <button class="btn btn-primary bg-light-primary mb-1"
                                         type="submit" name="action" value="cancel">
@@ -156,7 +158,11 @@
                                                     </div>
                                                 <!-- INVOICE PRODUCT LIST END-->
                                                 <div class="col-12 d-flex flex-sm-row flex-column justify-content-end mt-3 mt-sm-2">
-                                                    <form action="#" data-th-action="@{/invoice/cancelOrSave/{id}(id=${invoice.getInvoiceNo()})}"
+<!--                                                    todo Bahrom Vitaly-->
+<!--                                                    <form action="#" data-th-action="@{/invoice/cancelOrSave/{id}(id=${invoice.getInvoiceNo()})}"-->
+<!--                                                          method="post">-->
+<!--                                                        -->
+                                                    <form
                                                           method="post">
                                                         <button class="btn btn-danger mb-2 mb-sm-0 mr-sm-2"
                                                                 type="submit" name="action" value="cancel">Cancel
