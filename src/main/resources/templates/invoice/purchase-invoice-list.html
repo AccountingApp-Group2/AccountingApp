@@ -49,9 +49,10 @@
                                                     </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr th:each = "purchaseInvoice : ${purchaseInvoices}" >
-                                                            <td class="text-truncate" ></td>
-                                                            <td class="text-truncate" ></td>
+                                                          <tr th:each="purchaseInvoice:${purchaseInvoices}" >
+                                                            <td th:text="${purchaseInvoice.invoiceNumber}" class="text-truncate" ></td>
+                                                            <td th:text="${purchaseInvoice.invoiceDate}" class="text-truncate" ></td>
+<!--                                                            todo Bahrom Vitaly - add fields-->
                                                             <td class="text-truncate" ></td>
                                                             <td class="text-truncate" ></td>
                                                             <td class="text-truncate" ></td>

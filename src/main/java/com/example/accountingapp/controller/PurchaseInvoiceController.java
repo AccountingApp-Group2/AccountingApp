@@ -1,6 +1,7 @@
 package com.example.accountingapp.controller;
 
 
+import com.example.accountingapp.dto.InvoiceDTO;
 import com.example.accountingapp.enums.InvoiceType;
 import com.example.accountingapp.service.InvoiceService;
 import org.springframework.stereotype.Controller;
@@ -21,8 +22,9 @@ public class PurchaseInvoiceController {
 
     @GetMapping("/purchaseInvoiceList")
     public String purchaseInvoiceList(Model model){
-        model.addAttribute("purchaseInvoices", invoiceService.listAllByInvoiceType(InvoiceType.PURCHASE));
 
+        model.addAttribute("purchaseInvoice", new InvoiceDTO());
+        model.addAttribute("purchaseInvoices", invoiceService.listAllByInvoiceType(InvoiceType.PURCHASE));
         return "invoice/purchase-invoice-list";
     }
 
