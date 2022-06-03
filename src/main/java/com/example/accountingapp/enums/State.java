@@ -1,7 +1,7 @@
 package com.example.accountingapp.enums;
 
 public enum State {
-    ALABAMA("Alabam", "AL"),
+    ALABAMA("Alabama", "AL"),
     ALASKA("Alaska", "AK"),
     AMERICAN_SAMOA("American Samoa", "AS"),
     ARIZONA("Arizona", "AZ"),
