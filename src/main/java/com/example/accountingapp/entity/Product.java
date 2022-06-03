@@ -1,6 +1,7 @@
 package com.example.accountingapp.entity;
 
 import com.example.accountingapp.enums.ProductStatus;
+import com.example.accountingapp.enums.Unit;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -27,7 +28,10 @@ public class Product extends BaseEntity {
 
 
     private BigInteger qty;
-    private String unit;
+
+    @Enumerated(EnumType.STRING)
+    private Unit unit;
+
     private BigInteger lowLimitAlert;
     private BigInteger tax;
 
