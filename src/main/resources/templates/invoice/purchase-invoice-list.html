@@ -44,19 +44,18 @@
                                                         <th>Cost</th>
                                                         <th>Tax</th>
                                                         <th>Total</th>
-                                                        <th>Add Line Item</th>
-                                                        <th></th>
+                                                        <th>Menu</th>
+                                                        <th>Action</th>
                                                     </tr>
                                                     </thead>
                                                     <tbody>
-                                                          <tr th:each="purchaseInvoice:${purchaseInvoices}" >
-                                                            <td th:text="${purchaseInvoice.invoiceNumber}" class="text-truncate" ></td>
+                                                          <tr th:each="purchaseInvoice:${purchaseInvoices}">
+                                                            <td th:text="${purchaseInvoice.invoiceNumber}"  class="text-truncate" ></td>
                                                             <td th:text="${purchaseInvoice.invoiceDate}" class="text-truncate" ></td>
-<!--                                                            todo Bahrom Vitaly - add fields-->
-                                                            <td class="text-truncate" ></td>
-                                                            <td class="text-truncate" ></td>
-                                                            <td class="text-truncate" ></td>
-                                                            <td class="text-truncate" ></td>
+                                                            <td th:text="${purchaseInvoice.company.title}" ></td>
+                                                            <td th:text="${purchaseInvoice.cost}"  ></td>
+                                                            <td th:text="${purchaseInvoice.tax}"  ></td>
+                                                            <td th:text="${purchaseInvoice.total}"></td>
                                                             <td>
                                                                 <a class="ft-list" >
                                                                 </a>
