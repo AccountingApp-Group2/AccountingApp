@@ -25,7 +25,7 @@ public class ProductDTO {
     private String description;
 
     @NotBlank
-    private Category category;
+    private CategoryDTO category;
 
     @NotBlank
     private BigInteger qty;
@@ -40,7 +40,7 @@ public class ProductDTO {
     private BigInteger tax;
 
     @NotBlank
-    private Company company;
+    private CompanyDTO company;
 
     @NotBlank
     private Boolean enabled;
