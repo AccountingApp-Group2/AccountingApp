@@ -2,7 +2,6 @@ package com.example.accountingapp.service.impl;
 
 import com.example.accountingapp.dto.ProductDTO;
 import com.example.accountingapp.mapper.MapperUtil;
-import com.example.accountingapp.repository.ClientVendorRepository;
 import com.example.accountingapp.repository.ProductRepository;
 import com.example.accountingapp.service.ProductService;
 import org.springframework.stereotype.Service;
