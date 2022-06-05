@@ -1,13 +1,9 @@
 package com.example.accountingapp.controller;
 
-
 import com.example.accountingapp.dto.InvoiceDTO;
-import com.example.accountingapp.dto.InvoiceProductDTO;
 import com.example.accountingapp.enums.CompanyType;
 import com.example.accountingapp.enums.InvoiceType;
-import com.example.accountingapp.repository.ClientVendorRepository;
 import com.example.accountingapp.service.ClientVendorService;
-import com.example.accountingapp.service.CompanyService;
 import com.example.accountingapp.service.InvoiceProductService;
 import com.example.accountingapp.service.InvoiceService;
 import org.springframework.stereotype.Controller;
@@ -31,7 +27,7 @@ public class PurchaseInvoiceController {
     }
 
     @GetMapping("/purchaseInvoiceList")
-    public String purchaseInvoiceList(Model model){
+    public String purchaseInvoiceList(Model model) {
         model.addAttribute("purchaseInvoices", invoiceService.listAllByInvoiceType(InvoiceType.PURCHASE));
         return "invoice/purchase-invoice-list";
     }
@@ -40,10 +36,10 @@ public class PurchaseInvoiceController {
     public String purchaseInvoiceCreate(Model model) {
         InvoiceDTO newInvoice = new InvoiceDTO();
         System.out.println(newInvoice.getId());
-
+        // TODO Vitaly Bahrom for new ID
         model.addAttribute("newInvoice", new InvoiceDTO());
 
-        model.addAttribute("vendors",  clientVendorService.findAllByCompanyType(CompanyType.VENDOR));
+        model.addAttribute("vendors", clientVendorService.findAllByCompanyType(CompanyType.VENDOR));
         return "invoice/purchase-invoice-create";
 
     }

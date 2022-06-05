@@ -12,5 +12,4 @@ public interface InvoiceService {
 
     BigDecimal calculateCostByInvoiceID(Long id);
 
-
 }

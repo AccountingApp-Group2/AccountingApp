@@ -1,6 +1,5 @@
 package com.example.accountingapp.dto;
 
-import com.example.accountingapp.entity.Company;
 import com.example.accountingapp.enums.InvoiceStatus;
 import com.example.accountingapp.enums.InvoiceType;
 import lombok.AllArgsConstructor;
