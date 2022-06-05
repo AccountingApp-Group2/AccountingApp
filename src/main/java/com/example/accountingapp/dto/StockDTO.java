@@ -14,10 +14,10 @@ import java.time.LocalDateTime;
 public class StockDTO {
     
     private LocalDateTime dateTime;
-    private String productName;
     private String quantity;
-    private InvoiceType invoiceType;
+//    private InvoiceType invoiceType;
     private int basePrice;
     private SalePurchaseStatus salePurchaseStatus;
 
+    private String invoiceProductDTO;
 }
