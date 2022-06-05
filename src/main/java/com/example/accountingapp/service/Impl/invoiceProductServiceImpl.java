@@ -28,4 +28,9 @@ public class invoiceProductServiceImpl implements InvoiceProductService {
     public List<InvoiceProduct> invoiceProductListById(Long id) {
         return invoiceProductRepository.findAllByInvoiceId(id);
     }
+
+    @Override
+    public List<InvoiceProduct> listAll() {
+        return invoiceProductRepository.findAll();
+    }
 }

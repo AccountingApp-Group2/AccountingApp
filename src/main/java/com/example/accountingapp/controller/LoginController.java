@@ -14,7 +14,7 @@ public class LoginController {
         return "login";
     }
 
-    @RequestMapping("/main")
+    @RequestMapping(value = {"/main","/dashboard"})
     public String main() {
         return "main2";
     }
