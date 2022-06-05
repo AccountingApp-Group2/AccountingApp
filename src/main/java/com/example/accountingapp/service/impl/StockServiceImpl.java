@@ -5,10 +5,12 @@ import com.example.accountingapp.dto.StockDTO;
 import com.example.accountingapp.mapper.MapperUtil;
 import com.example.accountingapp.repository.StockRepository;
 import com.example.accountingapp.service.StockService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class StockServiceImpl implements StockService {
 
     private final StockRepository stockRepository;
@@ -21,6 +23,6 @@ public class StockServiceImpl implements StockService {
 
     @Override
     public List<StockDTO> listAllStocks() {
-        return stockRepository.findAll().stream().map(stock->mapperUtil.convert(stock, new StockDTO())).collect(Collectors.toList());
+        return stockRepository.findAll().stream().map(stock -> mapperUtil.convert(stock, new StockDTO())).collect(Collectors.toList());
     }
 }
