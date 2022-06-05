@@ -125,12 +125,12 @@
                         data-toggle="dropdown"><i class="ft-briefcase"></i><span data-i18n="Components">Reporting</span></a>
                     <ul class="dropdown-menu">
 
-                        <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="report/stock-report.html"
+                        <li data-menu=""><a class="dropdown-item d-flex align-items-center" th:href="@{report/stock}"
                                             data-toggle="dropdown"><i class="ft-arrow-right submenu-icon"></i><span
                                 data-i18n="Grid">Stock Report</span></a>
                         </li>
                         <li data-menu=""><a class="dropdown-item d-flex align-items-center"
-                                            href="report/profit-loss-report.html" data-toggle="dropdown"><i
+                                            th:href="@{report/profit}" data-toggle="dropdown"><i
                                 class="ft-arrow-right submenu-icon"></i><span data-i18n="Typography">Profit / Loss Report</span></a>
                         </li>
                     </ul>
