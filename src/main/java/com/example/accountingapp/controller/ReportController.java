@@ -1,8 +1,7 @@
 package com.example.accountingapp.controller;
 
 
-import com.example.accountingapp.service.ProfitLossService;
-import com.example.accountingapp.service.StockService;
+import com.example.accountingapp.service.StockDetailsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,11 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/report")
 public class ReportController {
 
-    private final ProfitLossService profitLossService;
-    private final StockService stockService;
 
-    public ReportController(ProfitLossService profitLossService, StockService stockService) {
-        this.profitLossService = profitLossService;
+    private final StockDetailsService stockService;
+
+    public ReportController( StockDetailsService stockService) {
+
         this.stockService = stockService;
     }
 
@@ -29,11 +28,11 @@ public class ReportController {
     }
 
 
-//    @GetMapping("/profit")
-//    public String clickProfit(){
-//
-//        return "/report/profit-loss-report";
-//    }
+    @GetMapping("/profit")
+    public String clickProfit(){
+
+        return "/report/profit-loss-report";
+    }
 }
 
 
