@@ -28,27 +28,27 @@
         <!-- BEGIN : Main Content-->
         <div class="main-content">
             <div class="content-overlay"></div>
-            <div class="content-wrapper">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="content-header">Stock Report</div>
-                    </div>
-                </div>
+<!--            <div class="content-wrapper">-->
+<!--                <div class="row">-->
+<!--                    <div class="col-12">-->
+<!--                        <div class="content-header">Stock Report</div>-->
+<!--                    </div>-->
+<!--                </div>-->
 
-            </div>
+<!--            </div>-->
 
-            <div class="col-12 col-sm-6 col-lg-3 d-flex align-items-right">
-                <a th:href="@{/report/stock}" class="btn btn-primary bg-light-primary mb-1" ><i
-                        class="fa fa-list mr-1"></i>Client/Vendor List</a>
-            </div>
+<!--            <div class="col-12 col-sm-6 col-lg-3 d-flex align-items-right">-->
+<!--                <a th:href="@{/report/stock}" class="btn btn-primary bg-light-primary mb-1" ><i-->
+<!--                        class="fa fa-list mr-1"></i>Client/Vendor List</a>-->
+<!--            </div>-->
 
                 <!-- File export table -->
                 <section id="file-export">
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title">Report export</h4>
+                                <div class="col-12">
+                                    <div class="content-header">Stock Report</div>
                                 </div>
                                 <div class="card-content fw-container">
                                     <div class="card-body fw-body">
@@ -62,33 +62,48 @@
                                                     <th>Quantity</th>
                                                     <th>Sale & Purchase </th>
                                                     <th>Base Price</th>
-
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                <tr >
-                                                    <td ></td>
-                                                    <td ></td>
-                                                    <td  ></td>
-                                                    <td >
+<!--                                                <tr >-->
+<!--                                                    <td ></td>-->
+<!--                                                    <td ></td>-->
+<!--                                                    <td  ></td>-->
+<!--                                                    <td >-->
 
-                                                        <span  class="badge bg-light-blue">PURCHASE</span>
-                                                        <span  class="badge bg-light-success">SALE</span>
-                                                    </td>
-                                                    <td  ></td>
+<!--                                                        <span  class="badge bg-light-blue">PURCHASE</span>-->
+<!--                                                        <span  class="badge bg-light-success">SALE</span>-->
+<!--                                                    </td>-->
+<!--                                                </tr>-->
 
+                                                <tr th:each="stock : ${stocks}">
+                                                    <td th:text="${stock.dateTime}"></td>
+                                                   <td  th:text="${stock.invoiceProductDTO.name}" class="text-truncate"></td>
+                                                    <td  th:text="${stock.quantity}"></td>
+                                                    <td  th:text="${stock.salePurchaseStatus}"></td>
+                                                    <td  th:text="${stock.basePrice}">
+<!--                                                    <td>-->
+<!--                                                        <span th:if="${stock.enabled == true }" class="badge bg-light-success">Active</span>-->
+<!--                                                        <span th:if="${stock.enabled == false }" class="badge bg-light-warning">Inactive</span>-->
+<!--                                                    </td>-->
+<!--                                                    <td>-->
+
+<!--                                                        <a th:href="@{/client-vendor/edit/{id}(id=${client.id})}">-->
+<!--                                                            <i class="ft-edit" type="submit" ></i>-->
+<!--                                                        </a>-->
+<!--                                                    </td>-->
                                                 </tr>
 
                                                 </tbody>
-                                                <tfoot>
-                                                <tr>
-                                                    <th>Date</th>
-                                                    <th>Product Name</th>
-                                                    <th>Quantity</th>
-                                                    <th>Sale & Purchase </th>
-                                                    <th>Base Price</th>
-                                                </tr>
-                                                </tfoot>
+<!--                                                <tfoot>-->
+<!--                                                <tr>-->
+<!--                                                    <th>Date</th>-->
+<!--                                                    <th>Product Name</th>-->
+<!--                                                    <th>Quantity</th>-->
+<!--                                                    <th>Sale & Purchase </th>-->
+<!--                                                    <th>Base Price</th>-->
+<!--                                                </tr>-->
+<!--                                                </tfoot>-->
                                             </table>
                                         </div>
                                     </div>
