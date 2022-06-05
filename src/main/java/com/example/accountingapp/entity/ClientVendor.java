@@ -22,7 +22,6 @@ public class ClientVendor extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Company company;
-
     @Enumerated(EnumType.STRING)
     private CompanyType type;
 
