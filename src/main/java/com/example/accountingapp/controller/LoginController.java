@@ -9,16 +9,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class LoginController {
 
 
-    @RequestMapping(value = {"/", "/login"})
+    @GetMapping(value = {"/", "/login"})
     public String login() {
         return "login";
     }
 
-    @RequestMapping(value = {"/main","/dashboard"})
-    public String main() {
+    @RequestMapping("/main2")
+    public String main2() {
         return "main2";
     }
 
-
-
 }
+
