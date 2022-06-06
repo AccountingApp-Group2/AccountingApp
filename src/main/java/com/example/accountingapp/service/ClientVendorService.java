@@ -9,6 +9,5 @@ public interface ClientVendorService {
     List<ClientVendorDTO> listAllClients();
     ClientVendorDTO findById(Long id);
     void delete(Long id);
-
     List<ClientVendorDTO> findAllByCompanyType(CompanyType companyType);
 }
