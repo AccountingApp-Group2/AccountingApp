@@ -10,6 +10,7 @@ import com.example.accountingapp.service.InvoiceService;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,7 +20,6 @@ public class InvoiceServiceImpl implements InvoiceService {
     private final MapperUtil mapperUtil;
     private final InvoiceRepository invoiceRepository;
     private final InvoiceProductRepository invoiceProductRepository;
-
 
     public InvoiceServiceImpl(MapperUtil mapperUtil, InvoiceRepository invoiceRepository, InvoiceProductRepository invoiceProductRepository) {
         this.mapperUtil = mapperUtil;
@@ -33,13 +33,13 @@ public class InvoiceServiceImpl implements InvoiceService {
         List<InvoiceDTO> listDTO = invoiceRepository.findAllByInvoiceType(invoiceType).stream().map(p -> mapperUtil.convert(p, new InvoiceDTO())).collect(Collectors.toList());
 
         //set cost
-        listDTO.forEach(p -> p.setCost((calculateCostByInvoiceID(p.getId())).setScale(2)));
+        listDTO.forEach(p -> p.setCost((calculateCostByInvoiceID(p.getId())).setScale(2, RoundingMode.CEILING)));
 
-        //set tax todo Vitaly Bahrom - set tax at 10 for now per Cihat
-        listDTO.forEach(p -> p.setTax(((p.getCost().multiply(BigDecimal.valueOf(0.01)))).setScale(2)));
+        //set tax todo Vitaly Bahrom - set tax at 10 for now - Cihat
+        listDTO.forEach(p -> p.setTax((p.getCost().multiply(BigDecimal.valueOf(0.01))).setScale(2, RoundingMode.CEILING)));
 
         //set total
-        listDTO.forEach(p -> p.setTotal((p.getCost()).add(p.getTax())));
+        listDTO.forEach(p -> p.setTotal(((p.getCost()).add(p.getTax())).setScale(2, RoundingMode.CEILING)));
         return listDTO;
     }
 
@@ -55,7 +55,7 @@ public class InvoiceServiceImpl implements InvoiceService {
             BigDecimal currItemCost = each.getPrice().multiply(BigDecimal.valueOf(each.getQty()));
             cost = cost.add(currItemCost);
         }
-        return cost.setScale(2);
+        return cost;
     }
 
 
