@@ -1,8 +1,6 @@
 package com.example.accountingapp.service.impl;
 
 import com.example.accountingapp.dto.ClientVendorDTO;
-import com.example.accountingapp.entity.ClientVendor;
-import com.example.accountingapp.enums.CompanyType;
 import com.example.accountingapp.mapper.MapperUtil;
 import com.example.accountingapp.repository.ClientVendorRepository;
 import com.example.accountingapp.service.ClientVendorService;
@@ -33,15 +31,6 @@ public class ClientVendorServiceImpl implements ClientVendorService {
 
     @Override
     public void delete(Long id) {
-
-    }
-
-    @Override
-    public List<ClientVendorDTO> findAllByCompanyType(CompanyType companyType) {
-        return clientVendorRepository.findAllByType (companyType)
-                .stream()
-                .map(p -> mapperUtil.convert(p, new ClientVendorDTO()))
-                .collect(Collectors.toList());
 
     }
 }

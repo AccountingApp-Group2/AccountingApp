@@ -2,7 +2,7 @@ package com.example.accountingapp.enums;
 
 public enum InvoiceType {
 
-    PURCHASE("Purchase"), SALE("Sale");
+    PURCHASE("Purchase"), SALES("Sales");
 
     private final String value;
 
