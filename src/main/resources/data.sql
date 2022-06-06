@@ -32,7 +32,8 @@ VALUES ('2022-05-15 00:00:00', 50, 999.99, 50, 1),
 INSERT INTO invoice_product (created_by, created_time, is_deleted, updated_by, updated_time, name, price, profit, qty, tax, invoice_id, product_id)
 VALUES (4, '2022-05-16 00:00:00', FALSE, 4, '2022-05-16 00:00:00', 'TV', 999.99, 99, 1, 8, 1,1),
        (4, '2022-05-16 00:00:00', FALSE, 4, '2022-05-16 00:00:00', 'MacBook', 1999.99, 199, 1, 2, 2,2),
-       (8, '2022-05-16 00:00:00', FALSE, 8, '2022-05-16 00:00:00', 'Shoes', 999.90, 199, 10, 10, 3,3);
+       (8, '2022-05-16 00:00:00', FALSE, 8, '2022-05-16 00:00:00', 'Shoes', 999.90, 199, 10, 10, 3,3),
+       (8, '2022-05-16 00:00:00', FALSE, 8, '2022-05-16 00:00:00', 'MacBook', 20, 5, 5, 2, 3,2);
 
 INSERT INTO payment (created_by, created_time, is_deleted, updated_by, updated_time, amount, institution_id, is_paid, month, year, company_id)
 VALUES (4, '2022-05-16 00:00:00', FALSE, 4, '2022-05-16 00:00:00', 999.99, '1', true, 'MAY','05/15/2022',2),
