@@ -1,4 +1,4 @@
-package com.example.accountingapp.service.impl;
+package com.example.accountingapp.service.Impl;
 
 import com.example.accountingapp.dto.UserDTO;
 import com.example.accountingapp.entity.User;
@@ -39,9 +39,7 @@ public class UserServiceImpl implements UserService {
 
         User user = userRepository.findByEmail(dto.getEmail());
         User convertedUser = mapperUtil.convert(dto,new User());
-        //set id to converted object which we found in DB by Email
         convertedUser.setId(user.getId());
-        convertedUser.setRole(user.getRole());
         convertedUser.setEnabled(user.getEnabled());
         convertedUser.setPassword(user.getPassword());
         userRepository.save(convertedUser);
