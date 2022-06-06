@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.data.annotation.Id;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
@@ -22,6 +23,7 @@ public class InvoiceDTO {
 
     private Long id;
 
+    @Id
     @NotBlank
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(
