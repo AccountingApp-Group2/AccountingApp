@@ -3,6 +3,7 @@ package com.example.accountingapp.service.impl;
 import com.example.accountingapp.dto.InvoiceDTO;
 import com.example.accountingapp.dto.InvoiceProductDTO;
 import com.example.accountingapp.dto.RoleDTO;
+import com.example.accountingapp.entity.Invoice;
 import com.example.accountingapp.enums.InvoiceType;
 import com.example.accountingapp.mapper.MapperUtil;
 import com.example.accountingapp.repository.CompanyRepository;
@@ -35,13 +36,12 @@ public class InvoiceServiceImpl implements InvoiceService {
         List<InvoiceDTO> listDTO = invoiceRepository.findAllByInvoiceType(invoiceType).stream()
                 .map(p -> mapperUtil.convert(p, new InvoiceDTO()))
                 .collect(Collectors.toList());
-        //set cost
+
         listDTO.forEach(p -> p.setCost((calculateCostByInvoiceID(p.getId())).setScale(2, RoundingMode.CEILING)));
 
         //TODO: Vitaly, Baha to change Tax% based on State - set tax at 10 for now per Cihat
         listDTO.forEach(p -> p.setTax((p.getCost().multiply(BigDecimal.valueOf(0.01))).setScale(2, RoundingMode.CEILING)));
 
-        //set total
         listDTO.forEach(p -> p.setTotal(((p.getCost()).add(p.getTax())).setScale(2, RoundingMode.CEILING)));
 
         return listDTO;
@@ -60,6 +60,14 @@ public class InvoiceServiceImpl implements InvoiceService {
         }
 
         return cost.setScale(2);
+    }
+
+    @Override
+    public List<InvoiceDTO> newInvoiceNumberCreate(InvoiceDTO dto) {
+        dto.setInvoiceNumber();
+
+
+        return;
     }
 
 
