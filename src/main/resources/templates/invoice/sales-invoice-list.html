@@ -19,7 +19,7 @@
                     <div class="users-list-filter px-2">
                         <form>
                             <div class="col-12 col-sm-6 col-lg-3 d-flex align-items-right">
-                                <a class="btn btn-success bg-light-success mb-1"
+                                <a class="btn btn-success bg-light-success mb-1" th:href="@{/invoice/salesInvoiceCreate}"
                                    ><i
                                         class="fa fa-plus mr-1"></i>Create Sales Invoice</a>
                             </div>
@@ -48,33 +48,33 @@
                                                     </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr >
-                                                            <td class="text-truncate" ></td>
-                                                            <td class="text-truncate" ></td>
-                                                            <td class="text-truncate" ></td>
-                                                            <td class="text-truncate" ></td>
-                                                            <td class="text-truncate" ></td>
+                                                        <tr th:each="salesInvoice:${salesInvoices}">
+                                                            <td class="text-truncate" th:text="${salesInvoice.invoiceNumber}"></td>
+                                                            <td class="text-truncate" th:text="${salesInvoice.invoiceDate}"></td>
+                                                            <td class="text-truncate" th:text="${company.title}"></td>
+                                                            <td class="text-truncate" th:text="${salesInvoice}"></td>
+                                                            <td class="text-truncate" th:text="${salesInvoice.invoiceNumber}"></td>
                                                             <td class="text-truncate" ></td>
                                                             <td>
                                                                 <a class="ft-list" >
                                                                 </a>
                                                             </td>
                                                             <td>
-                                                                <form action="#" data-th-action="@{/invoice/approveDeleteToInvoice/{id}(id=${salesInvoice.getInvoiceNo()})}"
-                                                                      method="post">
-                                                                    <button
-                                                                            class="btn btn-success mb-2 mb-sm-0 mr-sm-2"
-                                                                            type="submit" name="action" value="approve">Approve
-                                                                    </button>
-                                                                    <button
-                                                                            class="btn btn-danger mb-2 mb-sm-0 mr-sm-2"
-                                                                            type="submit" name="action" value="delete">Delete
-                                                                    </button>
-                                                                    <button
-                                                                            class="btn btn-info mb-2 mb-sm-0 mr-sm-2"
-                                                                            type="submit" name="action" value="toInvoice">To Invoice
-                                                                    </button>
-                                                                </form>
+<!--                                                                <form action="#" data-th-action="@{/invoice/approveDeleteToInvoice/{id}(id=${salesInvoice.getInvoiceNo()})}"-->
+<!--                                                                      method="post">-->
+<!--                                                                    <button-->
+<!--                                                                            class="btn btn-success mb-2 mb-sm-0 mr-sm-2"-->
+<!--                                                                            type="submit" name="action" value="approve">Approve-->
+<!--                                                                    </button>-->
+<!--                                                                    <button-->
+<!--                                                                            class="btn btn-danger mb-2 mb-sm-0 mr-sm-2"-->
+<!--                                                                            type="submit" name="action" value="delete">Delete-->
+<!--                                                                    </button>-->
+<!--                                                                    <button-->
+<!--                                                                            class="btn btn-info mb-2 mb-sm-0 mr-sm-2"-->
+<!--                                                                            type="submit" name="action" value="toInvoice">To Invoice-->
+<!--                                                                    </button>-->
+<!--                                                                </form>-->
                                                             </td>
                                                         </tr>
                                                     </tbody>
