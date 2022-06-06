@@ -21,14 +21,12 @@ public class InvoiceServiceImpl implements InvoiceService {
 
     private final MapperUtil mapperUtil;
     private final InvoiceRepository invoiceRepository;
-    private final CompanyRepository companyRepository;
 
     private final InvoiceProductRepository invoiceProductRepository;
 
-    public InvoiceServiceImpl(MapperUtil mapperUtil, InvoiceRepository invoiceRepository, CompanyRepository companyRepository, InvoiceProductRepository invoiceProductRepository) {
+    public InvoiceServiceImpl(MapperUtil mapperUtil, InvoiceRepository invoiceRepository, InvoiceProductRepository invoiceProductRepository) {
         this.mapperUtil = mapperUtil;
         this.invoiceRepository = invoiceRepository;
-        this.companyRepository = companyRepository;
         this.invoiceProductRepository = invoiceProductRepository;
     }
 
@@ -37,18 +35,10 @@ public class InvoiceServiceImpl implements InvoiceService {
         List<InvoiceDTO> listDTO = invoiceRepository.findAllByInvoiceType(invoiceType).stream()
                 .map(p -> mapperUtil.convert(p, new InvoiceDTO()))
                 .collect(Collectors.toList());
-
-//        listDTO.forEach(p->p.setCost(calculateCostByInvoiceID(p.getId())));
-//
-////        TODO: Baha to change Tax% based on State
-//        listDTO.forEach(p->p.setTax(((p.getCost().multiply(BigDecimal.valueOf(0.01)))).setScale(2)));
-//
-//        listDTO.forEach(p->p.setTotal((p.getCost().add(p.getTax())).setScale(2)));
-
         //set cost
         listDTO.forEach(p -> p.setCost((calculateCostByInvoiceID(p.getId())).setScale(2, RoundingMode.CEILING)));
 
-        //set tax todo Vitaly Bahrom - set tax at 10 for now per Cihat
+        //TODO: Vitaly, Baha to change Tax% based on State - set tax at 10 for now per Cihat
         listDTO.forEach(p -> p.setTax((p.getCost().multiply(BigDecimal.valueOf(0.01))).setScale(2, RoundingMode.CEILING)));
 
         //set total

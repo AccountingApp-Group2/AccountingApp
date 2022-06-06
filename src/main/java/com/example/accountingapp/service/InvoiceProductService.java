@@ -7,9 +7,6 @@ import java.util.List;
 
 public interface InvoiceProductService {
 
-    Long calculateSaleCostByInvoiceId(Long id);
-
-    List<InvoiceProduct> invoiceProductListById(Long id);
-
+    List<InvoiceProduct> listAll();
 
 }

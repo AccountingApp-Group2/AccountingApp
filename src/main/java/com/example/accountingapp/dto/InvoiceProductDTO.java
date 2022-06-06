@@ -34,6 +34,10 @@ public class InvoiceProductDTO {
 
     @NotBlank
     @Size(min = 0)
+    private BigDecimal total;
+
+    @NotBlank
+    @Size(min = 0)
     private BigDecimal profit;
 
 

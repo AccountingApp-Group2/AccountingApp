@@ -25,14 +25,7 @@ public class InvoiceProductServiceImpl implements InvoiceProductService {
 
 
     @Override
-    public Long calculateSaleCostByInvoiceId(Long id) {
-        return null;
+    public List<InvoiceProduct> listAll() {
+        return invoiceProductRepository.findAll();
     }
-
-    @Override
-    public List<InvoiceProduct> invoiceProductListById(Long id) {
-        return invoiceProductRepository.findAllByInvoiceId(id);
-    }
-
-
 }
