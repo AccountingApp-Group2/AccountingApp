@@ -25,7 +25,7 @@ public class Company extends BaseEntity {
     private String email;
     @Column(columnDefinition = "DATE")
     private LocalDateTime establishmentDate;
-    private boolean enabled;
+    private Boolean enabled;
     private String phone;
     @Enumerated(EnumType.STRING)
     private State state;
