@@ -26,9 +26,7 @@ public class SalesInvoiceController {
     @GetMapping("/salesInvoiceList")
     public String salesInvoiceList(@ModelAttribute("invoice") Model model) {
 
-        model.addAttribute("salesInvoice", new InvoiceDTO());
         model.addAttribute("salesInvoices", invoiceService.listAllByInvoiceType(InvoiceType.SALE));
-        model.addAttribute("company", companyService.findById(invoiceService.findByCompanyId()));
 
         return "/invoice/sales-invoice-list";
     }
