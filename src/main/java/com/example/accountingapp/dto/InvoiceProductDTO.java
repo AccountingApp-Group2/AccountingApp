@@ -40,5 +40,7 @@ public class InvoiceProductDTO {
     @Size(min = 0)
     private BigDecimal profit;
 
+    private InvoiceDTO invoice;
+
 
 }

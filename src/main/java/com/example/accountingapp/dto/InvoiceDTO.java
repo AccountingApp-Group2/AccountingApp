@@ -3,14 +3,11 @@ package com.example.accountingapp.dto;
 import com.example.accountingapp.enums.InvoiceStatus;
 import com.example.accountingapp.enums.InvoiceType;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+//import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.GenericGenerator;
-import org.springframework.data.annotation.Id;
+import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -18,19 +15,13 @@ import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+//@Data
+@Getter
+@Setter
 public class InvoiceDTO {
 
     private Long id;
 
-    @Id
-    @NotBlank
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(
-            name = "UUID",
-            strategy = "org.hibernate.id.UUIDGenerator"
-    )
-    @Column(updatable = false, nullable = false)
     private String invoiceNumber;
 
     @NotNull
@@ -52,5 +43,8 @@ public class InvoiceDTO {
     private CompanyDTO company;
 
     private List<InvoiceProductDTO> invoiceProductList;
+
+    private InvoiceProductDTO invoiceProduct;
+
 
 }
