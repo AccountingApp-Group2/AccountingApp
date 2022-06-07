@@ -17,8 +17,4 @@ public class AccountingAppApplication {
         return new ModelMapper();
     }
 
-    @Bean
-    public ModelMapper mapper(){
-        return new ModelMapper();
-    }
 }
