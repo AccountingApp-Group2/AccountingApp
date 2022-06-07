@@ -33,7 +33,7 @@
 
 
                         <div class="col-12 col-sm-6 col-lg-3 d-flex align-items-right">
-                            <a class="btn btn-primary bg-light-primary mb-1" ><i
+                            <a th:href="@{/client-vendor/list}" class="btn btn-primary bg-light-primary mb-1" ><i
                                     class="fa fa-list mr-1"></i>Client/Vendor List</a>
                         </div>
                     </div>
@@ -55,20 +55,20 @@
                                                  aria-labelledby="account-tab">
 
                                                 <!-- Account form starts -->
-                                                <form novalidate method="post" >
+                                                <form th:action="@{/client-vendor/list}" method="post" novalidate th:object="${client}">
                                                     <div class="row">
                                                         <div class="col-12 col-md-6">
                                                             <div class="form-group">
                                                                 <div class="controls">
                                                                     <label for="users-edit-username">Name</label>
-                                                                    <input type="text" id="users-edit-username"
+                                                                    <input type="text" id="users-edit-username" th:field="*{companyName}"
                                                                            class="form-control" placeholder="Company Name" required aria-invalid="false">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
                                                                 <div class="controls">
                                                                     <label for="users-edit-email">E-mail</label>
-                                                                    <input type="email" id="users-edit-email"
+                                                                    <input type="email" id="users-edit-email" th:field="*{email}"
                                                                            class="form-control" placeholder="Email"
                                                                            value="email@email.com" required
                                                                            aria-invalid="false">
@@ -77,7 +77,7 @@
                                                             <div class="form-group">
                                                                 <div class="controls">
                                                                     <label for="users-edit-state">State</label>
-                                                                    <input type="text" id="users-edit-state"
+                                                                    <input type="text" id="users-edit-state" th:field="*{state}"
                                                                            class="form-control" placeholder="State"
                                                                            value="Newyork" required
                                                                            aria-invalid="false">
@@ -92,6 +92,7 @@
                                                                 <div class="controls">
                                                                     <label for="users-edit-phonenumber">Phone</label>
                                                                     <input type="text" id="users-edit-phonenumber"
+                                                                           th:field="*{phone}"
                                                                            class="form-control"
                                                                            placeholder="97341578663"
                                                                            required>
@@ -101,6 +102,7 @@
                                                                 <div class="controls">
                                                                     <label for="users-edit-Address">Address</label>
                                                                     <input type="text" id="users-edit-Address"
+                                                                           th:field="*{address}"
                                                                            class="form-control"
                                                                            placeholder="address"
                                                                            required>
@@ -110,6 +112,7 @@
                                                                 <div class="controls">
                                                                     <label for="users-edit-zipcode">Zipcode</label>
                                                                     <input type="text" id="users-edit-zipcode"
+                                                                           th:field="*{zipCode}"
                                                                            class="form-control"
                                                                            placeholder="zipcode" required>
                                                                 </div>
@@ -126,14 +129,16 @@
 
                                                                         <li class="d-inline-block mr-2">
                                                                             <div class="radio radio-primary">
-                                                                                <input type="radio" name="color-radio" required aria-invalid="false"
+                                                                                <input type="radio" name="color-radio" th:field="*{type}"
+                                                                                       th:value="VENDOR" required aria-invalid="false"
                                                                                        id="color-radio-1" checked>
                                                                                 <label for="color-radio-1">VENDOR</label>
                                                                             </div>
                                                                         </li>
                                                                         <li class="d-inline-block mr-2" required>
                                                                             <div class="radio radio-secondary">
-                                                                                <input type="radio" name="color-radio" required aria-invalid="false"
+                                                                                <input type="radio" name="color-radio"  th:field="*{type}"
+                                                                                       th:value="CLIENT" required aria-invalid="false"
                                                                                        id="color-radio-2">
                                                                                 <label for="color-radio-2">CLIENT</label>
                                                                             </div>

@@ -175,13 +175,13 @@
                             data-i18n="Email">Company Registration</span></a>
                     </li>
                     <li data-menu="" ><a
-                            class="dropdown-item d-flex align-items-center"
+                            class="dropdown-item d-flex align-items-center" th:href="@{/user/add}"
                             data-toggle="dropdown"><i class="ft-arrow-right submenu-icon"></i><span
                             data-i18n="Chat">User Registration</span></a>
                     </li>
-                    <li data-menu="" ><a
-                            class="dropdown-item d-flex align-items-center"
-                            data-toggle="dropdown"><i class="ft-arrow-right submenu-icon"></i><span
+                    <li data-menu="" ><a th:href="@{/client-vendor/list}"
+                                         class="dropdown-item d-flex align-items-center"
+                                         data-toggle="dropdown"><i class="ft-arrow-right submenu-icon"></i><span
                             data-i18n="Task Board">Client/Vendor Registration</span></a>
                     </li>
                 </ul>
@@ -191,11 +191,11 @@
                     data-toggle="dropdown"><i class="ft-aperture"></i><span
                     data-i18n="UI Kit">Stock Management</span></a>
                 <ul class="dropdown-menu">
-                    <li data-menu=""><a class="dropdown-item d-flex align-items-center"
+                    <li data-menu=""><a th:href="@{/product/list}" class="dropdown-item d-flex align-items-center"
                                         data-toggle="dropdown"><i class="ft-arrow-right submenu-icon"></i><span
                             data-i18n="Grid">Products</span></a>
                     </li>
-                    <li data-menu=""><a class="dropdown-item d-flex align-items-center"
+                    <li data-menu=""><a th:href="@{/category/category-list}" class="dropdown-item d-flex align-items-center"
                                         data-toggle="dropdown"><i class="ft-arrow-right submenu-icon"></i><span
                             data-i18n="Typography">Category</span></a>
                     </li>

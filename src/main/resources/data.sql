@@ -20,9 +20,9 @@ VALUES (1, '2022-05-16 00:00:00', FALSE, 1, '2022-05-16 00:00:00', TRUE, '05/16/
        (1, '2022-05-16 00:00:00', FALSE, 1, '2022-05-16 00:00:00', TRUE, '05/16/2022', 'P-INV013', 'PENDING', 'SALE',3,3);
 
 INSERT INTO product (created_by, created_time, is_deleted, updated_by, updated_time, description, enabled, low_limit_alert, name, new_column, product_status, qty, tax, unit,category_id,company_id)
-VALUES (4, '2022-05-15 00:00:00', FALSE, 4, '2022-05-15 00:00:00', 'TV', TRUE, 10, 'TV', 1, 'ACTIVE', 50, 8, 'Pieces',1,2),
-       (4, '2022-05-15 00:00:00', FALSE, 4, '2022-05-15 00:00:00', 'Computer', TRUE, 0, 'MacBook', 1, 'INACTIVE', 50, 8, 'Pieces',2,2),
-       (8, '2022-05-15 00:00:00', FALSE, 8, '2022-05-15 00:00:00', 'Sports', TRUE, 10, 'Shoes', 1, 'ACTIVE', 150, 10, 'Pieces',3,3);
+VALUES (4, '2022-05-15 00:00:00', FALSE, 4, '2022-05-15 00:00:00', 'TV', TRUE, 100, 'TV', 1, 'ACTIVE', 50, 8, 'PCS',1,2),
+       (4, '2022-05-15 00:00:00', FALSE, 4, '2022-05-15 00:00:00', 'Computer', TRUE, 0, 'MacBook', 1, 'INACTIVE', 50, 8, 'PCS',2,2),
+       (8, '2022-05-15 00:00:00', FALSE, 8, '2022-05-15 00:00:00', 'Sports', TRUE, 10, 'Shoes', 1, 'ACTIVE', 150, 10, 'PCS',3,3);
 
 INSERT INTO stock_details (i_date, quantity, price, remaining_quantity, product_id)
 VALUES ('2022-05-15 00:00:00', 50, 999.99, 50, 1),

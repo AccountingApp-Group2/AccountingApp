@@ -19,7 +19,6 @@ public class Category extends BaseEntity{
 
     private String description;
 
-    //TODO @Gulmira
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "company_id")
     private Company company;

@@ -21,7 +21,7 @@ public class User extends BaseEntity {
     private String email;
     private String password;
     private String phone;
-    private boolean enabled;
+    private Boolean enabled;
     @Enumerated(EnumType.STRING)
     private UserStatus userStatus;
     @ManyToOne(fetch = FetchType.LAZY)
