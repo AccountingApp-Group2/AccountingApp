@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -51,14 +50,12 @@ public class UserController {
     @PostMapping("/add")
     public String insertUser(@ModelAttribute("user") UserDTO user, Model model) {
 
-        userService.save(user);
         model.addAttribute("user", new UserDTO());
         model.addAttribute("roles", roleService.listAllRoles());
         model.addAttribute("companies", companyService.listAllCompanies());
-        model.addAttribute("users", userService.listAllUsers());
         model.addAttribute("UserStatus", UserStatus.values());
-
-        return "/user/user-list";
+        userService.save(user);
+        return "/user/user-add";
 
     }
 
