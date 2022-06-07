@@ -14,13 +14,8 @@ public interface InvoiceService {
 
     BigDecimal calculateCostByInvoiceID(Long id);
 
-    List<InvoiceDTO> newInvoiceNumberCreate(InvoiceDTO dto);
-
     void save(InvoiceDTO dto);
     void update(InvoiceDTO dto);
     void delete(Long id);
-
-
-
 
 }

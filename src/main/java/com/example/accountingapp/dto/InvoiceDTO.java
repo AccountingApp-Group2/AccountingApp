@@ -3,10 +3,8 @@ package com.example.accountingapp.dto;
 import com.example.accountingapp.enums.InvoiceStatus;
 import com.example.accountingapp.enums.InvoiceType;
 import lombok.AllArgsConstructor;
-//import lombok.Data;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
@@ -15,9 +13,7 @@ import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
-//@Data
-@Getter
-@Setter
+@Data
 public class InvoiceDTO {
 
     private Long id;
@@ -43,8 +39,5 @@ public class InvoiceDTO {
     private CompanyDTO company;
 
     private List<InvoiceProductDTO> invoiceProductList;
-
-    private InvoiceProductDTO invoiceProduct;
-
 
 }

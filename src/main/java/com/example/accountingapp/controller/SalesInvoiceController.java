@@ -8,7 +8,6 @@ import com.example.accountingapp.service.ClientVendorService;
 import com.example.accountingapp.service.CompanyService;
 import com.example.accountingapp.service.InvoiceProductService;
 import com.example.accountingapp.service.InvoiceService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -34,27 +33,14 @@ public class SalesInvoiceController {
     @GetMapping("/salesInvoiceList")
     public String salesInvoiceList(Model model) {
         model.addAttribute("salesInvoices", invoiceService.listAllByInvoiceType(InvoiceType.SALE));
-
         return "/invoice/sales-invoice-list";
     }
 
     @GetMapping("/salesInvoiceCreate")
     public String salesInvoiceCreate(Model model) {
-
-//        InvoiceDTO newInvoiceCreate = new InvoiceDTO();
-        model.addAttribute("newInvoice", new InvoiceDTO());
-        model.addAttribute("salesInvoices", invoiceService.listAllByInvoiceType(InvoiceType.SALE));
-        model.addAttribute("client", clientVendorService.findAllByCompanyType(CompanyType.CLIENT));
+        InvoiceDTO newInvoiceCreate = new InvoiceDTO();
+        model.addAttribute("clients", clientVendorService.findAllByCompanyType(CompanyType.CLIENT));
         return "/invoice/sales-invoice-create";
     }
-
-    @PostMapping("/approveDeleteToInvoice/{id}")
-    public String approveDeleteToInvoice(@PathVariable("{id}") Long id, Model model){
-
-
-
-        return "/invoice/sales-invoice-list";
-    }
-
 
 }

@@ -63,14 +63,6 @@ public class InvoiceServiceImpl implements InvoiceService {
     }
 
     @Override
-    public List<InvoiceDTO> newInvoiceNumberCreate(InvoiceDTO dto) {
-        dto.setInvoiceNumber(dto.getInvoiceNumber());
-
-
-        return null;
-    }
-
-    @Override
     public void save(InvoiceDTO dto) {
 
     }
