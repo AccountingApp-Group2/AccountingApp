@@ -43,4 +43,11 @@ public class SalesInvoiceController {
         return "/invoice/sales-invoice-create";
     }
 
+    @GetMapping("/salesInvoiceSelectProduct")
+    public String salesInvoiceSelectProduct(Model model) {
+        InvoiceDTO newInvoiceCreate = new InvoiceDTO();
+        model.addAttribute("clients", clientVendorService.findAllByCompanyType(CompanyType.CLIENT));
+        return "/invoice/sales-invoice-select-product";
+    }
+
 }

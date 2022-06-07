@@ -52,7 +52,7 @@
                                                                     <label>Invoice No</label>
                                                                     <a type="text"
                                                                            class="form-control" required aria-invalid="false"
-                                                                       readonly th:text="${newInvoice}"></a>
+                                                                       readonly ></a>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -70,7 +70,7 @@
                                                                 <div class="form-group">
                                                                     <div class="controls">
                                                                     <label>Client</label>
-                                                                    <select
+                                                                    <select th:href="@{/invoice/salesInvoiceSelectProduct}"
                                                                             class="custom-select" required="required">
                                                                         <option th:text="Select"></option>
                                                                         <option th:each="client: ${clients}"
