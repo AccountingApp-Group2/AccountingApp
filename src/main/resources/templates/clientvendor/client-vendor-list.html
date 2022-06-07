@@ -67,12 +67,12 @@
                                                         <td  th:text="${client.companyName}" class="text-truncate"></td>
                                                         <td  th:text="${client.phone}"></td>
                                                         <td  th:text="${client.email}"></td>
-                                                        <td  th:text="${client.state.getStateCode}"></td>
+                                                        <td  th:text="${client.stateId.getStateCode}"></td>
                                                         <td  th:text="${client.type}">
-                                                        <td  th:text="${client.address + ' ' + client.state.getStateCode +' '+ client.zipCode}"><span class="badge bg-light-success"></span></td>
+                                                        <td  th:text="${client.address + ' ' + client.stateId.getStateCode +' '+ client.zipCode}"><span class="badge bg-light-success"></span></td>
                                                         <td>
                                                             <span th:if="${client.enabled == true }" class="badge bg-light-success">Active</span>
-                                                            <span th:if="${client.enabled == false }" class="badge bg-light-warning">Inactive</span>
+                                                            <span th:if="${client.enabled == false }" class="badge bg-light-DANGER">Passive</span>
                                                         </td>
                                                         <td>
 
