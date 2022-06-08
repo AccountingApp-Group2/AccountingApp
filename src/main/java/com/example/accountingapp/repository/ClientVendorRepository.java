@@ -6,8 +6,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface ClientVendorRepository extends JpaRepository<ClientVendor,Long> {
+public interface ClientVendorRepository extends JpaRepository<ClientVendor, Long> {
     List<ClientVendor> findAllBy();
+  
+    List<ClientVendor> findAllByType(CompanyType companyType);
 
-    List<ClientVendor>findAllByType(CompanyType vendor);
 }
