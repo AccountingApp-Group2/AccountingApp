@@ -1,6 +1,7 @@
 package com.example.accountingapp.service.impl;
 
 import com.example.accountingapp.dto.ProductDTO;
+import com.example.accountingapp.entity.Product;
 import com.example.accountingapp.mapper.MapperUtil;
 import com.example.accountingapp.repository.ProductRepository;
 import com.example.accountingapp.service.ProductService;
@@ -29,6 +30,29 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ProductDTO findById(Long id) {
         return mapperUtil.convert(productRepository.findById(id).get(), new ProductDTO());
+    }
+
+    @Override
+    public void save(ProductDTO productDTO) {
+        productRepository.save(mapperUtil.convert(productDTO, new Product()));
+    }
+
+    @Override
+    public ProductDTO update(ProductDTO dto) {
+        Product product = productRepository.findById(dto.getId()).get();
+        Product convertedProduct = mapperUtil.convert(dto,new Product());
+        convertedProduct.setId(product.getId()); // Perhaps not necessary!!!
+        convertedProduct.setEnabled(product.getEnabled());
+        productRepository.save(convertedProduct);
+
+        return findById(convertedProduct.getId());
+    }
+
+    @Override
+    public void delete(Long id) {
+        Product product = productRepository.findById(id).get();
+        product.setIsDeleted(true);
+        productRepository.save(product);
     }
 
 }

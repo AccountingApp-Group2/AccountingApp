@@ -99,11 +99,10 @@
                                                                     <select id="users-edit-status"
                                                                             class="form-control"
                                                                             required  aria-invalid="false"
-                                                                            >
+                                                                            th:field="*{productStatus}">
                                                                         <option value="">Select Status</option>
-                                                                        <option
-
-                                                                        ></option>
+                                                                        <option th:each="status : ${statuses}" th:value="${status}" th:text="${status}">
+                                                                        </option>
 
                                                                     </select>
                                                                 </div>
@@ -118,9 +117,9 @@
                                                                     <select
                                                                             id="users-edit-status1"
                                                                             class="form-control"
-                                                                            required>
+                                                                            required th:field="*{category}">
                                                                         <option value="">Select Category</option>
-                                                                        <option ></option>
+                                                                        <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.description}">
 
                                                                     </select>
                                                                 </div>
@@ -132,6 +131,7 @@
                                                                            class="form-control"
                                                                            placeholder="Ex: Home product, Kitchen Tools "
                                                                            required
+                                                                           th:field="*{description}"
                                                                            >
                                                                 </div>
                                                             </div>
@@ -141,10 +141,13 @@
                                                                     <label for="users-edit-role">Unit</label>
                                                                     <select  id="users-edit-role"
                                                                             class="form-control"
-                                                                            required>
+                                                                            required th:field="*{unit}">
                                                                         <option value="">Select Unit</option>
-                                                                        <option >
+                                                                        <option th:each="unit : ${units}" th:value="${unit}" th:text="${unit}">
                                                                         </option>
+
+<!--                                                                        <option >-->
+<!--                                                                        </option>-->
 
                                                                     </select>
                                                                 </div>
