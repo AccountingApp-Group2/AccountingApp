@@ -20,6 +20,7 @@ public class ClientVendorController {
     @GetMapping("/add")
     public String createClient(Model model) {
         model.addAttribute("client", new ClientVendorDTO());
+        model.addAttribute("states", com.example.accountingapp.enums.State.values());
         return "/clientvendor/client-vendor-add";
     }
 
@@ -29,7 +30,7 @@ public class ClientVendorController {
             model.addAttribute("client", new ClientVendorDTO());
             return "/clientvendor/client-vendor-add";
         }
-        //clientVendorService.save(client);
+        clientVendorService.save(client);
         return "redirect:/client-vendor/list";
     }
 
@@ -41,17 +42,19 @@ public class ClientVendorController {
 
     @GetMapping("/edit/{id}") //
     public String updateClient(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("states", com.example.accountingapp.enums.State.values());
+        model.addAttribute("status", com.example.accountingapp.enums.ClientStatus.values());
         model.addAttribute("client", clientVendorService.findById(id));
         return "/clientvendor/client-vendor-edit";
     }
 
     @PostMapping("/edit")
-    public String editClient(@ModelAttribute("client") ClientVendorDTO client, BindingResult bindingResult,Model model) {
+    public String editClient(@ModelAttribute("client") ClientVendorDTO client, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
             return "/clientvendor/client-vendor-edit";
         }
-        // clientVendorService.update(client);
+        clientVendorService.update(client);
         return "redirect:/client-vendor/list";
     }
 
