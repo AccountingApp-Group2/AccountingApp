@@ -16,8 +16,10 @@ VALUES (2, '2022-05-11 00:00:00', FALSE, 2, '2022-05-11 00:00:00', 'Electronics'
 
 INSERT INTO invoice (created_by, created_time, is_deleted, updated_by, updated_time, enabled, invoice_date, invoice_number, invoice_status,invoice_type,sptable_id,company_id)
 VALUES (1, '2022-05-16 00:00:00', FALSE, 1, '2022-05-16 00:00:00', TRUE, '05/16/2022', 'P-INV011', 'APPROVED', 'PURCHASE',2,2),
-       (1, '2022-05-16 00:00:00', FALSE, 1, '2022-05-16 00:00:00', TRUE, '05/16/2022', 'P-INV012', 'PENDING', 'SALE',2,2),
-       (1, '2022-05-16 00:00:00', FALSE, 1, '2022-05-16 00:00:00', TRUE, '05/16/2022', 'P-INV013', 'PENDING', 'SALE',3,3);
+       (1, '2022-05-16 00:00:00', FALSE, 1, '2022-05-16 00:00:00', TRUE, '05/17/2022', 'P-INV012', 'PENDING', 'SALE',2,2),
+       (1, '2022-05-16 00:00:00', FALSE, 1, '2022-05-16 00:00:00', TRUE, '05/18/2022', 'P-INV013', 'PENDING', 'SALE',2,2),
+       (1, '2022-05-16 00:00:00', FALSE, 1, '2022-05-16 00:00:00', TRUE, '05/19/2022', 'P-INV014', 'APPROVED', 'PURCHASE',2,2),
+       (1, '2022-05-16 00:00:00', FALSE, 1, '2022-05-16 00:00:00', TRUE, '05/20/2022', 'P-INV015', 'PENDING', 'PURCHASE',3,3);
 
 INSERT INTO product (created_by, created_time, is_deleted, updated_by, updated_time, description, enabled, low_limit_alert, name, new_column, product_status, qty, tax, unit,category_id,company_id)
 VALUES (4, '2022-05-15 00:00:00', FALSE, 4, '2022-05-15 00:00:00', 'TV', TRUE, 100, 'TV', 1, 'ACTIVE', 50, 8, 'PCS',1,2),
@@ -30,9 +32,13 @@ VALUES ('2022-05-15 00:00:00', 50, 999.99, 50, 1),
        ('2022-05-15 00:00:00', 150, 99.99, 50, 3);
 
 INSERT INTO invoice_product (created_by, created_time, is_deleted, updated_by, updated_time, name, price, profit, qty, tax, invoice_id, product_id)
-VALUES (4, '2022-05-16 00:00:00', FALSE, 4, '2022-05-16 00:00:00', 'TV', 999.99, 99, 1, 8, 1,1),
-       (4, '2022-05-16 00:00:00', FALSE, 4, '2022-05-16 00:00:00', 'MacBook', 1999.99, 199, 1, 2, 2,2),
-       (8, '2022-05-16 00:00:00', FALSE, 8, '2022-05-16 00:00:00', 'Shoes', 999.90, 199, 10, 10, 3,3);
+VALUES (4, '2022-05-16 00:00:00', FALSE, 4, '2022-05-16 00:00:00', 'TV',        1000, 10,  5, 8, 1, 1),
+       (4, '2022-05-16 00:00:00', FALSE, 4, '2022-05-16 00:00:00', 'MacBook',   2000, 10,  5, 2, 1, 2),
+       (4, '2022-05-16 00:00:00', FALSE, 4, '2022-05-16 00:00:00', 'MacBook',   2000, 199, 1, 2, 2, 2),
+       (4, '2022-05-16 00:00:00', FALSE, 4, '2022-05-16 00:00:00', 'MacBook',   2000, 199, 1, 2, 3, 2),
+       (4, '2022-05-16 00:00:00', FALSE, 4, '2022-05-16 00:00:00', 'MacBook',   2000, 199, 1, 2, 4, 2),
+       (4, '2022-05-16 00:00:00', FALSE, 4, '2022-05-16 00:00:00', 'MacBook',   2000, 199, 1, 2, 4, 2),
+       (8, '2022-05-16 00:00:00', FALSE, 8, '2022-05-16 00:00:00', 'Shoes',     1000, 199, 10, 10, 5, 3);
 
 INSERT INTO payment (created_by, created_time, is_deleted, updated_by, updated_time, amount, institution_id, is_paid, month, year, company_id)
 VALUES (4, '2022-05-16 00:00:00', FALSE, 4, '2022-05-16 00:00:00', 999.99, '1', true, 'MAY','05/15/2022',2),
