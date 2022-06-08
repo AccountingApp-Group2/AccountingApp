@@ -11,11 +11,12 @@ public class LoginController {
 
     @GetMapping(value = {"/", "/login"})
     public String login() {
+
         return "login";
     }
 
     @RequestMapping("/main2")
-    public String main2() {
+    public String main() {
         return "main2";
     }
 }
