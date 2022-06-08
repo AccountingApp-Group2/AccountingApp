@@ -51,21 +51,21 @@
                                                  aria-labelledby="account-tab">
 
                                                 <!-- Account form starts -->
-                                                <form th:action="@{/product/edit}" novalidate method="post" th:object="${product}"
+                                                <form th:action="@{/product/edit/{id}(id=${product.getId()})}" novalidate method="post" th:object="${product}"
                                                       >
                                                     <div class="row">
                                                         <div class="col-12 col-md-6">
                                                             <div class="form-group">
-                                                                <div class="controls">
-                                                                    <label for="company-name">Company Name</label>
-                                                                    <select disabled id="company-name"
-                                                                            class="form-control" th:field="*{company}">
+<!--                                                                <div class="controls">-->
+<!--                                                                    <label for="company-name">Company Name</label>-->
+<!--                                                                    <select disabled id="company-name"-->
+<!--                                                                            class="form-control" th:field="*{company}">-->
 
-                                                                        <option th:value="${product.company.id}" th:text="${product.company.title}">
-                                                                        </option>
+<!--                                                                        <option th:value="${product.company.id}" th:text="${product.company.title}">-->
+<!--                                                                        </option>-->
 
-                                                                    </select>
-                                                                </div>
+<!--                                                                    </select>-->
+<!--                                                                </div>-->
                                                             </div>
 
                                                             <div class="form-group">
@@ -98,7 +98,7 @@
                                                                     <select id="users-edit-status"
                                                                             class="form-control"
                                                                             required th:field="*{productStatus}">
-                                                                        <option th:each="productStatus : ${T(com.example.accountingapp.enums.ProductStatus).values()}" th:value="${productStatus}" th:text="${productStatus}">
+                                                                        <option th:each="status : ${statuses}" th:value="${status}" th:text="${status}">
                                                                         </option>
 
                                                                     </select>
@@ -112,7 +112,7 @@
                                                                 <div class="controls">
                                                                     <label for="users-edit-status">Category</label>
                                                                     <select id="users-edit-status1" class="form-control" required th:field="*{category}">
-                                                                            <option th:value="${product.category.description}" th:text="${product.category.description}">
+                                                                        <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.description}">
                                                                             </option>
                                                                     </select>
                                                                 </div>
@@ -133,9 +133,8 @@
                                                                     <select  id="users-edit-role"
                                                                             class="form-control"
                                                                             required th:field="*{unit}">
-                                                                        <option th:each="unit : ${T(com.example.accountingapp.enums.Unit).values()}" th:value="${unit}" th:text="${unit}">
+                                                                        <option th:each="unit : ${units}" th:value="${unit}" th:text="${unit}">
                                                                         </option>
-
                                                                     </select>
                                                                 </div>
                                                             </div>
