@@ -24,3 +24,4 @@ public class StockServiceDetailsImpl implements StockDetailsService {
         return stockDetailsRepository.findAll().stream().map(stock -> mapperUtil.convert(stock, new StockDTO())).collect(Collectors.toList());
     }
 }
+

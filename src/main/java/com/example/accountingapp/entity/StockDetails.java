@@ -24,6 +24,6 @@ public class StockDetails {
     private BigDecimal price;
     private BigInteger remainingQuantity;
 
-    @OneToOne
+    @ManyToOne
     private Product product;
 }

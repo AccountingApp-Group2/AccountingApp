@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="loading" lang="en" xmlns:th="http://www.thymeleaf.org">
+<html class="loading" lang="en" xmlns:th="http://thymeleaf.org/%22%3E">
 <!-- BEGIN : Head-->
 
 <head>
@@ -75,13 +75,13 @@
 <!--                                                        <span  class="badge bg-light-success">SALE</span>-->
 <!--                                                    </td>-->
 <!--                                                </tr>-->
+                                                        <tr th:each="ip : ${invoiceProduct}">
+                                                            <td th:text="${ip.invoice.invoiceDate}"></td>
+                                                            <td  th:text="${ip.product.name}" class="text-truncate"></td>
+                                                            <td  th:text="${ip.qty}"></td>
+                                                            <td  th:text="${ip.invoice.invoiceType.value}"></td>
+                                                            <td  th:text="${ip.price}">
 
-                                                <tr th:each="stock : ${stocks}">
-                                                    <td th:text="${stock.dateTime}"></td>
-                                                   <td  th:text="${stock.invoiceProductDTO.name}" class="text-truncate"></td>
-                                                    <td  th:text="${stock.quantity}"></td>
-                                                    <td  th:text="${stock.salePurchaseStatus}"></td>
-                                                    <td  th:text="${stock.basePrice}">
 <!--                                                    <td>-->
 <!--                                                        <span th:if="${stock.enabled == true }" class="badge bg-light-success">Active</span>-->
 <!--                                                        <span th:if="${stock.enabled == false }" class="badge bg-light-warning">Inactive</span>-->
