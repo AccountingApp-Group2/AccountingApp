@@ -10,7 +10,9 @@ import lombok.Setter;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -30,6 +32,8 @@ public class Invoice extends BaseEntity {
     @Column(columnDefinition = "DATE")
     private LocalDate invoiceDate;
 
+    //todo Vitaly
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "sptable_id")
     private ClientVendor clientVendor;
@@ -39,5 +43,8 @@ public class Invoice extends BaseEntity {
     private Company company;
 
     private boolean enabled;
+
+    @OneToMany
+    List<InvoiceProduct> invoiceProductList;
 
 }
