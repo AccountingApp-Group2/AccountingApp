@@ -7,6 +7,8 @@ import com.example.accountingapp.mapper.MapperUtil;
 import com.example.accountingapp.repository.ClientVendorRepository;
 import com.example.accountingapp.service.ClientVendorService;
 import org.springframework.stereotype.Service;
+
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
