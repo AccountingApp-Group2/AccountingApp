@@ -46,4 +46,8 @@ public class InvoiceDTO {
 
 
     private List<InvoiceProductDTO> invoiceProductList;
+
+
+
 }
+
