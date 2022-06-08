@@ -19,5 +19,10 @@ public class LoginController {
         return "main2";
     }
 
+//    @RequestMapping("/dashboard")
+//    public String dashboard() {
+//        return "dashboard";
+//    }
+
 }
 
