@@ -1,6 +1,3 @@
-
-
-
 package com.example.accountingapp.controller;
 
 import org.springframework.stereotype.Controller;
