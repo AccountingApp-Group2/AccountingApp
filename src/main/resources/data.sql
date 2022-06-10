@@ -4,8 +4,8 @@ VALUES (1,'2022-05-01 00:00:00',FALSE,1,'2022-05-01 00:00:00','Street1 ','House 
        (1,'2022-05-03 00:00:00',FALSE,1,'2022-05-03 00:00:00','Street3 ','House Nu: 3','ENABLED','admin1@admin.com',TRUE ,'2020-01-01 00:00:00','3451236789','Admin2 AdminLName2','FLORIDA','Title3','33027');
 
 INSERT INTO client_vendor (created_by, created_time, is_deleted, updated_by, updated_time, company_name, phone, email, address, zip_code, enabled, type, company_id, state_id)
-VALUES (2, '2022-05-02 00:00:00', FALSE, 2, '2022-05-01 00:00:00', 'Company1', '1234567890', 'company2@email.com', 'Street 1.', '35242', TRUE, 'CLIENT', 1, 'ALABAMA'),
-       (2, '2022-05-02 00:00:00', FALSE, 2, '2022-05-02 00:00:00', 'Company2', '0987654321', 'company2@email.com', 'Street 2', '38704', TRUE, 'VENDOR', 2, 'ARIZONA'),
+VALUES (2, '2022-05-02 00:00:00', FALSE, 2, '2022-05-01 00:00:00', 'Company1', '1234567890', 'company1@email.com', 'Street 1.', '35242', TRUE, 'CLIENT', 1, 'ALABAMA'),
+       (2, '2022-05-02 00:00:00', FALSE, 2, '2022-05-02 00:00:00', 'Company2', '0987654321', 'company2@email.com', 'Street 2', '38704', FALSE, 'VENDOR', 2, 'ARIZONA'),
        (3, '2022-05-03 00:00:00', FALSE, 3, '2022-05-03 00:00:00', 'Company3', '7894561230', 'company3@email.com', 'Street 3', '33027', TRUE, 'CLIENT', 3, 'FLORIDA');
 
 INSERT INTO category (created_by, created_time, is_deleted, updated_by, updated_time, description, enabled,company_id)
@@ -41,13 +41,9 @@ VALUES (4, '2022-05-16 00:00:00', FALSE, 4, '2022-05-16 00:00:00', 'TV',        
        (8, '2022-05-16 00:00:00', FALSE, 8, '2022-05-16 00:00:00', 'Shoes',     1000, 199, 10, 10, 5, 3);
 
 INSERT INTO payment (created_by, created_time, is_deleted, updated_by, updated_time, amount, institution_id, is_paid, month, year, company_id)
-VALUES (4, '2022-05-16 00:00:00', FALSE, 4, '2022-05-16 00:00:00', 999.99, '1', true, 'MAY','05/15/2022',2),
-       (4, '2022-05-16 00:00:00', FALSE, 4, '2022-05-16 00:00:00', 1999.99, '2', true, 'MAY', '05/16/2022',2),
-       (8, '2022-05-16 00:00:00', FALSE, 8, '2022-05-16 00:00:00', 999.90, '3', true, 'MAY', '05/16/2022',3);
-
-
-
-
+VALUES (4, '2022-05-16 00:00:00', FALSE, 4, '2022-05-16 00:00:00', 999.99, '1', false, 'MAY','2022', 2),
+       (4, '2022-05-16 00:00:00', FALSE, 4, '2022-05-16 00:00:00', 1999.99, '2', true, 'APRIL', '2022', 2),
+       (8, '2022-05-16 00:00:00', FALSE, 8, '2022-05-16 00:00:00', 999.90, '3', true, 'JUNE', '2022', 2);
 
 INSERT INTO role (enabled, name)
 VALUES (TRUE, 'Root'),

@@ -5,7 +5,6 @@ import com.example.accountingapp.enums.InvoiceType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,7 +22,6 @@ public class InvoiceDTO {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
     private String invoiceNumber;
 
     @NotNull
@@ -44,10 +42,6 @@ public class InvoiceDTO {
 
     private CompanyDTO company;
 
-
     private List<InvoiceProductDTO> invoiceProductList;
-
-
-
 }
 

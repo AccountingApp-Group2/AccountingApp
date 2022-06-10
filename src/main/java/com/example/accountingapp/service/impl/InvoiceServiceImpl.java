@@ -2,6 +2,9 @@ package com.example.accountingapp.service.impl;
 
 import com.example.accountingapp.dto.InvoiceDTO;
 import com.example.accountingapp.dto.InvoiceProductDTO;
+import com.example.accountingapp.dto.RoleDTO;
+import com.example.accountingapp.entity.Invoice;
+import com.example.accountingapp.repository.CompanyRepository;
 import com.example.accountingapp.enums.InvoiceType;
 import com.example.accountingapp.mapper.MapperUtil;
 import com.example.accountingapp.repository.InvoiceProductRepository;
@@ -30,7 +33,9 @@ public class InvoiceServiceImpl implements InvoiceService {
     @Override
     public List<InvoiceDTO> listAllByInvoiceType(InvoiceType invoiceType) {
 
-        List<InvoiceDTO> listDTO = invoiceRepository.findAllByInvoiceType(invoiceType).stream().map(p -> mapperUtil.convert(p, new InvoiceDTO())).collect(Collectors.toList());
+        List<InvoiceDTO> listDTO = invoiceRepository.findAllByInvoiceType(invoiceType).stream()
+                .map(p -> mapperUtil.convert(p, new InvoiceDTO()))
+                .collect(Collectors.toList());
 
         //set cost
         listDTO.forEach(p -> p.setCost((calculateCostByInvoiceID(p.getId())).setScale(2, RoundingMode.CEILING)));
@@ -45,9 +50,10 @@ public class InvoiceServiceImpl implements InvoiceService {
 
     @Override
     public BigDecimal calculateCostByInvoiceID(Long id) {
-
         //Get list of all invoice-products by invoice ID
-        List<InvoiceProductDTO> invoiceProductListById = invoiceProductRepository.findAllByInvoiceId(id).stream().map(p -> mapperUtil.convert(p, new InvoiceProductDTO())).collect(Collectors.toList());
+        List<InvoiceProductDTO> invoiceProductListById = invoiceProductRepository.findAllByInvoiceId(id).stream()
+                .map(p -> mapperUtil.convert(p, new InvoiceProductDTO()))
+                .collect(Collectors.toList());
         BigDecimal cost = BigDecimal.valueOf(0);
 
         //add cost of each invoice-product for each invoice and write it to invoice cost field
@@ -55,8 +61,25 @@ public class InvoiceServiceImpl implements InvoiceService {
             BigDecimal currItemCost = each.getPrice().multiply(BigDecimal.valueOf(each.getQty()));
             cost = cost.add(currItemCost);
         }
-        return cost;
+
+
+       return cost;    
     }
 
+    @Override
+    public void save(InvoiceDTO dto) {
+
+    }
+
+    @Override
+    public void update(InvoiceDTO dto) {
+
+    }
+
+    @Override
+    public void delete(Long id) {
+
+
+    }
 
 }

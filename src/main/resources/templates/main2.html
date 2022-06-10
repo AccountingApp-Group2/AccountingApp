@@ -110,14 +110,15 @@
                                 data-i18n="Grid">Purchase Invoice</span></a>
                         </li>
                         <li data-menu=""><a class="dropdown-item d-flex align-items-center"
-                                            href="sales-invoice-list.html" data-toggle="dropdown"><i
+                                            th:href="@{/invoice/salesInvoiceList}" data-toggle="dropdown"><i
                                 class="ft-arrow-right submenu-icon"></i><span
                                 data-i18n="Typography">Sales Invoice</span></a>
                         </li>
-                        <li data-menu=""><a class="dropdown-item d-flex align-items-center"
-                                            href="invoice/purchase-invoice-list.html" data-toggle="dropdown"><i
-                                class="ft-arrow-right submenu-icon"></i><span data-i18n="Grid">Invoice Search</span></a>
-                        </li>
+<!--                        TODO: Vitaly and Bahrom-->
+<!--                        <li data-menu=""><a class="dropdown-item d-flex align-items-center"-->
+<!--                                            href="invoice/purchase-invoice-list.html" data-toggle="dropdown"><i-->
+<!--                                class="ft-arrow-right submenu-icon"></i><span data-i18n="Grid">Invoice Search</span></a>-->
+<!--                        </li>-->
                     </ul>
                 </li>
                 <li class="dropdown nav-item" data-menu="dropdown"><a
@@ -135,6 +136,22 @@
                         </li>
                     </ul>
                 </li>
+                <li class="dropdown nav-item softer" data-menu="dropdown" style="background: rgba(213,217,139,0.8)" ><a
+                        class="dropdown-toggle nav-link d-flex align-items-center" href="javascript:;"
+                        data-toggle="dropdown"><i class="ft-archive"></i><span data-i18n="Components">Administration</span></a>
+                    <ul class="dropdown-menu">
+
+                        <li data-menu=""><a th:href="@{/payment/list}" class="dropdown-item d-flex align-items-center"
+                                            data-toggle="dropdown"><i class="ft-arrow-right submenu-icon"></i><span
+                                data-i18n="Grid">MemberShip Payment</span></a>
+                        </li>
+                        <li data-menu=""><a class="dropdown-item d-flex align-items-center"
+                                            data-toggle="dropdown"><i class="ft-arrow-right submenu-icon"></i><span
+                                data-i18n="Typography">Log Document</span></a>
+                        </li>
+                    </ul>
+                </li>
+                
 
             </ul>
         </div>

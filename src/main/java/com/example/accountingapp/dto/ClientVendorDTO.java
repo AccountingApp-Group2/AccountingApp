@@ -24,7 +24,7 @@ public class ClientVendorDTO {
     private String email;
 
     @NotBlank
-    private State state;
+    private State stateId;
 
     @NotBlank
     @Pattern(regexp = "^\\d{10}$")
