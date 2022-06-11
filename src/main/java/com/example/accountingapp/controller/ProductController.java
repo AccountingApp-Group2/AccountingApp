@@ -12,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @Controller
 @RequestMapping("/product")
 public class ProductController {
@@ -31,7 +33,7 @@ public class ProductController {
     }
 
     @GetMapping("/add")
-    public String createClient(Model model) {
+    public String addProduct(Model model) {
         model.addAttribute("product", new ProductDTO());
         model.addAttribute("categories", categoryService.listAllCategories());
         model.addAttribute("statuses", ProductStatus.values());
@@ -40,17 +42,19 @@ public class ProductController {
     }
 
     @PostMapping("/add")
-    public String insertClient(@ModelAttribute("product") ProductDTO productDTO, BindingResult bindingResult, Model model) {
+    public String addProduct(@Valid @ModelAttribute("product") ProductDTO product, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            model.addAttribute("product", new ProductDTO());
+            model.addAttribute("categories", categoryService.listAllCategories());
+            model.addAttribute("statuses", ProductStatus.values());
+            model.addAttribute("units", Unit.values());
             return "/product/product-add";
         }
-        productService.save(productDTO);
+        productService.save(product);
         return "redirect:/product/list";
     }
 
     @GetMapping("/edit/{id}") //
-    public String updateClient(@PathVariable("id") Long id, Model model) {
+    public String editProduct(@PathVariable("id") Long id, Model model) {
         model.addAttribute("product", productService.findById(id));
         model.addAttribute("categories", categoryService.listAllCategories());
         model.addAttribute("statuses", ProductStatus.values());
@@ -59,8 +63,11 @@ public class ProductController {
     }
 
     @PostMapping("/edit/{id}")
-    public String editClient(@PathVariable("id") Long id, @ModelAttribute("product") ProductDTO productDTO, BindingResult bindingResult,Model model) {
+    public String editProduct(@Valid @PathVariable("id") Long id, @Valid @ModelAttribute("product") ProductDTO productDTO, BindingResult bindingResult,Model model) {
         if (bindingResult.hasErrors()) {
+            model.addAttribute("categories", categoryService.listAllCategories());
+            model.addAttribute("statuses", ProductStatus.values());
+            model.addAttribute("units", Unit.values());
             return "/product/product-edit";
         }
         productService.update(productDTO);
@@ -68,7 +75,7 @@ public class ProductController {
     }
 
     @GetMapping("/delete/{id}")
-    public String deleteClient(@PathVariable("id") Long id) {
+    public String deleteProduct(@PathVariable("id") Long id) {
         productService.delete(id);
         return "redirect:/product/list";
     }

@@ -27,27 +27,27 @@ public class ProductDTO {
     @NotNull
     private CategoryDTO category;
 
-    @NotBlank
+    @NotNull
     private BigInteger qty;
 
     @NotNull
     private Unit unit;
 
-    @NotBlank
+    @NotNull
     private BigInteger lowLimitAlert;
 
-    @NotBlank
+//    @NotBlank
     private BigInteger tax;
 
-    @NotNull
+
     private CompanyDTO company;
 
-    @NotBlank
+//    @NotBlank
     private Boolean enabled;
 
     @NotNull
     private ProductStatus productStatus;
 
-    @NotBlank
+//    @NotBlank
     private BigInteger newColumn;
 }
