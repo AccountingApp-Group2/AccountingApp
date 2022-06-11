@@ -65,6 +65,13 @@
                                                                            aria-invalid="false"
                                                                            th:field="*{name}"
                                                                            >
+                                                                    <div class="invalid-feedback"
+                                                                         th:if="${#fields.hasErrors('name')}">
+                                                                        <ul>
+                                                                            <li th:each="err : ${#fields.errors('name')}"
+                                                                                th:text="${err}"></li>
+                                                                        </ul>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
@@ -76,6 +83,13 @@
                                                                            value="" required aria-invalid="false"
                                                                            th:field="*{qty}"
                                                                            >
+                                                                    <div class="invalid-feedback"
+                                                                         th:if="${#fields.hasErrors('qty')}">
+                                                                        <ul>
+                                                                            <li th:each="err : ${#fields.errors('qty')}"
+                                                                                th:text="${err}"></li>
+                                                                        </ul>
+                                                                    </div>
                                                                 </div>
                                                             </div>
 
@@ -91,6 +105,13 @@
                                                                         </option>
 
                                                                     </select>
+                                                                    <div class="invalid-feedback"
+                                                                         th:if="${#fields.hasErrors('productStatus')}">
+                                                                        <ul>
+                                                                            <li th:each="err : ${#fields.errors('productStatus')}"
+                                                                                th:text="${err}"></li>
+                                                                        </ul>
+                                                                    </div>
                                                                 </div>
                                                             </div>
 
@@ -108,6 +129,13 @@
                                                                         <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.description}">
 
                                                                     </select>
+                                                                    <div class="invalid-feedback"
+                                                                         th:if="${#fields.hasErrors('category')}">
+                                                                        <ul>
+                                                                            <li th:each="err : ${#fields.errors('category')}"
+                                                                                th:text="${err}"></li>
+                                                                        </ul>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
@@ -119,6 +147,13 @@
                                                                            required
                                                                            th:field="*{description}"
                                                                            >
+                                                                    <div class="invalid-feedback"
+                                                                         th:if="${#fields.hasErrors('description')}">
+                                                                        <ul>
+                                                                            <li th:each="err : ${#fields.errors('description')}"
+                                                                                th:text="${err}"></li>
+                                                                        </ul>
+                                                                    </div>
                                                                 </div>
                                                             </div>
 
@@ -131,11 +166,14 @@
                                                                         <option value="">Select Unit</option>
                                                                         <option th:each="unit : ${units}" th:value="${unit}" th:text="${unit}">
                                                                         </option>
-
-<!--                                                                        <option >-->
-<!--                                                                        </option>-->
-
                                                                     </select>
+                                                                    <div class="invalid-feedback"
+                                                                         th:if="${#fields.hasErrors('unit')}">
+                                                                        <ul>
+                                                                            <li th:each="err : ${#fields.errors('unit')}"
+                                                                                th:text="${err}"></li>
+                                                                        </ul>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
@@ -146,6 +184,13 @@
                                                                            class="form-control"
                                                                            placeholder="Quantity for low limit Alert"
                                                                            required th:field="*{lowLimitAlert}">
+                                                                    <div class="invalid-feedback"
+                                                                         th:if="${#fields.hasErrors('lowLimitAlert')}">
+                                                                        <ul>
+                                                                            <li th:each="err : ${#fields.errors('lowLimitAlert')}"
+                                                                                th:text="${err}"></li>
+                                                                        </ul>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                             <div class="col-12 d-flex flex-sm-row flex-column justify-content-end mt-6 mt-sm-4">

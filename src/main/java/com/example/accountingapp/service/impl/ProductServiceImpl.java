@@ -54,6 +54,8 @@ public class ProductServiceImpl implements ProductService {
         Product product = productRepository.findById(dto.getId()).get();
         Product convertedProduct = mapperUtil.convert(dto,new Product());
         convertedProduct.setId(product.getId()); // Perhaps not necessary!!!
+        User loggedInUser = userRepository.findByEmail("manager1@admin.com");
+        convertedProduct.setCompany(loggedInUser.getCompany());
         convertedProduct.setEnabled(product.getEnabled());
         productRepository.save(convertedProduct);
         return findById(convertedProduct.getId());

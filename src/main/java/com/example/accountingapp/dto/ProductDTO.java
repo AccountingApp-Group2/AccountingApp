@@ -24,13 +24,13 @@ public class ProductDTO {
     @NotBlank
     private String description;
 
-    @NotBlank
+    @NotNull
     private CategoryDTO category;
 
     @NotBlank
     private BigInteger qty;
 
-    @NotBlank
+    @NotNull
     private Unit unit;
 
     @NotBlank
@@ -39,13 +39,13 @@ public class ProductDTO {
     @NotBlank
     private BigInteger tax;
 
-    @NotBlank
+    @NotNull
     private CompanyDTO company;
 
     @NotBlank
     private Boolean enabled;
 
-    @NotBlank
+    @NotNull
     private ProductStatus productStatus;
 
     @NotBlank
