@@ -63,13 +63,14 @@ public class ProductController {
     }
 
     @PostMapping("/edit/{id}")
-    public String editProduct(@Valid @PathVariable("id") Long id, @Valid @ModelAttribute("product") ProductDTO productDTO, BindingResult bindingResult,Model model) {
+    public String editProduct(@PathVariable("id") Long id, @Valid @ModelAttribute("product") ProductDTO productDTO, BindingResult bindingResult,Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("categories", categoryService.listAllCategories());
             model.addAttribute("statuses", ProductStatus.values());
             model.addAttribute("units", Unit.values());
             return "/product/product-edit";
         }
+        productDTO.setId(id);
         productService.update(productDTO);
         return "redirect:/product/list";
     }
