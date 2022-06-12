@@ -22,6 +22,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public List<CategoryDTO> listAllCategories() {
+        // TODO: Filter by Company
         return categoryRepository.findAllBy().stream().map(category -> mapperUtil.convert(category, new CategoryDTO())).collect(Collectors.toList());
     }
 
