@@ -18,7 +18,6 @@
 
 <div th:replace="fragments :: page_header"/>
 <!-- Navbar (Header) Ends-->
-
 <!-- ////////////////////////////////////////////////////////////////////////////-->
 <div class="wrapper">
     <div th:replace="fragments :: page_menu"/>
@@ -65,45 +64,15 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-<!--                                                <tr >-->
-<!--                                                    <td ></td>-->
-<!--                                                    <td ></td>-->
-<!--                                                    <td  ></td>-->
-<!--                                                    <td >-->
-
-<!--                                                        <span  class="badge bg-light-blue">PURCHASE</span>-->
-<!--                                                        <span  class="badge bg-light-success">SALE</span>-->
-<!--                                                    </td>-->
-<!--                                                </tr>-->
                                                         <tr th:each="ip : ${invoiceProduct}">
-                                                            <td th:text="${ip.invoice.invoiceDate}"></td>
-                                                            <td  th:text="${ip.product.name}" class="text-truncate"></td>
-                                                            <td  th:text="${ip.qty}"></td>
-                                                            <td  th:text="${ip.invoice.invoiceType.value}"></td>
-                                                            <td  th:text="${ip.price}">
-
-<!--                                                    <td>-->
-<!--                                                        <span th:if="${stock.enabled == true }" class="badge bg-light-success">Active</span>-->
-<!--                                                        <span th:if="${stock.enabled == false }" class="badge bg-light-warning">Inactive</span>-->
-<!--                                                    </td>-->
-<!--                                                    <td>-->
-
-<!--                                                        <a th:href="@{/client-vendor/edit/{id}(id=${client.id})}">-->
-<!--                                                            <i class="ft-edit" type="submit" ></i>-->
-<!--                                                        </a>-->
-<!--                                                    </td>-->
-                                                </tr>
-
-                                                </tbody>
-<!--                                                <tfoot>-->
-<!--                                                <tr>-->
-<!--                                                    <th>Date</th>-->
-<!--                                                    <th>Product Name</th>-->
-<!--                                                    <th>Quantity</th>-->
-<!--                                                    <th>Sale & Purchase </th>-->
-<!--                                                    <th>Base Price</th>-->
-<!--                                                </tr>-->
-<!--                                                </tfoot>-->
+                                                            <td    th:text="${ip.invoice.invoiceDate}"></td>
+                                                            <td    th:text="${ip.product.name}" class="text-truncate"></td>
+                                                            <td    th:text="${ip.qty} + ' / pieces'" ></td>
+                                                            <td>
+                                                            <span  th:if="${ip.invoice.invoiceType.value == 'SALE'}"      th:text="${ip.invoice.invoiceType.value}" class="badge bg-light-success"></span>
+                                                            <span  th:unless="${ip.invoice.invoiceType.value == 'SALE'}"  th:text="${ip.invoice.invoiceType.value}" class="badge bg-light-blue"></span>
+                                                            </td>
+                                                            <td    th:text="${ip.price}"></td>
                                             </table>
                                         </div>
                                     </div>
