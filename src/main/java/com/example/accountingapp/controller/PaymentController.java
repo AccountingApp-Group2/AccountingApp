@@ -36,10 +36,14 @@ public class PaymentController {
 //    return "/payment/payment";
 //  }
 
-//  @GetMapping("/payment-consent")
-//  public String paymentConsent() {
-//    return "/payment/payment-consent";
-//  }
+  @GetMapping("/payment-consent/{id}")
+  public String paymentConsent(@PathVariable("id") Long id,  Model model) {
+    PaymentDTO paymentDTO = paymentService.findById(id);
+
+    model.addAttribute("payment", paymentDTO);
+    model.addAttribute("company", companyService.findById(id));
+    return "/payment/payment-consent";
+  }
 
   @GetMapping("/toInvoice/{id}")
   public String paymentSuccess(@PathVariable("id") Long id, Model model) {
@@ -50,6 +54,17 @@ public class PaymentController {
     model.addAttribute("company", companyService.findById(id));
 
     return "/payment/payment-success";
+  }
+  @GetMapping("/edit/{id}")
+  public String editPayment(@PathVariable("id") Long id, Model model){
+    PaymentDTO paymentDTO = paymentService.findById(id);
+    model.addAttribute("payment", paymentDTO);
+    model.addAttribute("company", companyService.findById(id));
+    return "/payment/payment";
+  }
+  @PostMapping("/edit/{id}")
+  public String updatePayment(){
+    return "/payment/payment";
   }
 
   //    @GetMapping("/payment-success-print")
