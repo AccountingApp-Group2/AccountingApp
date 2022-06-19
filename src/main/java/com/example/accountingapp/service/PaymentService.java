@@ -19,4 +19,7 @@ public interface PaymentService {
   void delete(Long id);
 
   PaymentDTO findPaymentById(Long id);
+
+  void chargePaymentById(Long id);
+
 }
