@@ -23,4 +23,7 @@ public class PaymentDTO {
     private PaymentStatus status;
     private Integer amount;
     private Boolean isPaid;
+    private CompanyDTO companyDTO;
+    private String preparedBy;
+//    private UserDTO user;
 }
