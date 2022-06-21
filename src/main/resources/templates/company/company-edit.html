@@ -5,14 +5,14 @@
 <head>
     <head th:replace="fragments :: page_head"/>
     <title>Edit Company</title>
-    <link rel="shortcut icon" type="image/x-icon" th:href="@{/img/logos/logo-color-big.png}">
+    <link rel="shortcut icon" th:href="@{/img/logos/logo-color-big.png}" type="image/x-icon">
 </head>
 <!-- END : Head-->
 
 <!-- BEGIN : Body-->
 
-<body class="horizontal-layout horizontal-menu horizontal-menu-padding 2-columns  navbar-sticky" data-open="hover"
-      data-menu="horizontal-menu" data-col="2-columns">
+<body class="horizontal-layout horizontal-menu horizontal-menu-padding 2-columns  navbar-sticky" data-col="2-columns"
+      data-menu="horizontal-menu" data-open="hover">
 <div th:replace="fragments :: page_header"/>
 
 
@@ -52,11 +52,12 @@
 
                                         <div class="tab-content">
                                             <!-- Account content starts -->
-                                            <div class="tab-pane fade mt-2 show active" id="account" role="tabpanel"
-                                                 aria-labelledby="account-tab">
+                                            <div aria-labelledby="account-tab" class="tab-pane fade mt-2 show active" id="account"
+                                                 role="tabpanel">
 
                                                 <!-- Account form starts -->
-                                                <form novalidate th:action="@{/company/update}" method="post" th:object="${company}">
+                                                <!-- Account form starts -->
+                                                <form th:action="@{/company/edit}" method="post" novalidate th:object="${company}">
                                                     <div class="row">
                                                         <div class="col-12 col-md-6">
                                                             <div class="form-group">
@@ -95,21 +96,6 @@
                                                                            th:field="*{email}" type="email">
                                                                 </div>
                                                             </div>
-                                                            <div class="form-group">
-                                                                <div class="controls">
-                                                                    <label>Status</label>
-                                                                    <select class="custom-select"
-                                                                            th:field="*{companyStatus}">
-                                                                        <option th:text="Select"
-                                                                                th:value="''"></option>
-                                                                        <option th:each="st : ${status}"
-                                                                                th:text="${st.value}"
-                                                                                th:value="${st}"></option>
-
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-
                                                         </div>
 
                                                         <div class="col-12 col-md-6">
@@ -118,12 +104,9 @@
                                                                     <label>State</label>
                                                                     <select class="custom-select"
                                                                             th:field="*{state}">
-                                                                        <option th:text="Select"
-                                                                                th:value="''"></option>
                                                                         <option th:each="st : ${states}"
                                                                                 th:text="${st.name}"
                                                                                 th:value="${st}"></option>
-
                                                                     </select>
                                                                 </div>
                                                             </div>
@@ -135,8 +118,7 @@
                                                                            id="establishmentdate"
                                                                            placeholder="establishment date"
                                                                            required
-                                                                           th:field="*{establishmentDate}"
-                                                                           type="date">
+                                                                           type="date" th:field="*{establishmentDate}">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
@@ -154,12 +136,9 @@
                                                                     <label for="phone">Phone</label>
                                                                     <input aria-invalid="false" class="form-control"
                                                                            id="phone"
-                                                                           placeholder="phone" th:field="*{phone}"
-                                                                           type="text">
+                                                                           placeholder="phone" th:field="*{phone}" type="text">
                                                                 </div>
                                                             </div>
-
-
                                                         </div>
 
 
@@ -168,7 +147,15 @@
                                                                     type="submit">
                                                                 Save Changes
                                                             </button>
-                                                            <button class="btn btn-secondary" type="reset" >Cancel
+                                                            <a th:if="'Enabled' == ${company.companyStatus.value}" class="btn btn-danger mb-2 mb-sm-0 mr-sm-2" data-placement="top"
+                                                               data-toggle="tooltip" title="Any person from this company will not be able to get access again if you closed this COMPANY"
+                                                               type="button" th:href="@{/company/close/{id}(id=${company.id})}">
+                                                                Close Company</a>
+                                                            <a th:if="'Disabled' == ${company.companyStatus.value}" class="btn btn-success mb-2 mb-sm-0 mr-sm-2" data-placement="top"
+                                                               data-toggle="tooltip" title="All the people are allowed by the Company can get access the system again"
+                                                               type="button" th:href="@{/company/reopen/{id}(id=${company.id})}">
+                                                                Re-Open Company   </a>
+                                                            <button class="btn btn-secondary" type="reset">Cancel
                                                             </button>
                                                         </div>
                                                     </div>

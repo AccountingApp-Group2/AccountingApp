@@ -52,7 +52,8 @@
 
                                         <div class="tab-content">
                                             <!-- Account content starts -->
-                                            <div aria-labelledby="account-tab" class="tab-pane fade mt-2 show active" id="account"
+                                            <div aria-labelledby="account-tab" class="tab-pane fade mt-2 show active"
+                                                 id="account"
                                                  role="tabpanel">
 
                                                 <!-- Account form starts -->
@@ -71,7 +72,8 @@
                                                             <div class="form-group">
                                                                 <div class="controls">
                                                                     <label for="zip">Zip</label>
-                                                                    <input aria-invalid="false" class="form-control" id="zip"
+                                                                    <input aria-invalid="false" class="form-control"
+                                                                           id="zip"
                                                                            placeholder="zipcode" required
                                                                            th:field="*{zip}" type="text">
                                                                 </div>
@@ -95,83 +97,68 @@
                                                                            th:field="*{email}" type="email">
                                                                 </div>
                                                             </div>
+                                                        </div>
+
+                                                        <div class="col-12 col-md-6">
                                                             <div class="form-group">
                                                                 <div class="controls">
-                                                                    <label>Status</label>
+                                                                    <label>State</label>
                                                                     <select class="custom-select"
-                                                                            th:field="*{companyStatus}">
+                                                                            th:field="*{state}">
                                                                         <option th:text="Select"
                                                                                 th:value="''"></option>
-                                                                        <option th:each="st : ${status}"
-                                                                                th:text="${st.value}"
+                                                                        <option th:each="st : ${states}"
+                                                                                th:text="${st.name}"
                                                                                 th:value="${st}"></option>
 
                                                                     </select>
                                                                 </div>
                                                             </div>
-
+                                                            <div class="form-group">
+                                                                <div class="controls">
+                                                                    <label for="establishmentdate">Establishment
+                                                                        Date</label>
+                                                                    <input aria-invalid="false" class="form-control"
+                                                                           id="establishmentdate"
+                                                                           placeholder="establishment date"
+                                                                           required
+                                                                           th:field="*{establishmentDate}"
+                                                                           type="date">
+                                                                </div>
                                                             </div>
-
-                                                            <div class="col-12 col-md-6">
-                                                                <div class="form-group">
-                                                                    <div class="controls">
-                                                                        <label>State</label>
-                                                                        <select class="custom-select"
-                                                                                th:field="*{state}">
-                                                                            <option th:text="Select"
-                                                                                    th:value="''"></option>
-                                                                            <option th:each="st : ${states}"
-                                                                                    th:text="${st.name}"
-                                                                                    th:value="${st}"></option>
-
-                                                                        </select>
-                                                                    </div>
+                                                            <div class="form-group">
+                                                                <div class="controls">
+                                                                    <label for="representative">Representative</label>
+                                                                    <input aria-invalid="false" class="form-control"
+                                                                           id="representative"
+                                                                           placeholder="representative"
+                                                                           th:field="*{representative}"
+                                                                           type="text">
                                                                 </div>
-                                                                <div class="form-group">
-                                                                    <div class="controls">
-                                                                        <label for="establishmentdate">Establishment
-                                                                            Date</label>
-                                                                        <input aria-invalid="false" class="form-control"
-                                                                               id="establishmentdate"
-                                                                               placeholder="establishment date"
-                                                                               required
-                                                                               th:field="*{establishmentDate}"
-                                                                               type="date">
-                                                                    </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="controls">
+                                                                    <label for="phone">Phone</label>
+                                                                    <input aria-invalid="false" class="form-control"
+                                                                           id="phone"
+                                                                           placeholder="phone" th:field="*{phone}"
+                                                                           type="text">
                                                                 </div>
-                                                                <div class="form-group">
-                                                                    <div class="controls">
-                                                                        <label for="representative">Representative</label>
-                                                                        <input aria-invalid="false" class="form-control"
-                                                                               id="representative"
-                                                                               placeholder="representative"
-                                                                               th:field="*{representative}"
-                                                                               type="text">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <div class="controls">
-                                                                        <label for="phone">Phone</label>
-                                                                        <input aria-invalid="false" class="form-control"
-                                                                               id="phone"
-                                                                               placeholder="phone" th:field="*{phone}"
-                                                                               type="text">
-                                                                    </div>
-                                                                </div>
-
-
                                                             </div>
 
 
-                                                            <div class="col-12 d-flex flex-sm-row flex-column justify-content-end mt-3 mt-sm-2">
-                                                                <button class="btn btn-primary mb-2 mb-sm-0 mr-sm-2"
-                                                                        type="submit">
-                                                                    Save Changes
-                                                                </button>
-                                                                <button class="btn btn-secondary" type="reset">Cancel
-                                                                </button>
-                                                            </div>
                                                         </div>
+
+
+                                                        <div class="col-12 d-flex flex-sm-row flex-column justify-content-end mt-3 mt-sm-2">
+                                                            <button class="btn btn-primary mb-2 mb-sm-0 mr-sm-2"
+                                                                    type="submit">
+                                                                Save Changes
+                                                            </button>
+                                                            <button class="btn btn-secondary" type="reset">Cancel
+                                                            </button>
+                                                        </div>
+                                                    </div>
                                                 </form>
                                                 <!-- Account form ends -->
                                             </div>

@@ -22,14 +22,15 @@ public class CompanyController {
     @GetMapping("/list")
     public String listCompany(Model model) {
         model.addAttribute("companies",companyService.listAllCompanies());
-
+        model.addAttribute("states", State.values());
+        model.addAttribute("status", CompanyStatus.values());
 
         return "/company/company-list";
     }
 
 
     @GetMapping("/add")
-    public String addCompany(Model model) {
+    public String createCompany(Model model) {
 
         model.addAttribute("company", new CompanyDTO());
         model.addAttribute("companies", companyService.listAllCompanies());
@@ -51,20 +52,36 @@ public class CompanyController {
         return "/company/company-list";
 
     }
-    @GetMapping("/update/{email}")
-    public String editUser(@PathVariable("email")String email,Model model){
-        model.addAttribute("company",companyService.findByEmail(email));
-        model.addAttribute("companies", companyService.listAllCompanies());
+    @GetMapping("/edit/{id}") //
+    public String updateCompany(@PathVariable("id") Long id, Model model) {
         model.addAttribute("states", State.values());
         model.addAttribute("status", CompanyStatus.values());
+        model.addAttribute("company", companyService.findById(id));
         return "/company/company-edit";
     }
-    @PostMapping("/update")
-    public String updateCompany(@ModelAttribute("company")CompanyDTO company,Model model){
+
+    @PostMapping("/edit")
+    public String editCompany(@ModelAttribute("company") CompanyDTO company, BindingResult bindingResult, Model model) {
+
+        if (bindingResult.hasErrors()) {
+            return "/company/company-edit";
+        }
+        System.out.println("what about here");
         companyService.update(company);
-        model.addAttribute("companies", companyService.listAllCompanies());
-        model.addAttribute("states", State.values());
-        model.addAttribute("status", CompanyStatus.values());
-        return "/company/company-list";
+        return "redirect:/company/list";
     }
+
+    @GetMapping("/close/{id}")
+    public String closeCompany(@PathVariable("id") Long id) {
+        companyService.close(id);
+        return "redirect:/company/list";
+    }
+
+    @GetMapping("/reopen/{id}")
+    public String reopenCompany(@PathVariable("id") Long id) {
+        companyService.reopen(id);
+        return "redirect:/company/list";
+    }
+
+
 }
