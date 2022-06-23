@@ -66,7 +66,7 @@
                                                                     <input aria-invalid="false" class="form-control"
                                                                            id="users-edit-username" placeholder="title"
                                                                            required
-                                                                           th:field="*{title}" type="text" readonly>
+                                                                           th:field="*{title}" type="text">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
@@ -93,7 +93,7 @@
                                                                     <input aria-invalid="false" class="form-control"
                                                                            id="email" placeholder="email"
                                                                            required
-                                                                           th:field="*{email}" type="email" readonly>
+                                                                           th:field="*{email}" type="email">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -147,11 +147,11 @@
                                                                     type="submit">
                                                                 Save Changes
                                                             </button>
-                                                            <a th:if="'Enabled' == ${company.companyStatus.value}" class="btn btn-danger mb-2 mb-sm-0 mr-sm-2" data-placement="top"
+                                                            <a th:if="'Enabled' == ${company.companyStatus.value}" class="btn btn-danger" data-placement="top"
                                                                data-toggle="tooltip" title="Any person from this company will not be able to get access again if you closed this COMPANY"
                                                                type="button" th:href="@{/company/close/{id}(id=${company.id})}">
                                                                 Close Company</a>
-                                                            <a th:if="'Disabled' == ${company.companyStatus.value}" class="btn btn-success mb-2 mb-sm-0 mr-sm-2" data-placement="top"
+                                                            <a th:if="'Disabled' == ${company.companyStatus.value}" class="btn btn-success" data-placement="top"
                                                                data-toggle="tooltip" title="All the people are allowed by the Company can get access the system again"
                                                                type="button" th:href="@{/company/reopen/{id}(id=${company.id})}">
                                                                 Re-Open Company   </a>

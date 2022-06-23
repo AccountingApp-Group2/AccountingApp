@@ -17,6 +17,7 @@ import java.time.LocalDateTime;
 @Setter
 @Where(clause = "is_deleted=false")
 public class Company extends BaseEntity {
+    @Column(unique = true, nullable = false)
     private String title;
     private String address1;
     private String address2;
