@@ -23,7 +23,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UserDTO> listAllUsers() {
-        return userRepository.findAll().stream().map(user -> mapperUtil.convert(user, new UserDTO())).collect(Collectors.toList());
+
+        User loggedInUser = userRepository.findByEmail("admin@company2.com");
+        List<User> list = userRepository.findAllByCompany(loggedInUser.getCompany());
+        return list.stream().map(user -> mapperUtil.convert(user, new UserDTO())).collect(Collectors.toList());
     }
 
 
@@ -38,10 +41,9 @@ public class UserServiceImpl implements UserService {
     public UserDTO update(UserDTO dto) {
 
         User user = userRepository.findByEmail(dto.getEmail());
-        User convertedUser = mapperUtil.convert(dto,new User());
+        User convertedUser = mapperUtil.convert(dto, new User());
         //set id to converted object which we found in DB by Email
         convertedUser.setId(user.getId());
-        convertedUser.setRole(user.getRole());
         convertedUser.setEnabled(user.getEnabled());
         convertedUser.setPassword(user.getPassword());
         userRepository.save(convertedUser);
@@ -52,8 +54,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public void delete(String email) {
         User user = userRepository.findByEmail(email);
-            user.setIsDeleted(true);
-            userRepository.save(user);
+        user.setIsDeleted(true);
+        userRepository.save(user);
     }
 
     @Override
@@ -64,9 +66,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDTO findByEmail(String email) {
         User user = userRepository.findByEmail(email);
-        return mapperUtil.convert(user,new UserDTO());
+        return mapperUtil.convert(user, new UserDTO());
     }
-
-
 
 }
