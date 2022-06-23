@@ -48,6 +48,7 @@ public class CompanyServiceImpl implements CompanyService {
         Company company = companyRepository.findByEmail(dto.getEmail());
         Company convertedCompany = mapperUtil.convert(dto, new Company());
         convertedCompany.setId(company.getId());
+        convertedCompany.setCompanyStatus(company.getCompanyStatus());
         companyRepository.save(convertedCompany);
 
         return findByEmail(dto.getEmail());
