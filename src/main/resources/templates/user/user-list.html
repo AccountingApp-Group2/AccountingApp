@@ -73,14 +73,8 @@
                                                         <td th:text="${user.role.name}"></td>
                                                         <td th:text="${user.company.title}"></td>
                                                         <td th:text="${user.userStatus}">
-                                                            <span
-
-                                                                    class="badge bg-light-success"
-                                                            ></span>
-                                                            <span
-
-                                                                    class="badge bg-light-DANGER"
-                                                            ></span>
+                                                            <span  class="badge bg-light-success"></span>
+                                                            <span class="badge bg-light-DANGER"></span>
                                                         </td>
                                                         <td>
                                                             <a th:href="@{/user/update/{id}(id=${user.email})}" >
