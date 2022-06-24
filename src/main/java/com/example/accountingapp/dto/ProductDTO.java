@@ -50,4 +50,5 @@ public class ProductDTO {
 
     @NotBlank
     private BigInteger newColumn;
+
 }

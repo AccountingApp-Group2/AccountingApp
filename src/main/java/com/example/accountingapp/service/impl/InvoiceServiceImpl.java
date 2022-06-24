@@ -4,6 +4,7 @@ import com.example.accountingapp.dto.InvoiceDTO;
 import com.example.accountingapp.dto.InvoiceProductDTO;
 import com.example.accountingapp.dto.RoleDTO;
 import com.example.accountingapp.entity.Invoice;
+import com.example.accountingapp.enums.InvoiceStatus;
 import com.example.accountingapp.repository.CompanyRepository;
 import com.example.accountingapp.enums.InvoiceType;
 import com.example.accountingapp.mapper.MapperUtil;
@@ -14,7 +15,12 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 @Service
@@ -78,8 +84,40 @@ public class InvoiceServiceImpl implements InvoiceService {
 
     @Override
     public void delete(Long id) {
+        Invoice invoice = invoiceRepository.findById(id).get();
+        invoice.setIsDeleted(true);
+        invoiceRepository.save(invoice);
+    }
 
+    @Override
+    public String getNextInvoiceId() {
+        long nextMax= invoiceRepository.selectMaxInvoiceId() + 1;
+        DecimalFormat formatter = (DecimalFormat) NumberFormat.getNumberInstance(Locale.US);
+        formatter.applyPattern("000");
+        String tempMax = formatter.format(nextMax);
+        return"S-INV" + tempMax;
+    }
+
+    @Override
+    public String getLocalDate() {
+        LocalDate date = LocalDate.now();
+        DateTimeFormatter formatters = DateTimeFormatter.ofPattern("MM/d/YYYY");
+        String localDate = date.format(formatters);
+        return localDate;
+    }
+
+    @Override
+    public Long getInvoiceNo(String id) {
+        return invoiceRepository.getInvoiceId(id);
+    }
+
+    @Override
+    public void approveInvoice(String invoiceId) {
+        Invoice invoice = invoiceRepository.findByInvoiceNumber(invoiceId);
+        invoice.setInvoiceStatus(InvoiceStatus.APPROVED);
+        invoiceRepository.save(invoice);
 
     }
+
 
 }

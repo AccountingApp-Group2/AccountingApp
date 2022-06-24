@@ -39,8 +39,8 @@ public class Invoice extends BaseEntity {
     private Company company;
 
     private boolean enabled;
-
-    @OneToMany
-    List<InvoiceProduct> invoiceProductList;
+//
+//    @OneToMany
+//    List<InvoiceProduct> invoiceProductList;
 
 }

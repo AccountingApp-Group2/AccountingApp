@@ -1,5 +1,6 @@
 package com.example.accountingapp.dto;
 
+import com.example.accountingapp.entity.Invoice;
 import com.example.accountingapp.enums.InvoiceStatus;
 import com.example.accountingapp.enums.InvoiceType;
 import lombok.AllArgsConstructor;
@@ -43,5 +44,12 @@ public class InvoiceDTO {
     private CompanyDTO company;
 
     private List<InvoiceProductDTO> invoiceProductList;
+
+    private long getInvoiceNo;
+
+    private ProductDTO product;
+
+    public String companyName;
+
 
 }

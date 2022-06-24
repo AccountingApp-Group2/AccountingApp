@@ -68,7 +68,7 @@
                                                             <div class="form-group">
                                                                 <div class="controls">
                                                                     <label>Vendor</label>
-                                                                    <select class="custom-select" required="required">
+                                                                    <select class="custom-select" required="required" th:field="*">
                                                                         <option th:text="Select"></option>
                                                                         <option th:each="vendor: ${vendors}"
                                                                                 th:text="${vendor.companyName}">

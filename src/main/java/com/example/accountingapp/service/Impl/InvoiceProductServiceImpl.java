@@ -21,24 +21,14 @@ import java.util.stream.Collectors;
 public class InvoiceProductServiceImpl implements InvoiceProductService {
 
     final private InvoiceProductRepository invoiceProductRepository;
-    private final MapperUtil mapperUtil;
 
-    public InvoiceProductServiceImpl(InvoiceProductRepository invoiceProductRepository, MapperUtil mapperUtil) {
+    public InvoiceProductServiceImpl(InvoiceProductRepository invoiceProductRepository) {
         this.invoiceProductRepository = invoiceProductRepository;
-        this.mapperUtil = mapperUtil;
     }
 
     @Override
     public List<InvoiceProduct> listAll() {
         return invoiceProductRepository.findAll();
-    }
-
-    @Override
-    public InvoiceProductDTO getByInvoiceId(Long invoiceId) {
-
-        InvoiceProductDTO invoiceProductDTO = mapperUtil.convert(invoiceProductRepository.getByInvoiceId(invoiceId),new InvoiceProductDTO());
-
-        return invoiceProductDTO;
     }
 
 }

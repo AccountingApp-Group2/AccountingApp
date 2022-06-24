@@ -47,7 +47,7 @@
                                                                     <label>Invoice No</label>
                                                                     <a type="text"
                                                                            class="form-control" required aria-invalid="false"
-                                                                       readonly></a>
+                                                                       readonly th:text="${invoiceId}"></a>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -57,14 +57,14 @@
                                                                     <label>Invoice Date</label>
                                                                     <a type="text"
                                                                        class="form-control" readonly
-                                                                       required="" aria-invalid="false"></a>
+                                                                       required="" aria-invalid="false" th:text="${date}"></a>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="col-12 col-md-4">
                                                             <div class="form-group">
                                                                 <div class="controls">
-                                                                <label>Vendor</label>
+                                                                <label>Client</label>
                                                                 <a type="text"
                                                                    class="form-control" readonly aria-invalid="false"></a>
                                                                 </div>
@@ -81,8 +81,9 @@
                                                                         <label>Product</label>
                                                                         <select
                                                                                 class="custom-select" required="required">
-                                                                            <option ></option>
-                                                                            <option
+                                                                            <option th:text="Select"></option>
+                                                                            <option th:each="product: ${products}"
+                                                                                    th:text="${product.description}"
                                                                             ></option>
                                                                         </select>
                                                                     </div>
@@ -148,10 +149,11 @@
                                                                         <td ></td>
                                                                         <td ></td>
                                                                         <td>
-                                                                            <form method="post"
-                                                                                  data-th-action="@{/invoice/removeItemFromInvoice/{id}(id=${invoiceProduct.getId()})}">
-                                                                                <button class="ft-minus btn-primary bg-light-primary" type="submit"></button>
-                                                                            </form>
+<!--                                                                            TODO Baha and Vitaly-->
+<!--                                                                            <form method="post"-->
+<!--                                                                                  data-th-action="@{/invoice/removeItemFromInvoice/{id}(id=${invoiceProduct.getId()})}">-->
+<!--                                                                                <button class="ft-minus btn-primary bg-light-primary" type="submit"></button>-->
+<!--                                                                            </form>-->
                                                                         </td>
                                                                     </tr>
                                                                     </tbody>
@@ -161,16 +163,17 @@
                                                     </div>
                                                 <!-- INVOICE PRODUCT LIST END-->
                                                 <div class="col-12 d-flex flex-sm-row flex-column justify-content-end mt-3 mt-sm-2">
-                                                    <form action="#" data-th-action="@{/invoice/cancelOrSave/{id}(id=${invoice.getInvoiceNo()})}"
-                                                          method="post">
-                                                        <button th:if="${invoiceProducts.size() > 0}"
-                                                                class="btn btn-success mb-2 mb-sm-0 mr-sm-2"
-                                                                type="submit" name="action" value="save">Save
-                                                        </button>
-                                                        <button class="btn btn-danger mb-2 mb-sm-0 mr-sm-2"
-                                                                type="submit" name="action" value="cancel">Cancel
-                                                        </button>
-                                                    </form>
+<!--                                                    TODO: Baha and Vitaly-->
+<!--                                                    <form action="#" data-th-action="@{/invoice/cancelOrSave/{id}(id=${invoice.getInvoiceNo()})}"-->
+<!--                                                          method="post">-->
+<!--                                                        <button th:if="${invoiceProducts.size() > 0}"-->
+<!--                                                                class="btn btn-success mb-2 mb-sm-0 mr-sm-2"-->
+<!--                                                                type="submit" name="action" value="save">Save-->
+<!--                                                        </button>-->
+<!--                                                        <button class="btn btn-danger mb-2 mb-sm-0 mr-sm-2"-->
+<!--                                                                type="submit" name="action" value="cancel">Cancel-->
+<!--                                                        </button>-->
+<!--                                                    </form>-->
                                                 </div>
                                             </div>
                                         </div>

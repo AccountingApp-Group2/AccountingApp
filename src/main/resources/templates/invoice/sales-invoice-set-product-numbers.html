@@ -19,9 +19,11 @@
                 <!-- SALES INVOICE LIST LINK BEGIN-->
                 <div class="users-list-filter px-2">
 <!--                    TODO: Baha Vitaly-->
-<!--                    <form action="#" data-th-action="@{/invoice/invoiceListLink/{id}(id=${invoice.getInvoiceNo()})}"-->
-<!--                          method="post">-->
-                    <form>
+                    <form action="#" data-th-action="@{/invoice/invoiceListLink/{id}(id=${invoiceId})}"
+                          method="post" th:object="${products}">
+<!--                        <form action="#" data-th-action="@{/invoice/invoiceListLink/{id}(id=${invoice.getInvoiceNo()})}"-->
+<!--                              method="post" th:object="${products}">-->
+<!--                    <form th:object="${products}">-->
                         <div class="col-12 col-sm-6 col-lg-3 d-flex align-items-right">
                             <button class="btn btn-primary bg-light-primary mb-1"
                                     type="submit" name="action" value="cancel">
@@ -41,7 +43,7 @@
                                         <div class="tab-pane fade mt-2 show active" id="account" role="tabpanel"
                                              aria-labelledby="account-tab">
                                             <!-- INVOICE PART BEGIN-->
-                                            <form class="needs-validation" novalidate>
+                                            <form th:action="@{/invoice/addInvoiceItem}" method="post" class="needs-validation" novalidate>
                                                 <div class="row">
                                                     <div class="col-12 col-md-4">
                                                         <div class="form-group">
@@ -49,7 +51,7 @@
                                                                 <label>Invoice No</label>
                                                                 <a type="text"
                                                                    class="form-control" required aria-invalid="false"
-                                                                   readonly></a>
+                                                                   readonly th:text="${invoiceId}"></a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -59,7 +61,7 @@
                                                                 <label>Invoice Date</label>
                                                                 <a type="text"
                                                                    class="form-control" readonly
-                                                                   required="" aria-invalid="false"></a>
+                                                                   required="" aria-invalid="false" th:text="${date}"></a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -67,9 +69,17 @@
                                                         <div class="form-group">
                                                             <div class="controls">
                                                                 <label>Client</label>
+<!--                                                                <select th:href="@{/invoice/salesInvoiceSelectProduct}"-->
+<!--                                                                        class="custom-select" required="required">-->
+<!--                                                                    <option th:text="Select" th:value="${Select}"></option>-->
+<!--                                                                    <option th:each="client: ${clients}"-->
+<!--                                                                            th:value="${client}"-->
+<!--                                                                            th:text="${client.companyName}"-->
+<!--                                                                    ></option>-->
+<!--                                                                </select>-->
                                                                 <a type="text"
                                                                        class="form-control" readonly
-                                                                   aria-invalid="false"></a>
+                                                                   aria-invalid="false" th:text="${clientName}"></a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -82,8 +92,17 @@
                                                             <div class="form-group">
                                                                 <div class="controls">
                                                                     <label>Product</label>
-                                                                    <a type="text"
-                                                                       class="form-control" readonly aria-invalid="false"></a>
+                                                                    <select
+                                                                            class="custom-select" required="required">
+                                                                        <option th:text="Select" th:value="${Select}"></option>
+                                                                        <option th:each="product: ${products}"
+                                                                                th:value="${product.description}"
+                                                                                th:text="${product.description}"
+                                                                        ></option>
+                                                                    </select>
+                                                                    <!--                                                                <a type="text"-->
+                                                                    <!--                                                                       class="form-control" readonly-->
+                                                                    <!--                                                                   aria-invalid="false"></a>-->
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -91,11 +110,11 @@
                                                             <div class="form-group">
                                                                 <div class="controls">
                                                                     <label>Quantity</label>
-                                                                    <text style="font-size:11px">("</text>
-                                                                    <label ></label>
-                                                                    <text  style="font-size:11px">"  in stock, and will be "</text>
-                                                                    <label ></label>
-                                                                    <text  style="font-size:11px">"  if all invoices are approved!</text>
+<!--                                                                    <text style="font-size:11px">("</text>-->
+<!--                                                                    <label ></label>-->
+<!--                                                                    <text  style="font-size:11px">"  in stock, and will be "</text>-->
+<!--                                                                    <label ></label>-->
+<!--                                                                    <text  style="font-size:11px">"  if all invoices are approved!</text>-->
                                                                     <input type="number"
                                                                            class="form-control" required="required" aria-invalid="false">
                                                                 </div>
@@ -144,8 +163,8 @@
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
-                                                                    <tr >
-                                                                        <td ></td>
+                                                                    <tr th:each="saleProductLists : ${saleProductList}">
+                                                                        <td th:text="${saleProductLists.product.description}"></td>
                                                                         <td ></td>
                                                                         <td ></td>
                                                                         <td ></td>

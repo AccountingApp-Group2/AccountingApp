@@ -9,4 +9,5 @@ public interface InvoiceProductService {
 
     List<InvoiceProduct> listAll();
 
+    InvoiceProductDTO getByInvoiceId(Long invoiceId);
 }
