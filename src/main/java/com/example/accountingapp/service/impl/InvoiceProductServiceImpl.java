@@ -1,6 +1,5 @@
 package com.example.accountingapp.service.impl;
 
-
 import com.example.accountingapp.dto.CompanyDTO;
 import com.example.accountingapp.dto.InvoiceDTO;
 import com.example.accountingapp.dto.InvoiceProductDTO;
@@ -14,8 +13,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
-
 
 @Service
 public class InvoiceProductServiceImpl implements InvoiceProductService {
