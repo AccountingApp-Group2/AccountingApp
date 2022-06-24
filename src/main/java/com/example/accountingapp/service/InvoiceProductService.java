@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 public interface InvoiceProductService {
-    List<InvoiceProductDTO> listAllByInvoiceType(InvoiceType invoiceType);
+    List<InvoiceProductDTO> listAllByInvoiceType_Company(InvoiceType invoiceType);
     List<InvoiceProductDTO> listAll();
 
 }

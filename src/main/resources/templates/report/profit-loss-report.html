@@ -50,27 +50,29 @@
                                                     <thead>
                                                         <tr>
 <!--                                                            <th>Month</th>-->
-                                                            <th>Total Purchase</th>
-                                                            <th>Total Tax</th>
                                                             <th>Total Cost</th>
                                                             <th>Total Sales</th>
+                                                            <th>Total Tax</th>
                                                             <th>Profit/Loss</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                            <tr >
-                                                            <td ></td>
-                                                            <td ></td>
-                                                            <td ></td>
-                                                            <td ></td>
-                                                            <td ></td>
-                                                            <td ></td>
+
+                                                            <tr>
+                                                               <td th:text="${profitLoss.get('totalCost')}"></td>
+                                                                <td th:text="${profitLoss.get('totalSale')}"></td>
+                                                                <td th:text="${profitLoss.get('totalTax')}"></td>
+
+                                                                <td th:text = "${profitLoss.get('totalSale')-profitLoss.get('totalCost')}"></td>
+
                                                         </tr>
                                                     </tbody>
+
                                                     <tfoot>
+
                                                     <tr>
 <!--                                                        <th>Month</th>-->
-                                                        <th>Total Purchase</th>
+
                                                         <th>Total Tax</th>
                                                         <th>Total Cost</th>
                                                         <th>Total Sales</th>
