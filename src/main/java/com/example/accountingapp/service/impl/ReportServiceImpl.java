@@ -21,11 +21,30 @@ public class ReportServiceImpl implements ReportService {
     @Override
     public BigDecimal totalCost() {
         List<InvoiceProduct> listOfCost = invoiceProductRepository.findAllByInvoice_InvoiceType(InvoiceType.PURCHASE).stream().collect(Collectors.toList());
-        List<BigDecimal> bigInteger = listOfCost.stream().map(p->p.getPrice()).collect(Collectors.toList());
-        BigDecimal totalCost = bigInteger.stream()
+        List<BigDecimal> bigDecimal1 = listOfCost.stream().map(p->p.getPrice()).collect(Collectors.toList());
+        BigDecimal totalCost = bigDecimal1.stream()
                 .reduce(BigDecimal.ZERO, (a, b) -> a.add(b));
         return totalCost;
     }
+    // to get total Sale
+    @Override
+    public BigDecimal totalSale() {
+        List<InvoiceProduct> listOfSale = invoiceProductRepository.findAllByInvoice_InvoiceType(InvoiceType.SALE).stream().collect(Collectors.toList());
+        List<BigDecimal> bigDecimal2 = listOfSale.stream().map(p->p.getPrice()).collect(Collectors.toList());
+        BigDecimal totalSale = bigDecimal2.stream().reduce(BigDecimal.ZERO, (a,b)-> a.add(b));
+        return totalSale;
+    }
+    // to get total tax
+    @Override
+    public BigDecimal totalTax() {
+        return null;
+    }
+//to get profit
+    @Override
+    public BigDecimal totalProfitLoss() {
+        return null;
+    }
 
     // tax
+
 }
