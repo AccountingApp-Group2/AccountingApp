@@ -2,10 +2,8 @@ package com.example.accountingapp.service.impl;
 
 import com.example.accountingapp.dto.InvoiceDTO;
 import com.example.accountingapp.dto.InvoiceProductDTO;
-import com.example.accountingapp.dto.RoleDTO;
 import com.example.accountingapp.entity.Invoice;
 import com.example.accountingapp.enums.InvoiceStatus;
-import com.example.accountingapp.repository.CompanyRepository;
 import com.example.accountingapp.enums.InvoiceType;
 import com.example.accountingapp.mapper.MapperUtil;
 import com.example.accountingapp.repository.InvoiceProductRepository;

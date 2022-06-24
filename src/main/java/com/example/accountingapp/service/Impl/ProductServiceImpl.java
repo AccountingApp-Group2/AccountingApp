@@ -7,7 +7,6 @@ import com.example.accountingapp.repository.ProductRepository;
 import com.example.accountingapp.service.ProductService;
 import org.springframework.stereotype.Service;
 
-import java.math.BigInteger;
 import java.util.List;
 import java.util.stream.Collectors;
 
