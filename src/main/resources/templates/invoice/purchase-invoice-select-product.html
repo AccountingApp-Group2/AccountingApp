@@ -45,8 +45,8 @@
                                                                 <div class="controls">
                                                                     <label>Invoice No</label>
                                                                     <a type="text"
-                                                                           class="form-control" required aria-invalid="false"
-                                                                       readonly></a>
+                                                                       class="form-control" required aria-invalid="false"
+                                                                       readonly th:text="${invoiceDTO.invoiceNumber}"></a>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -56,7 +56,7 @@
                                                                     <label>Invoice Date</label>
                                                                     <a type="text"
                                                                            class="form-control" readonly
-                                                                       required="" aria-invalid="false"></a>
+                                                                       required="" aria-invalid="false"th:text="${date}"></a>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -184,7 +184,7 @@
                                                         </button>
                                                     </form>
                                                     <form action="#"
-                                                          method="post" th:action="@{/invoice/purchaseInvoiceList/}">
+                                                          method="post" th:action="@{/invoice/purchaseInvoiceList}">
                                                         <button class="btn btn-danger mb-2 mb-sm-0 mr-sm-2"
                                                                 type="submit" name="action" value="cancel">Cancel
                                                         </button>

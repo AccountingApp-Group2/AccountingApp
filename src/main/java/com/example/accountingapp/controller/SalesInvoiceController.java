@@ -9,17 +9,13 @@ import com.example.accountingapp.enums.CompanyType;
 import com.example.accountingapp.enums.InvoiceType;
 import com.example.accountingapp.enums.ProductStatus;
 import com.example.accountingapp.service.*;
-import org.modelmapper.internal.Errors;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.List;
 
 
 @Controller
@@ -112,7 +108,7 @@ public class SalesInvoiceController {
 
         model.addAttribute("clientName", clientDto.getCompanyName());
         model.addAttribute("date", invoiceService.getLocalDate());
-        model.addAttribute("invoiceId", invoiceService.getNextInvoiceId());
+        model.addAttribute("invoiceId", invoiceService.getNextInvoiceIdSale());
         model.addAttribute("products", productService.listAllProducts());
         return "/invoice/sales-invoice-set-product-numbers";
     }

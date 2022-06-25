@@ -51,13 +51,23 @@ public class InvoiceServiceImpl implements InvoiceService {
     }
 
     @Override
-    public String getNextInvoiceId() {
+    public String getNextInvoiceIdSale() {
         long nextMax= invoiceRepository.selectMaxInvoiceId() + 1;
         DecimalFormat formatter = (DecimalFormat) NumberFormat.getNumberInstance(Locale.US);
         formatter.applyPattern("000");
         String tempMax = formatter.format(nextMax);
         return"S-INV" + tempMax;
     }
+    @Override
+    public String getNextInvoiceIdPurchase() {
+        long nextMax= invoiceRepository.selectMaxInvoiceId() + 1;
+        DecimalFormat formatter = (DecimalFormat) NumberFormat.getNumberInstance(Locale.US);
+        formatter.applyPattern("000");
+        String tempMax = formatter.format(nextMax);
+        return"P-INV" + tempMax;
+    }
+
+
 
     @Override
     public String getLocalDate() {
@@ -131,12 +141,8 @@ public class InvoiceServiceImpl implements InvoiceService {
 
     @Override
     public BigDecimal calculateCostByInvoiceID(Long id) {
-
-        //Get list of all invoice-products by invoice ID
         List<InvoiceProductDTO> invoiceProductListById = invoiceProductRepository.findAllByInvoiceId(id).stream().map(p -> mapperUtil.convert(p, new InvoiceProductDTO())).collect(Collectors.toList());
         BigDecimal cost = BigDecimal.valueOf(0);
-
-        //add cost of each invoice-product for each invoice and write it to invoice cost field
         for (InvoiceProductDTO each : invoiceProductListById) {
             BigDecimal currItemCost = each.getPrice().multiply(BigDecimal.valueOf(each.getQty()));
             cost = cost.add(currItemCost);
@@ -146,31 +152,30 @@ public class InvoiceServiceImpl implements InvoiceService {
 
     @Override
     public Long saveAndReturnId(InvoiceDTO invoiceDTO) {
-        //call method to save and also saved DTO
         return save(invoiceDTO).getId();
     }
 
+
+    //Method for default invoice settings upon creation
     @Override
     public InvoiceDTO save(InvoiceDTO invoiceDTO) {
-        //Map to entity
         Invoice invoice = mapperUtil.convert(invoiceDTO, new Invoice());
-        //save in DB so can populate ID
-        invoice = invoiceRepository.save(invoice);
-        //create  Invoice Number based on Invoice ID
-        invoice.setInvoiceNumber(invoice.getInvoiceType().toString().substring(0, 1) + "-INV-" + invoice.getId());
+        String invoiceNumber = getNextInvoiceIdPurchase();
+        invoice.setInvoiceNumber(invoiceNumber);
+        invoice.setInvoiceDate(LocalDate.now());
+        invoice.setInvoiceStatus(InvoiceStatus.PENDING);
+
         invoice = invoiceRepository.save(invoice);
         return mapperUtil.convert(invoice, new InvoiceDTO());
-
     }
 
 
     @Override
-    public void updateNewInvoice(InvoiceDTO dto) {
+    public void updateInvoiceCompany(InvoiceDTO dto) {
         Optional<Invoice> invoice = invoiceRepository.findById(dto.getId());
         if (invoice.isPresent()) {
             Company company = companyRepository.findByTitle(dto.getCompanyName()).get();
             invoice.get().setCompany(company);
-            invoice.get().setInvoiceStatus(InvoiceStatus.PENDING);
             invoiceRepository.save(invoice.get());
         }
     }
@@ -181,11 +186,10 @@ public class InvoiceServiceImpl implements InvoiceService {
     }
 
     @Override
-    public void saveInvoice(Long id) {
+    public void enableInvoice(Long id) {
         Invoice invoice = invoiceRepository.findById(id).get();
         invoice.setEnabled(true);
         invoiceRepository.save(invoice);
-
     }
 
 

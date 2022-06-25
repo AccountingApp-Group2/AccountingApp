@@ -48,7 +48,7 @@ public class PurchaseInvoiceController {
 
     @PostMapping("/purchaseInvoiceCreate/{id}")
     public String postPurchaseInvoiceCreate(@PathVariable("id") Long id, @ModelAttribute("invoiceDTO") InvoiceDTO invoiceDTO) {
-        invoiceService.updateNewInvoice(invoiceDTO);
+        invoiceService.updateInvoiceCompany(invoiceDTO);
         return "redirect:/invoice/purchaseInvoiceSelectProduct/" + id;
     }
 
@@ -57,7 +57,10 @@ public class PurchaseInvoiceController {
     public String getProductDetailsForInvoiceProduct(@PathVariable("id") Long id, Model model) {
         InvoiceDTO invoiceDTO = invoiceService.getInvoiceDTOById(id);
         model.addAttribute("id", id);
+        model.addAttribute("invoiceDTO",invoiceDTO);
         model.addAttribute("companyName", invoiceDTO.getCompany().getTitle());
+        model.addAttribute("date", invoiceService.getLocalDate());
+        model.addAttribute("invoiceId", invoiceService.getNextInvoiceIdPurchase());
         model.addAttribute("invoiceProductDTO", new InvoiceProductDTO());
         model.addAttribute("products", invoiceProductService.findAllProductsByCompanyName(invoiceDTO.getCompany().getTitle()));
         model.addAttribute("invoiceProducts", invoiceProductService.findAllInvoiceProductsByInvoiceId(id));
@@ -79,14 +82,10 @@ public class PurchaseInvoiceController {
         return "redirect:/invoice/purchaseInvoiceSelectProduct/"+ id;
     }
 
-
-
-
-
     @PostMapping("/purchaseInvoiceList/{id}")
     public String saveInvoice (@PathVariable ("id") Long id){
 
-        invoiceService.saveInvoice(id);
+        invoiceService.enableInvoice(id);
         return "redirect:/invoice/purchaseInvoiceList";
     }
 

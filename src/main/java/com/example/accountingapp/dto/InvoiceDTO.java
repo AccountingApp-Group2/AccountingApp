@@ -1,6 +1,5 @@
 package com.example.accountingapp.dto;
 
-import com.example.accountingapp.entity.Invoice;
 import com.example.accountingapp.enums.InvoiceStatus;
 import com.example.accountingapp.enums.InvoiceType;
 import lombok.AllArgsConstructor;
@@ -9,7 +8,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -45,7 +43,7 @@ public class InvoiceDTO {
 
     private List<InvoiceProductDTO> invoiceProductList;
 
-    private long getInvoiceNo;
+    private Long invoiceNo;
 
     private ProductDTO product;
 

@@ -1,14 +1,9 @@
 package com.example.accountingapp.service;
 
 import com.example.accountingapp.dto.InvoiceDTO;
-import com.example.accountingapp.entity.Invoice;
-import com.example.accountingapp.entity.InvoiceProduct;
-import com.example.accountingapp.enums.InvoiceStatus;
 import com.example.accountingapp.enums.InvoiceType;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public interface InvoiceService {
@@ -18,7 +13,8 @@ public interface InvoiceService {
     BigDecimal calculateCostByInvoiceID(Long id);
 
     void delete(Long id);
-    String getNextInvoiceId();
+    String getNextInvoiceIdSale();
+    String getNextInvoiceIdPurchase();
     String getLocalDate();
     Long getInvoiceNo(String id);
 
@@ -29,13 +25,13 @@ public interface InvoiceService {
 
     InvoiceDTO save(InvoiceDTO invoiceDTO);
 
-    void updateNewInvoice(InvoiceDTO invoiceDTO);
+    void updateInvoiceCompany(InvoiceDTO invoiceDTO);
 
 //    String findByInvoiceName(String invoiceId);
 
     InvoiceDTO getInvoiceDTOById(Long id);
 
-    void saveInvoice(Long id);
+    void enableInvoice(Long id);
 
 //    void addInvoiceProductToInvoiceByInvoiceId(Long id, InvoiceProductDTO invoiceProductDTO);
 }

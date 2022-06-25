@@ -42,27 +42,8 @@
                                                 <form class="needs-validation" novalidate th:action="@{/invoice/purchaseInvoiceCreate/{id}(id=${invoiceDTO.getId()})}" method="post" th:object="${invoiceDTO}">
                                                     <div class="row">
                                                         <div class="col-12 col-md-4">
-                                                            <div class="form-group">
-                                                                <div class="controls">
-                                                                    <label>Invoice No</label>
-<!--                                                                       TODO Vitaly Bahrom - ID population -->
-                                                                    <a type="text"
-                                                                       class="form-control" required
-                                                                       aria-invalid="false"
-                                                                       readonly th:text="${invoiceDTO.id}"
-                                                                    ></a>
-                                                                </div>
-                                                            </div>
                                                         </div>
                                                         <div class="col-12 col-md-4">
-                                                            <div class="form-group">
-                                                                <div class="controls">
-                                                                    <label>Invoice Date</label>
-                                                                    <a type="text"
-                                                                       class="form-control" readonly
-                                                                       required="" aria-invalid="false"></a>
-                                                                </div>
-                                                            </div>
                                                         </div>
                                                         <div class="col-12 col-md-4">
                                                             <div class="form-group">
