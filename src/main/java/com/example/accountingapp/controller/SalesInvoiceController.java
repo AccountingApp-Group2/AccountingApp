@@ -42,6 +42,7 @@ public class SalesInvoiceController {
 
     @GetMapping("/salesInvoiceList")
     public String salesInvoiceList(Model model) {
+        System.out.println("Hi");
         model.addAttribute("salesInvoices", invoiceService.listAllByInvoiceType(InvoiceType.SALE));
         model.addAttribute("clients", clientVendorService.findAllByCompanyType(CompanyType.CLIENT));
         return "/invoice/sales-invoice-list";
