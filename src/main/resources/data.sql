@@ -5,6 +5,7 @@ VALUES (1, '2022-05-01 00:00:00', FALSE, 1, '2022-05-01 00:00:00', 'Street1 ', '
        (1, '2021-05-03 00:00:00', FALSE, 1, '2021-05-03 00:00:00', 'Street4 ', 'House Nu: 4', 'ENABLED', 'admin@company4.com', TRUE, '2020-01-01 00:00:00', '0333222444', 'Admin3 AdminLName3', 'FLORIDA', 'Company4', '33027');
 
 
+
 INSERT INTO client_vendor (created_by, created_time, is_deleted, updated_by, updated_time, company_name, phone, email, address, zip_code, enabled, type, company_id, state_id)
 VALUES (2, '2021-05-02 00:00:00', FALSE, 2, '2021-05-02 00:00:00', 'Vendor1', '1234567890', 'vendor1@email.com', 'Street 1.', '35242', TRUE, 'VENDOR', 2, 'ARIZONA'),
        (2, '2021-05-02 00:00:00', FALSE, 2, '2021-05-02 00:00:00', 'Vendor2', '1234567891', 'vendor2@email.com', 'Street 2.', '35242', TRUE, 'VENDOR', 2, 'ARIZONA'),

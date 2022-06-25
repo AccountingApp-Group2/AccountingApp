@@ -43,5 +43,5 @@ public class InvoiceDTO {
     private CompanyDTO company;
 
     private List<InvoiceProductDTO> invoiceProductList;
-
 }
+
