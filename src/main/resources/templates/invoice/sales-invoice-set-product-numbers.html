@@ -155,8 +155,8 @@
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
-                                                                    <tr th:each="invoiceProductList : ${invoiceProductLists}">
-                                                                        <td th:text="${invoiceProductLists.product.description}"></td>
+                                                                    <tr th:each="invoiceProductLists : ${invoiceProductList}">
+                                                                        <td th:text="${invoiceProductLists.name}"></td>
                                                                         <td th:text="${invoiceProductLists.price}"></td>
                                                                         <td th:text="${invoiceProductLists.qty}"></td>
                                                                         <td th:text="${invoiceProductLists.total}"></td>

@@ -17,7 +17,8 @@ import java.util.Optional;
 
 public interface InvoiceProductRepository extends JpaRepository<InvoiceProduct, Long> {
 
-    List<InvoiceProduct>  findAllByInvoiceId(Long id);
+    @Query(value = "SELECT * FROM invoice_product i where i.invoice_id =?1",nativeQuery = true)
+    List<InvoiceProduct>  findAllByInvoiceId(@Param("id") Long id);
 
 
     @Query(value = "SELECT MAX(id) FROM invoice_product",nativeQuery = true)
@@ -26,6 +27,8 @@ public interface InvoiceProductRepository extends JpaRepository<InvoiceProduct, 
 
     @Query("SELECT i.invoice.id from InvoiceProduct i where i.id =?1")
     Long findInvoiceByInvoiceProductId (@Param("id") Long id);
+
+
     InvoiceProduct getByInvoiceId(Long id);
 
 }

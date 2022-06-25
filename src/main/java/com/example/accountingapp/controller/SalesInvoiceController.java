@@ -42,7 +42,6 @@ public class SalesInvoiceController {
 
     @GetMapping("/salesInvoiceList")
     public String salesInvoiceList(Model model) {
-        System.out.println("Hi");
         model.addAttribute("salesInvoices", invoiceService.listAllByInvoiceType(InvoiceType.SALE));
         model.addAttribute("clients", clientVendorService.findAllByCompanyType(CompanyType.CLIENT));
         return "/invoice/sales-invoice-list";
@@ -56,7 +55,7 @@ public class SalesInvoiceController {
         model.addAttribute("date", invoiceService.getLocalDate());
         model.addAttribute("invoiceId", invoiceService.findInvoiceName(invoiceId));
         model.addAttribute("products", productService.listAllProducts());
-        model.addAttribute("invoiceProductList", invoiceProductService.findAllByInvoiceId(id));
+        model.addAttribute("invoiceProductList", invoiceProductService.findAllInvoiceProductsByInvoiceId(id));
         return "/invoice/sales-invoice-set-product-numbers";
     }
 
