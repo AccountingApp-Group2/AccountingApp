@@ -71,15 +71,12 @@
                                                         <td th:text="${company.phone}"></td>
                                                         <td th:text="${company.zip}"></td>
                                                         <td th:text="${company.state}"></td>
-                                                        <td th:text="${company.companyStatus}"></td>
-                                                        <span
-
-                                                                class="badge bg-light-success"></span>
-                                                        <span
-
-                                                                class="badge bg-light-DANGER"></span>
+                                                                                                                <td>
+                                                        <span th:if="${company.companyStatus.getValue() == 'Enabled'}"
+                                                              class="badge bg-light-success">Enabled</span>
+                                                        <span th:if="${company.companyStatus.getValue() == 'Disabled'}"
+                                                              class="badge bg-light-DANGER">Disabled</span>
                                                         </td>
-                                                        <!--<td></td>-->
                                                         <td>
                                                             <a th:href="@{/company/edit/{id}(id=${company.id})}">
                                                                 <i class="ft-edit"></i>
