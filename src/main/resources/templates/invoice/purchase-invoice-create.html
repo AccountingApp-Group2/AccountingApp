@@ -39,17 +39,17 @@
                                             <div class="tab-pane fade mt-2 show active" id="account" role="tabpanel"
                                                  aria-labelledby="account-tab">
                                                 <!-- INVOICE PART BEGIN-->
-                                                <form class="needs-validation" novalidate>
+                                                <form class="needs-validation" novalidate th:action="@{/invoice/purchaseInvoiceCreate/{id}(id=${invoiceDTO.getId()})}" method="post" th:object="${invoiceDTO}">
                                                     <div class="row">
                                                         <div class="col-12 col-md-4">
                                                             <div class="form-group">
                                                                 <div class="controls">
                                                                     <label>Invoice No</label>
-<!--                                                                       TODO Vitaly Bahrom - ID population Í-->
+<!--                                                                       TODO Vitaly Bahrom - ID population -->
                                                                     <a type="text"
                                                                        class="form-control" required
                                                                        aria-invalid="false"
-                                                                       readonly th:text="${newInvoice.id}"
+                                                                       readonly th:text="${invoiceDTO.id}"
                                                                     ></a>
                                                                 </div>
                                                             </div>
@@ -68,11 +68,14 @@
                                                             <div class="form-group">
                                                                 <div class="controls">
                                                                     <label>Vendor</label>
-                                                                    <select class="custom-select" required="required" th:field="*">
-                                                                        <option th:text="Select"></option>
+                                                                    <select class="custom-select" required="required" th:field="*{companyName}">
+                                                                        <option th:value="' '"
+                                                                                th:text="Select"></option>
                                                                         <option th:each="vendor: ${vendors}"
-                                                                                th:text="${vendor.companyName}">
-                                                                        </option>
+                                                                                th:text="${vendor.companyName}"
+                                                                                th:value="${vendor.companyName}"
+                                                                        ></option>
+                                                                    </select>
                                                                     </select>
                                                                 </div>
                                                             </div>
@@ -83,49 +86,17 @@
                                                     <div class="needs-validation" novalidate>
                                                         <div class="row">
                                                             <div class="col-12 col-md-3">
-                                                                <div class="form-group">
-                                                                    <div class="controls">
-                                                                        <label>Product</label>
-                                                                        <select class="custom-select"
-                                                                                required="required" disabled>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
                                                             </div>
                                                             <div class="col-12 col-md-3">
-                                                                <div class="form-group">
-                                                                    <div class="controls">
-                                                                        <label>Quantity</label>
-                                                                        <input type="text"
-                                                                               class="form-control"
-                                                                               required aria-invalid="false" disabled>
-                                                                    </div>
-                                                                </div>
                                                             </div>
                                                             <div class="col-12 col-md-3">
-                                                                <div class="form-group">
-                                                                    <div class="controls">
-                                                                        <label>Price</label>
-                                                                        <input type="text"
-                                                                               class="form-control"
-                                                                               required aria-invalid="false" disabled>
-                                                                    </div>
-                                                                </div>
                                                             </div>
                                                             <div class="col-12 col-md-3">
-                                                                <div class="form-group">
-                                                                    <div class="controls">
-                                                                        <label>Tax</label>
-                                                                        <input type="text"
-                                                                               class="form-control"
-                                                                               required aria-invalid="false" disabled>
-                                                                    </div>
-                                                                </div>
                                                             </div>
                                                             <div class="col-12 d-flex flex-sm-row flex-column justify-content-end mt-3 mt-sm-2">
                                                                 <button type="submit" name="action" value="addItem"
                                                                         class="btn btn-warning mb-2 mb-sm-0 mr-sm-2"
-                                                                        disabled>Add Item
+                                                                        >Select Company
                                                                 </button>
                                                             </div>
                                                         </div>
@@ -136,7 +107,11 @@
 <!--                                                TODO Vitaly Bahrom remove cod if not needed-->
 
 
-                                                <!-- INVOICE PRODUCT PART END -->
+                                                    <!--INVOICE PRODUCT PART END -->
+
+
+
+
                                                 <!--                                                &lt;!&ndash; INVOICE PRODUCT LIST BEGIN &ndash;&gt;-->
                                                 <!--                                                    <div class="card-content fw-container">-->
                                                 <!--                                                        <div class="card-body fw-body">-->

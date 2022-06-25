@@ -50,7 +50,7 @@
                                                     </thead>
                                                     <tbody>
                                                           <tr th:each="purchaseInvoice:${purchaseInvoices}">
-                                                            <td th:text="${purchaseInvoice.invoiceNumber}"  class="text-truncate" ></td>
+                                                            <td th:text="${purchaseInvoice.id}"  class="text-truncate" ></td>
                                                             <td th:text="${purchaseInvoice.invoiceDate}" class="text-truncate" ></td>
                                                             <td th:text="${purchaseInvoice.company.title}" ></td>
                                                             <td th:text="'$ ' + ${purchaseInvoice.cost}" ></td>

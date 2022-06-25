@@ -11,6 +11,9 @@ import org.springframework.stereotype.Repository;
 import java.math.BigInteger;
 import java.util.Optional;
 
+import java.util.List;
+import java.util.Optional;
+
 @Repository
 public interface ProductRepository extends JpaRepository<Product,Long> {
 
@@ -20,4 +23,9 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
 
 
 
+    List<Product> findAllByCompanyId(Long companyId);
+
+
+
+    Optional<Product> getProductByName(String name);
 }

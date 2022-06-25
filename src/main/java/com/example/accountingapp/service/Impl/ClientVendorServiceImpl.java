@@ -44,4 +44,9 @@ public class ClientVendorServiceImpl implements ClientVendorService {
                 .collect(Collectors.toList());
 
     }
+
+    @Override
+    public String findClientNameById(Long id) {
+        return clientVendorRepository.findClientNameById(id);
+    }
 }
