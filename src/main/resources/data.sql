@@ -1,7 +1,4 @@
-INSERT INTO company (created_by,created_time, is_deleted, updated_by, updated_time, address1, address2,company_status, email,enabled,establishment_date,phone,representative,state,title,zip)
-VALUES (1,'2022-05-01 00:00:00',FALSE,1,'2022-05-01 00:00:00','Street1 ','House Nu: 1','ENABLED','root@root.com',TRUE ,'2020-01-01 00:00:00','3453431234','Representative Root','ALABAMA','Title1','35242'),
-       (1,'2022-05-02 00:00:00',FALSE,1,'2022-05-02 00:00:00','Street2 ','House Nu: 2','ENABLED','admin1@admin.com',TRUE ,'2020-01-01 00:00:00','7658769012','Admin1 AdminLName1','ARIZONA','Title2','38704'),
-       (1,'2022-05-03 00:00:00',FALSE,1,'2022-05-03 00:00:00','Street3 ','House Nu: 3','ENABLED','admin1@admin.com',TRUE ,'2020-01-01 00:00:00','3451236789','Admin2 AdminLName2','FLORIDA','Title3','33027');
+
 
 INSERT INTO client_vendor (created_by, created_time, is_deleted, updated_by, updated_time, company_name, phone, email, address, zip_code, enabled, type, company_id, state_id)
 VALUES (2, '2022-05-02 00:00:00', FALSE, 2, '2022-05-01 00:00:00', 'Company1', '1234567890', 'company1@email.com', 'Street 1.', '35242', TRUE, 'CLIENT', 1, 'ALABAMA'),
