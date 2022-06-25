@@ -12,11 +12,14 @@ import com.example.accountingapp.service.*;
 import org.modelmapper.internal.Errors;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Controller
@@ -44,6 +47,18 @@ public class SalesInvoiceController {
         return "/invoice/sales-invoice-list";
     }
 
+    @GetMapping("/updateInvoice/{id}")
+    public String editInvoice(@PathVariable("id") String invoiceId, Model model) {
+
+        Long id = invoiceService.getInvoiceNo(invoiceId);
+        model.addAttribute("clientName", clientVendorService.findClientNameById(id));
+        model.addAttribute("date", invoiceService.getLocalDate());
+        model.addAttribute("invoiceId", invoiceService.findInvoiceName(invoiceId));
+        model.addAttribute("products", productService.listAllProducts());
+        model.addAttribute("invoiceProductList", invoiceProductService.findAllByInvoiceId(id));
+        return "/invoice/sales-invoice-set-product-numbers";
+    }
+
     @PostMapping("/delete/{id}")
     public String approveDeleteToInvoice(@PathVariable("id") String id, Model model) {
 
@@ -64,9 +79,8 @@ public class SalesInvoiceController {
     }
 
     @PostMapping("/approve/{id}")
-    public String approve(@PathVariable("id") String id, Errors errors, Model model) {
+    public String approve(@PathVariable("id") String id, Model model) {
 
-        String qtyNotEnough = "Qty not enough to be approved";
         model.addAttribute("salesInvoices", invoiceService.listAllByInvoiceType(InvoiceType.SALE));
         model.addAttribute("clients", clientVendorService.findAllByCompanyType(CompanyType.CLIENT));
         Long invoiceId = invoiceService.getInvoiceNo(id);
@@ -79,16 +93,10 @@ public class SalesInvoiceController {
             productService.updateProduct(product);
             invoiceService.approveInvoice(id);
         }else{
-            errors.addMessage("Couldnt process");
-            model.addAttribute("errorMessage","We couldnt process the request");
-        };
+            String message = "Not enough Quantity";
+            model.addAttribute(message,"message");
+        }
         return "redirect:/invoice/salesInvoiceList";
-    }
-    @PostMapping("/addInvoiceItem")
-    public String addItem (@ModelAttribute("saleProductList")InvoiceDTO invoiceDTO) {
-
-        return "redirect:/invoice/sales-invoice-set-product-numbers";
-
     }
 
     @GetMapping("/salesInvoiceCreate")
@@ -107,6 +115,15 @@ public class SalesInvoiceController {
         model.addAttribute("invoiceId", invoiceService.getNextInvoiceId());
         model.addAttribute("products", productService.listAllProducts());
         return "/invoice/sales-invoice-set-product-numbers";
+    }
+
+
+    @PostMapping("/addInvoiceItem")
+    public String addItem (@ModelAttribute("invoiceProduct") InvoiceProductDTO invoiceProductDTO, Model model) {
+
+        model.addAttribute("invoiceProduct", invoiceProductService.listAllAddedItems());
+
+        return "redirect:/invoice/sales-invoice-set-product-numbers";
     }
 
     @GetMapping("/addInvoiceCancel")

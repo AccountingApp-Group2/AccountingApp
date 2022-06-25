@@ -10,4 +10,6 @@ public interface ClientVendorService {
     void delete(Long id);
   
     List<ClientVendorDTO> findAllByCompanyType(CompanyType companyType);
+
+    String findClientNameById(Long id);
 }

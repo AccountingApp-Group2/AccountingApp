@@ -26,4 +26,5 @@ public interface InvoiceService {
 
     void approveInvoice(String invoiceId);
 
+    String findInvoiceName(String invoiceId);
 }

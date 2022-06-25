@@ -20,4 +20,7 @@ public interface InvoiceRepository extends JpaRepository<Invoice, Long> {
     Long getInvoiceId(@Param("id") String id);
 
     Invoice findByInvoiceNumber(String invoiceId);
+
+    @Query("SELECT invoiceNumber FROM Invoice WHERE invoiceNumber = ?1")
+    String findInvoiceNameByInvoiceId(@Param("id") String invoiceId);
 }

@@ -19,6 +19,7 @@ import java.util.List;
 @Where(clause = "is_deleted=false")
 public class Invoice extends BaseEntity {
 
+    @Column(unique = true)
     private String invoiceNumber;
 
     @Enumerated(EnumType.STRING)
