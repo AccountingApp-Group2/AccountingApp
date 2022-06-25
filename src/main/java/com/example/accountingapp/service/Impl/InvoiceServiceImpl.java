@@ -163,7 +163,6 @@ public class InvoiceServiceImpl implements InvoiceService {
 
     }
 
-
     @Override
     public void updateNewInvoice(InvoiceDTO dto) {
         Optional<Invoice> invoice = invoiceRepository.findById(dto.getId());
