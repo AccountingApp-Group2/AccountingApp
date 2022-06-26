@@ -31,7 +31,7 @@ public class PaymentServiceImpl implements PaymentService {
 
   @Override
   public List<PaymentDTO> listAllByYear(String year) {
-    return paymentRepository.findAllByYear(year).stream()
+    return paymentRepository.findPaymentByYearOrderByMonth(year).stream()
         .map(payment -> mapperUtil.convert(payment, new PaymentDTO()))
         .collect(Collectors.toList());
   }
@@ -47,5 +47,12 @@ public class PaymentServiceImpl implements PaymentService {
   @Override
   public PaymentDTO findPaymentById(Long id) {
     return mapperUtil.convert(paymentRepository.findPaymentById(id), new PaymentDTO());
+  }
+
+  @Override
+  public void chargePaymentById(Long id) {
+    Payment payment = paymentRepository.findPaymentById(id);
+    payment.setIsPaid(true);
+    paymentRepository.save(payment);
   }
 }
