@@ -17,7 +17,6 @@ public interface InvoiceService {
     String getNextInvoiceIdPurchase();
     String getLocalDate();
     Long getInvoiceNo(String id);
-
     void approveInvoice(String invoiceId);
 
     String findInvoiceName(String invoiceId);
@@ -27,11 +26,9 @@ public interface InvoiceService {
 
     void updateInvoiceCompany(InvoiceDTO invoiceDTO);
 
-//    String findByInvoiceName(String invoiceId);
-
     InvoiceDTO getInvoiceDTOById(Long id);
 
     void enableInvoice(Long id);
 
-//    void addInvoiceProductToInvoiceByInvoiceId(Long id, InvoiceProductDTO invoiceProductDTO);
+    void approvePurchaseInvoice(Long id);
 }

@@ -18,8 +18,6 @@
                 <section class="users-list-wrapper">
                     <!-- PURCHASE INVOICE LIST LINK -->
                     <div class="users-list-filter px-2">
-<!--                        <form action="#" data-th-action="@{/invoice/invoiceListLink/{id}(id=${invoice.getInvoiceNo()})}"-->
-                        <!--                              method="post">-->
                         <div class="col-12 col-sm-6 col-lg-3 d-flex align-items-right">
                             <a class="btn btn-primary bg-light-primary mb-1"
                                th:href="@{/invoice/purchaseInvoiceList}">
@@ -154,9 +152,6 @@
                                                                                   data-th-action="@{/invoice/removeItemFromInvoice/{id}(id=${invoiceProduct.getId()})}">
                                                                                 <button class="ft-minus btn-primary bg-light-primary" type="submit"></button>
                                                                             </form>
-<!--                                                                            <form method="post">-->
-<!--                                                                                <button class="ft-minus btn-primary bg-light-primary" type="submit"></button>-->
-<!--                                                                            </form>-->
                                                                         </td>
                                                                     </tr>
                                                                     </tbody>
@@ -166,25 +161,16 @@
                                                     </div>
                                                 <!-- INVOICE PRODUCT LIST END-->
                                                 <div class="col-12 d-flex flex-sm-row flex-column justify-content-end mt-3 mt-sm-2">
-<!--                                                    <form action="#" data-th-action="@{/invoice/cancelOrSave/{id}(id=${invoice.getInvoiceNo()})}"-->
-<!--                                                          method="post">-->
-<!--                                                        <button-->
-<!--                                                                class="btn btn-success mb-2 mb-sm-0 mr-sm-2"-->
-<!--                                                                type="submit" name="action" value="save">Save-->
-<!--                                                        </button>-->
-<!--                                                        <button class="btn btn-danger mb-2 mb-sm-0 mr-sm-2"-->
-<!--                                                                type="submit" name="action" value="cancel">Cancel-->
-<!--                                                        </button>-->
-<!--                                                    </form>-->
+
                                                     <form action="#"
-                                                          method="post" th:action="@{/invoice/purchaseInvoiceList/{id}(id=${id})}">
+                                                          method="post" th:action="@{/invoice/setInvoiceStatusEnabled/{id}(id=${id})}">
                                                         <button
                                                                 class="btn btn-success mb-2 mb-sm-0 mr-sm-2"
                                                                 type="submit" name="action" value="save">Save
                                                         </button>
                                                     </form>
                                                     <form action="#"
-                                                          method="post" th:action="@{/invoice/purchaseInvoiceList}">
+                                                          th:action="@{/invoice/purchaseInvoiceList}">
                                                         <button class="btn btn-danger mb-2 mb-sm-0 mr-sm-2"
                                                                 type="submit" name="action" value="cancel">Cancel
                                                         </button>

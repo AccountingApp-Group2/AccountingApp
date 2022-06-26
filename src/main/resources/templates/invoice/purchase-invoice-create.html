@@ -63,7 +63,6 @@
                                                         </div>
                                                     </div>
                                                     <!-- INVOICE PART END -->
-                                                    <!-- INVOICE PRODUCT PART BEGIN -->
                                                     <div class="needs-validation" novalidate>
                                                         <div class="row">
                                                             <div class="col-12 col-md-3">
@@ -83,54 +82,9 @@
                                                         </div>
                                                     </div>
                                                 </form>
-
-
-<!--                                                TODO Vitaly Bahrom remove cod if not needed-->
-
-
-                                                    <!--INVOICE PRODUCT PART END -->
-
-
-
-
-                                                <!--                                                &lt;!&ndash; INVOICE PRODUCT LIST BEGIN &ndash;&gt;-->
-                                                <!--                                                    <div class="card-content fw-container">-->
-                                                <!--                                                        <div class="card-body fw-body">-->
-                                                <!--                                                            <div class="table-responsive content demo-html">-->
-                                                <!--                                                                <table id="example" class="table table-striped table-bordered file-export" style="width:100%">-->
-                                                <!--                                                                    <thead>-->
-                                                <!--                                                                    <tr>-->
-                                                <!--                                                                        <th>Product</th>-->
-                                                <!--                                                                        <th>Price</th>-->
-                                                <!--                                                                        <th>Quantity</th>-->
-                                                <!--                                                                        <th>Total</th>-->
-                                                <!--&lt;!&ndash;                                                                        TODO Vitaly Bahrom add delete&ndash;&gt;-->
-                                                <!--&lt;!&ndash;                                                                        <th>Delete</th>&ndash;&gt;-->
-                                                <!--                                                                    </tr>-->
-                                                <!--                                                                    </thead>-->
-                                                <!--                                                                    <tbody>-->
-
-                                                <!--&lt;!&ndash;                                                                    todo Vitaly&ndash;&gt;-->
-                                                <!--                                                                    <tr th:each="invoiceProduct:${invoiceProducts}">-->
-                                                <!--&lt;!&ndash;                                                                        <td th:text="${invoiceProduct.name}" ></td>&ndash;&gt;-->
-                                                <!--&lt;!&ndash;                                                                        <td th:text="${invoiceProduct.price}" ></td>&ndash;&gt;-->
-                                                <!--&lt;!&ndash;                                                                        <td th:text="${invoiceProduct.qty}" ></td>&ndash;&gt;-->
-                                                <!--&lt;!&ndash;                                                                        <td th:text="${invoiceProduct.total}" ></td>&ndash;&gt;-->
-
-                                                <!--                                                                    </tr>-->
-                                                <!--                                                                    </tbody>-->
-                                                <!--                                                                </table>-->
-                                                <!--                                                            </div>-->
-                                                <!--                                                        </div>-->
-                                                <!--                                                    </div>-->
-                                                <!--                                                &lt;!&ndash; INVOICE PRODUCT LIST END&ndash;&gt;-->
                                                 <div class="col-12 d-flex flex-sm-row flex-column justify-content-end mt-3 mt-sm-2">
-                                                    <!--                                                    todo Bahrom Vitaly-->
-                                                    <!--                                                    <form action="#" data-th-action="@{/invoice/cancelOrSave/{id}(id=${invoice.getInvoiceNo()})}"-->
-                                                    <!--                                                          method="post">-->
-                                                    <!--                                                        -->
-                                                    <form
-                                                            method="post">
+                                                    <form action="#"
+                                                          th:action="@{/invoice/purchaseInvoiceList}">
                                                         <button class="btn btn-danger mb-2 mb-sm-0 mr-sm-2"
                                                                 type="submit" name="action" value="cancel">Cancel
                                                         </button>
