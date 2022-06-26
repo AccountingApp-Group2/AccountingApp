@@ -1,7 +1,10 @@
 package com.example.accountingapp.service.impl;
+
 import com.example.accountingapp.dto.InvoiceDTO;
 import com.example.accountingapp.dto.InvoiceProductDTO;
 import com.example.accountingapp.entity.Invoice;
+import com.example.accountingapp.entity.InvoiceProduct;
+import com.example.accountingapp.entity.Product;
 import com.example.accountingapp.enums.InvoiceStatus;
 import com.example.accountingapp.enums.InvoiceType;
 import com.example.accountingapp.mapper.MapperUtil;
@@ -13,6 +16,7 @@ import com.example.accountingapp.service.InvoiceService;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -21,7 +25,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
+
 import com.example.accountingapp.entity.Company;
+
 import java.util.Optional;
 
 
@@ -52,21 +58,21 @@ public class InvoiceServiceImpl implements InvoiceService {
 
     @Override
     public String getNextInvoiceIdSale() {
-        long nextMax= invoiceRepository.selectMaxInvoiceId() + 1;
+        long nextMax = invoiceRepository.selectMaxInvoiceId() + 1;
         DecimalFormat formatter = (DecimalFormat) NumberFormat.getNumberInstance(Locale.US);
         formatter.applyPattern("000");
         String tempMax = formatter.format(nextMax);
-        return"S-INV" + tempMax;
-    }
-    @Override
-    public String getNextInvoiceIdPurchase() {
-        long nextMax= invoiceRepository.selectMaxInvoiceId() + 1;
-        DecimalFormat formatter = (DecimalFormat) NumberFormat.getNumberInstance(Locale.US);
-        formatter.applyPattern("000");
-        String tempMax = formatter.format(nextMax);
-        return"P-INV" + tempMax;
+        return "S-INV" + tempMax;
     }
 
+    @Override
+    public String getNextInvoiceIdPurchase() {
+        long nextMax = invoiceRepository.selectMaxInvoiceId() + 1;
+        DecimalFormat formatter = (DecimalFormat) NumberFormat.getNumberInstance(Locale.US);
+        formatter.applyPattern("000");
+        String tempMax = formatter.format(nextMax);
+        return "P-INV" + tempMax;
+    }
 
 
     @Override
@@ -108,10 +114,10 @@ public class InvoiceServiceImpl implements InvoiceService {
                 .map(p -> mapperUtil.convert(p, new InvoiceDTO())).collect(Collectors.toList());
 
         //map all invoice products from invoice to invoiceProduct DTO
-        for (InvoiceDTO each: listDTO){
-            List<InvoiceProductDTO> invoiceProductDTOList =  invoiceProductRepository.findAllByInvoiceId(each.getId())
+        for (InvoiceDTO each : listDTO) {
+            List<InvoiceProductDTO> invoiceProductDTOList = invoiceProductRepository.findAllByInvoiceId(each.getId())
                     .stream()
-                    .map(p->mapperUtil.convert(p,new InvoiceProductDTO()))
+                    .map(p -> mapperUtil.convert(p, new InvoiceProductDTO()))
                     .collect(Collectors.toList());
             each.setInvoiceProductList(invoiceProductDTOList);
         }
@@ -136,7 +142,6 @@ public class InvoiceServiceImpl implements InvoiceService {
         listDTO.forEach(p -> p.setTotal(((p.getCost()).add(p.getTax())).setScale(2, RoundingMode.CEILING)));
         return listDTO;
     }
-
 
 
     @Override
@@ -192,6 +197,21 @@ public class InvoiceServiceImpl implements InvoiceService {
         invoiceRepository.save(invoice);
     }
 
+    @Override
+    public void approvePurchaseInvoice(Long id) {
+        List<InvoiceProduct> invoiceProductList = invoiceProductRepository.findAllByInvoiceId(id);
+        for (InvoiceProduct eachInvoiceProduct : invoiceProductList) {
+            Long productId = eachInvoiceProduct.getProduct().getId();
+            Integer additionalQty = eachInvoiceProduct.getQty();
+            Product product = productRepository.findProductById(productId).get();
+            product.setQty(product.getQty().add(BigInteger.valueOf(additionalQty)));
+            productRepository.save(product);
+        }
+        Invoice invoice = invoiceRepository.findById(id).get();
+        invoice.setInvoiceStatus(InvoiceStatus.APPROVED);
+        invoiceRepository.save(invoice);
+
+    }
 
 
 }
