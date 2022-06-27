@@ -84,18 +84,21 @@ public class SalesInvoiceController {
         model.addAttribute("salesInvoices", invoiceService.listAllByInvoiceType(InvoiceType.SALE));
         model.addAttribute("clients", clientVendorService.findAllByCompanyType(CompanyType.CLIENT));
         Long invoiceId = invoiceService.getInvoiceNo(id);
-        InvoiceProductDTO invoiceProduct = invoiceProductService.getByInvoiceId(invoiceId);
-        ProductDTO product = productService.findById(invoiceProduct.getProductId());
+        List<InvoiceProductDTO> invoiceProducts = invoiceProductService.getByInvoiceId(invoiceId);
 
-        if(product.getProductStatus()== ProductStatus.ACTIVE && product.getQty().intValue()>=invoiceProduct.getQty()){
-            BigInteger leftOverQty = BigInteger.valueOf(product.getQty().intValue() - invoiceProduct.getQty());
-            product.setQty(leftOverQty);
-            productService.updateProduct(product);
-            invoiceService.approveInvoice(id);
-        }else{
-            String message = "Not enough Quantity";
-            model.addAttribute(message,"message");
+        for (InvoiceProductDTO invoiceProduct : invoiceProducts) {
+
+            ProductDTO product = productService.findById(invoiceProduct.getProductId());
+
+            if (product.getProductStatus() == ProductStatus.ACTIVE && product.getQty().intValue() >= invoiceProduct.getQty()) {
+                BigInteger leftOverQty = BigInteger.valueOf(product.getQty().intValue() - invoiceProduct.getQty());
+                product.setQty(leftOverQty);
+                productService.updateProduct(product);
+                invoiceService.approveInvoice(id);
+            }
+
         }
+
         return "redirect:/invoice/salesInvoiceList";
     }
 
@@ -108,22 +111,28 @@ public class SalesInvoiceController {
     }
 
     @GetMapping("/salesInvoiceSelectProduct")
-    public String salesInvoiceSelectProduct(@ModelAttribute("client") ClientVendorDTO clientDto, Model model) {
+    public String salesInvoiceSelectProduct(@ModelAttribute("client") ClientVendorDTO clientDto, @ModelAttribute("invoiceProductList") ArrayList<InvoiceProductDTO> invoiceProductDTOList, Model model) {
+
+        model.addAttribute("invoiceProduct", new InvoiceProductDTO());
 
         model.addAttribute("clientName", clientDto.getCompanyName());
         model.addAttribute("date", invoiceService.getLocalDate());
         model.addAttribute("invoiceId", invoiceService.getNextInvoiceId());
         model.addAttribute("products", productService.listAllProducts());
+//        if (model.getAttribute("invoiceProductList") == null) {
+//            List<InvoiceProductDTO> invoiceProductDTOList = new ArrayList<>();
+//            model.addAttribute("invoiceProductList", invoiceProductDTOList);
+//        }
         return "/invoice/sales-invoice-set-product-numbers";
     }
 
 
     @PostMapping("/addInvoiceItem")
-    public String addItem (@ModelAttribute("invoiceProduct") InvoiceProductDTO invoiceProductDTO, Model model) {
+    public String addItem(@ModelAttribute("invoiceProductList") ArrayList<InvoiceProductDTO> invoiceProductDTOList, InvoiceProductDTO invoiceProductDTO, Model model) {
 
-        model.addAttribute("invoiceProduct", invoiceProductService.listAllAddedItems());
+        invoiceProductDTOList.add(invoiceProductDTO);
 
-        return "redirect:/invoice/sales-invoice-set-product-numbers";
+        return "redirect:/invoice/salesInvoiceSelectProduct";
     }
 
     @GetMapping("/addInvoiceCancel")

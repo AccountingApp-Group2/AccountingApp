@@ -13,6 +13,6 @@ public interface ClientVendorRepository extends JpaRepository<ClientVendor, Long
   
     List<ClientVendor> findAllByType(CompanyType companyType);
 
-    @Query(value = "SELECT company_name FROM Client_Vendor WHERE client_vendor.company_id = ?1",nativeQuery = true)
+    @Query(value = "SELECT company_name FROM Client_Vendor WHERE company_id in (select sptable_id from Invoice where id = ?1)",nativeQuery = true)
     String findClientNameById(@Param("id") Long id);
 }

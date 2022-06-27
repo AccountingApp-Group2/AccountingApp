@@ -18,13 +18,12 @@
                 <section class="users-list-wrapper">
                     <!-- PURCHASE INVOICE LIST LINK -->
                     <div class="users-list-filter px-2">
-                        <form action="#" data-th-action="@{/invoice/invoiceListLink/{id}(id=${invoiceId})}"
-                              method="post">
+                        <form>
                             <div class="col-12 col-sm-6 col-lg-3 d-flex align-items-right">
-                                <button class="btn btn-primary bg-light-primary mb-1"
-                                        type="submit" name="action" value="cancel">
+                                <a class="btn btn-primary bg-light-primary mb-1"
+                                   th:href="@{/invoice/salesInvoiceList}">
                                     <i class="fa fa-list mr-1"></i>Sales Invoice List
-                                </button>
+                                </a>
                             </div>
                         </form>
                     </div>
@@ -39,7 +38,7 @@
                                             <div class="tab-pane fade mt-2 show active" id="account" role="tabpanel"
                                                  aria-labelledby="account-tab">
                                                 <!-- INVOICE PART BEGIN-->
-                                                <form th:action="@{/invoice/addInvoiceItem}" method="post" class="needs-validation" novalidate>
+                                                <form th:action="@{/invoice/addInvoiceItem}" method="post" class="needs-validation" novalidate th:object="${invoiceProduct}">
                                                     <div class="row">
                                                         <div class="col-12 col-md-4">
                                                             <div class="form-group">
@@ -47,7 +46,7 @@
                                                                     <label>Invoice No</label>
                                                                     <a type="text"
                                                                        class="form-control" required aria-invalid="false"
-                                                                       readonly th:text="${invoiceId}"></a>
+                                                                       readonly th:text="${invoiceId}" ></a>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -57,7 +56,7 @@
                                                                     <label>Invoice Date</label>
                                                                     <a type="text"
                                                                        class="form-control" readonly
-                                                                       required="" aria-invalid="false" th:text="${date}"></a>
+                                                                       required="" aria-invalid="false" th:text="${date}" th:field="*{invoiceDTO.invoiceDate}"></a>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -67,7 +66,7 @@
                                                                     <label>Client</label>
                                                                     <a type="text"
                                                                        class="form-control" readonly
-                                                                       aria-invalid="false" th:text="${clientName}"></a>
+                                                                       aria-invalid="false" th:text="${clientName}" th:field="*{clientVendorDTO.companyName}"></a>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -97,7 +96,7 @@
                                                                         <label>Quantity</label>
                                                                         <input type="text"
                                                                                class="form-control" disabled
-                                                                               required aria-invalid="false">
+                                                                               required aria-invalid="false" th:field="*{qty}">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -107,7 +106,7 @@
                                                                         <label>Price</label>
                                                                         <input type="text"
                                                                                class="form-control" disabled
-                                                                               required aria-invalid="false">
+                                                                               required aria-invalid="false" th:field="*{price}">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -117,7 +116,7 @@
                                                                         <label>Tax (%)</label>
                                                                         <input type="text"
                                                                                class="form-control" disabled
-                                                                               required aria-invalid="false">
+                                                                               required aria-invalid="false" th:field="*{tax}">
                                                                     </div>
                                                                 </div>
                                                             </div>

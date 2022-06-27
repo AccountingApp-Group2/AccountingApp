@@ -51,5 +51,7 @@ public class InvoiceDTO {
 
     public String companyName;
 
+    private ClientVendorDTO clientVendor;
+
 
 }

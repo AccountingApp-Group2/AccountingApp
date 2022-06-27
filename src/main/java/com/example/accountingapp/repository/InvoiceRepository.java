@@ -16,7 +16,7 @@ public interface InvoiceRepository extends JpaRepository<Invoice, Long> {
     @Query("SELECT MAX(id) FROM Invoice")
     long selectMaxInvoiceId();
 
-    @Query(value = "SELECT invoice.company_id FROM Invoice WHERE invoice_number = ?1", nativeQuery = true)
+    @Query(value = "SELECT id FROM Invoice WHERE invoice_number = ?1", nativeQuery = true)
     Long getInvoiceId(@Param("id") String id);
 
     Invoice findByInvoiceNumber(String invoiceId);

@@ -51,5 +51,6 @@ public class InvoiceProductDTO {
 
     private InvoiceDTO invoiceDTO;
 
+    private ClientVendorDTO clientVendorDTO;
 
 }

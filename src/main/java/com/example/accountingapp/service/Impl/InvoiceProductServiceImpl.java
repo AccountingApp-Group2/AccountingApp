@@ -1,6 +1,7 @@
 package com.example.accountingapp.service.impl;
 
 
+import com.example.accountingapp.dto.InvoiceDTO;
 import com.example.accountingapp.dto.InvoiceProductDTO;
 import com.example.accountingapp.dto.ProductDTO;
 import com.example.accountingapp.entity.Invoice;
@@ -103,10 +104,12 @@ public class InvoiceProductServiceImpl implements InvoiceProductService {
 
 
     @Override
-    public InvoiceProductDTO getByInvoiceId(Long invoiceId) {
+    public List<InvoiceProductDTO> getByInvoiceId(Long invoiceId) {
 
-        InvoiceProductDTO invoiceProductDTO = mapperUtil.convert(invoiceProductRepository.getByInvoiceId(invoiceId),new InvoiceProductDTO());
-
+        List<InvoiceProductDTO> invoiceProductDTO = invoiceProductRepository.findAllByInvoiceId(invoiceId)
+                .stream()
+//                .filter(Invoice::isEnabled)
+                .map(p -> mapperUtil.convert(p, new InvoiceProductDTO())).collect(Collectors.toList());
         return invoiceProductDTO;
     }
 
