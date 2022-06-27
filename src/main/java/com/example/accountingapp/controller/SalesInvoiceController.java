@@ -60,7 +60,7 @@ public class SalesInvoiceController {
     }
 
     @PostMapping("/delete/{id}")
-    public String approveDeleteToInvoice(@PathVariable("id") String id, Model model) {
+    public String delete(@PathVariable("id") String id, Model model) {
 
         model.addAttribute("salesInvoices", invoiceService.listAllByInvoiceType(InvoiceType.SALE));
         model.addAttribute("clients", clientVendorService.findAllByCompanyType(CompanyType.CLIENT));
@@ -95,6 +95,8 @@ public class SalesInvoiceController {
                 product.setQty(leftOverQty);
                 productService.updateProduct(product);
                 invoiceService.approveInvoice(id);
+            } else {
+                String message = "cannot process";
             }
 
         }
