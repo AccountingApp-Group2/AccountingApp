@@ -79,7 +79,7 @@ public class SalesInvoiceController {
     }
 
     @PostMapping("/approve/{id}")
-    public String approve(@PathVariable("id") String id, Model model) {
+    public String approve(@PathVariable("id") String id, BindingResult bindingResult, Model model) {
 
         model.addAttribute("salesInvoices", invoiceService.listAllByInvoiceType(InvoiceType.SALE));
         model.addAttribute("clients", clientVendorService.findAllByCompanyType(CompanyType.CLIENT));
@@ -95,9 +95,12 @@ public class SalesInvoiceController {
                 product.setQty(leftOverQty);
                 productService.updateProduct(product);
                 invoiceService.approveInvoice(id);
-            } else {
-                String message = "cannot process";
+            }else{
+                String message = "Not enough qty";
+                model.addAttribute("errorMessage", message);
             }
+
+
 
         }
 
@@ -129,13 +132,21 @@ public class SalesInvoiceController {
     }
 
 
-    @PostMapping("/addInvoiceItem")
-    public String addItem(@ModelAttribute("invoiceProductList") ArrayList<InvoiceProductDTO> invoiceProductDTOList, InvoiceProductDTO invoiceProductDTO, Model model) {
+//    @PostMapping("/addInvoiceItem")
+//    public String addItem(@ModelAttribute("invoiceProductList") ArrayList<InvoiceProductDTO> invoiceProductDTOList, InvoiceProductDTO invoiceProductDTO, Model model) {
+//
+//        invoiceProductDTOList.add(invoiceProductDTO);
+//
+//        return "redirect:/invoice/salesInvoiceSelectProduct";
+//    }
 
-        invoiceProductDTOList.add(invoiceProductDTO);
 
-        return "redirect:/invoice/salesInvoiceSelectProduct";
-    }
+//    @PostMapping("/addInvoiceItem")
+//    public String addItem(Model model) {
+//
+//        model.addAttribute("")
+//        return "redirect:/invoice/salesInvoiceSelectProduct";
+//    }
 
     @GetMapping("/addInvoiceCancel")
     public String cancelAddItem() {
