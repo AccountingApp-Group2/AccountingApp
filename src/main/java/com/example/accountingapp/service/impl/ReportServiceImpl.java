@@ -50,12 +50,8 @@ public class ReportServiceImpl implements ReportService {
 
 
         profitLoss.put("totalCost", totalCost);
-        System.out.println("this is total cost =  "+ totalCost);
         profitLoss.put("totalSale", totalSale);
-        System.out.println("this is total sale =  " + totalSale);
         profitLoss.put("totalTax", totalTax);
-        System.out.println("this is total for tax =  " + totalTax);
-
         return profitLoss;
     }
 
@@ -90,7 +86,6 @@ public class ReportServiceImpl implements ReportService {
 
             set.add(new ReportDTO(p.getName(),purchasedQTY,soldQTY,totalCost,totalIncome));
         });
-        set.forEach(System.out::println);
         return set;
     }
 

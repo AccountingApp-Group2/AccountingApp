@@ -30,7 +30,7 @@ public class InvoiceProductServiceImpl implements InvoiceProductService {
 
         List<InvoiceProductDTO> listDTO = invoiceProductRepository.findAllByInvoice_InvoiceTypeAndInvoice_Company(invoiceType, user.getCompany()).stream().
                 map(p -> mapperUtil.convert(p, new InvoiceProductDTO())).collect(Collectors.toList());
-        // listDTO.forEach(System.out::println);
+
         return listDTO;
     }
 
@@ -40,7 +40,7 @@ public class InvoiceProductServiceImpl implements InvoiceProductService {
         User user = userRepository.findByEmail("admin@company2.com");
         List<InvoiceProductDTO> listDTO = invoiceProductRepository.findAllByInvoice_Company(user.getCompany()).stream().
                 map(p -> mapperUtil.convert(p, new InvoiceProductDTO())).collect(Collectors.toList());
-        listDTO.forEach(System.out::println);
+
         return listDTO;
     }
 
