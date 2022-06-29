@@ -34,10 +34,12 @@ public class ReportController {
     @GetMapping("/profit")
     public String profitLossReport(Model model){
         model.addAttribute("profitLoss", reportServiceimpl.profitLoss());
+        model.addAttribute("productsTotal", reportServiceimpl.calculateByProducts());
+
         return "/report/profit-loss-report";
-
-
     }
+
+
 }
 
 

@@ -22,9 +22,7 @@ public class InvoiceProductDTO {
     @Size(max = 15, min = 2)
     private String name;
 
-    @NotBlank
-    @Size(min = 0)
-    private int qty;
+    private BigDecimal qty;
 
     @NotBlank
     @Size(min = 0)

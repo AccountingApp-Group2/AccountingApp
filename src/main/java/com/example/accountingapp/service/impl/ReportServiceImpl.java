@@ -1,5 +1,6 @@
 package com.example.accountingapp.service.impl;
 
+import com.example.accountingapp.dto.ReportDTO;
 import com.example.accountingapp.entity.InvoiceProduct;
 import com.example.accountingapp.entity.User;
 import com.example.accountingapp.enums.InvoiceType;
@@ -10,9 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -25,26 +24,6 @@ public class ReportServiceImpl implements ReportService {
         this.invoiceProductRepository = invoiceProductRepository;
         this.userRepository = userRepository;
     }
-
-    //    @Override
-//    public BigDecimal totalCost() {
-//        List<InvoiceProduct> listOfCost = invoiceProductRepository.findAllByInvoice_InvoiceType(InvoiceType.PURCHASE).stream().collect(Collectors.toList());
-//        List<BigDecimal> bigDecimal1 = listOfCost.stream().map(p->p.getPrice()).collect(Collectors.toList());
-//        BigDecimal totalCost = bigDecimal1.stream()
-//                .reduce(BigDecimal.ZERO, (a, b) -> a.add(b));
-//        System.out.println(totalCost);
-//        return totalCost;
-//    }
-//    // to get total Sale
-//    @Override
-//    public BigDecimal totalSale() {
-//        List<InvoiceProduct> listOfSale = invoiceProductRepository.findAllByInvoice_InvoiceType(InvoiceType.SALE).stream().collect(Collectors.toList());
-//        List<BigDecimal> bigDecimal2 = listOfSale.stream().map(p->p.getPrice()).collect(Collectors.toList());
-//        BigDecimal totalSale = bigDecimal2.stream().reduce(BigDecimal.ZERO, (a,b)-> a.add(b));
-//        return totalSale;
-//    }
-    // to get total tax
-
 
 
     @Override
@@ -80,6 +59,39 @@ public class ReportServiceImpl implements ReportService {
         return profitLoss;
     }
 
+    @Override
+    public Set<ReportDTO> calculateByProducts() {
+        Set<ReportDTO> set = new HashSet<>();
+        User user = userRepository.findByEmail("admin@company2.com");
+        invoiceProductRepository.findAllByInvoice_Company(user.getCompany()).stream().forEach(p->{
+            BigDecimal totalCost = invoiceProductRepository.findAllByInvoice_InvoiceTypeAndInvoice_Company(InvoiceType.PURCHASE,user.getCompany())
+                    .stream()
+                    .filter(product->product.getName().equals(p.getName()))
+                    .map(product->product.getPrice()).
+                    reduce(BigDecimal.ZERO, (a, b) -> a.add(b));
 
+            BigDecimal purchasedQTY = invoiceProductRepository.findAllByInvoice_InvoiceTypeAndInvoice_Company(InvoiceType.PURCHASE,user.getCompany())
+                    .stream()
+                    .filter(product->product.getName().equals(p.getName()))
+                    .map(product->product.getQty()).
+                    reduce(BigDecimal.ZERO, (a, b) -> a.add(b));
+
+            BigDecimal totalIncome = invoiceProductRepository.findAllByInvoice_InvoiceTypeAndInvoice_Company(InvoiceType.SALE,user.getCompany())
+                    .stream()
+                    .filter(product->product.getName().equals(p.getName()))
+                    .map(product->product.getPrice()).
+                    reduce(BigDecimal.ZERO, (a, b) -> a.add(b));
+
+            BigDecimal soldQTY = invoiceProductRepository.findAllByInvoice_InvoiceTypeAndInvoice_Company(InvoiceType.SALE,user.getCompany())
+                    .stream()
+                    .filter(product->product.getName().equals(p.getName()))
+                    .map(product->product.getQty()).
+                    reduce(BigDecimal.ZERO, (a, b) -> a.add(b));
+
+            set.add(new ReportDTO(p.getName(),purchasedQTY,soldQTY,totalCost,totalIncome));
+        });
+        set.forEach(System.out::println);
+        return set;
+    }
 
 }
