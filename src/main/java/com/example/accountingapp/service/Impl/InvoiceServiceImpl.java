@@ -2,16 +2,11 @@ package com.example.accountingapp.service.impl;
 
 import com.example.accountingapp.dto.InvoiceDTO;
 import com.example.accountingapp.dto.InvoiceProductDTO;
-import com.example.accountingapp.entity.Invoice;
-import com.example.accountingapp.entity.InvoiceProduct;
-import com.example.accountingapp.entity.Product;
+import com.example.accountingapp.entity.*;
 import com.example.accountingapp.enums.InvoiceStatus;
 import com.example.accountingapp.enums.InvoiceType;
 import com.example.accountingapp.mapper.MapperUtil;
-import com.example.accountingapp.repository.CompanyRepository;
-import com.example.accountingapp.repository.InvoiceProductRepository;
-import com.example.accountingapp.repository.InvoiceRepository;
-import com.example.accountingapp.repository.ProductRepository;
+import com.example.accountingapp.repository.*;
 import com.example.accountingapp.service.InvoiceService;
 import org.springframework.stereotype.Service;
 
@@ -21,12 +16,11 @@ import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
-
-import com.example.accountingapp.entity.Company;
 
 import java.util.Optional;
 
@@ -39,14 +33,16 @@ public class InvoiceServiceImpl implements InvoiceService {
     private final InvoiceProductRepository invoiceProductRepository;
     private final CompanyRepository companyRepository;
     private final ProductRepository productRepository;
+    private final StockDetailsRepository stockDetailsRepository;
 
 
-    public InvoiceServiceImpl(MapperUtil mapperUtil, InvoiceRepository invoiceRepository, InvoiceProductRepository invoiceProductRepository, CompanyRepository companyRepository, ProductRepository productRepository) {
+    public InvoiceServiceImpl(MapperUtil mapperUtil, InvoiceRepository invoiceRepository, InvoiceProductRepository invoiceProductRepository, CompanyRepository companyRepository, ProductRepository productRepository, StockDetailsRepository stockDetailsRepository) {
         this.mapperUtil = mapperUtil;
         this.invoiceRepository = invoiceRepository;
         this.invoiceProductRepository = invoiceProductRepository;
         this.companyRepository = companyRepository;
         this.productRepository = productRepository;
+        this.stockDetailsRepository = stockDetailsRepository;
     }
 
     @Override
@@ -108,17 +104,11 @@ public class InvoiceServiceImpl implements InvoiceService {
     @Override
     public List<InvoiceDTO> listAllByInvoiceType(InvoiceType invoiceType) {
         //map invoiceProduct of each Invoice -> DTO
-        List<InvoiceDTO> listDTO = invoiceRepository.findAllByInvoiceType(invoiceType)
-                .stream()
-                .filter(Invoice::isEnabled)
-                .map(p -> mapperUtil.convert(p, new InvoiceDTO())).collect(Collectors.toList());
+        List<InvoiceDTO> listDTO = invoiceRepository.findAllByInvoiceType(invoiceType).stream().filter(Invoice::isEnabled).map(p -> mapperUtil.convert(p, new InvoiceDTO())).collect(Collectors.toList());
 
         //map all invoice products from invoice to invoiceProduct DTO
         for (InvoiceDTO each : listDTO) {
-            List<InvoiceProductDTO> invoiceProductDTOList = invoiceProductRepository.findAllByInvoiceId(each.getId())
-                    .stream()
-                    .map(p -> mapperUtil.convert(p, new InvoiceProductDTO()))
-                    .collect(Collectors.toList());
+            List<InvoiceProductDTO> invoiceProductDTOList = invoiceProductRepository.findAllByInvoiceId(each.getId()).stream().map(p -> mapperUtil.convert(p, new InvoiceProductDTO())).collect(Collectors.toList());
             each.setInvoiceProductList(invoiceProductDTOList);
         }
 
@@ -213,5 +203,26 @@ public class InvoiceServiceImpl implements InvoiceService {
 
     }
 
+    @Override
+    public void addProductToStockByInvoice(Long id) {
+        List<InvoiceProduct> invoiceProductList = invoiceProductRepository.findAllByInvoiceId(id);
 
+        for (InvoiceProduct eachInvoiceProduct : invoiceProductList) {
+            StockDetails stockDetails = new StockDetails();
+            stockDetails.setProduct(eachInvoiceProduct.getProduct());
+            stockDetails.setPrice(eachInvoiceProduct.getTax().add(BigDecimal.valueOf(100)).divide(BigDecimal.valueOf(100)).multiply(eachInvoiceProduct.getPrice()));
+            stockDetails.setQuantity(BigInteger.valueOf(eachInvoiceProduct.getQty()));
+            stockDetails.setIDate(LocalDateTime.now());
+            stockDetailsRepository.save(stockDetails);
+
+            BigInteger remainingQtyAfter = BigInteger.ZERO;
+            for (StockDetails each : stockDetailsRepository.findAllByProductId(eachInvoiceProduct.getProduct().getId())) {
+                remainingQtyAfter = remainingQtyAfter.add(each.getQuantity());
+            }
+            for (StockDetails each : stockDetailsRepository.findAllByProductId(eachInvoiceProduct.getProduct().getId())) {
+                each.setRemainingQuantity(remainingQtyAfter);
+                stockDetailsRepository.save(each);
+            }
+        }
+    }
 }

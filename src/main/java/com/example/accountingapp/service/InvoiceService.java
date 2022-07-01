@@ -31,4 +31,6 @@ public interface InvoiceService {
     void enableInvoice(Long id);
 
     void approvePurchaseInvoice(Long id);
+
+    void addProductToStockByInvoice(Long id);
 }

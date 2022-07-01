@@ -116,6 +116,7 @@ public class PurchaseInvoiceController {
     @PostMapping ("/approvePurchaseInvoice/{id}")
     public String approvePurchaseInvoiceById(@PathVariable("id") Long id){
         invoiceService.approvePurchaseInvoice(id);
+        invoiceService.addProductToStockByInvoice(id);
         return "redirect:/invoice/purchaseInvoiceList";
     }
 

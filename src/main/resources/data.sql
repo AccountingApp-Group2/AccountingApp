@@ -31,7 +31,7 @@ VALUES (4, '2022-05-15 00:00:00', FALSE, 4, '2022-05-15 00:00:00', 'TV', TRUE, 1
 INSERT INTO stock_details (i_date, quantity, price, remaining_quantity, product_id)
 VALUES ('2022-05-15 00:00:00', 50, 999.99, 50, 1),
        ('2022-05-15 00:00:00', 50, 1999.99, 50, 2),
-       ('2022-05-15 00:00:00', 150, 99.99, 50, 3);
+       ('2022-05-15 00:00:00', 50, 99.99, 50, 3);
 
 INSERT INTO invoice_product (created_by, created_time, is_deleted, updated_by, updated_time, name, price, profit, qty, tax, invoice_id, product_id)
 VALUES (4, '2022-05-16 00:00:00', FALSE, 4, '2022-05-16 00:00:00', 'TV',        1000, 10,  5, 8, 1, 1),
