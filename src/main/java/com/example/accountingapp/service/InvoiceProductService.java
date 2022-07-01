@@ -27,4 +27,6 @@ public interface InvoiceProductService {
     List<InvoiceProductDTO> listAllAddedItems();
 
     List<InvoiceProductDTO> findAllByInvoiceId(Long id);
+
+    void disableInvoiceProductsByInvoiceId(Long id);
 }

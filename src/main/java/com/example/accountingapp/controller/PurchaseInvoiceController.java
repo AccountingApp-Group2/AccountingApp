@@ -50,6 +50,14 @@ public class PurchaseInvoiceController {
         invoiceService.enableInvoice(id);
         return "redirect:/invoice/purchaseInvoiceList";
     }
+    @GetMapping("/editPurchaseInvoiceSelectProduct/{id}")
+    public String editPurchaseInvoiceSelectProduct (@PathVariable("id") Long id) {
+
+        invoiceProductService.disableInvoiceProductsByInvoiceId(id);
+        return "redirect:/invoice/purchaseInvoiceSelectProduct/" + id;
+    }
+
+
 
     @GetMapping("/purchaseInvoiceCreate")
     public String purchaseInvoiceCreate(Model model) {

@@ -49,6 +49,6 @@ public class InvoiceProductDTO {
     private ProductDTO prouctDTO;
 
     private InvoiceDTO invoiceDTO;
-
+    private boolean enabled;
 
 }

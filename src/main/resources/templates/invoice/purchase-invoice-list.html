@@ -57,7 +57,8 @@
                                                             <td th:text="'$ ' + ${purchaseInvoice.tax}"  ></td>
                                                             <td th:text="'$ ' + ${purchaseInvoice.total}"></td>
                                                               <td>
-                                                                  <a th:if="${purchaseInvoice.invoiceStatus.value !='Approved'}" th:href="@{/invoice/purchaseInvoiceSelectProduct/{id}(id=${purchaseInvoice.id})}" class="ft-list" >
+                                                                  <a th:if="${purchaseInvoice.invoiceStatus.value !='Approved'}"
+                                                                     th:href="@{/invoice/editPurchaseInvoiceSelectProduct/{id}(id=${purchaseInvoice.id})}"  class="ft-list" >
                                                                   </a>
                                                               </td>
                                                               <td>
