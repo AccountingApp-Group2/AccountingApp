@@ -17,6 +17,7 @@ public interface InvoiceService {
     void save(InvoiceDTO dto);
     void update(InvoiceDTO dto);
     void delete(Long id);
-
+    BigDecimal calculatePriceByInvoiceID(Long id);
+    BigDecimal calculateTaxByInvoiceID(Long id);
 
 }

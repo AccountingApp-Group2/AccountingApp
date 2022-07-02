@@ -30,7 +30,7 @@ public class InvoiceDTO {
     @NotNull
     private InvoiceType invoiceType;
 
-    private BigDecimal cost;
+    private BigDecimal price;
 
     private BigDecimal total;
 

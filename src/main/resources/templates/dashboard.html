@@ -48,8 +48,11 @@
                                             <h3 class="font-large-1 info mb-0" ></h3>
                                             <span>Total Cost</span>
                                         </div>
+                                        <div class="media-body info text-right">
+                                            <h3 th:text="${profitLoss.get('totalCost')}" class="font-large-1 info mb-0"></h3>
+                                        </div>
                                         <div class="media-right info text-right">
-                                            <i class="ft-percent font-large-1"></i>
+                                            <i class="ft-dollar-sign font-large-1"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -67,8 +70,11 @@
                                             <h3 class="font-large-1 warning mb-0" ></h3>
                                             <span>Total Tax</span>
                                         </div>
+                                        <div class="media-body warning text-right">
+                                            <h3 th:text="${profitLoss.get('totalTax')}" class="font-large-1 warning mb-0"></h3>
+                                        </div>
                                         <div class="media-right warning text-right">
-                                            <i class="ft-activity font-large-1"></i>
+                                            <i class="ft-dollar-sign font-large-1"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -86,8 +92,11 @@
                                             <h3 class="font-large-1 primary mb-0" ></h3>
                                             <span>Total Sales</span>
                                         </div>
+                                        <div class="media-body primary text-right">
+                                            <h3 th:text="${profitLoss.get('totalSale')}" class="font-large-1 primary mb-0"></h3>
+                                        </div>
                                         <div class="media-right primary text-right">
-                                            <i class="ft-trending-up font-large-1"></i>
+                                            <i class="ft-dollar-sign font-large-1"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -105,8 +114,11 @@
                                             <h3 class="font-large-1 success mb-0" ></h3>
                                             <span>Total Earning</span>
                                         </div>
+                                        <div class="media-body success text-right">
+                                            <h3 th:text = "${profitLoss.get('totalSale')-profitLoss.get('totalCost')}" class="font-large-1 success mb-0"></h3>
+                                        </div>
                                         <div class="media-right success text-right">
-                                            <i class="ft-credit-card font-large-1"></i>
+                                            <i class="ft-dollar-sign font-large-1"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -135,11 +147,11 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr >
-                                                <td ></td>
-                                                <td ></td>
-                                                <td ></td>
-                                                <td>
+                                            <tr th:each="invoice : ${last3Invoices}" >
+                                                <td th:text="${invoice.getInvoiceNumber()}" ></td>
+                                                <td th:text="${invoice.getInvoiceDate()}"></td>
+                                                <td th:text="${invoice.getPrice()+ invoice.getTax()}"></td>
+                                                <td th:text="${invoice.getInvoiceType()}">
                                                     <span
                                                             class="badge badge-pill bg-light-primary cursor-pointer"
                                                     ></span>
@@ -166,36 +178,36 @@
                                             </span>
                                     </h4>
                                     <p class="grey"><span><img th:src="@{/img/flags/europe.png}"
-                                                               class="flags flags-europe"></span><b>Paris</b>
+                                                               class="flags flags-europe"></span><b>Frankfurt</b>
                                         <span> <img th:src="@{img/icons/clock.png}" class="clock"> </span>
-                                        <span ></span>
-                                        <span ></span>
+                                        <span id="paris-time"></span>
+                                        <!--                                        <span ></span>-->
                                     </p>
                                     <ul class="list-group mb-3">
                                         <li class="list-group-item">
                                             <span><img th:src="@{/img/flags/usa.png}" class="flags"></span>
                                             <span>American Dollar</span>
                                             <span class="badge bg-light-primary float-right"
-                                            ></span>
+                                                  th:text="${rates.getRates().getUsd()}" ></span>
                                         </li>
                                         <li class="list-group-item">
                                             <span><img th:src="@{/img/flags/unitedkingdom.png}" class="flags"></span>
                                             <span>British Pound</span>
                                             <span class="badge bg-light-secondary float-right"
-                                            ></span>
+                                                  th:text="${rates.getRates().getGbp()}" ></span>
                                         </li>
                                         <li class="list-group-item">
-                                            <span><img th:src="@{/img/flags/russia.png}" class="flags"></span>
-                                            <span>Russian Ruble</span>
+                                            <span><img th:src="@{/img/flags/turkiye.png}" class="flags"></span>
+                                            <span>Turkish Lira</span>
                                             <span class="badge bg-light-warning float-right"
-                                            ></span>
+                                                  th:text="${rates.getRates().getTry()}" ></span>
                                         </li>
                                         <li class="list-group-item">
                                             <span><img th:src="@{/img/flags/japan.png}" class="flags"></span>
                                             <span>Japan Yen</span>
 
                                             <span class="badge bg-light-success float-right"
-                                            ></span>
+                                                  th:text="${rates.getRates().getJpy()}" ></span>
                                         </li>
                                     </ul>
                                     <button type="button" class="btn btn-primary mr-2">Profile</button>
@@ -220,6 +232,13 @@
 <!-- BEGIN: Custom CSS-->
 <script th:src="@{/assets/js/scripts.js}"></script>
 <!-- END: Custom CSS-->
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+        var d = new Date();
+        var n = d.toLocaleTimeString();
+        document.getElementById("paris-time").textContent=n;
+    });
+</script>
 </body>
 <!-- END : Body-->
-</html>
+</html>html>

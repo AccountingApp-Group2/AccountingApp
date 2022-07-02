@@ -38,13 +38,13 @@ public class InvoiceServiceImpl implements InvoiceService {
                 .collect(Collectors.toList());
 
         //set cost
-        listDTO.forEach(p -> p.setCost((calculateCostByInvoiceID(p.getId())).setScale(2, RoundingMode.CEILING)));
+        listDTO.forEach(p -> p.setPrice((calculateCostByInvoiceID(p.getId())).setScale(2, RoundingMode.CEILING)));
 
         //set tax todo Vitaly Bahrom - set tax at 10 for now - Cihat
-        listDTO.forEach(p -> p.setTax((p.getCost().multiply(BigDecimal.valueOf(0.01))).setScale(2, RoundingMode.CEILING)));
+        listDTO.forEach(p -> p.setTax((p.getPrice().multiply(BigDecimal.valueOf(0.01))).setScale(2, RoundingMode.CEILING)));
 
         //set total
-        listDTO.forEach(p -> p.setTotal(((p.getCost()).add(p.getTax())).setScale(2, RoundingMode.CEILING)));
+        listDTO.forEach(p -> p.setTotal(((p.getPrice()).add(p.getTax())).setScale(2, RoundingMode.CEILING)));
         return listDTO;
     }
 
@@ -58,7 +58,7 @@ public class InvoiceServiceImpl implements InvoiceService {
 
         //add cost of each invoice-product for each invoice and write it to invoice cost field
         for (InvoiceProductDTO each : invoiceProductListById) {
-            BigDecimal currItemCost = each.getPrice().multiply(BigDecimal.valueOf(each.getQty()));
+            BigDecimal currItemCost = each.getPrice().multiply(each.getQty());
             cost = cost.add(currItemCost);
         }
 
@@ -80,6 +80,24 @@ public class InvoiceServiceImpl implements InvoiceService {
     public void delete(Long id) {
 
 
+    }
+
+
+    @Override
+    public BigDecimal calculatePriceByInvoiceID(Long id) {
+        BigDecimal totalPrice = invoiceProductRepository.findAllByInvoiceId(id).stream().
+                map(p->p.getPrice())
+                .reduce(BigDecimal.ZERO, (a, b) -> a.add(b));
+
+        return totalPrice;
+    }
+
+    @Override
+    public BigDecimal calculateTaxByInvoiceID(Long id) {
+        BigDecimal totalTax = invoiceProductRepository.findAllByInvoiceId(id).stream().
+                map(p->p.getTax())
+                .reduce(BigDecimal.ZERO, (a, b) -> a.add(b));
+        return totalTax;
     }
 
 }

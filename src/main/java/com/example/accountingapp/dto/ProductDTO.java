@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.*;
+import java.math.BigDecimal;
 import java.math.BigInteger;
 
 @NoArgsConstructor
@@ -28,16 +29,16 @@ public class ProductDTO {
     private CategoryDTO category;
 
     @NotNull
-    private BigInteger qty;
+    private BigDecimal qty;
 
     @NotNull
     private Unit unit;
 
     @NotNull
-    private BigInteger lowLimitAlert;
+    private BigDecimal lowLimitAlert;
 
 //    @NotBlank
-    private BigInteger tax;
+    private BigDecimal tax;
 
 
     private CompanyDTO company;
