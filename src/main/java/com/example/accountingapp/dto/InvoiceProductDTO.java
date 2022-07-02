@@ -46,9 +46,13 @@ public class InvoiceProductDTO {
     private BigDecimal profit;
 
     private Long productId;
-    private ProductDTO prouctDTO;
+
+    private ProductDTO productDTO;
 
     private InvoiceDTO invoiceDTO;
+
     private boolean enabled;
+
+    private ClientVendorDTO clientVendorDTO;
 
 }

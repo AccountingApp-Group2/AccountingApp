@@ -179,7 +179,6 @@ public class InvoiceServiceImpl implements InvoiceService {
         return mapperUtil.convert(invoice, new InvoiceDTO());
     }
 
-
     @Override
     public void updateInvoiceCompany(InvoiceDTO dto) {
         Optional<Invoice> invoice = invoiceRepository.findById(dto.getId());

@@ -22,9 +22,7 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
     ProductDTO findByDescription(String description);
 
 
-
     List<Product> findAllByCompanyId(Long companyId);
-
 
 
     Optional<Product> getProductByName(String name);

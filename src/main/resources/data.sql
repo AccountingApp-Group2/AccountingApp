@@ -1,12 +1,12 @@
 INSERT INTO company (created_by,created_time, is_deleted, updated_by, updated_time, address1, address2,company_status, email,enabled,establishment_date,phone,representative,state,title,zip)
-VALUES (1,'2022-05-01 00:00:00',FALSE,1,'2022-05-01 00:00:00','Street1 ','House Nu: 1','ENABLED','root@root.com',TRUE ,'2020-01-01 00:00:00','','Representative Root','ALABAMA','Title1','35242'),
+VALUES (1,'2022-05-01 00:00:00',FALSE,1,'2022-05-01 00:00:00','Street1 ','House Nu: 1','ENABLED','root@root.com',TRUE ,'2020-01-01 00:00:00','','Representative Root','ALABAMA','Company1','35242'),
        (1,'2022-05-02 00:00:00',FALSE,1,'2022-05-02 00:00:00','Street2 ','House Nu: 2','ENABLED','admin1@admin.com',TRUE ,'2020-01-01 00:00:00','','Admin1 AdminLName1','ARIZONA','Company2','38704'),
-       (1,'2022-05-03 00:00:00',FALSE,1,'2022-05-03 00:00:00','Street3 ','House Nu: 3','ENABLED','admin1@admin.com',TRUE ,'2020-01-01 00:00:00','','Admin2 AdminLName2','FLORIDA','Title3','33027');
+       (1,'2022-05-03 00:00:00',FALSE,1,'2022-05-03 00:00:00','Street3 ','House Nu: 3','ENABLED','admin1@admin.com',TRUE ,'2020-01-01 00:00:00','','Admin2 AdminLName2','FLORIDA','Company3','33027');
 -- TODO Abbos/Bahrom - company and clientvendor have title and name are those same ?
 INSERT INTO client_vendor (created_by, created_time, is_deleted, updated_by, updated_time, company_name, phone, email, address, zip_code, enabled, type, company_id, state_id)
-VALUES (2, '2022-05-02 00:00:00', FALSE, 2, '2022-05-01 00:00:00', 'Company1', '1234567890', 'company2@email.com', 'Street 1.', '35242', TRUE, 'CLIENT', 1, 'ALABAMA'),
-       (2, '2022-05-02 00:00:00', FALSE, 2, '2022-05-02 00:00:00', 'Company2', '0987654321', 'company2@email.com', 'Street 2', '38704', TRUE, 'VENDOR', 2, 'ARIZONA'),
-       (3, '2022-05-03 00:00:00', FALSE, 3, '2022-05-03 00:00:00', 'Company3', '7894561230', 'company3@email.com', 'Street 3', '33027', TRUE, 'CLIENT', 3, 'FLORIDA');
+VALUES (2, '2022-05-02 00:00:00', FALSE, 2, '2022-05-01 00:00:00', 'ClientVendor1', '1234567890', 'company2@email.com', 'Street 1.', '35242', TRUE, 'CLIENT', 1, 'ALABAMA'),
+       (2, '2022-05-02 00:00:00', FALSE, 2, '2022-05-02 00:00:00', 'ClientVendor2', '0987654321', 'company2@email.com', 'Street 2', '38704', TRUE, 'VENDOR', 2, 'ARIZONA'),
+       (3, '2022-05-03 00:00:00', FALSE, 3, '2022-05-03 00:00:00', 'ClientVendor3', '7894561230', 'company3@email.com', 'Street 3', '33027', TRUE, 'CLIENT', 3, 'FLORIDA');
 
 INSERT INTO category (created_by, created_time, is_deleted, updated_by, updated_time, description, enabled,company_id)
 VALUES (2, '2022-05-11 00:00:00', FALSE, 2, '2022-05-11 00:00:00', 'Electronics', true,2),
@@ -31,18 +31,19 @@ VALUES (4, '2022-05-15 00:00:00', FALSE, 4, '2022-05-15 00:00:00', 'TV', TRUE, 1
 INSERT INTO stock_details (i_date, quantity, price, remaining_quantity, product_id)
 VALUES ('2022-05-15 00:00:00', 50, 999.99, 50, 1),
        ('2022-05-15 00:00:00', 50, 1999.99, 50, 2),
-       ('2022-05-15 00:00:00', 50, 99.99, 50, 3);
+       ('2022-05-15 00:00:00', 150, 99.99, 50, 3);
 
-INSERT INTO invoice_product (created_by, created_time, is_deleted, enabled, updated_by, updated_time, name, price, profit, qty, tax, invoice_id, product_id)
-VALUES (4, '2022-05-16 00:00:00', FALSE, TRUE, 4, '2022-05-16 00:00:00', 'TV',        1000, 10,  5, 8, 1, 1),
-       (4, '2022-05-16 00:00:00', FALSE, TRUE, 4, '2022-05-16 00:00:00', 'MacBook',   2000, 10,  5, 2, 1, 2),
-       (4, '2022-05-16 00:00:00', FALSE, TRUE, 4, '2022-05-16 00:00:00', 'MacBook',   2000, 199, 1, 2, 2, 2),
-       (4, '2022-05-16 00:00:00', FALSE, TRUE, 4, '2022-05-16 00:00:00', 'MacBook',   2000, 199, 1, 2, 3, 2),
-       (4, '2022-05-16 00:00:00', FALSE, TRUE, 4, '2022-05-16 00:00:00', 'MacBook',   2000, 199, 1, 2, 4, 2),
-       (4, '2022-05-16 00:00:00', FALSE, TRUE, 4, '2022-05-16 00:00:00', 'MacBook',   2000, 199, 1, 2, 4, 2),
-       (8, '2022-05-16 00:00:00', FALSE, TRUE, 8, '2022-05-16 00:00:00', 'Shoes',     1000, 199, 10, 10, 5, 3),
-       (8, '2022-05-16 00:00:00', FALSE, TRUE, 8, '2022-05-16 00:00:00', 'MacBook',     1000, 199, 51, 10, 6, 2),
-       (8, '2022-05-16 00:00:00', FALSE, TRUE, 8, '2022-05-16 00:00:00', 'Shoes',     1000, 199, 10, 10, 7, 3);
+INSERT INTO invoice_product (created_by, created_time, is_deleted, updated_by, updated_time, name, price, profit, qty, tax, invoice_id, product_id)
+VALUES (4, '2022-05-16 00:00:00', FALSE, 4, '2022-05-16 00:00:00', 'TV',        1000, 10,  5, 8, 1, 1),
+       (4, '2022-05-16 00:00:00', FALSE, 4, '2022-05-16 00:00:00', 'MacBook',   2000, 10,  5, 2, 1, 2),
+       (4, '2022-05-16 00:00:00', FALSE, 4, '2022-05-16 00:00:00', 'MacBook',   2000, 199, 1, 2, 2, 2),
+       (4, '2022-05-16 00:00:00', FALSE, 4, '2022-05-16 00:00:00', 'Shoe',   2000, 199, 1, 2, 2, 3),
+       (4, '2022-05-16 00:00:00', FALSE, 4, '2022-05-16 00:00:00', 'MacBook',   2000, 199, 1, 2, 3, 2),
+       (4, '2022-05-16 00:00:00', FALSE, 4, '2022-05-16 00:00:00', 'MacBook',   2000, 199, 1, 2, 4, 2),
+       (4, '2022-05-16 00:00:00', FALSE, 4, '2022-05-16 00:00:00', 'MacBook',   2000, 199, 1, 2, 4, 2),
+       (8, '2022-05-16 00:00:00', FALSE, 8, '2022-05-16 00:00:00', 'Shoes',     1000, 199, 10, 10, 5, 3),
+       (8, '2022-05-16 00:00:00', FALSE, 8, '2022-05-16 00:00:00', 'MacBook',     1000, 199, 51, 10, 6, 2),
+       (8, '2022-05-16 00:00:00', FALSE, 8, '2022-05-16 00:00:00', 'Shoes',     1000, 199, 10, 10, 7, 3);
 
 INSERT INTO payment (created_by, created_time, is_deleted, updated_by, updated_time, amount, institution_id, is_paid, month, year, company_id)
 VALUES (4, '2022-05-16 00:00:00', FALSE, 4, '2022-05-16 00:00:00', 999.99, '1', true, 'MAY','05/15/2022',2),

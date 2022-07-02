@@ -22,7 +22,7 @@ public interface InvoiceProductService {
     void deleteInvoiceProductById(Long ipid);
 
 
-    InvoiceProductDTO getByInvoiceId(Long invoiceId);
+    List<InvoiceProductDTO> getByInvoiceId(Long invoiceId);
 
     List<InvoiceProductDTO> listAllAddedItems();
 
