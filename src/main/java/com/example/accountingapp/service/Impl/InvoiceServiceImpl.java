@@ -34,15 +34,16 @@ public class InvoiceServiceImpl implements InvoiceService {
     private final CompanyRepository companyRepository;
     private final ProductRepository productRepository;
     private final StockDetailsRepository stockDetailsRepository;
+    private final ClientVendorRepository clientVendorRepository;
 
-
-    public InvoiceServiceImpl(MapperUtil mapperUtil, InvoiceRepository invoiceRepository, InvoiceProductRepository invoiceProductRepository, CompanyRepository companyRepository, ProductRepository productRepository, StockDetailsRepository stockDetailsRepository) {
+    public InvoiceServiceImpl(MapperUtil mapperUtil, InvoiceRepository invoiceRepository, InvoiceProductRepository invoiceProductRepository, CompanyRepository companyRepository, ProductRepository productRepository, StockDetailsRepository stockDetailsRepository, ClientVendorRepository clientVendorRepository) {
         this.mapperUtil = mapperUtil;
         this.invoiceRepository = invoiceRepository;
         this.invoiceProductRepository = invoiceProductRepository;
         this.companyRepository = companyRepository;
         this.productRepository = productRepository;
         this.stockDetailsRepository = stockDetailsRepository;
+        this.clientVendorRepository = clientVendorRepository;
     }
 
     @Override
@@ -142,7 +143,7 @@ public class InvoiceServiceImpl implements InvoiceService {
     @Override
     public BigDecimal calculateCostByInvoiceID(Long id) {
         List<InvoiceProductDTO> invoiceProductListById = invoiceProductRepository.findAllByInvoiceId(id)
-                .stream().filter(p->p.isEnabled())
+                .stream().filter(p -> p.isEnabled())
                 .map(p -> mapperUtil.convert(p, new InvoiceProductDTO())).collect(Collectors.toList());
         BigDecimal cost = BigDecimal.valueOf(0);
         for (InvoiceProductDTO each : invoiceProductListById) {
@@ -161,8 +162,15 @@ public class InvoiceServiceImpl implements InvoiceService {
     //Method for default invoice settings upon creation
     @Override
     public InvoiceDTO save(InvoiceDTO invoiceDTO) {
+
+
         Invoice invoice = mapperUtil.convert(invoiceDTO, new Invoice());
-        String invoiceNumber = getNextInvoiceIdPurchase();
+        String invoiceNumber = "";
+        if (invoiceDTO.getInvoiceType().equals(InvoiceType.SALE)) {
+            invoiceNumber = getNextInvoiceIdSale();
+        } else {
+            invoiceNumber = getNextInvoiceIdPurchase();
+        }
         invoice.setInvoiceNumber(invoiceNumber);
         invoice.setInvoiceDate(LocalDate.now());
         invoice.setInvoiceStatus(InvoiceStatus.PENDING);
@@ -176,8 +184,8 @@ public class InvoiceServiceImpl implements InvoiceService {
     public void updateInvoiceCompany(InvoiceDTO dto) {
         Optional<Invoice> invoice = invoiceRepository.findById(dto.getId());
         if (invoice.isPresent()) {
-            Company company = companyRepository.findByTitle(dto.getCompanyName()).get();
-            invoice.get().setCompany(company);
+            ClientVendor clientVendor = clientVendorRepository.findByCompanyName(dto.getCompanyName()).get();
+            invoice.get().setClientVendor(clientVendor);
             invoiceRepository.save(invoice.get());
         }
     }
