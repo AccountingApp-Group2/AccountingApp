@@ -92,13 +92,13 @@
                                                         <tr th:each="salesInvoice:${salesInvoices}">
                                                             <td class="text-truncate" th:text="${salesInvoice.invoiceNumber}"></td>
                                                             <td class="text-truncate" th:text="${salesInvoice.invoiceDate}"></td>
-                                                            <td class="text-truncate" th:text="${salesInvoice.company.title}"></td>
+                                                            <td class="text-truncate" th:text="${salesInvoice.clientVendor.companyName}"></td>
                                                             <td class="text-truncate" th:text="'$ '+ ${salesInvoice.cost}"></td>
                                                             <td class="text-truncate" th:text="'$ '+ ${salesInvoice.tax}"></td>
                                                             <td class="text-truncate" th:text="'$ '+ ${salesInvoice.total}"></td>
 
                                                             <td>
-                                                                <a th:if="${salesInvoice.invoiceStatus.value !='Approved'}" th:href="@{/invoice/updateInvoice/{id}(id=${salesInvoice.invoiceNumber})}" class="ft-list" >
+                                                                <a th:if="${salesInvoice.invoiceStatus.value !='Approved'}" th:href="@{/invoice/editSalesInvoiceSelectProduct/{id}(id=${salesInvoice.id})}"  class="ft-list" >
                                                                 </a>
                                                             </td>
                                                             <td>

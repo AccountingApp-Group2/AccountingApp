@@ -98,34 +98,78 @@ public class SalesInvoiceController {
     @GetMapping("/salesInvoiceCreate")
     public String salesInvoiceCreate(Model model) {
         InvoiceDTO invoiceDTO = new InvoiceDTO();
+
+        invoiceDTO.setInvoiceType(InvoiceType.SALE);
+        Long id = invoiceService.saveAndReturnId(invoiceDTO);
+        invoiceDTO.setId(id);
+
         model.addAttribute("invoiceDTO", invoiceDTO);
         model.addAttribute("clients", clientVendorService.findAllByCompanyType(CompanyType.CLIENT));
         return "/invoice/sales-invoice-create";
     }
 
-    @GetMapping("/salesInvoiceSelectProduct")
-    public String salesInvoiceSelectProduct(@ModelAttribute("client") ClientVendorDTO clientDto, Model model) {
+    @PostMapping("/salesInvoiceCreate/{id}")
+    public String postSalesInvoiceCreate(@PathVariable("id") Long id, @ModelAttribute("invoiceDTO") InvoiceDTO invoiceDTO) {
+        invoiceService.updateInvoiceCompany(invoiceDTO);
+        return "redirect:/invoice/salesInvoiceSelectProduct/" + id;
+    }
 
-        model.addAttribute("clientName", clientDto.getCompanyName());
+
+    @GetMapping("/salesInvoiceSelectProduct/{id}")
+    public String salesInvoiceSelectProduct(@PathVariable("id") Long id, Model model) {
+
+        InvoiceDTO invoiceDTO = invoiceService.getInvoiceDTOById(id);
+        model.addAttribute("id", id);
+        model.addAttribute("invoiceDTO", invoiceDTO);
+        model.addAttribute("companyName", invoiceDTO.getClientVendor().getCompanyName());
         model.addAttribute("date", invoiceService.getLocalDate());
         model.addAttribute("invoiceId", invoiceService.getNextInvoiceIdSale());
+        model.addAttribute("invoiceProductDTO", new InvoiceProductDTO());
         model.addAttribute("products", productService.listAllProducts());
-        return "/invoice/sales-invoice-set-product-numbers";
+        model.addAttribute("invoiceProducts", invoiceProductService.findAllInvoiceProductsByInvoiceId(id));
+        return "invoice/sales-invoice-select-product";
+    }
+
+    @PostMapping("/salesInvoiceSelectProduct/{id}")
+    public String postProductDetailsForInvoiceProduct(@PathVariable("id") Long id, @ModelAttribute("invoiceProductDTO") InvoiceProductDTO invoiceProductDTO) {
+        invoiceProductService.addInvoiceProductByInvoiceId(id, invoiceProductDTO);
+        return "redirect:/invoice/salesInvoiceSelectProduct/" + id;
+    }
+
+    @PostMapping("/setInvoiceStatusEnabledSales/{id}")
+    public String setInvoiceStatusEnabled(@PathVariable("id") Long id){
+        invoiceService.enableInvoice(id);
+        return "redirect:/invoice/salesInvoiceList";
+    }
+
+    @GetMapping("/editSalesInvoiceSelectProduct/{id}")
+    public String editSalesInvoiceSelectProduct (@PathVariable("id") Long id) {
+
+        invoiceProductService.disableInvoiceProductsByInvoiceId(id);
+        return "redirect:/invoice/salesInvoiceSelectProduct/" + id;
+    }
+
+    @PostMapping("/removeItemFromInvoiceSales/{ipid}")
+    public String deleteInvoiceProductFromInvoice(@PathVariable("ipid") Long ipid) {
+        Long id = invoiceProductService.findInvoiceIdByInvoiceProductId(ipid);
+        invoiceProductService.deleteInvoiceProductById(ipid);
+        return "redirect:/invoice/salesInvoiceSelectProduct/" + id;
     }
 
 
-    @PostMapping("/addInvoiceItem")
-    public String addItem (@ModelAttribute("invoiceProduct") InvoiceProductDTO invoiceProductDTO, Model model) {
 
-        model.addAttribute("invoiceProduct", invoiceProductService.listAllAddedItems());
-
-        return "redirect:/invoice/sales-invoice-set-product-numbers";
-    }
-
-    @GetMapping("/addInvoiceCancel")
-    public String cancelAddItem() {
-
-        return "redirect:/invoice/salesInvoiceCreate";
-    }
-
+//    @PostMapping("/addInvoiceItem")
+//    public String addItem (@ModelAttribute("invoiceProduct") InvoiceProductDTO invoiceProductDTO, Model model) {
+//
+//        model.addAttribute("invoiceProduct", invoiceProductService.listAllAddedItems());
+//
+//        return "redirect:/invoice/sales-invoice-set-product-numbers";
+//    }
+//
+//    @GetMapping("/addInvoiceCancel")
+//    public String cancelAddItem() {
+//
+//        return "redirect:/invoice/salesInvoiceCreate";
+//    }
+//
 }

@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ClientVendorRepository extends JpaRepository<ClientVendor, Long> {
     List<ClientVendor> findAllBy();
@@ -15,4 +16,6 @@ public interface ClientVendorRepository extends JpaRepository<ClientVendor, Long
 
     @Query("SELECT companyName FROM ClientVendor WHERE id = ?1")
     String findClientNameById(@Param("id") Long id);
+
+    Optional<ClientVendor> findByCompanyName(String companyName);
 }

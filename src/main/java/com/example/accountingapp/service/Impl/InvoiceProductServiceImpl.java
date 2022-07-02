@@ -120,5 +120,14 @@ public class InvoiceProductServiceImpl implements InvoiceProductService {
         return null;
     }
 
+    @Override
+    public void disableInvoiceProductsByInvoiceId(Long id) {
+        List<InvoiceProduct> invoiceProductList = invoiceProductRepository.findAllByInvoiceId(id);
+        for (InvoiceProduct each : invoiceProductList) {
+            each.setEnabled(false);
+            invoiceProductRepository.save(each);
+        }
+    }
+
 }
 
