@@ -78,33 +78,28 @@ public class SalesInvoiceController {
         return "/invoice/toInvoice";
     }
 
-//    @PostMapping("/approve/{id}")
-//    public String approve(@PathVariable("id") String id, BindingResult bindingResult, Model model) {
-//
-//        model.addAttribute("salesInvoices", invoiceService.listAllByInvoiceType(InvoiceType.SALE));
-//        model.addAttribute("clients", clientVendorService.findAllByCompanyType(CompanyType.CLIENT));
-//        Long invoiceId = invoiceService.getInvoiceNo(id);
-//        List<InvoiceProductDTO> invoiceProducts = invoiceProductService.getByInvoiceId(invoiceId);
-//
-//        for (InvoiceProductDTO invoiceProduct : invoiceProducts) {
-//
-//            ProductDTO product = productService.findById(invoiceProduct.getProductId());
-//
-//            if (product.getProductStatus() == ProductStatus.ACTIVE && product.getQty().intValue() >= invoiceProduct.getQty()) {
-//                BigInteger leftOverQty = BigInteger.valueOf(product.getQty().intValue() - invoiceProduct.getQty());
-//                product.setQty(leftOverQty);
-//                productService.updateProduct(product);
-//                invoiceService.approveInvoice(id);
-//            }else{
-//                String message = "Not enough qty";
-//                model.addAttribute("errorMessage", message);
-//            }
-//
-//
-//
-//        }
-//        return "redirect:/invoice/salesInvoiceList";
-//    }
+    @PostMapping("/approve/{id}")
+    public String approve(@PathVariable("id") String id, Model model) {
+
+        model.addAttribute("salesInvoices", invoiceService.listAllByInvoiceType(InvoiceType.SALE));
+        model.addAttribute("clients", clientVendorService.findAllByCompanyType(CompanyType.CLIENT));
+        Long invoiceId = invoiceService.getInvoiceNo(id);
+        List<InvoiceProductDTO> invoiceProducts = invoiceProductService.getByInvoiceId(invoiceId);
+
+        for (InvoiceProductDTO invoiceProduct : invoiceProducts) {
+
+            ProductDTO product = productService.findById(invoiceProduct.getProductId());
+
+            if (product.getProductStatus() == ProductStatus.ACTIVE && product.getQty().intValue() >= invoiceProduct.getQty()) {
+                BigInteger leftOverQty = BigInteger.valueOf(product.getQty().intValue() - invoiceProduct.getQty());
+                product.setQty(leftOverQty);
+                productService.updateProduct(product);
+                invoiceService.approveInvoice(id);
+            }
+
+        }
+        return "redirect:/invoice/salesInvoiceList";
+    }
 
     @GetMapping("/salesInvoiceCreate")
     public String salesInvoiceCreate(Model model) {
