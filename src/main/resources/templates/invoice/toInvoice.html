@@ -211,8 +211,8 @@
                                 <div id="invoice">
                                     <div class="toolbar hidden-print">
                                         <div class="text-end">
-                                            <a th:href="@{/pdf/generateToInvoice}" target="_blank" type="button" class="btn btn-dark"><i class="fa fa-edit"  ></i>Overview</a>
-                                            <a th:href="@{/pdf/downloadToInvoice}"  type="button" class="btn btn-danger"><i class="fa fa-file-pdf-o" ></i> Export as PDF</a>
+<!--                                            <a th:href="@{/pdf/generateToInvoice}" target="_blank" type="button" class="btn btn-dark"><i class="fa fa-edit"  ></i>Overview</a>-->
+<!--                                            <a th:href="@{/pdf/downloadToInvoice}"  type="button" class="btn btn-danger"><i class="fa fa-file-pdf-o" ></i> Export as PDF</a>-->
                                         </div>
                                         <hr>
                                     </div>
@@ -264,12 +264,12 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr >
-                                                            <td class="text-left"><h3 ></h3></td>
-                                                            <td class="unit" ></td>
-                                                            <td class="extra" ></td>
-                                                            <td class="total" ></td>
-                                                            <td class="total" ></td>
+                                                        <tr th:each="invoiceProductLists : ${invoiceProductList}">
+                                                            <td class="text-left" th:text="${invoiceProductLists.name}"><h3 ></h3></td>
+                                                            <td class="unit" th:text="${invoiceProductLists.price}"></td>
+                                                            <td class="extra" th:text="${invoiceProductLists.qty}"></td>
+                                                            <td class="total" th:text="${invoiceProductLists.tax}"></td>
+                                                            <td class="total" th:text="${invoiceProductLists.total}"></td>
                                                         </tr>
                                                     </tbody>
                                                     <tfoot>

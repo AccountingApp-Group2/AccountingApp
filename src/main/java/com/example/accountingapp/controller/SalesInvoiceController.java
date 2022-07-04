@@ -70,11 +70,12 @@ public class SalesInvoiceController {
     }
 
     @PostMapping("/toInvoice/{id}")
-    public String toInvoice(@PathVariable("id") String id, Model model) {
+    public String toInvoice(@PathVariable("id") String invoiceId, Model model) {
 
+        Long id = invoiceService.getInvoiceNo(invoiceId);
+        model.addAttribute("invoiceProductList", invoiceProductService.findAllByInvoiceId(id));
         model.addAttribute("salesInvoices", invoiceService.listAllByInvoiceType(InvoiceType.SALE));
         model.addAttribute("clients", clientVendorService.findAllByCompanyType(CompanyType.CLIENT));
-        Long invoiceId = invoiceService.getInvoiceNo(id);
         return "/invoice/toInvoice";
     }
 
@@ -146,8 +147,6 @@ public class SalesInvoiceController {
         invoiceService.enableInvoice(id);
         return "redirect:/invoice/salesInvoiceList";
     }
-
-
 
 
     @GetMapping("/editSalesInvoiceSelectProduct/{id}")
