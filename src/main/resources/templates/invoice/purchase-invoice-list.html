@@ -74,7 +74,7 @@
                                                                               type="submit" name="action" value="delete">Delete
                                                                       </button>
                                                                   </form>
-                                                                  <form action="#" data-th-action="@{/invoice/toInvoice/{id}(id=${purchaseInvoice.invoiceNumber})}" method="post" >
+                                                                  <form action="#" data-th-action="@{/invoice/toInvoice/{id}(id=${purchaseInvoice.id})}" method="post" >
                                                                       <button th:if="${purchaseInvoice.invoiceStatus.value =='Approved'}"
                                                                               class="btn btn-info mb-2 mb-sm-1 mr-sm-2"
                                                                               type="submit" name="action" value="toInvoice">To Invoice

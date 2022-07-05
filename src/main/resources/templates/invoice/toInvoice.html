@@ -264,12 +264,12 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr th:each="invoiceProductLists : ${invoiceProductList}">
-                                                            <td class="text-left" th:text="${invoiceProductLists.name}"><h3 ></h3></td>
-                                                            <td class="unit" th:text="${invoiceProductLists.price}"></td>
-                                                            <td class="extra" th:text="${invoiceProductLists.qty}"></td>
-                                                            <td class="total" th:text="${invoiceProductLists.tax}"></td>
-                                                            <td class="total" th:text="${invoiceProductLists.total}"></td>
+                                                        <tr th:each="invoiceProduct:${invoiceProducts}">
+                                                            <td class="text-left" th:text="${invoiceProduct.name}"><h3 ></h3></td>
+                                                            <td class="unit" th:text="${invoiceProduct.price}"></td>
+                                                            <td class="extra" th:text="${invoiceProduct.qty}"></td>
+                                                            <td class="total" th:text="'% ' +${invoiceProduct.getTax()}"></td>
+                                                            <td class="total" th:text="${invoiceProduct.getTotal()}"></td>
                                                         </tr>
                                                     </tbody>
                                                     <tfoot>
@@ -278,15 +278,16 @@
                                                         <td colspan="2">SUBTOTAL</td>
                                                         <td>5100</td>
                                                     </tr>
-                                                    <tr>
+<!--                                                    TODO Baha and Vitaly-->
+                                                    <tr >
                                                         <td colspan="2"></td>
-                                                        <td colspan="2">TAX 25%</td>
-                                                        <td>510</td>
+                                                        <td colspan="2">TAX</td>
+                                                        <td></td>
                                                     </tr>
-                                                    <tr>
+                                                    <tr th:each="invoiceProduct:${invoiceProducts}">
                                                         <td colspan="2"></td>
                                                         <td colspan="2">GRAND TOTAL</td>
-                                                        <td>5610</td>
+                                                        <td th:text="${invoiceProduct.getTotal()}"></td>
                                                     </tr>
                                                     </tfoot>
                                                 </table>
