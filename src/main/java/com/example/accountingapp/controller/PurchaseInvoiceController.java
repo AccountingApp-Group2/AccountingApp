@@ -61,7 +61,7 @@ public class PurchaseInvoiceController {
 
     @GetMapping("/purchaseInvoiceCreate")
     public String purchaseInvoiceCreate(Model model) {
-        // TODO Vitaly Bahrom for new ID
+        // TODO Vitaly Bahrom for new ID _ test
         InvoiceDTO invoiceDTO = new InvoiceDTO();
         invoiceDTO.setInvoiceType(InvoiceType.PURCHASE);
         Long id = invoiceService.saveAndReturnId(invoiceDTO);
