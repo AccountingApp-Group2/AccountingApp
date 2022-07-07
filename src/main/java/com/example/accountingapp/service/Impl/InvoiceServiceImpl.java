@@ -233,17 +233,18 @@ public class InvoiceServiceImpl implements InvoiceService {
             stockDetails.setProduct(eachInvoiceProduct.getProduct());
             stockDetails.setPrice(eachInvoiceProduct.getTax().add(BigDecimal.valueOf(100)).divide(BigDecimal.valueOf(100)).multiply(eachInvoiceProduct.getPrice()));
             stockDetails.setQuantity(BigInteger.valueOf(eachInvoiceProduct.getQty()));
+            stockDetails.setRemainingQuantity(BigInteger.valueOf(eachInvoiceProduct.getQty()));
             stockDetails.setIDate(LocalDateTime.now());
             stockDetailsRepository.save(stockDetails);
 
-            BigInteger remainingQtyAfter = BigInteger.ZERO;
-            for (StockDetails each : stockDetailsRepository.findAllByProductId(eachInvoiceProduct.getProduct().getId())) {
-                remainingQtyAfter = remainingQtyAfter.add(each.getQuantity());
-            }
-            for (StockDetails each : stockDetailsRepository.findAllByProductId(eachInvoiceProduct.getProduct().getId())) {
-                each.setRemainingQuantity(remainingQtyAfter);
-                stockDetailsRepository.save(each);
-            }
+//            BigInteger remainingQtyAfter = BigInteger.ZERO;
+//            for (StockDetails each : stockDetailsRepository.findAllByProductId(eachInvoiceProduct.getProduct().getId())) {
+//                remainingQtyAfter = remainingQtyAfter.add(each.getQuantity());
+//            }
+//            for (StockDetails each : stockDetailsRepository.findAllByProductId(eachInvoiceProduct.getProduct().getId())) {
+//                each.setRemainingQuantity(remainingQtyAfter);
+//                stockDetailsRepository.save(each);
+//            }
         }
     }
 }

@@ -48,11 +48,7 @@ public class InvoiceProductServiceImpl implements InvoiceProductService {
 
     @Override
     public List<ProductDTO> findAllProductsByCompanyName(String companyName) {
-        //find company ID
-        Long companyId = companyRepository.findByTitle(companyName).get().getId();
-        //get all products that this company sells
-        List<Product> productList = productRepository.findAllByCompanyId(companyId);
-        //map to DTO
+        List<Product> productList = productRepository.findAllProductsByCompanyName(companyName);
         List<ProductDTO> productDTOList= productList.stream()
                 .map(p->mapperUtil.convert(p,new ProductDTO()))
                 .collect(Collectors.toList());
