@@ -94,7 +94,6 @@ public class SalesInvoiceController {
             List<StockDetailsDTO> stocks = stockDetailsService.getByProductId(invoiceProduct.getProductId());
             List<StockDetailsDTO> sortedList = stocks.stream()
                     .sorted(Comparator.comparing(StockDetailsDTO :: getIDate))
-//                            .reversed())
                     .collect(Collectors.toList());
             ProductDTO product = productService.findById(invoiceProduct.getProductId());
 
