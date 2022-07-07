@@ -1,4 +1,4 @@
-package com.example.accountingapp.service.implVS;
+package com.example.accountingapp.service.impl;
 
 import com.example.accountingapp.dto.CompanyDTO;
 import com.example.accountingapp.entity.Company;
