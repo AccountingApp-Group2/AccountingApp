@@ -1,4 +1,4 @@
-package com.example.accountingapp.service.impl;
+package com.example.accountingapp.service.Impl;
 
 import com.example.accountingapp.dto.InvoiceDTO;
 import com.example.accountingapp.dto.InvoiceProductDTO;
