@@ -1,7 +1,6 @@
 package com.example.accountingapp.service.impl;
 
 
-import com.example.accountingapp.dto.InvoiceDTO;
 import com.example.accountingapp.dto.InvoiceProductDTO;
 import com.example.accountingapp.dto.ProductDTO;
 import com.example.accountingapp.entity.Invoice;
@@ -19,7 +18,6 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
-import java.util.Locale;
 import java.util.stream.Collectors;
 
 

@@ -32,7 +32,7 @@
                     <!-- Filter starts -->
                     <div class="users-list-filter px-2">
                         <div class="col-12 col-sm-6 col-lg-3 d-flex align-items-right">
-                            <a class="btn btn-success bg-light-success mb-1" ><i
+                            <a class="btn btn-success bg-light-success mb-1" th:href="@{/company/add}" ><i
                                     class="fa fa-plus mr-1"></i>Add Company</a>
                         </div>
                     </div>
@@ -51,7 +51,7 @@
                                                 <table id="example" class="table table-striped table-bordered file-export" style="width:100%">
                                                     <thead>
                                                     <tr>
-                                                        <th>#</th>
+                                                        <th>Id</th>
                                                         <th>Title</th>
                                                         <th>Representative</th>
                                                         <th>Email</th>
@@ -63,25 +63,22 @@
                                                     </tr>
                                                     </thead>
                                                     <tbody>
-                                                    <tr >
-                                                        <td ></td>
-                                                        <td  class="text-truncate"></td>
-                                                        <td ></td>
-                                                        <td ></td>
-                                                        <td ></td>
-                                                        <td ></td>
-                                                        <td ></td>
-                                                        <td>
-                                                            <span
-
-                                                                    class="badge bg-light-success"></span>
-                                                            <span
-
-                                                                    class="badge bg-light-DANGER"></span>
+                                                    <tr th:each="company : ${companies}">
+                                                        <td th:text="${company.id}"></td>
+                                                        <td  class="text-truncate" th:text="${company.title}"></td>
+                                                        <td th:text="${company.representative}"></td>
+                                                        <td th:text="${company.email}"></td>
+                                                        <td th:text="${company.phone}"></td>
+                                                        <td th:text="${company.zip}"></td>
+                                                        <td th:text="${company.state}"></td>
+                                                                                                                <td>
+                                                        <span th:if="${company.companyStatus.getValue() == 'Enabled'}"
+                                                              class="badge bg-light-success">Enabled</span>
+                                                        <span th:if="${company.companyStatus.getValue() == 'Disabled'}"
+                                                              class="badge bg-light-DANGER">Disabled</span>
                                                         </td>
-                                                        <!--<td></td>-->
                                                         <td>
-                                                            <a >
+                                                            <a th:href="@{/company/edit/{id}(id=${company.id})}">
                                                                 <i class="ft-edit"></i>
                                                             </a>
                                                         </td>

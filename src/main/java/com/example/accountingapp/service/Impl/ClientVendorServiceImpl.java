@@ -2,6 +2,7 @@ package com.example.accountingapp.service.impl;
 
 import com.example.accountingapp.dto.ClientVendorDTO;
 import com.example.accountingapp.enums.CompanyType;
+import com.example.accountingapp.entity.ClientVendor;
 import com.example.accountingapp.mapper.MapperUtil;
 import com.example.accountingapp.repository.ClientVendorRepository;
 import com.example.accountingapp.service.ClientVendorService;
@@ -33,7 +34,30 @@ public class ClientVendorServiceImpl implements ClientVendorService {
 
     @Override
     public void delete(Long id) {
+        ClientVendor clientVendor = clientVendorRepository.findById(id).get();
+        clientVendor.setIsDeleted(true);
+        clientVendorRepository.save(clientVendor);
+    }
 
+    @Override
+    public void save(ClientVendorDTO dto) {
+        dto.setEnabled(true);
+        clientVendorRepository.save(mapperUtil.convert(dto, new ClientVendor()));
+    }
+
+    @Override
+    public ClientVendorDTO update(ClientVendorDTO dto) {
+        ClientVendor client = clientVendorRepository.findByEmail(dto.getEmail());
+        ClientVendor convertedClient = mapperUtil.convert(dto,new ClientVendor());
+        convertedClient.setId(client.getId());
+        clientVendorRepository.save(convertedClient);
+        return findByEmail(dto.getEmail());
+    }
+
+    @Override
+    public ClientVendorDTO findByEmail(String email) {
+        ClientVendor clientVendor = clientVendorRepository.findByEmail(email);
+        return mapperUtil.convert(clientVendor,new ClientVendorDTO());
     }
 
     @Override

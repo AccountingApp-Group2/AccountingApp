@@ -34,7 +34,7 @@
 
 
                         <div class="col-12 col-sm-6 col-lg-3 d-flex align-items-right">
-                            <a class="btn btn-primary bg-light-primary mb-1" ><i
+                            <a class="btn btn-primary bg-light-primary mb-1" th:href="@{/payment/list}"><i
                                     class="fa fa-list mr-1"></i>Membership Payment</a>
                         </div>
                     </div>
@@ -62,11 +62,11 @@
                                                                 <div class="controls">
                                                                     <label for="users-edit-username">Company Title</label>
                                                                     <select type="text" id="users-edit-username"
-                                                                           class="form-control"  >
-                                                                    <option
-                                                                            selected="selected">
+                                                                            class="form-control"  >
+                                                                        <option
+                                                                                selected="selected">
 
-                                                                    </option>
+                                                                        </option>
                                                                     </select>
 
                                                                 </div>
@@ -76,9 +76,9 @@
                                                                 <div class="controls">
                                                                     <label for="email">E-mail</label>
                                                                     <select type="email" id="email"
-                                                                           class="form-control"
-                                                                           required
-                                                                           aria-invalid="false">
+                                                                            class="form-control"
+                                                                            required
+                                                                            aria-invalid="false">
 
                                                                         <option
                                                                         ></option>
@@ -95,7 +95,7 @@
                                                                            required
                                                                            aria-invalid="false"
 
-                                                                           >
+                                                                    >
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -129,19 +129,19 @@
                                                                 <div class="controls">
                                                                     <label for="representative">Prepared By</label>
                                                                     <select type="text" id="representative"
-                                                                            class="form-control" th:field="*{preparedBy}">
+                                                                            class="form-control">
                                                                         <option
 
                                                                                 selected="selected">
 
                                                                         </option>
                                                                     </select>
-<!--                                                                    <input id="representative" th:text="${paymentuserInfo.getFirstname()+' '+paymentuserInfo.getLastname()}"-->
-<!--                                                                           class="form-control"-->
-<!--                                                                           placeholder="representative"-->
-<!--                                                                           aria-invalid="false"-->
-<!--                                                                           th:field="*{preparedBy}"-->
-<!--                                                                    >-->
+                                                                    <!--                                                                    <input id="representative" th:text="${paymentuserInfo.getFirstname()+' '+paymentuserInfo.getLastname()}"-->
+                                                                    <!--                                                                           class="form-control"-->
+                                                                    <!--                                                                           placeholder="representative"-->
+                                                                    <!--                                                                           aria-invalid="false"-->
+                                                                    <!--                                                                           th:field="*{preparedBy}"-->
+                                                                    <!--                                                                    >-->
 
                                                                 </div>
                                                             </div>

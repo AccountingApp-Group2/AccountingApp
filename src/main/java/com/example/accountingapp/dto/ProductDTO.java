@@ -24,31 +24,31 @@ public class ProductDTO {
     @NotBlank
     private String description;
 
-    @NotBlank
+    @NotNull
     private CategoryDTO category;
 
-    @NotBlank
+    @NotNull
     private BigInteger qty;
 
-    @NotBlank
+    @NotNull
     private Unit unit;
 
-    @NotBlank
+    @NotNull
     private BigInteger lowLimitAlert;
 
-    @NotBlank
+//    @NotBlank
     private BigInteger tax;
 
-    @NotBlank
+
     private CompanyDTO company;
 
-    @NotBlank
+//    @NotBlank
     private Boolean enabled;
 
-    @NotBlank
+    @NotNull
     private ProductStatus productStatus;
 
-    @NotBlank
+//    @NotBlank
     private BigInteger newColumn;
 
 }

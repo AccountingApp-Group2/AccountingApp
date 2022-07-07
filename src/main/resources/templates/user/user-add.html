@@ -56,7 +56,7 @@
 
                                                 <!-- Account form starts -->
 
-                                                <form th:action="@{/user/add}" method="post" th:object="${user}">
+                                                <form method="post" th:action="@{/user/add}" th:object="${user}">
                                                     <div class="row">
                                                         <div class="col-12 col-md-6">
                                                             <div class="form-group">
@@ -67,8 +67,11 @@
                                                                            placeholder="firstname" required
                                                                            th:field="*{firstName}"
                                                                            type="text">
-
-
+                                                                    <span class="help-block" th:if="${#fields.hasErrors('firstName')}">
+                                                                        <ul>
+                                                                            <p class="text-danger" th:each="err : ${#fields.errors('firstName')}" th:text="${err}"/>
+                                                                        </ul>
+                                                                    </span>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
@@ -79,6 +82,11 @@
                                                                            placeholder="Password" required
                                                                            th:field="*{passWord}"
                                                                            type="password">
+                                                                    <span class="help-block" th:if="${#fields.hasErrors('passWord')}">
+                                                                        <ul>
+                                                                            <p class="text-danger" th:each="err : ${#fields.errors('passWord')}" th:text="${err}"/>
+                                                                        </ul>
+                                                                    </span>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
@@ -89,18 +97,28 @@
                                                                            placeholder="Email" required
                                                                            th:field="*{email}"
                                                                            type="email">
+                                                                    <span class="help-block" th:if="${#fields.hasErrors('email')}">
+                                                                        <ul>
+                                                                            <p class="text-danger" th:each="err : ${#fields.errors('email')}" th:text="${err}"/>
+                                                                        </ul>
+                                                                    </span>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
                                                                 <div class="controls">
-                                                                    <label >Company</label>
-                                                                    <select  th:field="*{company}" class="custom-select">
+                                                                    <label>Company</label>
+                                                                    <select class="custom-select" th:field="*{company}">
                                                                         <option th:text="Select" th:value="''"></option>
                                                                         <option th:each="company : ${companies}"
                                                                                 th:text="${company.title}"
                                                                                 th:value="${company.id}"></option>
 
                                                                     </select>
+                                                                    <span class="help-block" th:if="${#fields.hasErrors('company')}">
+                                                                        <ul>
+                                                                            <p class="text-danger" th:each="err : ${#fields.errors('company')}" th:text="${err}"/>
+                                                                        </ul>
+                                                                    </span>
                                                                 </div>
                                                             </div>
 
@@ -114,6 +132,11 @@
                                                                            placeholder="Lastname"
                                                                            required th:field="*{lastName}"
                                                                            type="text">
+                                                                    <span class="help-block" th:if="${#fields.hasErrors('lastName')}">
+                                                                        <ul>
+                                                                            <p class="text-danger" th:each="err : ${#fields.errors('lastName')}" th:text="${err}"/>
+                                                                        </ul>
+                                                                    </span>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
@@ -124,33 +147,48 @@
                                                                            required
                                                                            th:field="*{phone}"
                                                                            type="text">
+                                                                    <span class="help-block" th:if="${#fields.hasErrors('phone')}">
+                                                                        <ul>
+                                                                            <p class="text-danger" th:each="err : ${#fields.errors('phone')}" th:text="${err}"/>
+                                                                        </ul>
+                                                                    </span>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
                                                                 <div class="controls">
                                                                     <label>Choose a Role</label>
-                                                                    <select  th:field="*{role}" class="custom-select">
-                                                                        <option th:value="''" th:text="Select"></option>
-                                                                        <option th:each="role : ${roles}" th:value="${role.id}" th:text="${role.name}"></option>
+                                                                    <select class="custom-select" th:field="*{role}">
+                                                                        <option th:text="Select" th:value="''"></option>
+                                                                        <option th:each="role : ${roles}"
+                                                                                th:text="${role.name}"
+                                                                                th:value="${role.id}"></option>
                                                                     </select>
-
-
+                                                                    <span class="help-block" th:if="${#fields.hasErrors('role')}">
+                                                                        <ul>
+                                                                            <p class="text-danger" th:each="err : ${#fields.errors('role')}" th:text="${err}"/>
+                                                                        </ul>
+                                                                    </span>
 
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
                                                                 <div class="controls">
                                                                     <label>Choose a Status</label>
-                                                                    <select  th:field="*{userStatus}" class="custom-select">
-                                                                        <option th:value="''" th:text="Select"></option>
+                                                                    <select class="custom-select"
+                                                                            th:field="*{userStatus}">
+                                                                        <option th:text="Select" th:value="''"></option>
                                                                         <option th:each="status : ${UserStatus}"
-                                                                                th:value="${status}" th:text="${status.value}"></option>
+                                                                                th:text="${status.value}"
+                                                                                th:value="${status}"></option>
 
                                                                     </select>
-
+                                                                    <span class="help-block" th:if="${#fields.hasErrors('userStatus')}">
+                                                                        <ul>
+                                                                            <p class="text-danger" th:each="err : ${#fields.errors('userStatus')}" th:text="${err}"/>
+                                                                        </ul>
+                                                                    </span>
 
                                                                 </div>
-
 
 
                                                             </div>
@@ -203,3 +241,13 @@
 <!-- END : Body-->
 
 </html>
+
+
+
+
+
+
+
+
+
+
