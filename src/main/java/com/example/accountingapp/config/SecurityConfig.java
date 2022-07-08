@@ -1,40 +1,23 @@
 package com.example.accountingapp.config;
 
+import com.example.accountingapp.service.SecurityService;
+import com.example.accountingapp.service.impl.SecurityServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 @Configuration
 public class SecurityConfig {
 
-    @Bean
-    public UserDetailsService userDetailsService(PasswordEncoder encoder){
+    private final SecurityService securityService;
+    private final AuthSuccessHandler authSuccessHandler;
 
-
-        List<UserDetails> userList =  new ArrayList<>();
-
-        userList.add(
-                new User("root", encoder.encode("Abc1"), Arrays.asList(new SimpleGrantedAuthority("ROLE_ROOT"))));
-        userList.add(
-                new User("admin", encoder.encode("Abc1"), Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN"))));
-        userList.add(
-                new User("manager", encoder.encode("Abc1"), Arrays.asList(new SimpleGrantedAuthority("ROLE_MANAGER"))));
-        userList.add(
-                new User("employee", encoder.encode("Abc1"), Arrays.asList(new SimpleGrantedAuthority("ROLE_EMPLOYEE"))));
-
-
-        return new InMemoryUserDetailsManager(userList);
+    public SecurityConfig(SecurityService securityService, AuthSuccessHandler authSuccessHandler) {
+        this.securityService = securityService;
+        this.authSuccessHandler = authSuccessHandler;
     }
 
     @Bean
@@ -42,41 +25,47 @@ public class SecurityConfig {
 
         return http
                 .authorizeRequests()
-                .antMatchers("/company/**").hasRole("ROOT")
-                .antMatchers("/user/**").hasAnyRole("ROOT","ADMIN")
-                .antMatchers("/product/**").hasRole("MANAGER")
-                .antMatchers("/category/**").hasRole("MANAGER")
-                .antMatchers("/client-vendor/**").hasRole("MANAGER")
-                .antMatchers("/invoice/**").hasRole("MANAGER")
-                .antMatchers("/payment/**").hasRole("MANAGER")
-                .antMatchers("/invoice/**").hasRole("EMPLOYEE")
+                .antMatchers("/company/**").hasAuthority("Root")
+                .antMatchers("/user/**").hasAnyAuthority("Root","Admin")
+                .antMatchers("/product/**").hasAuthority("Manager")
+                .antMatchers("/category/**").hasAuthority("Manager")
+                .antMatchers("/client-vendor/**").hasAuthority("Manager")
+                .antMatchers("/invoice/**").hasAnyAuthority("Manager","Employee")
+                .antMatchers("/payment/**").hasAuthority("Manager")
                 .antMatchers(
                         "/",
                         "/login",
-                        "/fragments/**",
                         "/assets/**",
-                        "/img/**",
                         "/css/**",
-                        "/media/**",
+                        "/css-rtl/**",
+                        "/data/**",
+                        "/fonts/**",
+                        "/img/**",
                         "/js/**",
                         "/libs/**",
-                        "/*/**",
-                        "/main2" // Pul all the folders
+                        "/vendors/**",
+                        "/media/**",
+                        "/vendor/**",
+                        "/resources/**"
                 ).permitAll()
                 .anyRequest().authenticated()
                 .and()
-//                .httpBasic()
                 .formLogin()
                     .loginPage("/login")
-                    .defaultSuccessUrl("/main2")
+                    .successHandler(authSuccessHandler)
                     .failureUrl("/login?error=true")
                     .permitAll()
+                .and()
+                .logout()
+                    .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                    .logoutSuccessUrl("/login")
+                .and()
+                .rememberMe()
+                    .tokenValiditySeconds(120)
+                    .key("cydeo")
+                    .userDetailsService(securityService)
                 .and().build();
 
-
     }
-
-
-
 
 }
