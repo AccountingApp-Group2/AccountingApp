@@ -19,10 +19,11 @@ import java.math.BigDecimal;
 public class InvoiceProduct extends BaseEntity {
 
     private String name;
-    private int qty;
+    private Integer qty;
     private BigDecimal price;
     private BigDecimal tax;
     private BigDecimal profit;
+    private boolean enabled;
 
     @ManyToOne(fetch = FetchType.LAZY)
     Product product;

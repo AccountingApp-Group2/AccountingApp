@@ -2,6 +2,7 @@ package com.example.accountingapp.service.impl;
 
 import com.example.accountingapp.dto.ProductDTO;
 import com.example.accountingapp.entity.Product;
+
 import com.example.accountingapp.entity.User;
 import com.example.accountingapp.mapper.MapperUtil;
 import com.example.accountingapp.repository.ProductRepository;
@@ -41,30 +42,32 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void save(ProductDTO productDTO) {
-        Product convertedProduct = mapperUtil.convert(productDTO, new Product());
-        User loggedInUser = userRepository.findByEmail("manager1@company2.com");
-        convertedProduct.setCompany(loggedInUser.getCompany());
-        convertedProduct.setEnabled(true);
-        productRepository.save(convertedProduct);
+    public ProductDTO findByDescription(String id) {
+        return productRepository.findByDescription(id);
     }
 
     @Override
-    public ProductDTO update(ProductDTO dto) {
-        Product product = productRepository.findById(dto.getId()).get();
-        Product convertedProduct = mapperUtil.convert(dto,new Product());
-        User loggedInUser = userRepository.findByEmail("manager1@company2.com");
-        convertedProduct.setCompany(loggedInUser.getCompany());
-        convertedProduct.setEnabled(product.getEnabled());
-        productRepository.save(convertedProduct);
-        return findById(convertedProduct.getId());
+    public void updateProduct(ProductDTO product) {
+        Product p = mapperUtil.convert(product,new Product());
+        productRepository.save(p);
+    }
+
+
+
+    @Override
+    public void save(ProductDTO productDTO) {
+        
+    }
+
+    @Override
+    public ProductDTO update(ProductDTO productDTO) {
+        return null;
     }
 
     @Override
     public void delete(Long id) {
-        Product product = productRepository.findById(id).get();
-        product.setIsDeleted(true);
-        productRepository.save(product);
+        
     }
+
 
 }

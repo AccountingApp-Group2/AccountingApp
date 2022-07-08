@@ -19,6 +19,7 @@ import java.util.List;
 @Where(clause = "is_deleted=false")
 public class Invoice extends BaseEntity {
 
+    @Column(unique = true)
     private String invoiceNumber;
 
     @Enumerated(EnumType.STRING)
@@ -39,8 +40,8 @@ public class Invoice extends BaseEntity {
     private Company company;
 
     private boolean enabled;
-
-    @OneToMany
-    List<InvoiceProduct> invoiceProductList;
+//
+//    @OneToMany
+//    List<InvoiceProduct> invoiceProductList;
 
 }
