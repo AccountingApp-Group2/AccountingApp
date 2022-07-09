@@ -14,15 +14,15 @@ VALUES (2, '2021-05-02 00:00:00', FALSE, 2, '2021-05-02 00:00:00', 'Vendor1', '1
        (2, '2021-05-02 00:00:00', FALSE, 2, '2021-05-02 00:00:00', 'Client2', '0987654311', 'client2@email.com', 'Street 2', '38704', FALSE, 'CLIENT', 2, 'ARIZONA'),
        (2, '2021-05-02 00:00:00', FALSE, 2, '2021-05-02 00:00:00', 'Client3', '0987654331', 'client3@email.com', 'Street 3', '38704', FALSE, 'CLIENT', 2, 'ARIZONA'),
        (3, '2021-05-03 00:00:00', FALSE, 2, '2021-05-03 00:00:00', 'Vendor4', '1234567891', 'vendor4@email.com', 'Street 4.', '35242', TRUE, 'VENDOR', 3, 'FLORIDA'),
-       (3, '2021-05-03 00:00:00', FALSE, 2, '2021-05-03 00:00:00', 'Vendor5', '1234567891', 'vendor5@email.com', 'Street 5.', '35242', TRUE, 'VENDOR', 3, 'FLORIDA'),
+       (3, '2021-05-03 00:00:00', FALSE, 2, '2021-05-03 00:00:00', 'Vendor5', '1234567891', 'vendor5@email.com', 'Street 5.', '35242', TRUE, 'VENDOR', 3, 'CALIFORNIA'),
        (3, '2021-05-03 00:00:00', FALSE, 2, '2021-05-03 00:00:00', 'Vendor6', '1234567891', 'vendor6@email.com', 'Street 6.', '35242', TRUE, 'VENDOR', 3, 'FLORIDA'),
        (3, '2021-05-03 00:00:00', FALSE, 3, '2021-05-03 00:00:00', 'Client4', '7894561230', 'client4@email.com', 'Street 4', '33027', TRUE, 'CLIENT', 3, 'FLORIDA'),
        (3, '2021-05-03 00:00:00', FALSE, 3, '2021-05-03 00:00:00', 'Client5', '7894561240', 'client5@email.com', 'Street 5', '33027', TRUE, 'CLIENT', 3, 'FLORIDA'),
        (3, '2021-05-03 00:00:00', FALSE, 3, '2021-05-03 00:00:00', 'Client6', '7894561241', 'client6@email.com', 'Street 6', '33027', TRUE, 'CLIENT', 3, 'FLORIDA'),
        (4, '2021-05-04 00:00:00', FALSE, 2, '2021-05-04 00:00:00', 'Vendor7', '2234567891', 'vendor7@email.com', 'Street 7.', '35242', TRUE, 'VENDOR', 4, 'FLORIDA'),
        (4, '2021-05-04 00:00:00', FALSE, 2, '2021-05-04 00:00:00', 'Vendor8', '2234567891', 'vendor8@email.com', 'Street 8.', '35242', TRUE, 'VENDOR', 4, 'FLORIDA'),
-       (4, '2021-05-04 00:00:00', FALSE, 2, '2021-05-04 00:00:00', 'Vendor9', '2234567891', 'vendor9@email.com', 'Street 9.', '35242', TRUE, 'VENDOR', 4, 'FLORIDA'),
-       (4, '2021-05-04 00:00:00', FALSE, 3, '2021-05-04 00:00:00', 'Client7', '8894561230', 'client7@email.com', 'Street 7', '33027', TRUE, 'CLIENT', 4, 'FLORIDA'),
+       (4, '2021-05-04 00:00:00', FALSE, 2, '2021-05-04 00:00:00', 'Vendor9', '2234567891', 'vendor9@email.com', 'Street 9.', '35242', TRUE, 'VENDOR', 4, 'ILLINOIS'),
+       (4, '2021-05-04 00:00:00', FALSE, 3, '2021-05-04 00:00:00', 'Client7', '8894561230', 'client7@email.com', 'Street 7', '33027', TRUE, 'CLIENT', 4, 'ILLINOIS'),
        (4, '2021-05-04 00:00:00', FALSE, 3, '2021-05-04 00:00:00', 'Client8', '8894561240', 'client8@email.com', 'Street 8', '33027', TRUE, 'CLIENT', 4, 'FLORIDA'),
        (4, '2021-05-04 00:00:00', FALSE, 3, '2021-05-04 00:00:00', 'Client9', '8894561241', 'client9@email.com', 'Street 9', '33027', TRUE, 'CLIENT', 4, 'FLORIDA');
 

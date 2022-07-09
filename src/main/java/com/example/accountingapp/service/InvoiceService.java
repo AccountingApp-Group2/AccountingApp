@@ -12,17 +12,23 @@ public interface InvoiceService {
 
     BigDecimal calculateCostByInvoiceID(Long id);
 
-    void delete(Long id);
     String getNextInvoiceIdSale();
+
     String getNextInvoiceIdPurchase();
+
     String getLocalDate();
+
     Long getInvoiceNo(String id);
+
     void approveInvoice(String invoiceId);
 
     String findInvoiceName(String invoiceId);
+
     Long saveAndReturnId(InvoiceDTO invoiceDTO);
 
     InvoiceDTO save(InvoiceDTO invoiceDTO);
+
+    void delete(Long id);
 
     void updateInvoiceCompany(InvoiceDTO invoiceDTO);
 
@@ -33,4 +39,6 @@ public interface InvoiceService {
     void approvePurchaseInvoice(Long id);
 
     void addProductToStockByInvoice(Long id);
+
 }
+
