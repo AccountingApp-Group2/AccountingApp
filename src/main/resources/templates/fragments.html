@@ -222,14 +222,17 @@
                     class="dropdown-toggle nav-link d-flex align-items-center" href="javascript:;"
                     data-toggle="dropdown"><i class="ft-bar-chart"></i><span data-i18n="Components">Reporting</span></a>
                 <ul class="dropdown-menu">
-
-                    <li data-menu="" sec:authorize="hasAnyAuthority('Manager','Employee')"><a class="dropdown-item d-flex align-items-center"
-                                        data-toggle="dropdown"><i class="ft-arrow-right submenu-icon"></i><span
-                            data-i18n="Grid">Stock Report</span></a>
+                
+                    <li data-menu="" sec:authorize="hasAnyAuthority('Manager','Employee')"><a
+                            class="dropdown-item d-flex align-items-center" th:href="@{/report/stock}"
+                            data-toggle="dropdown"><i class="ft-arrow-right submenu-icon"></i><span
+                            data-i18n="Chat">Stock Report</span></a>
                     </li>
-                    <li data-menu="" sec:authorize="hasAnyAuthority('Manager')"><a class="dropdown-item d-flex align-items-center"
-                                        data-toggle="dropdown"><i class="ft-arrow-right submenu-icon"></i><span
-                            data-i18n="Typography">Profit / Loss Report</span></a>
+
+                    <li data-menu="" sec:authorize="hasAnyAuthority('Manager','Employee')"><a
+                            class="dropdown-item d-flex align-items-center" th:href="@{/report/profit}"
+                            data-toggle="dropdown"><i class="ft-arrow-right submenu-icon"></i><span
+                            data-i18n="Chat">Profit / Loss Report </span></a>
                     </li>
 
                 </ul>

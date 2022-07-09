@@ -13,4 +13,6 @@ public interface ClientVendorService {
     ClientVendorDTO findByEmail(String email);
 
     List<ClientVendorDTO> findAllByCompanyType(CompanyType companyType);
+
+    String findClientNameById(Long id);
 }

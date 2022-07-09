@@ -2,14 +2,12 @@ package com.example.accountingapp.service.impl;
 
 import com.example.accountingapp.dto.CategoryDTO;
 import com.example.accountingapp.entity.Category;
-import com.example.accountingapp.entity.User;
 import com.example.accountingapp.mapper.MapperUtil;
 import com.example.accountingapp.repository.CategoryRepository;
 import com.example.accountingapp.service.CategoryService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service

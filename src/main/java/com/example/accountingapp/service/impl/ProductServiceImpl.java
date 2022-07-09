@@ -3,6 +3,7 @@ package com.example.accountingapp.service.impl;
 import com.example.accountingapp.dto.ProductDTO;
 import com.example.accountingapp.entity.Company;
 import com.example.accountingapp.entity.Product;
+
 import com.example.accountingapp.entity.User;
 import com.example.accountingapp.entity.common.UserPrincipal;
 import com.example.accountingapp.mapper.MapperUtil;
@@ -45,6 +46,19 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public ProductDTO findByDescription(String id) {
+        return productRepository.findByDescription(id);
+    }
+
+    @Override
+    public void updateProduct(ProductDTO product) {
+        Product p = mapperUtil.convert(product,new Product());
+        productRepository.save(p);
+    }
+
+
+
+    @Override
     public void save(ProductDTO productDTO) {
         final Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
@@ -67,6 +81,7 @@ public class ProductServiceImpl implements ProductService {
         convertedProduct.setEnabled(product.getEnabled());
         productRepository.save(convertedProduct);
         return findById(convertedProduct.getId());
+        
     }
 
     @Override
@@ -75,5 +90,6 @@ public class ProductServiceImpl implements ProductService {
         product.setIsDeleted(true);
         productRepository.save(product);
     }
+
 
 }
