@@ -1,4 +1,4 @@
-package com.example.accountingapp.service.Impl;
+package com.example.accountingapp.service.impl;
 
 import com.example.accountingapp.dto.PaymentDTO;
 import com.example.accountingapp.entity.Payment;
@@ -6,9 +6,6 @@ import com.example.accountingapp.mapper.MapperUtil;
 import com.example.accountingapp.repository.PaymentRepository;
 import com.example.accountingapp.service.PaymentService;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 

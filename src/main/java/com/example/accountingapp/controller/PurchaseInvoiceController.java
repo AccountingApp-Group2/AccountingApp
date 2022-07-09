@@ -7,7 +7,6 @@ import com.example.accountingapp.enums.InvoiceType;
 import com.example.accountingapp.service.ClientVendorService;
 import com.example.accountingapp.service.InvoiceProductService;
 import com.example.accountingapp.service.InvoiceService;
-import com.example.accountingapp.service.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -19,14 +18,11 @@ public class PurchaseInvoiceController {
     final private InvoiceService invoiceService;
     final private ClientVendorService clientVendorService;
     final private InvoiceProductService invoiceProductService;
-    final private ProductService productService;
 
-    public PurchaseInvoiceController(InvoiceService invoiceService, ClientVendorService clientVendorService,
-                                     InvoiceProductService invoiceProductService, ProductService productService) {
+    public PurchaseInvoiceController(InvoiceService invoiceService, ClientVendorService clientVendorService, InvoiceProductService invoiceProductService) {
         this.invoiceService = invoiceService;
         this.clientVendorService = clientVendorService;
         this.invoiceProductService = invoiceProductService;
-        this.productService = productService;
     }
 
     @GetMapping("/purchaseInvoiceList")
@@ -36,9 +32,8 @@ public class PurchaseInvoiceController {
     }
 
 
-
     @PostMapping("/setInvoiceStatusEnabled/{id}")
-    public String setInvoiceStatusEnabled(@PathVariable("id") Long id){
+    public String setInvoiceStatusEnabled(@PathVariable("id") Long id) {
         invoiceService.enableInvoice(id);
         return "redirect:/invoice/purchaseInvoiceList";
     }
@@ -46,17 +41,15 @@ public class PurchaseInvoiceController {
 
     @PostMapping("/purchaseInvoiceList/{id}")
     public String saveInvoice(@PathVariable("id") Long id) {
-
         invoiceService.enableInvoice(id);
         return "redirect:/invoice/purchaseInvoiceList";
     }
-    @GetMapping("/editPurchaseInvoiceSelectProduct/{id}")
-    public String editPurchaseInvoiceSelectProduct (@PathVariable("id") Long id) {
 
+    @GetMapping("/editPurchaseInvoiceSelectProduct/{id}")
+    public String editPurchaseInvoiceSelectProduct(@PathVariable("id") Long id) {
         invoiceProductService.disableInvoiceProductsByInvoiceId(id);
         return "redirect:/invoice/purchaseInvoiceSelectProduct/" + id;
     }
-
 
 
     @GetMapping("/purchaseInvoiceCreate")
@@ -106,23 +99,13 @@ public class PurchaseInvoiceController {
 
 
     @PostMapping("/deletePurchaseInvoice/{id}")
-    public String approveDeleteToInvoice(@PathVariable("id") String id, Model model) {
+    public String approveDeleteToInvoice(@PathVariable("id") String id) {
         invoiceService.delete(invoiceService.getInvoiceNo(id));
         return "redirect:/invoice/purchaseInvoiceList";
     }
 
-    @PostMapping("/toProductInvoice/{id}")
-    public String toInvoice(@PathVariable("id") String id, Model model) {
-
-        model.addAttribute("salesInvoices", invoiceService.listAllByInvoiceType(InvoiceType.SALE));
-        model.addAttribute("clients", clientVendorService.findAllByCompanyType(CompanyType.CLIENT));
-        Long invoiceId = invoiceService.getInvoiceNo(id);
-        return "/invoice/toInvoice";
-    }
-
-
-    @PostMapping ("/approvePurchaseInvoice/{id}")
-    public String approvePurchaseInvoiceById(@PathVariable("id") Long id){
+    @PostMapping("/approvePurchaseInvoice/{id}")
+    public String approvePurchaseInvoiceById(@PathVariable("id") Long id) {
         invoiceService.approvePurchaseInvoice(id);
         invoiceService.addProductToStockByInvoice(id);
         return "redirect:/invoice/purchaseInvoiceList";

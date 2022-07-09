@@ -8,7 +8,6 @@ import com.example.accountingapp.entity.InvoiceProduct;
 import com.example.accountingapp.entity.Product;
 import com.example.accountingapp.enums.InvoiceType;
 import com.example.accountingapp.mapper.MapperUtil;
-import com.example.accountingapp.repository.CompanyRepository;
 import com.example.accountingapp.repository.InvoiceProductRepository;
 import com.example.accountingapp.repository.InvoiceRepository;
 import com.example.accountingapp.repository.ProductRepository;
@@ -25,15 +24,13 @@ import java.util.stream.Collectors;
 public class InvoiceProductServiceImpl implements InvoiceProductService {
 
     final private InvoiceProductRepository invoiceProductRepository;
-    final private CompanyRepository companyRepository;
     final private ProductRepository productRepository;
     final private MapperUtil mapperUtil;
     final private InvoiceRepository invoiceRepository;
 
 
-    public InvoiceProductServiceImpl(InvoiceProductRepository invoiceProductRepository, CompanyRepository companyRepository, ProductRepository productRepository, MapperUtil mapperUtil, InvoiceRepository invoiceRepository) {
+    public InvoiceProductServiceImpl(InvoiceProductRepository invoiceProductRepository, ProductRepository productRepository, MapperUtil mapperUtil, InvoiceRepository invoiceRepository) {
         this.invoiceProductRepository = invoiceProductRepository;
-        this.companyRepository = companyRepository;
         this.productRepository = productRepository;
         this.mapperUtil = mapperUtil;
         this.invoiceRepository = invoiceRepository;
@@ -47,9 +44,7 @@ public class InvoiceProductServiceImpl implements InvoiceProductService {
     @Override
     public List<ProductDTO> findAllProductsByCompanyName(String companyName) {
         List<Product> productList = productRepository.findAllProductsByCompanyName(companyName);
-        List<ProductDTO> productDTOList= productList.stream()
-                .map(p->mapperUtil.convert(p,new ProductDTO()))
-                .collect(Collectors.toList());
+        List<ProductDTO> productDTOList = productList.stream().map(p -> mapperUtil.convert(p, new ProductDTO())).collect(Collectors.toList());
         return productDTOList;
     }
 
@@ -60,22 +55,18 @@ public class InvoiceProductServiceImpl implements InvoiceProductService {
         InvoiceProduct invoiceProduct = mapperUtil.convert(invoiceProductDTO, new InvoiceProduct());
         invoiceProduct.setInvoice(invoice);
         //get last id in invoiceProduct Table +1
-        Long lastId = invoiceProductRepository.findHighestId().get()+1;
+        Long lastId = invoiceProductRepository.findHighestId().get() + 1;
         invoiceProduct.setId(lastId);
 
-        if(invoice.getInvoiceType()== InvoiceType.PURCHASE) invoiceProduct.setProfit(BigDecimal.ZERO);
+        if (invoice.getInvoiceType() == InvoiceType.PURCHASE) invoiceProduct.setProfit(BigDecimal.ZERO);
         Product product = productRepository.getProductByName(invoiceProductDTO.getName()).get();
         invoiceProduct.setProduct(product);
-        invoiceProductRepository.save (invoiceProduct);
+        invoiceProductRepository.save(invoiceProduct);
     }
 
     @Override
-    public List<InvoiceProductDTO>  findAllInvoiceProductsByInvoiceId(Long id) {
-        List<InvoiceProductDTO> invoiceProductDTOList = invoiceProductRepository.findAllByInvoiceId(id)
-                .stream()
-                .filter(p -> !p.getIsDeleted())
-                .map(p -> mapperUtil.convert(p, new InvoiceProductDTO()))
-                .collect(Collectors.toList());
+    public List<InvoiceProductDTO> findAllInvoiceProductsByInvoiceId(Long id) {
+        List<InvoiceProductDTO> invoiceProductDTOList = invoiceProductRepository.findAllByInvoiceId(id).stream().filter(p -> !p.getIsDeleted()).map(p -> mapperUtil.convert(p, new InvoiceProductDTO())).collect(Collectors.toList());
 
         for (InvoiceProductDTO each : invoiceProductDTOList) {
             each.setTotal((BigDecimal.valueOf(each.getQty()).multiply(each.getPrice()).multiply(each.getTax().add(BigDecimal.valueOf(100)))).divide(BigDecimal.valueOf(100)).setScale(2, RoundingMode.CEILING));
@@ -90,20 +81,15 @@ public class InvoiceProductServiceImpl implements InvoiceProductService {
 
     @Override
     public void deleteInvoiceProductById(Long ipid) {
-        InvoiceProduct invoiceProduct =  invoiceProductRepository.findById(ipid).get();
+        InvoiceProduct invoiceProduct = invoiceProductRepository.findById(ipid).get();
         invoiceProduct.setIsDeleted(true);
         invoiceProductRepository.save(invoiceProduct);
-
     }
-
 
     @Override
     public List<InvoiceProductDTO> getByInvoiceId(Long invoiceId) {
 
-        List<InvoiceProductDTO> invoiceProductDTO = invoiceProductRepository.findAllByInvoiceId(invoiceId)
-                .stream()
-//                .filter(Invoice::isEnabled)
-                .map(p -> mapperUtil.convert(p, new InvoiceProductDTO())).collect(Collectors.toList());
+        List<InvoiceProductDTO> invoiceProductDTO = invoiceProductRepository.findAllByInvoiceId(invoiceId).stream().map(p -> mapperUtil.convert(p, new InvoiceProductDTO())).collect(Collectors.toList());
         return invoiceProductDTO;
     }
 

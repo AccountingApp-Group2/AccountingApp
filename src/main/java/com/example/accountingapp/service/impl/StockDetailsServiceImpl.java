@@ -1,15 +1,11 @@
-package com.example.accountingapp.service.Impl;
+package com.example.accountingapp.service.impl;
 
-import com.example.accountingapp.dto.InvoiceProductDTO;
-import com.example.accountingapp.dto.ProductDTO;
 import com.example.accountingapp.dto.StockDetailsDTO;
-import com.example.accountingapp.entity.Product;
 import com.example.accountingapp.entity.StockDetails;
 import com.example.accountingapp.mapper.MapperUtil;
 import com.example.accountingapp.repository.StockDetailsRepository;
 import com.example.accountingapp.service.StockDetailsService;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
