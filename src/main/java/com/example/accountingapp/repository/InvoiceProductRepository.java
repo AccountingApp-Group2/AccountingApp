@@ -1,7 +1,10 @@
 package com.example.accountingapp.repository;
 
 import java.util.List;
+
+import com.example.accountingapp.entity.Company;
 import com.example.accountingapp.entity.InvoiceProduct;
+import com.example.accountingapp.enums.InvoiceType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -23,5 +26,12 @@ public interface InvoiceProductRepository extends JpaRepository<InvoiceProduct, 
 
 
     List<InvoiceProduct> getByInvoiceId(Long id);
+
+
+    List<InvoiceProduct> findAllByInvoice_Company(Company Company);
+    List<InvoiceProduct> findAllByInvoice_InvoiceTypeAndInvoice_Company(InvoiceType invoiceType, Company company);
+
+
+
 
 }
