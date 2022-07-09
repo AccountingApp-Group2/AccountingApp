@@ -26,9 +26,6 @@ public class LoginController {
 
     @RequestMapping("/main2")
     public String main(Model model) {
-        String email = SecurityContextHolder.getContext().getAuthentication().getName();
-        UserDTO loggedInUser = userService.findByEmail(email);
-        model.addAttribute("company", loggedInUser.getCompany().getTitle());
         return "main2";
     }
 

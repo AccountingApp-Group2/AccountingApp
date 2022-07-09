@@ -1,5 +1,6 @@
 package com.example.accountingapp.entity.common;
 
+import com.example.accountingapp.entity.Company;
 import com.example.accountingapp.entity.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -57,5 +58,9 @@ public class UserPrincipal implements UserDetails {
 
     public Long getId() {
         return this.user.getId();
+    }
+
+    public Company getCompany() {
+        return this.user.getCompany();
     }
 }

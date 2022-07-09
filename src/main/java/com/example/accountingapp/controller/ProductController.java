@@ -36,9 +36,6 @@ public class ProductController {
 
     @GetMapping("/list")
     public String productList(Model model) {
-        String email = SecurityContextHolder.getContext().getAuthentication().getName();
-        UserDTO loggedInUser = userService.findByEmail(email);
-        model.addAttribute("company", loggedInUser.getCompany().getTitle());
 
         model.addAttribute("products", productService.listAllProducts());
         return "/product/product-list";
@@ -46,9 +43,6 @@ public class ProductController {
 
     @GetMapping("/add")
     public String addProduct(Model model) {
-        String email = SecurityContextHolder.getContext().getAuthentication().getName();
-        UserDTO loggedInUser = userService.findByEmail(email);
-        model.addAttribute("company", loggedInUser.getCompany().getTitle());
 
         model.addAttribute("product", new ProductDTO());
         model.addAttribute("categories", categoryService.listAllCategories());
@@ -60,9 +54,6 @@ public class ProductController {
     @PostMapping("/add")
     public String addProduct(@Valid @ModelAttribute("product") ProductDTO product, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            String email = SecurityContextHolder.getContext().getAuthentication().getName();
-            UserDTO loggedInUser = userService.findByEmail(email);
-            model.addAttribute("company", loggedInUser.getCompany().getTitle());
 
             model.addAttribute("categories", categoryService.listAllCategories());
             model.addAttribute("statuses", ProductStatus.values());
@@ -75,9 +66,6 @@ public class ProductController {
 
     @GetMapping("/edit/{id}") //
     public String editProduct(@PathVariable("id") Long id, Model model) {
-        String email = SecurityContextHolder.getContext().getAuthentication().getName();
-        UserDTO loggedInUser = userService.findByEmail(email);
-        model.addAttribute("company", loggedInUser.getCompany().getTitle());
 
         model.addAttribute("product", productService.findById(id));
         model.addAttribute("categories", categoryService.listAllCategories());
