@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="loading" lang="en" xmlns:th="http://www.thymeleaf.org">
+<html class="loading" lang="en" xmlns:th="http://thymeleaf.org/%22%3E">
 <!-- BEGIN : Head-->
 
 <head>
@@ -18,7 +18,6 @@
 
 <div th:replace="fragments :: page_header"/>
 <!-- Navbar (Header) Ends-->
-
 <!-- ////////////////////////////////////////////////////////////////////////////-->
 <div class="wrapper">
     <div th:replace="fragments :: page_menu"/>
@@ -28,20 +27,27 @@
         <!-- BEGIN : Main Content-->
         <div class="main-content">
             <div class="content-overlay"></div>
-            <div class="content-wrapper">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="content-header">Stock Report</div>
-                    </div>
-                </div>
+<!--            <div class="content-wrapper">-->
+<!--                <div class="row">-->
+<!--                    <div class="col-12">-->
+<!--                        <div class="content-header">Stock Report</div>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--            </div>-->
+
+<!--            <div class="col-12 col-sm-6 col-lg-3 d-flex align-items-right">-->
+<!--                <a th:href="@{/report/stock}" class="btn btn-primary bg-light-primary mb-1" ><i-->
+<!--                        class="fa fa-list mr-1"></i>Client/Vendor List</a>-->
+<!--            </div>-->
 
                 <!-- File export table -->
                 <section id="file-export">
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title">Report export</h4>
+                                <div class="col-12">
+                                    <div class="content-header">Stock Report</div>
                                 </div>
                                 <div class="card-content fw-container">
                                     <div class="card-body fw-body">
@@ -55,33 +61,18 @@
                                                     <th>Quantity</th>
                                                     <th>Sale & Purchase </th>
                                                     <th>Base Price</th>
-
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                <tr >
-                                                    <td ></td>
-                                                    <td ></td>
-                                                    <td  ></td>
-                                                    <td >
-
-                                                        <span  class="badge bg-light-blue">PURCHASE</span>
-                                                        <span  class="badge bg-light-success">SALE</span>
-                                                    </td>
-                                                    <td  ></td>
-
-                                                </tr>
-
-                                                </tbody>
-                                                <tfoot>
-                                                <tr>
-                                                    <th>Date</th>
-                                                    <th>Product Name</th>
-                                                    <th>Quantity</th>
-                                                    <th>Sale & Purchase </th>
-                                                    <th>Base Price</th>
-                                                </tr>
-                                                </tfoot>
+                                                        <tr th:each="ip : ${invoiceProduct}">
+                                                            <td    th:text="${ip.invoice.invoiceDate}"></td>
+                                                            <td    th:text="${ip.product.name}" class="text-truncate"></td>
+                                                            <td    th:text="${ip.qty} + ' / '+${ip.product.unit.value}" ></td>
+                                                            <td>
+                                                            <span  th:if="${ip.invoice.invoiceType.value == 'Sale'}"      th:text="${ip.invoice.invoiceType.value}" class="badge bg-light-success"></span>
+                                                            <span  th:unless="${ip.invoice.invoiceType.value == 'Sale'}"  th:text="${ip.invoice.invoiceType.value}" class="badge bg-light-blue"></span>
+                                                            </td>
+                                                            <td    th:text="${' $ '+ ip.price}"></td>
                                             </table>
                                         </div>
                                     </div>
