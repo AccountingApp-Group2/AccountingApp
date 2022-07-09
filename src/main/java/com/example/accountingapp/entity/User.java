@@ -24,9 +24,9 @@ public class User extends BaseEntity {
     private Boolean enabled;
     @Enumerated(EnumType.STRING)
     private UserStatus userStatus;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Company company;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Role role;
 
 
