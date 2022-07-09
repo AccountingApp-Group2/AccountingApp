@@ -2,6 +2,7 @@ package com.example.accountingapp.service;
 
 import com.example.accountingapp.dto.InvoiceDTO;
 import com.example.accountingapp.dto.ReportDTO;
+import com.example.accountingapp.entity.InvoiceProduct;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -16,4 +17,6 @@ public interface ReportService {
     Set<ReportDTO> calculateByProducts();
 
     List<InvoiceDTO> findLast3ByCompany();
+
+    List<InvoiceProduct> findAllByCompany();
 }

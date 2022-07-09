@@ -2,6 +2,7 @@ package com.example.accountingapp.service.impl;
 
 import com.example.accountingapp.dto.InvoiceDTO;
 import com.example.accountingapp.dto.ReportDTO;
+import com.example.accountingapp.entity.InvoiceProduct;
 import com.example.accountingapp.entity.User;
 import com.example.accountingapp.enums.InvoiceType;
 import com.example.accountingapp.mapper.MapperUtil;
@@ -95,7 +96,6 @@ public class ReportServiceImpl implements ReportService {
 
             list.add(new ReportDTO(p.getName(),purchasedQTY,soldQTY,totalCost,totalIncome));
         });
-        list.forEach(System.out::println);
         return list;
     }
 
@@ -108,6 +108,12 @@ public class ReportServiceImpl implements ReportService {
         listInvoiceDTO.forEach(p -> p.setTax((p.getCost().multiply(BigDecimal.valueOf(0.07))).setScale(2, RoundingMode.CEILING)));
         listInvoiceDTO.forEach(p -> p.setTotal(((p.getCost()).add(p.getTax())).setScale(2, RoundingMode.CEILING)));
         return listInvoiceDTO;
+    }
+
+    @Override
+    public List<InvoiceProduct> findAllByCompany() {
+        User user = userRepository.findByEmail("admin@company2.com");
+        return invoiceProductRepository.findAllByInvoice_Company(user.getCompany());
     }
 
 
