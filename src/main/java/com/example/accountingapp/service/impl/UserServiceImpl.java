@@ -1,5 +1,6 @@
 package com.example.accountingapp.service.impl;
 
+import com.example.accountingapp.dto.CompanyDTO;
 import com.example.accountingapp.dto.UserDTO;
 import com.example.accountingapp.entity.User;
 import com.example.accountingapp.mapper.MapperUtil;
@@ -68,5 +69,11 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.findByEmail(email);
         return mapperUtil.convert(user, new UserDTO());
     }
+    @Override
+    public CompanyDTO findCompanyByUserName() {
+        User user = userRepository.findByEmail("admin@company2.com");
+        return mapperUtil.convert(user.getCompany(), new CompanyDTO());
+    }
+
 
 }

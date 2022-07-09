@@ -7,6 +7,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.thymeleaf.TemplateEngine;
 
 import javax.annotation.PostConstruct;
 @EnableFeignClients
@@ -28,4 +29,9 @@ public class AccountingAppApplication {
         Stripe.apiKey = stripeApiKey;
     }
 
-}
+    @Bean
+    public TemplateEngine templateEngine() {
+        return new TemplateEngine();
+    }
+
+    }
