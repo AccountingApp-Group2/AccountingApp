@@ -7,6 +7,7 @@ import com.example.accountingapp.entity.Invoice;
 import com.example.accountingapp.entity.InvoiceProduct;
 import com.example.accountingapp.entity.Product;
 import com.example.accountingapp.enums.InvoiceType;
+import com.example.accountingapp.enums.State;
 import com.example.accountingapp.mapper.MapperUtil;
 import com.example.accountingapp.repository.InvoiceProductRepository;
 import com.example.accountingapp.repository.InvoiceRepository;
@@ -69,7 +70,7 @@ public class InvoiceProductServiceImpl implements InvoiceProductService {
         List<InvoiceProductDTO> invoiceProductDTOList = invoiceProductRepository.findAllByInvoiceId(id).stream().filter(p -> !p.getIsDeleted()).map(p -> mapperUtil.convert(p, new InvoiceProductDTO())).collect(Collectors.toList());
 
         for (InvoiceProductDTO each : invoiceProductDTOList) {
-            each.setTotal((BigDecimal.valueOf(each.getQty()).multiply(each.getPrice()).multiply(each.getTax().add(BigDecimal.valueOf(100)))).divide(BigDecimal.valueOf(100)).setScale(2, RoundingMode.CEILING));
+            each.setTotal((BigDecimal.valueOf(each.getQty()).multiply(each.getPrice()).multiply((getTaxByInvoiceId(id)).add(BigDecimal.valueOf(100)))).divide(BigDecimal.valueOf(100)).setScale(2, RoundingMode.CEILING));
         }
         return invoiceProductDTOList;
     }
@@ -110,6 +111,12 @@ public class InvoiceProductServiceImpl implements InvoiceProductService {
             each.setEnabled(false);
             invoiceProductRepository.save(each);
         }
+    }
+
+    @Override
+    public BigDecimal getTaxByInvoiceId(Long id) {
+        State state = invoiceRepository.findById(id).get().getClientVendor().getStateId();
+        return state.getState_tax();
     }
 
 }

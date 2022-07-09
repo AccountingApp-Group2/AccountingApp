@@ -4,6 +4,7 @@ import com.example.accountingapp.dto.InvoiceProductDTO;
 import com.example.accountingapp.dto.ProductDTO;
 import com.example.accountingapp.entity.InvoiceProduct;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface InvoiceProductService {
@@ -27,4 +28,6 @@ public interface InvoiceProductService {
     List<InvoiceProductDTO> findAllByInvoiceId(Long id);
 
     void disableInvoiceProductsByInvoiceId(Long id);
+
+    BigDecimal getTaxByInvoiceId(Long id);
 }

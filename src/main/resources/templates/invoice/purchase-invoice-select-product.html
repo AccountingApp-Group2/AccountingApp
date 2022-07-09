@@ -112,9 +112,10 @@
                                                                 <div class="form-group">
                                                                     <div class="controls" >
                                                                         <label>Tax</label>
-                                                                        <input type="text"  th:field="*{tax}"
-                                                                               class="form-control"
-                                                                               required aria-invalid="false">
+                                                                        <a type="text"
+                                                                           class="form-control" readonly aria-invalid="false"
+                                                                           th:text="${tax}">
+                                                                        </a>
                                                                     </div>
                                                                 </div>
                                                             </div>

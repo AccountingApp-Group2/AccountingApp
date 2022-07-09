@@ -5,6 +5,7 @@ import com.example.accountingapp.dto.InvoiceProductDTO;
 import com.example.accountingapp.entity.*;
 import com.example.accountingapp.enums.InvoiceStatus;
 import com.example.accountingapp.enums.InvoiceType;
+import com.example.accountingapp.enums.State;
 import com.example.accountingapp.mapper.MapperUtil;
 import com.example.accountingapp.repository.*;
 import com.example.accountingapp.service.InvoiceService;
@@ -150,8 +151,6 @@ public class InvoiceServiceImpl implements InvoiceService {
     //Method for default invoice settings upon creation
     @Override
     public InvoiceDTO save(InvoiceDTO invoiceDTO) {
-
-
         Invoice invoice = mapperUtil.convert(invoiceDTO, new Invoice());
         String invoiceNumber = "";
         if (invoiceDTO.getInvoiceType().equals(InvoiceType.SALE)) {
@@ -226,4 +225,7 @@ public class InvoiceServiceImpl implements InvoiceService {
             stockDetailsRepository.save(stockDetails);
         }
     }
+
+
+
 }

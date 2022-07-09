@@ -74,6 +74,7 @@ public class PurchaseInvoiceController {
     public String getProductDetailsForInvoiceProduct(@PathVariable("id") Long id, Model model) {
         InvoiceDTO invoiceDTO = invoiceService.getInvoiceDTOById(id);
         model.addAttribute("id", id);
+        model.addAttribute("tax", invoiceProductService.getTaxByInvoiceId(id));
         model.addAttribute("invoiceDTO", invoiceDTO);
         model.addAttribute("companyName", invoiceDTO.getClientVendor().getCompanyName());
         model.addAttribute("date", invoiceService.getLocalDate());
