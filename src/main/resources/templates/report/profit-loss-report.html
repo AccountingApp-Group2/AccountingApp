@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="loading" lang="en" xmlns:th="http://www.thymeleaf.org">
+<html class="loading" lang="en" xmlns:th="www.http://thymeleaf.org">
 <!-- BEGIN : Head-->
 
 <head>
@@ -49,28 +49,30 @@
                                                 <table id="example" class="table table-striped table-bordered file-export" style="width:100%">
                                                     <thead>
                                                         <tr>
-                                                            <th>Month</th>
-                                                            <th>Total Purchase</th>
-                                                            <th>Total Tax</th>
+<!--                                                            <th>Month</th>-->
                                                             <th>Total Cost</th>
                                                             <th>Total Sales</th>
+                                                            <th>Total Tax</th>
                                                             <th>Profit/Loss</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                            <tr >
-                                                            <td ></td>
-                                                            <td ></td>
-                                                            <td ></td>
-                                                            <td ></td>
-                                                            <td ></td>
-                                                            <td ></td>
+
+                                                            <tr>
+                                                               <td th:text="${profitLoss.get('totalCost')}"></td>
+                                                                <td th:text="${profitLoss.get('totalSale')}"></td>
+                                                                <td th:text="${profitLoss.get('totalTax')}"></td>
+
+                                                                <td th:text = "${profitLoss.get('totalSale')-profitLoss.get('totalCost')}"></td>
+
                                                         </tr>
                                                     </tbody>
+
                                                     <tfoot>
+
                                                     <tr>
-                                                        <th>Month</th>
-                                                        <th>Total Purchase</th>
+<!--                                                        <th>Month</th>-->
+
                                                         <th>Total Tax</th>
                                                         <th>Total Cost</th>
                                                         <th>Total Sales</th>
@@ -78,6 +80,34 @@
                                                     </tr>
                                                     </tfoot>
                                                 </table>
+
+                                                <table id="example" class="table table-striped table-bordered file-export" style="width:100%">
+                                                    <thead>
+                                                    <tr>
+
+                                                        <th>Product Name</th>
+                                                        <th>Total Purchased Qty</th>
+                                                        <th>Total Sold Qty</th>
+                                                        <th>Profit/Loss</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+
+                                                    <tr th:each="pt : ${productsTotal}">
+                                                        <td th:text="${pt.name}"></td>
+                                                        <td th:text="${pt.purchasedQty}"></td>
+                                                        <td th:text="${pt.soldQty}"></td>
+
+                                                        <td th:text = "${pt.totalIncome-pt.totalCost}"></td>
+
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+
+                                                <div class="col-md-12 d-flex flex-sm-row flex-column  justify-content-md-end">
+                                                    <a id="button-a" href="/report/toProfit" type="button" class="btn btn-danger"><i class="fa fa-file-pdf-o mr-1"></i> Export as PDF</a>
+
+                                                    <a id="button-b" type="button" class="btn btn-success"><i class="fa fa-paper-plane mr-1"></i>Download</a>
                                             </div>
                                         </div>
                                     </div>

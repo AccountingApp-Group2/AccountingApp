@@ -23,4 +23,7 @@ public interface InvoiceRepository extends JpaRepository<Invoice, Long> {
 
     @Query("SELECT invoiceNumber FROM Invoice WHERE invoiceNumber = ?1")
     String findInvoiceNameByInvoiceId(@Param("id") String invoiceId);
+
+    @Query(value = "SELECT * FROM invoice i INNER JOIN company c ON c.id = i.company_id WHERE c.title = ?1 ORDER BY i.invoice_date DESC LIMIT 3 ", nativeQuery = true)
+    List<Invoice> findLast3InvoiceByDate(@Param("companyTitle") String companyTitle);
 }
