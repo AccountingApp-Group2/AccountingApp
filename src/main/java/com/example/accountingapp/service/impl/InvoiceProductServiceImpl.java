@@ -3,16 +3,21 @@ package com.example.accountingapp.service.impl;
 
 import com.example.accountingapp.dto.InvoiceProductDTO;
 import com.example.accountingapp.dto.ProductDTO;
+import com.example.accountingapp.entity.Company;
 import com.example.accountingapp.entity.Invoice;
 import com.example.accountingapp.entity.InvoiceProduct;
 import com.example.accountingapp.entity.Product;
+import com.example.accountingapp.entity.common.UserPrincipal;
 import com.example.accountingapp.enums.InvoiceType;
 import com.example.accountingapp.enums.State;
 import com.example.accountingapp.mapper.MapperUtil;
 import com.example.accountingapp.repository.InvoiceProductRepository;
 import com.example.accountingapp.repository.InvoiceRepository;
 import com.example.accountingapp.repository.ProductRepository;
+import com.example.accountingapp.repository.UserRepository;
 import com.example.accountingapp.service.InvoiceProductService;
+import com.example.accountingapp.service.UserService;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -28,13 +33,15 @@ public class InvoiceProductServiceImpl implements InvoiceProductService {
     final private ProductRepository productRepository;
     final private MapperUtil mapperUtil;
     final private InvoiceRepository invoiceRepository;
+    final private UserService userService;
 
 
-    public InvoiceProductServiceImpl(InvoiceProductRepository invoiceProductRepository, ProductRepository productRepository, MapperUtil mapperUtil, InvoiceRepository invoiceRepository) {
+    public InvoiceProductServiceImpl(InvoiceProductRepository invoiceProductRepository, ProductRepository productRepository, MapperUtil mapperUtil, InvoiceRepository invoiceRepository, UserService userService) {
         this.invoiceProductRepository = invoiceProductRepository;
         this.productRepository = productRepository;
         this.mapperUtil = mapperUtil;
         this.invoiceRepository = invoiceRepository;
+        this.userService = userService;
     }
 
     @Override
@@ -67,7 +74,8 @@ public class InvoiceProductServiceImpl implements InvoiceProductService {
 
     @Override
     public List<InvoiceProductDTO> findAllInvoiceProductsByInvoiceId(Long id) {
-        List<InvoiceProductDTO> invoiceProductDTOList = invoiceProductRepository.findAllByInvoiceId(id).stream().filter(p -> !p.getIsDeleted()).map(p -> mapperUtil.convert(p, new InvoiceProductDTO())).collect(Collectors.toList());
+
+        List<InvoiceProductDTO> invoiceProductDTOList = invoiceProductRepository.findAllByInvoice_IdAndInvoice_Company(id,userService.findCompanyByLoggedInUser()).stream().filter(p -> !p.getIsDeleted()).map(p -> mapperUtil.convert(p, new InvoiceProductDTO())).collect(Collectors.toList());
 
         for (InvoiceProductDTO each : invoiceProductDTOList) {
             each.setTotal((BigDecimal.valueOf(each.getQty()).multiply(each.getPrice()).multiply((getTaxByInvoiceId(id)).add(BigDecimal.valueOf(100)))).divide(BigDecimal.valueOf(100)).setScale(2, RoundingMode.CEILING));
@@ -89,8 +97,10 @@ public class InvoiceProductServiceImpl implements InvoiceProductService {
 
     @Override
     public List<InvoiceProductDTO> getByInvoiceId(Long invoiceId) {
+        final Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Company company = ((UserPrincipal) principal).getCompany();
 
-        List<InvoiceProductDTO> invoiceProductDTO = invoiceProductRepository.findAllByInvoiceId(invoiceId).stream().map(p -> mapperUtil.convert(p, new InvoiceProductDTO())).collect(Collectors.toList());
+        List<InvoiceProductDTO> invoiceProductDTO = invoiceProductRepository.findAllByInvoice_IdAndInvoice_Company(invoiceId,company).stream().map(p -> mapperUtil.convert(p, new InvoiceProductDTO())).collect(Collectors.toList());
         return invoiceProductDTO;
     }
 
@@ -106,7 +116,9 @@ public class InvoiceProductServiceImpl implements InvoiceProductService {
 
     @Override
     public void disableInvoiceProductsByInvoiceId(Long id) {
-        List<InvoiceProduct> invoiceProductList = invoiceProductRepository.findAllByInvoiceId(id);
+        final Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Company company = ((UserPrincipal) principal).getCompany();
+        List<InvoiceProduct> invoiceProductList = invoiceProductRepository.findAllByInvoice_IdAndInvoice_Company(id,company);
         for (InvoiceProduct each : invoiceProductList) {
             each.setEnabled(false);
             invoiceProductRepository.save(each);

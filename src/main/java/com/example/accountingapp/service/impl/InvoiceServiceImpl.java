@@ -3,12 +3,15 @@ package com.example.accountingapp.service.impl;
 import com.example.accountingapp.dto.InvoiceDTO;
 import com.example.accountingapp.dto.InvoiceProductDTO;
 import com.example.accountingapp.entity.*;
+import com.example.accountingapp.entity.common.UserPrincipal;
 import com.example.accountingapp.enums.InvoiceStatus;
 import com.example.accountingapp.enums.InvoiceType;
 import com.example.accountingapp.enums.State;
 import com.example.accountingapp.mapper.MapperUtil;
 import com.example.accountingapp.repository.*;
 import com.example.accountingapp.service.InvoiceService;
+import com.example.accountingapp.service.UserService;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -34,14 +37,16 @@ public class InvoiceServiceImpl implements InvoiceService {
     private final ProductRepository productRepository;
     private final StockDetailsRepository stockDetailsRepository;
     private final ClientVendorRepository clientVendorRepository;
+    private final UserService userService;
 
-    public InvoiceServiceImpl(MapperUtil mapperUtil, InvoiceRepository invoiceRepository, InvoiceProductRepository invoiceProductRepository, ProductRepository productRepository, StockDetailsRepository stockDetailsRepository, ClientVendorRepository clientVendorRepository) {
+    public InvoiceServiceImpl(MapperUtil mapperUtil, InvoiceRepository invoiceRepository, InvoiceProductRepository invoiceProductRepository, ProductRepository productRepository, StockDetailsRepository stockDetailsRepository, ClientVendorRepository clientVendorRepository, UserService userService) {
         this.mapperUtil = mapperUtil;
         this.invoiceRepository = invoiceRepository;
         this.invoiceProductRepository = invoiceProductRepository;
         this.productRepository = productRepository;
         this.stockDetailsRepository = stockDetailsRepository;
         this.clientVendorRepository = clientVendorRepository;
+        this.userService = userService;
     }
 
     @Override
@@ -100,12 +105,13 @@ public class InvoiceServiceImpl implements InvoiceService {
 
     @Override
     public List<InvoiceDTO> listAllByInvoiceType(InvoiceType invoiceType) {
+
         //map invoiceProduct of each Invoice -> DTO
-        List<InvoiceDTO> listInvoiceDTO = invoiceRepository.findAllByInvoiceType(invoiceType).stream().filter(Invoice::isEnabled).map(p -> mapperUtil.convert(p, new InvoiceDTO())).collect(Collectors.toList());
+        List<InvoiceDTO> listInvoiceDTO = invoiceRepository.findAllByInvoiceTypeAndCompany(invoiceType, userService.findCompanyByLoggedInUser()).stream().filter(Invoice::isEnabled).map(p -> mapperUtil.convert(p, new InvoiceDTO())).collect(Collectors.toList());
 
         //map all invoice products from invoice to invoiceProduct DTO
         for (InvoiceDTO each : listInvoiceDTO) {
-            List<InvoiceProductDTO> invoiceProductDTOList = invoiceProductRepository.findAllByInvoiceId(each.getId()).stream().filter(InvoiceProduct::isEnabled).map(p -> mapperUtil.convert(p, new InvoiceProductDTO())).collect(Collectors.toList());
+            List<InvoiceProductDTO> invoiceProductDTOList = invoiceProductRepository.findAllByInvoice_IdAndInvoice_Company(each.getId(),userService.findCompanyByLoggedInUser()).stream().filter(InvoiceProduct::isEnabled).map(p -> mapperUtil.convert(p, new InvoiceProductDTO())).collect(Collectors.toList());
             each.setInvoiceProductList(invoiceProductDTOList);
         }
 
@@ -133,7 +139,8 @@ public class InvoiceServiceImpl implements InvoiceService {
 
     @Override
     public BigDecimal calculateCostByInvoiceID(Long id) {
-        List<InvoiceProductDTO> invoiceProductListById = invoiceProductRepository.findAllByInvoiceId(id).stream().filter(p -> p.isEnabled()).map(p -> mapperUtil.convert(p, new InvoiceProductDTO())).collect(Collectors.toList());
+
+        List<InvoiceProductDTO> invoiceProductListById = invoiceProductRepository.findAllByInvoice_IdAndInvoice_Company(id, userService.findCompanyByLoggedInUser()).stream().filter(p -> p.isEnabled()).map(p -> mapperUtil.convert(p, new InvoiceProductDTO())).collect(Collectors.toList());
         BigDecimal cost = BigDecimal.valueOf(0);
         for (InvoiceProductDTO each : invoiceProductListById) {
             BigDecimal currItemCost = each.getPrice().multiply(BigDecimal.valueOf(each.getQty()));
@@ -183,9 +190,12 @@ public class InvoiceServiceImpl implements InvoiceService {
 
     @Override
     public void enableInvoice(Long id) {
+        final Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Company company = ((UserPrincipal) principal).getCompany();
+
         Invoice invoice = invoiceRepository.findById(id).get();
         // set status enabled for all product invoices in the list
-        List<InvoiceProduct> invoiceProductList = invoiceProductRepository.findAllByInvoiceId(id);
+        List<InvoiceProduct> invoiceProductList = invoiceProductRepository.findAllByInvoice_IdAndInvoice_Company(id,userService.findCompanyByLoggedInUser());
         for (InvoiceProduct eachInvoiceProduct : invoiceProductList) {
             eachInvoiceProduct.setEnabled(true);
         }
@@ -195,7 +205,10 @@ public class InvoiceServiceImpl implements InvoiceService {
 
     @Override
     public void approvePurchaseInvoice(Long id) {
-        List<InvoiceProduct> invoiceProductList = invoiceProductRepository.findAllByInvoiceId(id);
+        final Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Company company = ((UserPrincipal) principal).getCompany();
+
+        List<InvoiceProduct> invoiceProductList = invoiceProductRepository.findAllByInvoice_IdAndInvoice_Company(id,userService.findCompanyByLoggedInUser());
         for (InvoiceProduct eachInvoiceProduct : invoiceProductList) {
             //update stock
             Long productId = eachInvoiceProduct.getProduct().getId();
@@ -213,7 +226,10 @@ public class InvoiceServiceImpl implements InvoiceService {
 
     @Override
     public void addProductToStockByInvoice(Long id) {
-        List<InvoiceProduct> invoiceProductList = invoiceProductRepository.findAllByInvoiceId(id);
+        final Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Company company = ((UserPrincipal) principal).getCompany();
+
+        List<InvoiceProduct> invoiceProductList = invoiceProductRepository.findAllByInvoice_IdAndInvoice_Company(id,userService.findCompanyByLoggedInUser());
 
         for (InvoiceProduct eachInvoiceProduct : invoiceProductList) {
             StockDetails stockDetails = new StockDetails();

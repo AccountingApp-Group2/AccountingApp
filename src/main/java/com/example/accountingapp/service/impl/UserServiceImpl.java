@@ -1,10 +1,14 @@
 package com.example.accountingapp.service.impl;
 
+import com.example.accountingapp.dto.CompanyDTO;
 import com.example.accountingapp.dto.UserDTO;
+import com.example.accountingapp.entity.Company;
 import com.example.accountingapp.entity.User;
+import com.example.accountingapp.entity.common.UserPrincipal;
 import com.example.accountingapp.mapper.MapperUtil;
 import com.example.accountingapp.repository.UserRepository;
 import com.example.accountingapp.service.UserService;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -72,6 +76,13 @@ public class UserServiceImpl implements UserService {
     public UserDTO findByEmail(String email) {
         User user = userRepository.findByEmail(email);
         return mapperUtil.convert(user, new UserDTO());
+    }
+
+    @Override
+    public Company findCompanyByLoggedInUser() {
+        final Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Company company = ((UserPrincipal) principal).getCompany();
+        return company;
     }
 
 }

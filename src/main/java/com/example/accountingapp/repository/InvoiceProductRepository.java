@@ -13,8 +13,10 @@ import java.util.Optional;
 
 public interface InvoiceProductRepository extends JpaRepository<InvoiceProduct, Long> {
 
-    @Query(value = "SELECT * FROM invoice_product i where i.invoice_id =?1",nativeQuery = true)
-    List<InvoiceProduct>  findAllByInvoiceId(@Param("id") Long id);
+//    @Query(value = "SELECT * FROM invoice_product i where i.invoice_id =(SELECT invoice_id FROM invoice WHERE invoice_id = ?1 AND company_id = ?2)",nativeQuery = true)
+//    List<InvoiceProduct>  findAllByInvoiceIdAndCompany(@Param("id") Long id, @Param("companyId") Long companyId);
+
+//    List<InvoiceProduct>  findAllByInvoiceIdAndCompany(Long id, Long companyId);
 
 
     @Query(value = "SELECT MAX(id) FROM invoice_product",nativeQuery = true)
@@ -31,7 +33,6 @@ public interface InvoiceProductRepository extends JpaRepository<InvoiceProduct, 
     List<InvoiceProduct> findAllByInvoice_Company(Company Company);
     List<InvoiceProduct> findAllByInvoice_InvoiceTypeAndInvoice_Company(InvoiceType invoiceType, Company company);
 
-
-
+    List<InvoiceProduct> findAllByInvoice_IdAndInvoice_Company(Long invoiceId, Company company);
 
 }
