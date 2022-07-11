@@ -24,15 +24,15 @@ public class AuthSuccessHandler implements AuthenticationSuccessHandler {
         }
 
         if (roles.contains("Admin")) {
-            response.sendRedirect("/main2");
+            response.sendRedirect("/dashboard");
         }
 
         if (roles.contains("Manager")) {
-            response.sendRedirect("/main2");
+            response.sendRedirect("/dashboard");
         }
 
         if (roles.contains("Employee")) {
-            response.sendRedirect("/main2");
+            response.sendRedirect("/dashboard");
         }
 
     }

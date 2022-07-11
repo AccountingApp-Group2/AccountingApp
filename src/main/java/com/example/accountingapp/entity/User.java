@@ -24,9 +24,9 @@ public class User extends BaseEntity {
     private Boolean enabled;
     @Enumerated(EnumType.STRING)
     private UserStatus userStatus;
-    @ManyToOne
+    @ManyToOne(fetch=FetchType.EAGER)
     private Company company;
-    @ManyToOne
+    @ManyToOne(fetch=FetchType.EAGER)
     private Role role;
 
 

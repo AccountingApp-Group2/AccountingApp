@@ -32,6 +32,7 @@ public class SecurityConfig {
                 .antMatchers("/client-vendor/**").hasAuthority("Manager")
                 .antMatchers("/invoice/**").hasAnyAuthority("Manager","Employee")
                 .antMatchers("/payment/**").hasAuthority("Manager")
+                .antMatchers("/report/**").hasAuthority("Manager")
                 .antMatchers(
                         "/",
                         "/login",
@@ -46,7 +47,11 @@ public class SecurityConfig {
                         "/vendors/**",
                         "/media/**",
                         "/vendor/**",
-                        "/resources/**"
+                        "/resources/**",
+                        "/dashboard",
+                        "/fragments",
+                        "/main2",
+                        "/html-template"
                 ).permitAll()
                 .anyRequest().authenticated()
                 .and()
