@@ -2,6 +2,7 @@ package com.example.accountingapp.service;
 
 import com.example.accountingapp.dto.CompanyDTO;
 import com.example.accountingapp.dto.UserDTO;
+import com.example.accountingapp.entity.Company;
 
 import java.util.List;
 
@@ -19,5 +20,5 @@ public interface UserService {
 
     UserDTO findByEmail(String email);
 
-    CompanyDTO findCompanyByUserName();
+    Company findCompanyByUserName();
 }

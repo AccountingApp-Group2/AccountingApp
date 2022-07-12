@@ -11,6 +11,7 @@ import com.example.accountingapp.repository.InvoiceRepository;
 import com.example.accountingapp.repository.UserRepository;
 import com.example.accountingapp.service.InvoiceService;
 import com.example.accountingapp.service.ReportService;
+import com.example.accountingapp.service.UserService;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -26,34 +27,36 @@ public class ReportServiceImpl implements ReportService {
     private final InvoiceRepository invoiceRepository;
     private final MapperUtil mapperUtil;
     private final InvoiceService invoiceService;
+    private final UserService userService;
 
-    public ReportServiceImpl(InvoiceProductRepository invoiceProductRepository, UserRepository userRepository, InvoiceRepository invoiceRepository, MapperUtil mapperUtil, InvoiceService invoiceService) {
+    public ReportServiceImpl(InvoiceProductRepository invoiceProductRepository, UserRepository userRepository, InvoiceRepository invoiceRepository, MapperUtil mapperUtil, InvoiceService invoiceService, UserService userService) {
         this.invoiceProductRepository = invoiceProductRepository;
         this.userRepository = userRepository;
         this.invoiceRepository = invoiceRepository;
         this.mapperUtil = mapperUtil;
         this.invoiceService = invoiceService;
+        this.userService = userService;
     }
 
     @Override
     public Map<String, BigDecimal> profitLoss() {
 
-        User user = userRepository.findByEmail("admin@company2.com");
+
 
         Map<String, BigDecimal> profitLoss = new HashMap<>();
 
 
-        BigDecimal totalCost = invoiceProductRepository.findAllByInvoice_InvoiceTypeAndInvoice_Company(InvoiceType.PURCHASE, user.getCompany()).stream().
+        BigDecimal totalCost = invoiceProductRepository.findAllByInvoice_InvoiceTypeAndInvoice_Company(InvoiceType.PURCHASE, userService.findCompanyByUserName()).stream().
                 map(p->p.getPrice()).
                 reduce(BigDecimal.ZERO, (a, b) -> a.add(b));
 
 
-        BigDecimal totalSale = invoiceProductRepository.findAllByInvoice_InvoiceTypeAndInvoice_Company(InvoiceType.SALE, user.getCompany()).stream().
+        BigDecimal totalSale = invoiceProductRepository.findAllByInvoice_InvoiceTypeAndInvoice_Company(InvoiceType.SALE, userService.findCompanyByUserName()).stream().
                 map(p->p.getPrice()).
                 reduce(BigDecimal.ZERO, (a, b) -> a.add(b));
 
 
-        BigDecimal totalTax = invoiceProductRepository.findAllByInvoice_InvoiceTypeAndInvoice_Company(InvoiceType.SALE, user.getCompany()).stream().
+        BigDecimal totalTax = invoiceProductRepository.findAllByInvoice_InvoiceTypeAndInvoice_Company(InvoiceType.SALE, userService.findCompanyByUserName()).stream().
                 map(p->p.getTax()).
                 reduce(BigDecimal.ZERO, (a, b) -> a.add(b));
 
@@ -101,8 +104,7 @@ public class ReportServiceImpl implements ReportService {
 
     @Override
     public List<InvoiceDTO> findLast3ByCompany() {
-        User user = userRepository.findByEmail("admin@company2.com");
-        List<InvoiceDTO> listInvoiceDTO = invoiceRepository.findLast3InvoiceByDate(user.getCompany().getTitle())
+        List<InvoiceDTO> listInvoiceDTO = invoiceRepository.findLast3InvoiceByDate(userService.findCompanyByUserName().getTitle())
                         .stream().map(invoice -> mapperUtil.convert(invoice, new InvoiceDTO())).collect(Collectors.toList());
         listInvoiceDTO.forEach(p -> p.setCost((invoiceService.calculateCostByInvoiceID(p.getId())).setScale(2, RoundingMode.CEILING)));
         listInvoiceDTO.forEach(p -> p.setTax((p.getCost().multiply(BigDecimal.valueOf(0.07))).setScale(2, RoundingMode.CEILING)));
@@ -112,8 +114,8 @@ public class ReportServiceImpl implements ReportService {
 
     @Override
     public List<InvoiceProduct> findAllByCompany() {
-        User user = userRepository.findByEmail("admin@company2.com");
-        return invoiceProductRepository.findAllByInvoice_Company(user.getCompany());
+
+        return invoiceProductRepository.findAllByInvoice_Company(userService.findCompanyByUserName());
     }
 
 
