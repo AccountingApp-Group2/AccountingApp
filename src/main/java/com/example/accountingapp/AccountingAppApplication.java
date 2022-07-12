@@ -24,14 +24,11 @@ public class AccountingAppApplication {
     public ModelMapper mapper(){
         return new ModelMapper();
     }
+
     @PostConstruct
     public void setup() {
         Stripe.apiKey = stripeApiKey;
     }
 
-    @Bean
-    public TemplateEngine templateEngine() {
-        return new TemplateEngine();
-    }
 
     }
