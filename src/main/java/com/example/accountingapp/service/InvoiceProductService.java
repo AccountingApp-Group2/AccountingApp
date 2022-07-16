@@ -10,6 +10,7 @@ import java.util.List;
 public interface InvoiceProductService {
 
     List<InvoiceProduct> listAll();
+
     List<ProductDTO> findAllProductsByCompanyName(String companyName);
 
 
