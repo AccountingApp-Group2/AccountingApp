@@ -1,11 +1,13 @@
 package com.example.accountingapp.repository;
 
 import com.example.accountingapp.entity.ClientVendor;
+import com.example.accountingapp.entity.Company;
 import com.example.accountingapp.enums.CompanyType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,4 +20,6 @@ public interface ClientVendorRepository extends JpaRepository<ClientVendor, Long
     String findClientNameById(@Param("id") Long id);
 
     Optional<ClientVendor> findByCompanyName(String companyName);
+
+    List<ClientVendor> findAllByCompany(Company companyByLoggedInUser);
 }
