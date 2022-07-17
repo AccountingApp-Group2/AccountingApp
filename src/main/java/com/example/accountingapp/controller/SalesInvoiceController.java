@@ -154,11 +154,13 @@ public class SalesInvoiceController {
         model.addAttribute("companyName", invoiceDTO.getClientVendor().getCompanyName());
         model.addAttribute("date", invoiceService.getLocalDate());
         model.addAttribute("invoiceId", invoiceService.getNextInvoiceIdSale());
+        model.addAttribute("tax", companyService.findTaxByCompany());
         model.addAttribute("invoiceProductDTO", new InvoiceProductDTO());
         model.addAttribute("products", productService.listAllProducts());
         model.addAttribute("invoiceProducts", invoiceProductService.findAllInvoiceProductsByInvoiceId(id));
         return "invoice/sales-invoice-select-product";
     }
+
     @PostMapping("/salesInvoiceSelectProduct/{id}")
     public String postProductDetailsForInvoiceProduct(@PathVariable("id") Long id, @ModelAttribute("invoiceProductDTO") InvoiceProductDTO invoiceProductDTO) {
         invoiceProductService.addInvoiceProductByInvoiceId(id, invoiceProductDTO);

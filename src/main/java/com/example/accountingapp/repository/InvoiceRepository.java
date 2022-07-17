@@ -1,5 +1,6 @@
 package com.example.accountingapp.repository;
 
+import com.example.accountingapp.entity.Company;
 import com.example.accountingapp.entity.Invoice;
 import com.example.accountingapp.enums.InvoiceType;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -26,4 +27,6 @@ public interface InvoiceRepository extends JpaRepository<Invoice, Long> {
 
     @Query(value = "SELECT * FROM invoice i INNER JOIN company c ON c.id = i.company_id WHERE c.title = ?1 ORDER BY i.invoice_date DESC LIMIT 3 ", nativeQuery = true)
     List<Invoice> findLast3InvoiceByDate(@Param("companyTitle") String companyTitle);
+
+    List<Invoice> findAllByInvoiceTypeAndCompany(InvoiceType invoiceType, Company companyByLoggedInUser);
 }

@@ -5,8 +5,10 @@ import com.example.accountingapp.entity.Category;
 import com.example.accountingapp.mapper.MapperUtil;
 import com.example.accountingapp.repository.CategoryRepository;
 import com.example.accountingapp.service.CategoryService;
+import com.example.accountingapp.service.UserService;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,10 +17,12 @@ public class CategoryServiceImpl implements CategoryService {
 
     private final CategoryRepository categoryRepository;
     private final MapperUtil mapperUtil;
+    private final UserService userService;
 
-    public CategoryServiceImpl(CategoryRepository categoryRepository, MapperUtil mapperUtil) {
+    public CategoryServiceImpl(CategoryRepository categoryRepository, MapperUtil mapperUtil, UserService userService) {
         this.categoryRepository = categoryRepository;
         this.mapperUtil = mapperUtil;
+        this.userService = userService;
     }
 
     @Override
@@ -54,4 +58,6 @@ public class CategoryServiceImpl implements CategoryService {
         category.setIsDeleted(true);
         categoryRepository.save(category);
     }
+
+
 }
