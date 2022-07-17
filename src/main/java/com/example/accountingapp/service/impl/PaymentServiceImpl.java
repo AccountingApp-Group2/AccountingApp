@@ -6,9 +6,6 @@ import com.example.accountingapp.mapper.MapperUtil;
 import com.example.accountingapp.repository.PaymentRepository;
 import com.example.accountingapp.service.PaymentService;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 

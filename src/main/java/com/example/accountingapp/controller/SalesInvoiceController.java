@@ -116,16 +116,12 @@ public class SalesInvoiceController {
                             stockDetailsService.updateStockDetail(stockDetailsDTO);
                         }
                     }
-
                 }
 
             } else {
                 return "invoice/message";
             }
-
-
         }
-
         return "redirect:/invoice/salesInvoiceList";
     }
 
@@ -189,21 +185,5 @@ public class SalesInvoiceController {
         invoiceProductService.deleteInvoiceProductById(ipid);
         return "redirect:/invoice/salesInvoiceSelectProduct/" + id;
     }
-
-
-//
-//    @PostMapping("/addInvoiceItem")
-//    public String addItem (@ModelAttribute("invoiceProduct") InvoiceProductDTO invoiceProductDTO, Model model) {
-//
-//        model.addAttribute("invoiceProduct", invoiceProductService.listAllAddedItems());
-//
-//        return "redirect:/invoice/sales-invoice-set-product-numbers";
-//    }
-//
-//    @GetMapping("/addInvoiceCancel")
-//    public String cancelAddItem() {
-//
-//        return "redirect:/invoice/salesInvoiceCreate";
-//    }
 
 }

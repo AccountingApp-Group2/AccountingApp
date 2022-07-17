@@ -1,6 +1,5 @@
 package com.example.accountingapp.service;
 
-import com.example.accountingapp.dto.CompanyDTO;
 import com.example.accountingapp.dto.UserDTO;
 import com.example.accountingapp.entity.Company;
 
@@ -20,5 +19,6 @@ public interface UserService {
 
     UserDTO findByEmail(String email);
 
-    Company findCompanyByUserName();
+    Company findCompanyByLoggedInUser();
+
 }
