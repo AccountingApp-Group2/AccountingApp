@@ -51,7 +51,7 @@ public class ReportController {
     public String exportPDFButton(Model model){
         model.addAttribute("profitLoss", reportService.profitLoss());
         model.addAttribute("productsTotal", reportService.calculateByProducts());
-        model.addAttribute("company", userService.findCompanyByUserName());
+        model.addAttribute("company", userService.findCompanyByLoggedInUser());
 
         return "/report/export-pdf-button";
     }
@@ -61,7 +61,7 @@ public class ReportController {
         Map<String, Object> data = new HashMap<>();
         data.put("profitLoss", reportService.profitLoss());
         data.put("productsList", reportService.calculateByProducts());
-        data.put("company", userService.findCompanyByUserName());
+        data.put("company", userService.findCompanyByLoggedInUser());
 
 
         ByteArrayInputStream exportedData = exportPDFService.exportReceiptPdf("report", data);

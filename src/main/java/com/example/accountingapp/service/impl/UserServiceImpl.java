@@ -77,11 +77,7 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.findByEmail(email);
         return mapperUtil.convert(user, new UserDTO());
     }
-    @Override
-    public Company findCompanyByUserName() {
-        User user = userRepository.findByEmail("admin@company2.com");
-        return user.getCompany();
-    }
+
 
 
     @Override
