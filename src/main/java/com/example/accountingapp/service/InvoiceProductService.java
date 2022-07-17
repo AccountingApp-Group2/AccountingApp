@@ -13,6 +13,7 @@ public interface InvoiceProductService {
 
     List<ProductDTO> findAllProductsByCompanyName(String companyName);
 
+
     void addInvoiceProductByInvoiceId(Long id, InvoiceProductDTO invoiceProductDTO);
 
     List<InvoiceProductDTO> findAllInvoiceProductsByInvoiceId(Long id);
@@ -20,6 +21,7 @@ public interface InvoiceProductService {
     Long findInvoiceIdByInvoiceProductId(Long ipid);
 
     void deleteInvoiceProductById(Long ipid);
+
 
     List<InvoiceProductDTO> getByInvoiceId(Long invoiceId);
 

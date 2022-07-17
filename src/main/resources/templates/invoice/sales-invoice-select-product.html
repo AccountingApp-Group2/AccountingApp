@@ -111,9 +111,10 @@
                                                                 <div class="form-group">
                                                                     <div class="controls" >
                                                                         <label>Tax</label>
-                                                                        <input type="text"  th:field="*{tax}"
-                                                                               class="form-control"
-                                                                               required aria-invalid="false">
+                                                                        <a type="text"
+                                                                           class="form-control" readonly aria-invalid="false"
+                                                                           th:text="${tax}">
+                                                                        </a>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -168,13 +169,13 @@
                                                                 type="submit" name="action" value="save">Save
                                                         </button>
                                                     </form>
-<!--                                                    todo baha vitaly-->
-<!--                                                    <form action="#"-->
-<!--                                                          th:action="@{/invoice/salesInvoiceList}">-->
-<!--                                                        <button class="btn btn-danger mb-2 mb-sm-0 mr-sm-2"-->
-<!--                                                                type="submit" name="action" value="cancel">Cancel-->
-<!--                                                        </button>-->
-<!--                                                    </form>-->
+                                                    <!--                                                    todo baha vitaly-->
+                                                    <!--                                                    <form action="#"-->
+                                                    <!--                                                          th:action="@{/invoice/salesInvoiceList}">-->
+                                                    <!--                                                        <button class="btn btn-danger mb-2 mb-sm-0 mr-sm-2"-->
+                                                    <!--                                                                type="submit" name="action" value="cancel">Cancel-->
+                                                    <!--                                                        </button>-->
+                                                    <!--                                                    </form>-->
                                                 </div>
                                             </div>
                                         </div>

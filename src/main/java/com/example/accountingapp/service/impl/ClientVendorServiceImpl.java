@@ -6,6 +6,7 @@ import com.example.accountingapp.entity.ClientVendor;
 import com.example.accountingapp.mapper.MapperUtil;
 import com.example.accountingapp.repository.ClientVendorRepository;
 import com.example.accountingapp.service.ClientVendorService;
+import com.example.accountingapp.service.UserService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,15 +17,18 @@ public class ClientVendorServiceImpl implements ClientVendorService {
 
     private final ClientVendorRepository clientVendorRepository;
     private final MapperUtil mapperUtil;
+    private final UserService userService;
 
-    public ClientVendorServiceImpl(ClientVendorRepository clientVendorRepository, MapperUtil mapperUtil) {
+    public ClientVendorServiceImpl(ClientVendorRepository clientVendorRepository, MapperUtil mapperUtil, UserService userService) {
         this.clientVendorRepository = clientVendorRepository;
         this.mapperUtil = mapperUtil;
+        this.userService = userService;
     }
 
     @Override
     public List<ClientVendorDTO> listAllClients() {
-        return clientVendorRepository.findAllBy().stream().map(p -> mapperUtil.convert(p, new ClientVendorDTO())).collect(Collectors.toList());
+
+        return clientVendorRepository.findAllByCompany(userService.findCompanyByLoggedInUser()).stream().map(p -> mapperUtil.convert(p, new ClientVendorDTO())).collect(Collectors.toList());
     }
 
     @Override

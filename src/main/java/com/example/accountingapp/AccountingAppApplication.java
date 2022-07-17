@@ -20,7 +20,7 @@ public class AccountingAppApplication {
     public static void main(String[] args) {
         SpringApplication.run(AccountingAppApplication.class, args);
     }
-    
+
     @Bean
     public ModelMapper mapper(){
         return new ModelMapper();
