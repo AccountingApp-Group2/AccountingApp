@@ -107,7 +107,7 @@
                     <li class="nav-item mr-2 d-none d-lg-block"><a class="nav-link apptogglefullscreen"
                                                                    id="navbar-fullscreen" href="javascript:;"><i
                             class="ft-maximize font-medium-3"></i></a></li>
-                    <li class="nav-item mr-2 d-none d-lg-block" th:text="'Logged as: '+${#authentication.getPrincipal().getUsername()}"></li>
+                    <li class="nav-item mr-2 d-none d-lg-block" th:text="'Logged in as: '+${#authentication.getPrincipal().getFirstName() + ' ' + #authentication.getPrincipal().getLastName()}"></li>
                 </ul>
                 <div class="navbar-brand-center">
                     <div class="navbar-header">
