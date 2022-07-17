@@ -34,6 +34,7 @@
                         <ul class="search-list"></ul>
                     </div>
                 </li>
+                <li class="nav-item mr-2 d-none d-lg-block" th:text="'Logged as: '+${#authentication.getPrincipal().getUsername()}"></li>
             </ul>
             <div class="navbar-brand-center">
                 <div class="navbar-header">
