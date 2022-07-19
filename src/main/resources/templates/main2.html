@@ -34,7 +34,7 @@
                         <ul class="search-list"></ul>
                     </div>
                 </li>
-                <li class="nav-item mr-2 d-none d-lg-block" th:text="'Logged as: '+${#authentication.getPrincipal().getUsername()}"></li>
+<!--                <li class="nav-item mr-2 d-none d-lg-block" th:text="'Logged in as: '+${#authentication.getPrincipal().getFirstName() + ' ' + #authentication.getPrincipal().getLastName()}"></li>-->
             </ul>
             <div class="navbar-brand-center">
                 <div class="navbar-header">
@@ -58,13 +58,14 @@
                     <ul class="dropdown-menu">
                         <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="#"
                                             data-toggle="dropdown"><i class="ft-archive" style="color: #00b3ff"></i><span
-                                data-i18n="Chat" style="color: #0e0c28">Account</span></a>
+                                th:text="${#authentication.getPrincipal().getFirstName() + ' ' + #authentication.getPrincipal().getLastName()}" data-i18n="Chat" style="color: #0e0c28"></span></a>
                         </li>
                         <li data-menu=""><a class="dropdown-item d-flex align-items-center"
                                             href="#"
                                             data-toggle="dropdown"><i class="ft-alert-circle"
                                                                       style="color: #00b3ff"></i><span
-                                data-i18n="Task Board" style="color: #0e0c28">Settings</span></a>
+                                data-i18n="Task Board" style="color: #0e0c28"
+                                th:text="${#authentication.getPrincipal().getEmail()}"></span></a>
                         </li>
                         <li data-menu=""><a class="dropdown-item d-flex align-items-center"
                                             th:href="@{/logout}"

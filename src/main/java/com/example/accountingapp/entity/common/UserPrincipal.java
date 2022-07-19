@@ -63,4 +63,17 @@ public class UserPrincipal implements UserDetails {
     public Company getCompany() {
         return this.user.getCompany();
     }
+
+    public String getFirstName() {
+        return this.user.getFirstName();
+    }
+
+    public String getLastName() {
+        return this.user.getLastName();
+    }
+
+    public String getEmail() {
+        return this.user.getEmail();
+    }
+
 }
