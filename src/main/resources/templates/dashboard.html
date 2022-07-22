@@ -227,7 +227,12 @@
 </div>
 <!-- ////////////////////////////////////////////////////////////////////////////-->
 </div>
-<footer th:replace="fragments :: page_footer"></footer>
+<footer th:replace="fragments :: page_footer">
+    <p class="clearfix text-muted m-0"><span>Copyright &copy; 2022 &nbsp;</span><a
+            th:target="_blank" id="pixinventLink">CYDEO</a><span
+            class="d-none d-sm-inline-block">, All rights reserved.</span>
+    </p>
+</footer>
 <div class="sidenav-overlay"></div>
 <!-- BEGIN PAGE LEVEL JS-->
 <script th:src="@{/js/dashboard2.js}"></script>
