@@ -90,6 +90,21 @@
                                                                     </span>
                                                                 </div>
                                                             </div>
+                                                            <div class="form-group">
+                                                                <div class="controls">
+                                                                    <label for="users-edit-role">Unit</label>
+                                                                    <select  id="users-edit-role"
+                                                                             class="form-control" th:field="*{unit}">
+                                                                        <option th:each="unit : ${units}" th:value="${unit}" th:text="${unit}">
+                                                                        </option>
+                                                                    </select>
+                                                                    <span class="help-block" th:if="${#fields.hasErrors('unit')}">
+                                                                        <ul>
+                                                                            <p class="text-danger" th:each="err : ${#fields.errors('unit')}" th:text="${err}"/>
+                                                                        </ul>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
 
                                                         </div>
 
@@ -123,21 +138,6 @@
                                                                 </div>
                                                             </div>
 
-                                                            <div class="form-group">
-                                                                <div class="controls">
-                                                                    <label for="users-edit-role">Unit</label>
-                                                                    <select  id="users-edit-role"
-                                                                            class="form-control" th:field="*{unit}">
-                                                                        <option th:each="unit : ${units}" th:value="${unit}" th:text="${unit}">
-                                                                        </option>
-                                                                    </select>
-                                                                    <span class="help-block" th:if="${#fields.hasErrors('unit')}">
-                                                                        <ul>
-                                                                            <p class="text-danger" th:each="err : ${#fields.errors('unit')}" th:text="${err}"/>
-                                                                        </ul>
-                                                                    </span>
-                                                                </div>
-                                                            </div>
                                                             <div class="form-group">
                                                                 <div class="controls">
                                                                     <label for="product-low-limit">Low limit
