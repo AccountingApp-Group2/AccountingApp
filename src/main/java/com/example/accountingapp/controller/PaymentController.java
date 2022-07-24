@@ -32,7 +32,7 @@ public class PaymentController {
     String[] month = new DateFormatSymbols().getMonths();
     model.addAttribute("localDateTime", LocalDateTime.now());
     model.addAttribute("year", year);
-    model.addAttribute("payments", paymentService.listAllByYear(year));
+    model.addAttribute("payments", paymentService.listAllByYearAndCompany(year));
 
     return "/payment/payment-list";
   }

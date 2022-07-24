@@ -32,7 +32,7 @@ public class UserController {
 
 
         model.addAttribute("roles", roleService.listAllRoles());
-        model.addAttribute("companies", companyService.listAllCompanies());
+        model.addAttribute("companies", companyService.findCompanyByLoggedInUser());
         model.addAttribute("users", userService.listAllUsers());
         model.addAttribute("UserStatus", UserStatus.values());
         return "/user/user-list";
@@ -44,7 +44,7 @@ public class UserController {
 
         model.addAttribute("user", new UserDTO());
         model.addAttribute("roles", roleService.listAllRoles());
-        model.addAttribute("companies", companyService.listAllCompanies());
+        model.addAttribute("companies", companyService.findCompanyByLoggedInUser());
         model.addAttribute("UserStatus", UserStatus.values());
         return "/user/user-add";
     }
@@ -56,7 +56,7 @@ public class UserController {
         if (bindingResult.hasErrors()) {
 
             model.addAttribute("roles", roleService.listAllRoles());
-            model.addAttribute("companies", companyService.listAllCompanies());
+            model.addAttribute("companies", companyService.findCompanyByLoggedInUser());
             model.addAttribute("UserStatus", UserStatus.values());
 
             return "/user/user-add";
@@ -74,7 +74,7 @@ public class UserController {
 
         model.addAttribute("user", userService.findByEmail(email));
         model.addAttribute("roles", roleService.listAllRoles());
-        model.addAttribute("companies", companyService.listAllCompanies());
+        model.addAttribute("companies", companyService.findCompanyByLoggedInUser());
         model.addAttribute("UserStatus", UserStatus.values());
         return "/user/user-update";
 
@@ -84,7 +84,7 @@ public class UserController {
     public String updateUser(@Valid @ModelAttribute("user") UserDTO user, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("roles", roleService.listAllRoles());
-            model.addAttribute("companies", companyService.listAllCompanies());
+            model.addAttribute("companies", companyService.findCompanyByLoggedInUser());
             model.addAttribute("UserStatus", UserStatus.values());
             return "/user/user-update";
 
