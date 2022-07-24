@@ -2,17 +2,15 @@ package com.example.accountingapp.entity;
 
 import com.example.accountingapp.enums.CompanyType;
 import com.example.accountingapp.enums.State;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.Where;
 import javax.persistence.*;
 
-@Entity
+@Data
+@AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
-@Where(clause = "is_deleted=false")
+@Entity
+@Where(clause= "is_deleted=false")
 public class ClientVendor extends BaseEntity {
 
     private String companyName;
@@ -32,6 +30,6 @@ public class ClientVendor extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private State stateId;
 
-    private boolean enabled;
+    private Boolean enabled;
 
 }
