@@ -1,6 +1,7 @@
 package com.example.accountingapp.service.impl;
 
 import com.example.accountingapp.dto.ClientVendorDTO;
+import com.example.accountingapp.entity.User;
 import com.example.accountingapp.enums.CompanyType;
 import com.example.accountingapp.entity.ClientVendor;
 import com.example.accountingapp.mapper.MapperUtil;
@@ -46,14 +47,19 @@ public class ClientVendorServiceImpl implements ClientVendorService {
     @Override
     public void save(ClientVendorDTO dto) {
         dto.setEnabled(true);
+        dto.setCompany(userService.findCompanyByLoggedInUser());
         clientVendorRepository.save(mapperUtil.convert(dto, new ClientVendor()));
     }
 
     @Override
     public ClientVendorDTO update(ClientVendorDTO dto) {
+
+
         ClientVendor client = clientVendorRepository.findByEmail(dto.getEmail());
         ClientVendor convertedClient = mapperUtil.convert(dto,new ClientVendor());
         convertedClient.setId(client.getId());
+        convertedClient.setEnabled(client.getEnabled());
+        convertedClient.setCompany(userService.findCompanyByLoggedInUser());
         clientVendorRepository.save(convertedClient);
         return findByEmail(dto.getEmail());
     }
@@ -66,10 +72,12 @@ public class ClientVendorServiceImpl implements ClientVendorService {
 
     @Override
     public List<ClientVendorDTO> findAllByCompanyType(CompanyType companyType) {
-        return clientVendorRepository.findAllByType (companyType)
+        List<ClientVendorDTO> clientVendorList = clientVendorRepository.findAllByTypeAndCompany (companyType,userService.findCompanyByLoggedInUser())
                 .stream()
                 .map(p -> mapperUtil.convert(p, new ClientVendorDTO()))
                 .collect(Collectors.toList());
+
+        return clientVendorList;
 
     }
 

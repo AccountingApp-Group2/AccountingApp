@@ -5,6 +5,7 @@ import com.example.accountingapp.entity.Payment;
 import com.example.accountingapp.mapper.MapperUtil;
 import com.example.accountingapp.repository.PaymentRepository;
 import com.example.accountingapp.service.PaymentService;
+import com.example.accountingapp.service.UserService;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,10 +14,12 @@ import java.util.stream.Collectors;
 public class PaymentServiceImpl implements PaymentService {
   private final PaymentRepository paymentRepository;
   private final MapperUtil mapperUtil;
+  private final UserService userService;
 
-  public PaymentServiceImpl(PaymentRepository paymentRepository, MapperUtil mapperUtil) {
+  public PaymentServiceImpl(PaymentRepository paymentRepository, MapperUtil mapperUtil, UserService userService) {
     this.paymentRepository = paymentRepository;
     this.mapperUtil = mapperUtil;
+    this.userService = userService;
   }
 
   @Override
@@ -27,10 +30,11 @@ public class PaymentServiceImpl implements PaymentService {
   }
 
   @Override
-  public List<PaymentDTO> listAllByYear(String year) {
+  public List<PaymentDTO> listAllByYearAndCompany(String year) {
     return paymentRepository.findPaymentByYearOrderByMonth(year).stream()
-        .map(payment -> mapperUtil.convert(payment, new PaymentDTO()))
-        .collect(Collectors.toList());
+            .filter(payment -> payment.getCompany().equals(userService.findCompanyByLoggedInUser()))
+            .map(payment -> mapperUtil.convert(payment, new PaymentDTO()))
+            .collect(Collectors.toList());
   }
 
   @Override

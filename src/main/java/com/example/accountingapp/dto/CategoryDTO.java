@@ -1,5 +1,6 @@
 package com.example.accountingapp.dto;
 
+import com.example.accountingapp.entity.Company;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,4 +19,6 @@ public class CategoryDTO {
 
     @NotBlank
     private boolean enabled;
+
+    private Company company;
 }

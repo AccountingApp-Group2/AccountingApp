@@ -81,17 +81,17 @@
 <!--                                                               class="btn btn-danger mb-2 mb-sm-0 mr-sm-2">-->
 <!--                                                                Delete Category</a>-->
 
-                                                            <a th:href="@{/category/delete/{id} (id=${category.getId()})}" class="btn btn-danger mb-2 mb-sm-0 mr-sm-2">
-                                                                Delete Category</a>
+                                                            <!--                                                             <a th:href="@{/category/delete/{id} (id=${category.getId()})}" class="btn btn-danger mb-2 mb-sm-0 mr-sm-2">
+                                                                                                                            Delete Category</a> -->
 
 
-                                                            <script>
-                                                                function myFunction() {
-                                                                    alert("Category \nThere are products under this cat?");
-                                                                }
-                                                            </script>
+                                                                                                                        <script>
+                                                                                                                            function myFunction() {
+                                                                                                                                alert("Category \nThere are products under this cat?");
+                                                                                                                            }
+                                                                                                                        </script>
 
-                                                            <!--                                                            <span th:if="${errorMessage}!=null" onclick="myFunction()">-->
+                                                                                                                        <!--                                                            <span th:if="${errorMessage}!=null" onclick="myFunction()">-->
                                                             <!--                                                                <span th:if="${errorMessage}!=null"  th:text="${errorMessage}">Error</span>-->
                                                             <!--                                                               <span  th:if="${errorMessage}!=null" th:onclick="'alert(\'This category has products\');'" > </span>-->
 

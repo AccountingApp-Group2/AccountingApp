@@ -87,4 +87,9 @@ public class CompanyServiceImpl implements CompanyService {
         return tax;
     }
 
+    @Override
+    public Company findCompanyByLoggedInUser() {
+        return userService.findCompanyByLoggedInUser();
+    }
+
 }

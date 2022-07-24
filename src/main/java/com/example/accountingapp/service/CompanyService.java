@@ -1,6 +1,7 @@
 package com.example.accountingapp.service;
 
 import com.example.accountingapp.dto.CompanyDTO;
+import com.example.accountingapp.entity.Company;
 
 import java.math.BigDecimal;
 import java.util.Collection;
@@ -22,4 +23,6 @@ public interface CompanyService {
     void close(Long id);
 
     BigDecimal findTaxByCompany();
+
+    Company findCompanyByLoggedInUser();
 }

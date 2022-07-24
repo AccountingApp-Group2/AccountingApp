@@ -1,5 +1,6 @@
 package com.example.accountingapp.dto;
 
+import com.example.accountingapp.entity.Company;
 import com.example.accountingapp.enums.CompanyType;
 import com.example.accountingapp.enums.State;
 import lombok.AllArgsConstructor;
@@ -40,4 +41,6 @@ public class ClientVendorDTO {
     private CompanyType type;
 
     private boolean enabled;
+
+    private Company company;
 }
