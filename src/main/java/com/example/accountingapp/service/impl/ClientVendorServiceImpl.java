@@ -66,10 +66,12 @@ public class ClientVendorServiceImpl implements ClientVendorService {
 
     @Override
     public List<ClientVendorDTO> findAllByCompanyType(CompanyType companyType) {
-        return clientVendorRepository.findAllByType (companyType)
+        List<ClientVendorDTO> clientVendorList = clientVendorRepository.findAllByTypeAndCompany (companyType,userService.findCompanyByLoggedInUser())
                 .stream()
                 .map(p -> mapperUtil.convert(p, new ClientVendorDTO()))
                 .collect(Collectors.toList());
+
+        return clientVendorList;
 
     }
 
