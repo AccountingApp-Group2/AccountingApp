@@ -9,6 +9,7 @@ import com.example.accountingapp.service.ProductService;
 import com.example.accountingapp.service.UserService;
 import org.springframework.stereotype.Service;
 
+import java.math.BigInteger;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -49,6 +50,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public void create(ProductDTO productDTO) {
+        productDTO.setQty(BigInteger.ZERO);
+        save(productDTO);
+    }
+    @Override
     public void save(ProductDTO productDTO) {
         Product convertedProduct = mapperUtil.convert(productDTO, new Product());
         convertedProduct.setCompany(userService.findCompanyByLoggedInUser());
@@ -62,6 +68,7 @@ public class ProductServiceImpl implements ProductService {
         Product convertedProduct = mapperUtil.convert(dto,new Product());
         convertedProduct.setCompany(userService.findCompanyByLoggedInUser());
         convertedProduct.setEnabled(product.getEnabled());
+        convertedProduct.setQty(product.getQty());
         productRepository.save(convertedProduct);
         return findById(convertedProduct.getId());
     }

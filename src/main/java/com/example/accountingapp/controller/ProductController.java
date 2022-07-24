@@ -54,13 +54,12 @@ public class ProductController {
     @PostMapping("/add")
     public String addProduct(@Valid @ModelAttribute("product") ProductDTO product, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-
             model.addAttribute("categories", categoryService.listAllCategories());
             model.addAttribute("statuses", ProductStatus.values());
             model.addAttribute("units", Unit.values());
             return "/product/product-add";
         }
-        productService.save(product);
+        productService.create(product);
         return "redirect:/product/list";
     }
 

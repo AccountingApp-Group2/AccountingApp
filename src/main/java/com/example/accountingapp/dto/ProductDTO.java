@@ -27,7 +27,7 @@ public class ProductDTO {
     @NotNull
     private CategoryDTO category;
 
-    @NotNull
+//    @NotNull
     private BigInteger qty;
 
     @NotNull
