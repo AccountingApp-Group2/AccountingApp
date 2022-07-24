@@ -131,21 +131,21 @@
                             data-i18n="Apps" class="person" ></span></a>
                         <ul class="dropdown-menu">
                             <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="#"
-                                                data-toggle="dropdown"><i class="ft-archive" style="color: #00b3ff"></i><span
-                                    th:text="${#authentication.getPrincipal().getFirstName() + ' ' + #authentication.getPrincipal().getLastName()}" data-i18n="Chat" style="color: #0e0c28"></span></a>
+                                                data-toggle="dropdown">
+<!--                                <i class="ft-archive" style="color: #00b3ff"></i>-->
+                                <span th:text="${#authentication.getPrincipal().getFirstName() + ' ' + #authentication.getPrincipal().getLastName()}" data-i18n="Chat" style="color: #0e0c28"></span></a>
                             </li>
                             <li data-menu=""><a class="dropdown-item d-flex align-items-center"
                                                 href="#"
-                                                data-toggle="dropdown"><i class="ft-alert-circle"
-                                                                          style="color: #00b3ff"></i><span
-                                    data-i18n="Task Board" style="color: #0e0c28"
+                                                data-toggle="dropdown">
+<!--                                <i class="ft-alert-circle" style="color: #00b3ff"></i>-->
+                                <span data-i18n="Task Board" style="color: #0e0c28"
                                     th:text="${#authentication.getPrincipal().getEmail()}"></span></a>
                             </li>
                             <li data-menu=""><a class="dropdown-item d-flex align-items-center"
-                                                th:href="@{/logout}"
-                                                data-toggle="dropdown"><i class="ft-arrow-right submenu-icon"
-                                                                          style="color: #00b3ff"></i><span
-                                    data-i18n="Task Board" style="color: #0e0c28">Logout</span></a>
+                                                th:href="@{/logout}" data-toggle="dropdown">
+<!--                                <i class="ft-arrow-right submenu-icon" style="color: #00b3ff"></i>-->
+                                <span data-i18n="Task Board" style="color: #0e0c28">Logout</span></a>
                             </li>
                         </ul>
                     </li>
