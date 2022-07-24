@@ -29,4 +29,7 @@ public interface InvoiceRepository extends JpaRepository<Invoice, Long> {
     List<Invoice> findLast3InvoiceByDate(@Param("companyTitle") String companyTitle);
 
     List<Invoice> findAllByInvoiceTypeAndCompany(InvoiceType invoiceType, Company companyByLoggedInUser);
+
+
+
 }

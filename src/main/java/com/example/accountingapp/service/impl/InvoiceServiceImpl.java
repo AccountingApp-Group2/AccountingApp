@@ -212,12 +212,22 @@ public class InvoiceServiceImpl implements InvoiceService {
     @Override
     public void enableInvoice(Long id) {
         Invoice invoice = invoiceRepository.findById(id).get();
+
         // set status enabled for all product invoices in the list
         List<InvoiceProduct> invoiceProductList = invoiceProductRepository.findAllByInvoiceId(id);
+
+        List<InvoiceProduct> invoiceProductListSale = invoiceProductList.stream().filter(i->i.getInvoice().getInvoiceType().equals(InvoiceType.SALE)).collect(Collectors.toList());
+        for (InvoiceProduct each : invoiceProductListSale) {
+            each.setTax(calculateTaxByInvoiceIdForSale(each));
+            invoiceProductRepository.save(each);
+        }
+
+
         for (InvoiceProduct eachInvoiceProduct : invoiceProductList) {
             eachInvoiceProduct.setEnabled(true);
         }
         invoice.setEnabled(true);
+
         invoiceRepository.save(invoice);
     }
 
@@ -225,6 +235,11 @@ public class InvoiceServiceImpl implements InvoiceService {
     public void approvePurchaseInvoice(Long id) {
         List<InvoiceProduct> invoiceProductList = invoiceProductRepository.findAllByInvoiceId(id);
         for (InvoiceProduct eachInvoiceProduct : invoiceProductList) {
+
+            //set tax
+            eachInvoiceProduct.setTax(calculateTaxByInvoiceIdForPurchase(id,eachInvoiceProduct));
+            invoiceProductRepository.save(eachInvoiceProduct);
+
             //update stock
             Long productId = eachInvoiceProduct.getProduct().getId();
             Integer additionalQty = eachInvoiceProduct.getQty();
@@ -232,9 +247,13 @@ public class InvoiceServiceImpl implements InvoiceService {
             product.setQty(product.getQty().add(BigInteger.valueOf(additionalQty)));
             productRepository.save(product);
         }
+
+
         //change status of invoice -> approved
         Invoice invoice = invoiceRepository.findById(id).get();
         invoice.setInvoiceStatus(InvoiceStatus.APPROVED);
+
+
         invoiceRepository.save(invoice);
 
     }
@@ -256,4 +275,24 @@ public class InvoiceServiceImpl implements InvoiceService {
 
         }
     }
+
+    @Override
+    public BigDecimal calculateTaxByInvoiceIdForPurchase(Long id, InvoiceProduct invoiceProduct) {
+
+        BigDecimal taxPercantage = invoiceRepository.findById(id).get().getClientVendor().getStateId().getState_tax();
+        BigDecimal calculatedTax = (invoiceProduct.getPrice().multiply(BigDecimal.valueOf(invoiceProduct.getQty())).multiply(taxPercantage).divide(BigDecimal.valueOf(100)));
+
+        return calculatedTax;
+    }
+
+    @Override
+    public BigDecimal calculateTaxByInvoiceIdForSale(InvoiceProduct invoiceProduct) {
+        BigDecimal taxPercantage = companyService.findTaxByCompany().divide(BigDecimal.valueOf(100));
+        BigDecimal calculatedTax = (invoiceProduct.getPrice().multiply(BigDecimal.valueOf(invoiceProduct.getQty())).multiply(taxPercantage).divide(BigDecimal.valueOf(100)));
+
+
+        return calculatedTax;
+    }
+
+
 }

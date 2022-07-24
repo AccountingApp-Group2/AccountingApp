@@ -1,6 +1,7 @@
 package com.example.accountingapp.service;
 
 import com.example.accountingapp.dto.InvoiceDTO;
+import com.example.accountingapp.entity.InvoiceProduct;
 import com.example.accountingapp.enums.InvoiceType;
 
 import java.math.BigDecimal;
@@ -39,6 +40,10 @@ public interface InvoiceService {
     void approvePurchaseInvoice(Long id);
 
     void addProductToStockByInvoice(Long id);
+
+    BigDecimal calculateTaxByInvoiceIdForPurchase(Long id, InvoiceProduct invoiceProduct);
+
+    BigDecimal calculateTaxByInvoiceIdForSale(InvoiceProduct invoiceProduct);
 
 }
 
