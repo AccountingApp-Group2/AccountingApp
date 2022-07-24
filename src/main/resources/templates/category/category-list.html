@@ -61,7 +61,7 @@
                                                     <tr th:each="category : ${categories}">
                                                         <td th:text="${category.id}"></td>
                                                         <td th:text="${category.description}" class="text-truncate"></td>
-                                                        <td th:text="${category.enabled}"></td>
+                                                        <td th:text="${category.enabled} ? 'Enabled' : 'Disabled'"></td>
                                                         <td>
                                                             <a th:href="@{/category/category-edit/{id}(id=${category.id})}">
                                                                 <i class="ft-edit"></i>
