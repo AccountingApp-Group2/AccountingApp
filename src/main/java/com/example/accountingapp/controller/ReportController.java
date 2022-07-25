@@ -10,10 +10,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.text.DateFormatSymbols;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -38,6 +41,14 @@ public class ReportController {
         return "/report/stock-report";
     }
 
+    @GetMapping("/payment")
+    public String showAllPayments(Model model, @RequestParam(defaultValue = "2022") String year) {
+        String[] month = new DateFormatSymbols().getMonths();
+        model.addAttribute("localDateTime", LocalDateTime.now());
+        model.addAttribute("year", year);
+        model.addAttribute("payments", reportService.listAllByYearAndCompany(year));
+        return "/report/payment-report";
+    }
 
     @GetMapping("/profit")
     public String profitLossReport(Model model){

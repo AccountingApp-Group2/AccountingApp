@@ -30,18 +30,12 @@ public class PaymentServiceImpl implements PaymentService {
   }
 
   @Override
-  public List<PaymentDTO> listAllByYearAndCompany(String year) {
-    return paymentRepository.findPaymentByYearOrderByMonth(year).stream()
-            .filter(payment -> payment.getCompany().equals(userService.findCompanyByLoggedInUser()))
-            .map(payment -> mapperUtil.convert(payment, new PaymentDTO()))
-            .collect(Collectors.toList());
-  }
+  public List<PaymentDTO> listByYearAndCompany(String year) {
 
-  @Override
-  public List<PaymentDTO> listAllByYear(String year) {
-    return paymentRepository.findPaymentByYearOrderByMonth(year).stream()
-            .map(payment -> mapperUtil.convert(payment, new PaymentDTO()))
-            .collect(Collectors.toList());
+      return paymentRepository.findPaymentByYearOrderByMonth(year).stream()
+              .filter(payment -> payment.getCompany().equals(userService.findCompanyByLoggedInUser()))
+              .map(payment -> mapperUtil.convert(payment, new PaymentDTO()))
+              .collect(Collectors.toList());
   }
 
   @Override
@@ -63,4 +57,6 @@ public class PaymentServiceImpl implements PaymentService {
     payment.setIsPaid(true);
     paymentRepository.save(payment);
   }
+
+
 }

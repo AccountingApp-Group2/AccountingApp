@@ -24,4 +24,6 @@ public interface UserService {
 
     CompanyDTO findCompanyDTOByLoggedInUser();
 
+    UserDTO findLoggedInUser();
+
 }

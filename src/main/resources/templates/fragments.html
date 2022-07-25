@@ -186,7 +186,14 @@
                                          data-toggle="dropdown"><i class="ft-arrow-right submenu-icon"></i><span
                             data-i18n="Task Board">Client/Vendor Registration</span></a>
                     </li>
-                    <li data-menu="" sec:authorize="hasAnyAuthority('Manager','Root')">
+                    <li data-menu="" sec:authorize="hasAnyAuthority('Root')">
+                        <a th:href="@{/report/payment}"
+                           class="dropdown-item d-flex align-items-center"
+                           data-toggle="dropdown"><i class="ft-arrow-right submenu-icon"></i><span
+                                data-i18n="Task Board">Membership Payment Report</span></a>
+                    </li>
+
+                    <li data-menu="" sec:authorize="hasAnyAuthority('Manager')">
                         <a th:href="@{/payment/list}"
                            class="dropdown-item d-flex align-items-center"
                            data-toggle="dropdown"><i class="ft-arrow-right submenu-icon"></i><span

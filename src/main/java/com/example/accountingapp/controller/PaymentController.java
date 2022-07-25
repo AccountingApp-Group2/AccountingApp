@@ -4,7 +4,6 @@ import com.example.accountingapp.dto.PaymentDTO;
 import com.example.accountingapp.service.CompanyService;
 import com.example.accountingapp.service.PaymentService;
 
-import com.sun.xml.bind.v2.TODO;
 import org.springframework.beans.factory.annotation.Value;
 
 import org.springframework.stereotype.Controller;
@@ -33,12 +32,12 @@ public class PaymentController {
     String[] month = new DateFormatSymbols().getMonths();
     model.addAttribute("localDateTime", LocalDateTime.now());
     model.addAttribute("year", year);
-    model.addAttribute("payments", paymentService.listAllByYearAndCompany(year));
-    //TODO If user is root show all company` s payments
-    //model.addAttribute("allPayments", paymentService.listAllByYear(year));
+    model.addAttribute("payments", paymentService.listByYearAndCompany(year));
 
     return "/payment/payment-list";
   }
+
+
 
   @GetMapping("/payment-consent/{id}")
   public String paymentConsent(@PathVariable("id") Long id, Model model) {
