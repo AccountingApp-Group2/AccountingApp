@@ -182,9 +182,15 @@
                     </li>
                     <li data-menu="" sec:authorize="hasAnyAuthority('Manager')">
                         <a th:href="@{/client-vendor/list}"
+                           class="dropdown-item d-flex align-items-center"
+                           data-toggle="dropdown"><i class="ft-arrow-right submenu-icon"></i><span
+                                data-i18n="Task Board">Client/Vendor Registration</span></a>
+                    </li>
+                    <li data-menu="" sec:authorize="hasAnyAuthority('Manager')">
+                        <a th:href="@{/payment/list}"
                                          class="dropdown-item d-flex align-items-center"
                                          data-toggle="dropdown"><i class="ft-arrow-right submenu-icon"></i><span
-                            data-i18n="Task Board">Client/Vendor Registration</span></a>
+                            data-i18n="Task Board">MemberShip Payment</span></a>
                     </li>
                 </ul>
             </li>
@@ -235,21 +241,6 @@
                             data-i18n="Chat">Report Profit/Loss</span></a>
                     </li>
 
-                </ul>
-            </li>
-            <li class="dropdown nav-item softer" data-menu="dropdown" style="background: rgba(213,217,139,0.8)" sec:authorize="hasAnyAuthority('Manager')"><a
-                    class="dropdown-toggle nav-link d-flex align-items-center" href="javascript:;"
-                    data-toggle="dropdown"><i class="ft-archive"></i><span data-i18n="Components">Administration</span></a>
-                <ul class="dropdown-menu">
-
-                    <li data-menu=""><a th:href="@{/payment/list}" class="dropdown-item d-flex align-items-center"
-                                        data-toggle="dropdown"><i class="ft-arrow-right submenu-icon"></i><span
-                            data-i18n="Grid">MemberShip Payment</span></a>
-                    </li>
-                    <li data-menu=""><a class="dropdown-item d-flex align-items-center"
-                                        data-toggle="dropdown"><i class="ft-arrow-right submenu-icon"></i><span
-                            data-i18n="Typography">Log Document</span></a>
-                    </li>
                 </ul>
             </li>
         </ul>
