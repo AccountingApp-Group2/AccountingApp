@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html class="loading" lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: page_head">
+    <title>Sales Invoice List</title>
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/img/ico/favicon.ico}">
+</head>
+
+<body class="horizontal-layout horizontal-menu horizontal-menu-padding 2-columns  navbar-sticky"
+      data-open="hover" data-menu="horizontal-menu" data-col="2-columns">
+<div th:replace="fragments :: page_header"></div>
+<div class="wrapper">
+    <div th:replace="fragments :: page_menu"></div>
+    <div class="main-panel">
+        <div class="main-content">
+            <div class="content-overlay"></div>
+            <div class="content-wrapper">
+                <section class="users-list-wrapper">
+                    <!-- ADD SALES INVOICE LINK BEGIN -->
+                    <div class="users-list-filter d-flex justify-content-end">
+                        <form action="#" method="get" th:action="@{/payment/list}">
+                            <div class="form-row" >
+                                <div class="col-12 col-md-5">
+                                    <div class="form-group">
+                                        <div class="controls">
+                                            <label for="year" class="form-label">SELECT YEAR</label>
+                                            <input type="number" id="year"
+                                                   th:min="${#temporals.year(localDateTime)}"
+                                                   th:value="${year}"
+                                                   th:name="year" class="form-control" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <div class="form-group">
+                                        <div class="controls">
+                                            <label for="create" class="form-label">LIST</label>
+                                            <input type="submit" id="create"
+                                                   class="btn btn-success bg-light-success">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- LIST BEGIN -->
+                    <div class="users-list-filter d-flex justify-content-center m-0 p-0 align-items-center">
+                        <h2 style="font-size: large" th:text="${year} + ' Payments Report'"></h2>
+                    </div>
+                    <div class="users-list-table align-items-center">
+                        <div class="row justify-content-center">
+                            <div class="col-8 ">
+                                <div class="card">
+                                    <div class="card-content fw-container">
+                                        <div class="card-body fw-body">
+                                            <div class="table-responsive content demo-html">
+                                                <table id="example" class="table table-striped table-bordered file-export" style="width:100%" >
+                                                    <col style="width:5%">
+                                                    <col style="width:50%">
+                                                    <col style="width:13%">
+                                                    <col style="width:12%">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Payment Date</th>
+                                                        <th>Amount</th>
+                                                        <th>Company</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr th:each="payment : ${payments}">
+                                                        <td th:text="${paymentStat.count}"></td>
+                                                        <td class="text-truncate" th:text="${payment.month.value} +' &#09;'+ ${year}"></td>
+                                                        <td class="text-truncate justify-content-center" th:text="'$ '+${payment.amount}"></td>
+                                                        <td class="text-truncate justify-content-center" th:text="${payment.company.getTitle}"> </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- LIST END -->
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+<footer th:replace="fragments :: page_footer"></footer>
+<div class="sidenav-overlay"></div>
+<div class="drag-target"></div>
+<script th:src="@{/js/dashboard2.js}"></script>
+<script th:src="@{/assets/js/scripts.js}"></script>
+</body>
+
+</html>

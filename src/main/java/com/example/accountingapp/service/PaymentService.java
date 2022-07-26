@@ -12,7 +12,7 @@ import java.util.List;
 public interface PaymentService {
   List<PaymentDTO> listAllPayments();
 
-  List<PaymentDTO> listAllByYearAndCompany(String year);
+  List<PaymentDTO> listByYearAndCompany(String year);
 
   PaymentDTO findById(Long id);
 

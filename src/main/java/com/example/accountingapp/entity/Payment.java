@@ -2,14 +2,17 @@ package com.example.accountingapp.entity;
 
 import com.example.accountingapp.enums.PaymentMonth;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 
-@NoArgsConstructor
-@Data
 @Entity
+@NoArgsConstructor
+@Getter
+@Setter
 @Where(clause = "is_deleted=false")
 public class Payment extends BaseEntity {
 
@@ -23,6 +26,5 @@ public class Payment extends BaseEntity {
   private PaymentMonth month;
 
   @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "company_id")
   private Company company;
 }

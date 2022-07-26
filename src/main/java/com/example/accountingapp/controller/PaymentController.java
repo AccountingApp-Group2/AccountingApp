@@ -32,10 +32,12 @@ public class PaymentController {
     String[] month = new DateFormatSymbols().getMonths();
     model.addAttribute("localDateTime", LocalDateTime.now());
     model.addAttribute("year", year);
-    model.addAttribute("payments", paymentService.listAllByYearAndCompany(year));
+    model.addAttribute("payments", paymentService.listByYearAndCompany(year));
 
     return "/payment/payment-list";
   }
+
+
 
   @GetMapping("/payment-consent/{id}")
   public String paymentConsent(@PathVariable("id") Long id, Model model) {
