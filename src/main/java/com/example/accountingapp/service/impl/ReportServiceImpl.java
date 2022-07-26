@@ -1,13 +1,16 @@
 package com.example.accountingapp.service.impl;
 
 import com.example.accountingapp.dto.InvoiceDTO;
+import com.example.accountingapp.dto.PaymentDTO;
 import com.example.accountingapp.dto.ReportDTO;
 import com.example.accountingapp.entity.InvoiceProduct;
+import com.example.accountingapp.entity.Payment;
 import com.example.accountingapp.entity.User;
 import com.example.accountingapp.enums.InvoiceType;
 import com.example.accountingapp.mapper.MapperUtil;
 import com.example.accountingapp.repository.InvoiceProductRepository;
 import com.example.accountingapp.repository.InvoiceRepository;
+import com.example.accountingapp.repository.PaymentRepository;
 import com.example.accountingapp.repository.UserRepository;
 import com.example.accountingapp.service.InvoiceService;
 import com.example.accountingapp.service.ReportService;
@@ -28,14 +31,16 @@ public class ReportServiceImpl implements ReportService {
     private final MapperUtil mapperUtil;
     private final InvoiceService invoiceService;
     private final UserService userService;
+    private final PaymentRepository paymentRepository;
 
-    public ReportServiceImpl(InvoiceProductRepository invoiceProductRepository, UserRepository userRepository, InvoiceRepository invoiceRepository, MapperUtil mapperUtil, InvoiceService invoiceService, UserService userService) {
+    public ReportServiceImpl(InvoiceProductRepository invoiceProductRepository, UserRepository userRepository, InvoiceRepository invoiceRepository, MapperUtil mapperUtil, InvoiceService invoiceService, UserService userService, PaymentRepository paymentRepository) {
         this.invoiceProductRepository = invoiceProductRepository;
         this.userRepository = userRepository;
         this.invoiceRepository = invoiceRepository;
         this.mapperUtil = mapperUtil;
         this.invoiceService = invoiceService;
         this.userService = userService;
+        this.paymentRepository = paymentRepository;
     }
 
     @Override
@@ -115,6 +120,12 @@ public class ReportServiceImpl implements ReportService {
     public List<InvoiceProduct> findAllByCompany() {
 
         return invoiceProductRepository.findAllByInvoice_Company(userService.findCompanyByLoggedInUser());
+    }
+
+    @Override
+    public List<Payment> listAllByYearAndCompany(String year) {
+        return paymentRepository.findPaymentByYearOrderByMonth(year).stream()
+                .collect(Collectors.toList());
     }
 
 

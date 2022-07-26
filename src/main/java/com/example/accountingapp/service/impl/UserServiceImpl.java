@@ -84,6 +84,21 @@ public class UserServiceImpl implements UserService {
         return company;
     }
 
+    @Override
+    public CompanyDTO findCompanyDTOByLoggedInUser() {
+        final Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Company company = ((UserPrincipal) principal).getCompany();
+        return mapperUtil.convert(company, new CompanyDTO());
+    }
+
+    @Override
+    public UserDTO findLoggedInUser() {
+        final Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String email = ((UserPrincipal) principal).getEmail();
+        UserDTO userDTO = findByEmail(email);
+        return userDTO;
+    }
+
 }
 
 

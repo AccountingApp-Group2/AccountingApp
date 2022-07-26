@@ -34,7 +34,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public void save(CategoryDTO dto) {
         dto.setEnabled(true);
-        dto.setCompany(userService.findCompanyByLoggedInUser());
+        dto.setCompanyDTO(userService.findCompanyDTOByLoggedInUser());
         categoryRepository.save(mapperUtil.convert(dto, new Category()));
     }
 
@@ -43,6 +43,7 @@ public class CategoryServiceImpl implements CategoryService {
 
         Category category = categoryRepository.findById(dto.getId()).get();
         category.setDescription(dto.getDescription());
+        dto.setCompanyDTO(userService.findCompanyDTOByLoggedInUser());
         categoryRepository.save(category);
 
         return dto;

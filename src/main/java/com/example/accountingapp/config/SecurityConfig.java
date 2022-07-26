@@ -32,7 +32,7 @@ public class SecurityConfig {
                 .antMatchers("/client-vendor/**").hasAuthority("Manager")
                 .antMatchers("/invoice/**").hasAnyAuthority("Manager","Employee")
                 .antMatchers("/payment/**").hasAnyAuthority("Manager","Root")
-                .antMatchers("/report/**").hasAuthority("Manager")
+                .antMatchers("/report/payment").hasAuthority("Root")
                 .antMatchers(
                         "/",
                         "/login",
