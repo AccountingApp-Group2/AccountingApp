@@ -80,7 +80,7 @@ public class ReportServiceImpl implements ReportService {
             BigDecimal totalCost = invoiceProductRepository.findAllByInvoice_InvoiceTypeAndInvoice_Company(InvoiceType.PURCHASE,userService.findCompanyByLoggedInUser())
                     .stream()
                     .filter(product->product.getName().equals(p.getName()))
-                    .map(product->product.getPrice()).
+                    .map(product->(product.getPrice()).multiply(BigDecimal.valueOf(product.getQty()))).
                     reduce(BigDecimal.ZERO, (a, b) -> a.add(b));
 
             Integer purchasedQTY = invoiceProductRepository.findAllByInvoice_InvoiceTypeAndInvoice_Company(InvoiceType.PURCHASE,userService.findCompanyByLoggedInUser())
@@ -92,7 +92,7 @@ public class ReportServiceImpl implements ReportService {
             BigDecimal totalIncome = invoiceProductRepository.findAllByInvoice_InvoiceTypeAndInvoice_Company(InvoiceType.SALE,userService.findCompanyByLoggedInUser())
                     .stream()
                     .filter(product->product.getName().equals(p.getName()))
-                    .map(product->product.getPrice()).
+                    .map(product->(product.getPrice()).multiply(BigDecimal.valueOf(product.getQty()))).
                     reduce(BigDecimal.ZERO, (a, b) -> a.add(b));
 
             Integer soldQTY = invoiceProductRepository.findAllByInvoice_InvoiceTypeAndInvoice_Company(InvoiceType.SALE,userService.findCompanyByLoggedInUser())
