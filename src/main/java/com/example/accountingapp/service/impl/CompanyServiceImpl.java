@@ -10,6 +10,7 @@ import com.example.accountingapp.service.UserService;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -88,8 +89,15 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
-    public Company findCompanyByLoggedInUser() {
-        return userService.findCompanyByLoggedInUser();
+    public List<CompanyDTO> findCompanyByLoggedInUser() {
+        List<CompanyDTO> listCompanies = new ArrayList<>();
+
+        if (userService.findLoggedInUser().getRole().equals("Root")){
+            return listAllCompanies();
+        }
+        listAllCompanies().forEach(System.out::println);
+        listCompanies.add(mapperUtil.convert(userService.findCompanyByLoggedInUser(),new CompanyDTO()));
+        return listCompanies;
     }
 
 }

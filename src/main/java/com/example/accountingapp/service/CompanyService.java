@@ -24,5 +24,5 @@ public interface CompanyService {
 
     BigDecimal findTaxByCompany();
 
-    Company findCompanyByLoggedInUser();
+    List<CompanyDTO> findCompanyByLoggedInUser();
 }
