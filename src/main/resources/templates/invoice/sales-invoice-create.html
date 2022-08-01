@@ -47,8 +47,9 @@
                                                                         <br>
                                                                             <select class="custom-select" required="required"
                                                                                     th:field="*{companyName}">
-                                                                                <option th:value="' '"
-                                                                                        th:text="Select"></option>
+<!--                                                                                <option th:value="' '"-->
+<!--                                                                                        th:text="Select"></option>-->
+                                                                                <option value="">Select Client</option>
                                                                                 <option th:each="client: ${clients}"
                                                                                         th:text="${client.companyName}"
                                                                                         th:value="${client.companyName}"
@@ -72,7 +73,7 @@
                                                             <div class="col-12 d-flex flex-sm-row flex-column justify-content-end mt-3 mt-sm-2">
                                                                 <button type="submit" name="action" value="addItem"
                                                                         class="btn btn-warning mb-2 mb-sm-0 mr-sm-2"
-                                                                >Select Company
+                                                                >Select Client
                                                                 </button>
                                                             </div>
                                                         </div>
