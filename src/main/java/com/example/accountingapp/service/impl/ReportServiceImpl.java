@@ -1,6 +1,7 @@
 package com.example.accountingapp.service.impl;
 
 import com.example.accountingapp.dto.InvoiceDTO;
+import com.example.accountingapp.dto.InvoiceProductDTO;
 import com.example.accountingapp.dto.PaymentDTO;
 import com.example.accountingapp.dto.ReportDTO;
 import com.example.accountingapp.entity.InvoiceProduct;
@@ -12,6 +13,7 @@ import com.example.accountingapp.repository.InvoiceProductRepository;
 import com.example.accountingapp.repository.InvoiceRepository;
 import com.example.accountingapp.repository.PaymentRepository;
 import com.example.accountingapp.repository.UserRepository;
+import com.example.accountingapp.service.CompanyService;
 import com.example.accountingapp.service.InvoiceService;
 import com.example.accountingapp.service.ReportService;
 import com.example.accountingapp.service.UserService;
@@ -32,8 +34,9 @@ public class ReportServiceImpl implements ReportService {
     private final InvoiceService invoiceService;
     private final UserService userService;
     private final PaymentRepository paymentRepository;
+    private final CompanyService companyService;
 
-    public ReportServiceImpl(InvoiceProductRepository invoiceProductRepository, UserRepository userRepository, InvoiceRepository invoiceRepository, MapperUtil mapperUtil, InvoiceService invoiceService, UserService userService, PaymentRepository paymentRepository) {
+    public ReportServiceImpl(InvoiceProductRepository invoiceProductRepository, UserRepository userRepository, InvoiceRepository invoiceRepository, MapperUtil mapperUtil, InvoiceService invoiceService, UserService userService, PaymentRepository paymentRepository, CompanyService companyService) {
         this.invoiceProductRepository = invoiceProductRepository;
         this.userRepository = userRepository;
         this.invoiceRepository = invoiceRepository;
@@ -41,6 +44,7 @@ public class ReportServiceImpl implements ReportService {
         this.invoiceService = invoiceService;
         this.userService = userService;
         this.paymentRepository = paymentRepository;
+        this.companyService = companyService;
     }
 
     @Override
@@ -52,12 +56,12 @@ public class ReportServiceImpl implements ReportService {
 
 
         BigDecimal totalCost = invoiceProductRepository.findAllByInvoice_InvoiceTypeAndInvoice_Company(InvoiceType.PURCHASE, userService.findCompanyByLoggedInUser()).stream().
-                map(p->p.getPrice()).
+                map(p->p.getPrice().multiply(BigDecimal.valueOf(p.getQty()))).
                 reduce(BigDecimal.ZERO, (a, b) -> a.add(b));
 
 
         BigDecimal totalSale = invoiceProductRepository.findAllByInvoice_InvoiceTypeAndInvoice_Company(InvoiceType.SALE, userService.findCompanyByLoggedInUser()).stream().
-                map(p->p.getPrice()).
+                map(p->p.getPrice().multiply(BigDecimal.valueOf(p.getQty()))).
                 reduce(BigDecimal.ZERO, (a, b) -> a.add(b));
 
 
@@ -111,7 +115,17 @@ public class ReportServiceImpl implements ReportService {
         List<InvoiceDTO> listInvoiceDTO = invoiceRepository.findLast3InvoiceByDate(userService.findCompanyByLoggedInUser().getTitle())
                         .stream().map(invoice -> mapperUtil.convert(invoice, new InvoiceDTO())).collect(Collectors.toList());
         listInvoiceDTO.forEach(p -> p.setCost((invoiceService.calculateCostByInvoiceID(p.getId())).setScale(2, RoundingMode.CEILING)));
-        listInvoiceDTO.forEach(p -> p.setTax((p.getCost().multiply(BigDecimal.valueOf(0.07))).setScale(2, RoundingMode.CEILING)));
+
+        for (InvoiceDTO eachDTO : listInvoiceDTO) {
+            if (eachDTO.getInvoiceType().equals("Purchase")) {
+                BigDecimal tax = eachDTO.getClientVendor().getStateId().getState_tax().divide(BigDecimal.valueOf(100));
+                listInvoiceDTO.forEach(p -> p.setTax((p.getCost().multiply(tax)).setScale(2, RoundingMode.CEILING)));
+            } else {
+                BigDecimal tax = companyService.findTaxByCompany().divide(BigDecimal.valueOf(100));
+
+                listInvoiceDTO.forEach(p -> p.setTax((p.getCost().multiply(tax)).setScale(2, RoundingMode.CEILING)));
+            }
+        }
         listInvoiceDTO.forEach(p -> p.setTotal(((p.getCost()).add(p.getTax())).setScale(2, RoundingMode.CEILING)));
         return listInvoiceDTO;
     }

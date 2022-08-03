@@ -92,10 +92,11 @@ public class CompanyServiceImpl implements CompanyService {
     public List<CompanyDTO> findCompanyByLoggedInUser() {
         List<CompanyDTO> listCompanies = new ArrayList<>();
 
-        if (userService.findLoggedInUser().getRole().equals("Root")){
+        if (userService.findLoggedInUser().getRole().getName().equals("Root")){
+            System.out.println("we are here");
             return listAllCompanies();
         }
-        listAllCompanies().forEach(System.out::println);
+
         listCompanies.add(mapperUtil.convert(userService.findCompanyByLoggedInUser(),new CompanyDTO()));
         return listCompanies;
     }
