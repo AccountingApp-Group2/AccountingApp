@@ -44,6 +44,7 @@ public class UserController {
 
         model.addAttribute("user", new UserDTO());
         model.addAttribute("roles", roleService.listAllRoles());
+        companyService.findCompanyByLoggedInUser().forEach(System.out::println);
         model.addAttribute("companies", companyService.findCompanyByLoggedInUser());
         model.addAttribute("UserStatus", UserStatus.values());
         return "/user/user-add";
@@ -84,7 +85,9 @@ public class UserController {
     public String updateUser(@Valid @ModelAttribute("user") UserDTO user, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("roles", roleService.listAllRoles());
+
             model.addAttribute("companies", companyService.findCompanyByLoggedInUser());
+
             model.addAttribute("UserStatus", UserStatus.values());
             return "/user/user-update";
 
